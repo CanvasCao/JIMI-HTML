@@ -1,0 +1,487 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="referrer" content="always"/>
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no"/>
+
+    <style>
+        body {
+            font-size: 14px;
+            line-height: 20px;
+            background: #f0f0f0;
+            color: #727272;
+            height: 100%
+        }
+
+        ul, li {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            height: 100%;
+        }
+
+        .showTabsTitle {
+            width: 100%;
+            background: #fff;
+            height: 40px;
+            font-size: 14px;
+            border-top: 1px solid #bababa;
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            z-index: 999;
+        }
+
+        .showTabsTitle ul li {
+            width: 49%;
+            float: left;
+            cursor: pointer;
+            position: relative;
+            z-index: 1;
+            line-height: 40px;
+            margin-right: 1px;
+            text-align: center;
+            height: 40px;
+        }
+
+        .showTabsTitle ul li.hover {
+            color: #0093ff;
+        }
+
+        .nrli {
+            width: 100%;
+            position: relative;
+            z-index: 2;
+        }
+
+        .nrli .div1, .nrli .div2, .nrli .div3, .nrli .div4, .nrli .div5, .nrli .div6, .nrli .div7, .nrli .div8, .nrli .div9, .nrli .div10 {
+            width: 290px;
+            height: 100%;
+            margin: 10px auto 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .nrli .li_text, .nrli .li_text2, .nrli .li_text3 {
+            background: #0093ff;
+            position: absolute;
+            height: auto;
+            font-size: 14px;
+            padding: 5px 20px;
+            color: #fff;
+            border-radius: 40px;
+        }
+
+        .nrli .an_btn {
+            position: absolute;
+            width: 46px;
+            height: 46px;
+            overflow: hidden;
+            z-index: 999;
+            cursor: pointer;
+        }
+
+        .nrli .an_btn .btn_p1 {
+            background: url(img/ss1.png) no-repeat;
+            background-size: 46px 46px;
+        }
+
+        .nrli .an_btn .btn_p2 {
+            background: url(img/ss2.png) no-repeat;
+            background-size: 46px 46px;
+        }
+
+        .nrli .an_btn .btn_p3 {
+            background: url(img/ss3.png) no-repeat;
+            background-size: 46px 46px;
+        }
+
+        .li_img img {
+            width: 290px;
+        }
+
+        .nrli .an_btn div {
+            width: 35px;
+            height: 35px;
+        }
+
+        .div1 .an_btn {
+            left: 160px;
+            top: 65px;
+        }
+
+        .div1 .li_text {
+            left: 20px;
+            top: 260px;
+        }
+
+        .div2 .an_btn {
+            left: 200px;
+            top: 300px;
+        }
+
+        .div2 .li_text {
+            left: 120px;
+            top: 230px;
+        }
+
+        .div3 .an_btn {
+            left: 170px;
+            top: 495px;
+        }
+
+        .div3 .li_text {
+            left: 80px;
+            top: 400px;
+        }
+
+        .div4 .an_btn {
+            left: 210px;
+            top: 60px;
+        }
+
+        .div4 .li_text {
+            left: 80px;
+            top: 125px;
+        }
+
+        .div5 .an_btn {
+            left: 160px;
+            top: 430px;
+        }
+
+        .div5 .li_text {
+            left: 52px;
+            top: 350px;
+        }
+
+        .div6 .li_text {
+            background: none;
+            left: 105px;
+            top: 260px;
+        }
+
+        .div6 .li_text2 {
+            left: 100px;
+            top: 300px;
+        }
+
+        .div6 .li_text3 {
+            left: 85px;
+            top: 340px;
+        }
+
+        .div7 .an_btn {
+            left: 110px;
+            top: 250px;
+        }
+
+        .div7 .li_text {
+            left: 65px;
+            top: 200px;
+        }
+
+        .div8 .an_btn {
+            left: 250px;
+            top: 490px;
+        }
+
+        .div8 .li_text {
+            left: 150px;
+            top: 450px;
+        }
+
+        .div9 .an_btn {
+            left: 160px;
+            top: 475px;
+        }
+
+        .div9 .li_text {
+            left: 50px;
+            top: 420px;
+        }
+
+        .div10 .li_text {
+            background: none;
+            left: 105px;
+            top: 260px;
+        }
+
+        .div10 .li_text2 {
+            left: 100px;
+            top: 300px;
+        }
+
+        .div10 .li_text3 {
+            left: 85px;
+            top: 340px;
+        }
+    </style>
+
+    <title>功能介绍</title>
+</head>
+
+<body>
+<main>
+    <div class="showDetail">
+
+        <div class="showContentbox clear">
+
+            <div id="con_one_1" class="nrli">
+                <div>
+
+                    <div class="div1" id="page1" style="display:block;">
+                        <ul>
+                            <li class="li_img" id="bg1"><img
+                                    src="img/1.png"/></li>
+                            <li class="li_text">可直接使用秘方，也可以手动搜索<br/>秘方：自定义搜索条件任意组合</li>
+                            <div id="next1" class="an_btn" onClick="javascript:from(1);">
+                                <div class="btn_p1"></div>
+                                <div class="btn_p2"></div>
+                                <div class="btn_p3"></div>
+                            </div>
+                        </ul>
+                    </div>
+
+                    <div class="div2" id="page2" style="display:none;">
+                        <ul>
+                            <li class="li_img" id="bg2"><img src="img/2.png"
+                                                             width="290"></li>
+                            <li class="li_text">进行条件筛选</li>
+                            <div id="next2" class="an_btn" onClick="javascript:from(2);">
+                                <div class="btn_p1"></div>
+                                <div class="btn_p2"></div>
+                                <div class="btn_p3"></div>
+                            </div>
+                        </ul>
+                    </div>
+
+                    <div class="div3" id="page3" style="display:none;">
+                        <ul>
+                            <li class="li_img" id="bg3"><img src="img/3.png"
+                                                             width="290"></li>
+                            <li class="li_text">添加搜索条件</li>
+                            <div id="next3" class="an_btn" onClick="javascript:from(3);">
+                                <div class="btn_p1"></div>
+                                <div class="btn_p2"></div>
+                                <div class="btn_p3"></div>
+                            </div>
+                        </ul>
+                    </div>
+
+                    <div class="div4" id="page4" style="display:none;">
+                        <ul>
+                            <li class="li_img" id="bg4"><img src="img/4.png"
+                                                             width="290"></li>
+                            <li class="li_text">条件设置成功，搜索产品</li>
+                            <div id="next4" class="an_btn" onClick="javascript:from(4);">
+                                <div class="btn_p1"></div>
+                                <div class="btn_p2"></div>
+                                <div class="btn_p3"></div>
+                            </div>
+                        </ul>
+                    </div>
+
+                    <div class="div5" id="page5" style="display:none;">
+                        <ul>
+                            <li class="li_img" id="bg5"><img src="img/5.png"
+                                                             width="290"></li>
+                            <li class="li_text">数据检索完成，查看产品</li>
+                            <div id="next5" class="an_btn" onClick="javascript:from(5);">
+                                <div class="btn_p1"></div>
+                                <div class="btn_p2"></div>
+                                <div class="btn_p3"></div>
+                            </div>
+                        </ul>
+                    </div>
+
+                    <div class="div7" id="page6" style="display:none;">
+                        <ul>
+                            <li class="li_img" id="bg6"><img src="img/7.png"
+                                                             width="290"></li>
+                            <li class="li_text">添加产品到对比列表中</li>
+                            <div id="next6" class="an_btn" onClick="javascript:from(6);">
+                                <div class="btn_p1"></div>
+                                <div class="btn_p2"></div>
+                                <div class="btn_p3"></div>
+                            </div>
+                        </ul>
+                    </div>
+
+                    <div class="div8" id="page7" style="display:none;">
+                        <ul>
+                            <li class="li_img" id="bg7"><img src="img/7.png"
+                                                             width="290"></li>
+                            <li class="li_text">进入对比列表</li>
+                            <div id="next7" class="an_btn" onClick="javascript:from(7);">
+                                <div class="btn_p1"></div>
+                                <div class="btn_p2"></div>
+                                <div class="btn_p3"></div>
+                            </div>
+                        </ul>
+                    </div>
+
+                    <div class="div9" id="page8" style="display:none;">
+                        <ul>
+                            <li class="li_img" id="bg8"><img src="img/8.png"
+                                                             width="290"></li>
+                            <li class="li_text">选择同类型产品进行对比</li>
+                            <div id="next8" class="an_btn" onClick="javascript:from(8);">
+                                <div class="btn_p1"></div>
+                                <div class="btn_p2"></div>
+                                <div class="btn_p3"></div>
+                            </div>
+                        </ul>
+                    </div>
+
+                    <div class="div10" id="page9" style="display:none;">
+                        <ul>
+                            <li class="li_img" id="bg9"><img src="img/9.png"
+                                                             width="290"></li>
+                            <li class="li_text">技能Get!</li>
+                            <li class="li_text2" onClick="javascript:from(0);">再看一遍</li>
+                        </ul>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div id="con_one_2" class="nrli nrli2" style="display:none">
+                <div id="div2">
+
+
+                </div>
+                <span id="next">下一页</span>
+            </div>
+        </div>
+
+
+    </div>
+    <div id="div">
+        <div class="div1" style="display:block;"></div>
+        <div class="div2"></div>
+        <div class="div3"></div>
+    </div>
+</main>
+</body>
+</html>
+<script type="text/javascript">
+
+    function G(e) {//getElementById
+        return document.getElementById(e);
+    }
+
+
+    //按钮闪动效果
+    function btnPlayer(con, child, speed) {
+        var ts = G(con).getElementsByTagName(child),
+                timer,//定时器
+                k = 0;//k当前下标
+
+        //排它
+        var timer = setInterval(function () {
+            for (var m = 0; m < ts.length; m++) {
+                ts[m].style.display = "none";
+            }
+            ts[k].style.display = "block";//显示需要显示的div
+            if (k > ts.length - 2) {
+                k = 0;
+            } else {
+                k++;
+            }
+        }, speed);
+    }
+
+    //冗余严重
+    btnPlayer("next1", "div", 200);
+    btnPlayer("next2", "div", 200);
+    btnPlayer("next3", "div", 200);
+    btnPlayer("next4", "div", 200);
+    btnPlayer("next5", "div", 200);
+    btnPlayer("next6", "div", 200);
+    btnPlayer("next7", "div", 200);
+    btnPlayer("next8", "div", 200);
+
+    //某页藏起来 某页显示
+    function from(num) {
+        if (num == 0) {
+            var hide = "page9";//第九页为末页
+            var show = "page1";
+        } else {
+            var hide = "page" + num;
+            var show = "page" + (++num);
+        }
+        G(hide).style.display = "none";
+        G(show).style.display = "block";
+    }
+
+
+    //获取浏览器宽高 ie不适用
+    var winWidth = document.documentElement.clientWidth;
+    var winHeight = document.documentElement.clientHeight;
+
+
+    //自动像素缩放运算
+    function autosize(pixel) {
+        var percent = 100;
+        var originalWidth = 520;
+        var originalHeight = 920;
+        var newWidth = (originalWidth * winHeight) / originalHeight;
+        var newPixel = (pixel * newWidth) / winWidth;
+        return newPixel + "px";
+    }
+    //对背景图片进行自适应
+    for (var i = 1; i < 10; i++) {
+        var aImg = G("bg" + i).getElementsByTagName('img');
+        aImg[0].style.width = autosize(290);//bg默认图片宽度为290
+    }
+    //对按钮位置进行自适应
+    var abtn = document.getElementsByClassName("an_btn");
+    var altext = document.getElementsByClassName("li_text");
+    abtn[0].style.left = autosize(180);
+    abtn[0].style.top = autosize(65);
+    altext[0].style.left = autosize(20);
+    altext[0].style.top = autosize(260);
+
+    abtn[1].style.left = autosize(200);
+    abtn[1].style.top = autosize(300);
+    altext[1].style.left = autosize(120);
+    altext[1].style.top = autosize(230);
+
+    abtn[2].style.left = autosize(170);
+    abtn[2].style.top = autosize(495);
+    altext[2].style.left = autosize(90);
+    altext[2].style.top = autosize(400);
+
+    abtn[3].style.left = autosize(210);
+    abtn[3].style.top = autosize(60);
+    altext[3].style.left = autosize(80);
+    altext[3].style.top = autosize(125);
+
+    abtn[4].style.left = autosize(160);
+    abtn[4].style.top = autosize(430);
+    altext[4].style.left = autosize(52);
+    altext[4].style.top = autosize(350);
+
+    abtn[5].style.left = autosize(130);
+    abtn[5].style.top = autosize(250);
+    altext[5].style.left = autosize(65);
+    altext[5].style.top = autosize(200);
+
+    abtn[6].style.left = autosize(270);
+    abtn[6].style.top = autosize(480);
+    altext[6].style.left = autosize(150);
+    altext[6].style.top = autosize(450);
+
+    abtn[7].style.left = autosize(160);
+    abtn[7].style.top = autosize(475);
+    altext[7].style.left = autosize(50);
+    altext[7].style.top = autosize(420);
+
+    altext[8].style.top = autosize(260);
+
+</script>

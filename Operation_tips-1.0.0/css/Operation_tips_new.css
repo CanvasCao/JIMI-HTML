@@ -1,0 +1,21 @@
+*{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+body {
+    font-size: 14px;
+    line-height: 14px;
+    background: #f0f0f0;
+    color: #727272;
+    height: 100%
+}
+
+#stage{
+    width: 290px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+
+}

@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="referrer" content="always"/>
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no"/>
+    <title>Document</title>
+    <link rel="stylesheet" href="css/Operation_tips_new.css"/>
+</head>
+<body>
+<div id='stage'>
+</div>
+</body>
+<!--jq 框架 底部栏-->
+<script src='js/jquery-1.7.2.min.js'></script>
+<script src='js/introFrame-1.0.1.js'></script>
+<script src='js/introBottomBar-1.0.0.js'></script>
+<script>
+    $(function () {
+        var domStage = document.getElementById('stage');
+        var data2 = {
+            pageNum: 9
+        };
+        var introBottomBar = new IntroBottomBar(data2);
+        var data = {
+            bgImgs: ['img/1.png', 'img/2.png', 'img/3.png', 'img/4.png', 'img/5.png', 'img/7.png', 'img/7.png', 'img/8.png', 'img/9.png'],
+            clickImgs: ['img/ss1.png', 'img/ss2.png', 'img/ss3.png'],
+            bbdImg: 'img/bbd.png',
+            clickPosition: [
+                {'index': 0, 'left': '66%', 'top': '16%'},
+                {'index': 1, 'left': '66%', 'top': '63%'},
+                {'index': 2, 'left': '66%', 'top': '91%'},
+                {'index': 3, 'left': '90%', 'top': '18%'},
+                {'index': 4, 'left': '64%', 'top': '80%'},
+                {'index': 5, 'left': '46%', 'top': '49%'},
+                {'index': 6, 'left': '93%', 'top': '90%'},
+                {'index': 7, 'left': '66%', 'top': '88%'}],//百分比
+            word: ['可直接使用秘方,也可以手动搜索秘方:自定义搜索条件任意组合',
+                '进行条件筛选',
+                '添加搜索条件',
+                '条件设置成功，搜索产品',
+                '数据检索完成，查看产品',
+                '添加产品到对比列表中',
+                '进入对比列表',
+                '选择同类型产品进行对比',
+                '---'],
+            wordPosition: [
+                {'index': 0, 'left': '0%', 'top': '45%'},
+                {'index': 1, 'left': '48%', 'top': '50%'},
+                {'index': 2, 'left': '48%', 'top': '79%'},
+                {'index': 3, 'left': '39%', 'top': '21%'},
+                {'index': 4, 'left': '22%', 'top': '60%'},
+                {'index': 5, 'left': '18%', 'top': '35%'},
+                {'index': 6, 'left': '58%', 'top': '78%'},
+                {'index': 7, 'left': '22%', 'top': '75%'}
+            ]
+        }
+        var introFrame = new IntroFrame(domStage, data, introBottomBar);
+//        introFrame._skip(8)//测试代码
+    })
+</script>
+</html>

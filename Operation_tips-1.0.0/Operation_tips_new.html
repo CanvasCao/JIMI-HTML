@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="referrer" content="always"/>
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no"/>
+    <title>Document</title>
+    <link rel="stylesheet" href="css/Operation_tips_new.css"/>
+</head>
+<body>
+<div id='stage'>
+</div>
+</body>
+<!--jq 底部的条 整个新手介绍框架-->
+<script src='js/jquery-1.7.2.min.js'></script>
+<script src='js/bottomBar.js'></script>
+<script src='js/introFrame.js'></script>
+<script>
+    $(function () {
+        var domStage = document.getElementById('stage');
+        var data = {
+            bottomBarHeight:49,
+            bgImgs: ['img/1.png', 'img/2.png', 'img/3.png', 'img/4.png', 'img/5.png', 'img/7.png', 'img/7.png', 'img/8.png', 'img/9.png'],
+            bgSize: 290,
+            clickImgs: ['img/ss1.png', 'img/ss2.png', 'img/ss3.png'],
+            clickSize: 46,
+
+            //点击位置默认50 50
+            clickPosition: [[66, 16], [66, 63], [66, 91], [90, 18], [64, 80], [46, 49], [93, 90], [66, 88]],
+            word: ['可直接使用秘方，也可以手动搜索秘方：自定义搜索条件任意组合',
+                '111111111111222',
+                '333',
+                '444',
+                '555',
+                '666',
+                '777',
+                '888',
+                '999'],
+            wordPosition: [null, null, null, null, null, null, null, null, null]//文字出现的位置 默认在偏中间的位置
+        }
+
+        var introFrame = new IntroFrame(domStage, data)
+//        introFrame._skip(8)
+    })
+</script>
+</html>
