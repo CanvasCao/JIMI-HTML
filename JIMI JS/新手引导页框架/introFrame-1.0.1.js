@@ -8,7 +8,7 @@
     function IntroFrame(container, data, bar) {
         this.container = container;
         this.data = data;
-        this.bar = bar;//下栏
+        this.bar = bar;//传入Bar的原因是因为 框架更新Index的时候 我希望Bar也更新属性
         this.timer = null;
         this.config = {
             baseWidth: 375,

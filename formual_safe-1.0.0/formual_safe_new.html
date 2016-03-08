@@ -7,14 +7,10 @@
     <title>Document</title>
     <link rel="stylesheet" href="css/formual_safe_new.css"/>
     <style type="text/css">
-        .middleComponent{
-            line-height: 30px;
-            padding: 10px;
-            background-color: #f3f3f3;
-        }
     </style>
 </head>
 <body>
+<!--头部分左右两部分-->
 <div class='header'>
     <div id="distribution">
         <span>产品分布</span>
@@ -22,24 +18,92 @@
     </div>
     <div id="sort"></div>
 </div>
-<div class='middleComponent'>
-    <span>水</span>、<span>水</span>、<span>水</span>、<span>水</span>、<span>水</span>、<span>水</span>、<span>水</span>、<span>水</span>、<span>水</span>、<span>水</span>、<span>水</span>、<span>水</span>、<span>水</span>、<span>水</span>、<span>水</span>、<span>水</span>、<span>水</span>、<span>水</span>、<span>水</span>、<span>水</span>、<span>水</span>、<span>水</span>、<span>水</span>、<span>水</span>、<span>水</span>、<span>水</span>、<span>水</span>、<span>水</span>、<span>水</span>、<span>水</span>、<span>水</span>、<span>水</span>
-</div>
 
+<!--中间是成分表-->
+<div class='middleComponent' id='com'>
+</div>
+<div class='footer' id='ft'>
+    <div class='typeFt'>
+        <ul>
+            <li style='color:#ff9000'>皮肤/头发调理剂</li>
+            <li>剂型</li>
+            <li style='color:#018cff'>皮肤柔润剂</li>
+            <li style='color:#52d200'>防晒剂</li>
+        </ul>
+    </div>
+    <div class='safeFt'>
+        <ul>
+            <li style='color:#ff4005'>致敏/致痘成分</li>
+            <li>正常成分</li>
+        </ul>
+    </div>
+</div>
 
 <script src='js/jquery-1.7.2.min.js'></script>
 <script src='js/alternateBtn-1.0.0.js'></script>
+<script src='js/middleComponent-1.0.0.js'></script>
 <script>
     $(function () {
+        //Initialize......................................................
         var sort = document.getElementById('sort');
-        var sortdata = {showTxt: ['按类型', '按安全']}
-        var alternateBtn = new AlternateBtn(sort, sortdata)
+        var sortdata = {showTxt: ['按类型', '按安全']};
+        var alternateBtn = new AlternateBtn(sort, sortdata);
 
 
-        var ajaxJson = {
-            component: ['水', '矿油', '癸酸甘油三酯', 'C12-15 醇苯甲酸酯', '甘油', '聚二甲基硅氧烷', '聚丙烯酰胺', 'C13-14 异链烷烃', '水', '矿油', '癸酸甘油三酯', 'C12-15 醇苯甲酸酯', '甘油', '聚二甲基硅氧烷', '聚丙烯酰胺', 'C13-14 异链烷烃']
-        }
+        //中间的控件要jsonp
+        var middleComponent = document.getElementById('com');
+        var component;
+//        var ajaxJson = {
+//            component: ['水', '矿油', '癸酸甘油三酯', 'C12-15 醇苯甲酸酯', '甘油', '聚二甲基硅氧烷', '聚丙烯酰胺', 'C13-14 异链烷烃', '水', '矿油', '癸酸甘油三酯', 'C12-15 醇苯甲酸酯', '甘油', '聚二甲基硅氧烷', '聚丙烯酰胺', 'C13-14 异链烷烃', '水', '矿油', '癸酸甘油三酯', 'C12-15 醇苯甲酸酯', '甘油', '聚二甲基硅氧烷', '聚丙烯酰胺', 'C13-14 异链烷烃', '水', '矿油', '癸酸甘油三酯', 'C12-15 醇苯甲酸酯', '甘油', '聚二甲基硅氧烷', '聚丙烯酰胺', 'C13-14 异链烷烃', '水', '矿油', '癸酸甘油三酯', 'C12-15 醇苯甲酸酯', '甘油', '聚二甲基硅氧烷', '聚丙烯酰胺', 'C13-14 异链烷烃', '水', '矿油', '癸酸甘油三酯', 'C12-15 醇苯甲酸酯', '甘油', '聚二甲基硅氧烷', '聚丙烯酰胺', 'C13-14 异链烷烃', '水', '矿油', '癸酸甘油三酯', 'C12-15 醇苯甲酸酯', '甘油', '聚二甲基硅氧烷', '聚丙烯酰胺', 'C13-14 异链烷烃'],
+//            type: [
+//                {
+//                    name: 'conditioner',//调理
+//                    arr: ['C12-15 醇苯甲酸酯']
+//                },
+//                {
+//                    name: 'emollient',//柔润
+//                    arr: ['C13-14 异链烷烃']
+//                },
+//                {
+//                    name: 'sunScreener',//防晒
+//                    arr: ['聚二甲基硅氧烷']
+//                }
+//            ],
+//            safe: [
+//                {
+//                    name: 'sensitization',//致敏
+//                    arr: ['聚二甲基硅氧烷', '水']
+//                }
+//            ],
+//        };
+        $.ajax({
+            type: "get",
+            url: 'http://n1.jimi.la/apps_V2/cp/formual_safe.php?pid=56c6ae75efb80c9b2541cd67',
+            data: {pids: '56c6ae75efb80c9b2541cd66,56c6ae4fefb80c9b2541cc39', 'cate': 70},
+            dataType: "jsonp",
+            jsonp: "callback",//传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)
+            jsonpCallback: "jsonpcallback",
+            success: function (data) {
+                component = new MiddleComponent(middleComponent, data);
 
+                //associated events................................................
+                //控件与控件的关联
+
+                //点击按钮 类型和成分的切换
+                $('#sort li').click(function () {
+                    var index = $(this).index()
+                    $('#com div').eq(index).show().siblings().hide();
+                    $('#ft div').eq(index).show().siblings().hide();
+                })
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        });
+
+        //events.....................................................
+        //底部第一个tab显式
+        $('#ft div').eq(0).show().siblings().hide();
     })
 </script>
 </body>

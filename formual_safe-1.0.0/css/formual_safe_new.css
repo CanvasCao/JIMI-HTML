@@ -3,6 +3,8 @@
     margin: 0;
     list-style: none;
     text-decoration: none;
+    font-family:'Î¢ÈíÑÅºÚ';
+
 }
 
 .header{
@@ -35,4 +37,23 @@
     position: absolute;
     top: 15px;
     right: 15px;
+}
+
+
+#ft{
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    line-height: 30px;
+    background-color: #f3f3f3;
+    padding: 10px;
+}
+#ft div{
+    display: none;
+}
+#ft li{
+    float: left;
+    width: 50%;
+    box-sizing: border-box;
+    padding-left: 20px;
 }
