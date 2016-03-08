@@ -1,0 +1,38 @@
+*{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    text-decoration: none;
+}
+
+.header{
+    position: relative;
+    height: 70px;
+}
+
+#distribution{
+    padding: 22px ;
+}
+
+#distribution span:nth-child(1){
+    float: left;
+    font-size:20px;
+    font-weight: bold;
+}
+
+#distribution span:nth-child(2){
+    float: left;
+    color: #fff;
+    background: #0e93ff;
+    width: 20px;
+    height: 20px;
+    border-radius: 20px;
+    text-align: center;
+    margin-left: 5px;
+}
+
+#sort{
+    position: absolute;
+    top: 15px;
+    right: 15px;
+}

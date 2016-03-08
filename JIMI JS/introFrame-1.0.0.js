@@ -56,7 +56,7 @@
         initCSS: function () {
             var that = this;
             //初始化让容器绝对定位
-            $(this.container).css({'position': 'absolute'});
+            $(this.container).css('position', 'absolute');
 
 
             //点击图和文字绝对定位
@@ -79,8 +79,8 @@
                 //'transform': ' translateX(-50%) translateY(-50%)',
                 backgroundColor: '#0093FF',
                 'border-radius': '15px',
-                padding: '8px 15px',
-                color: 'white'
+                padding:'8px 15px',
+                color:'white'
             })
 
             //大图只显示第一张
@@ -100,15 +100,15 @@
         },
         //内部函数 跳转页面
         _skip: function (pageNum) {
-            this.config.bgIndex = pageNum;
+            this.config.bgIndex=pageNum;
             //替换背景图
             $('.picUl li').eq(pageNum).show().siblings().hide();
 
             //点击图换位置
-            if (this.config.bgIndex == this.config.bgLength - 1) {
+            if(this.config.bgIndex==this.config.bgLength-1){
                 //隐藏
                 $('.clickUl').hide()
-            } else {
+            }else{
                 //出现
                 var top = '50%', left = '50%';
                 var posData = this.data.clickPosition[pageNum];
@@ -118,6 +118,7 @@
                 }
                 $('.clickUl').show().css({top: top, left: left})
             }
+
 
 
             //提示文字换位置

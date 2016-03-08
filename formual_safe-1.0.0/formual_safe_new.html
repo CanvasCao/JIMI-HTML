@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no"/>
+    <title>Document</title>
+    <link rel="stylesheet" href="css/formual_safe_new.css"/>
+    <style type="text/css">
+        .middleComponent{
+            line-height: 30px;
+            padding: 10px;
+            background-color: #f3f3f3;
+        }
+    </style>
+</head>
+<body>
+<div class='header'>
+    <div id="distribution">
+        <span>产品分布</span>
+        <span onclick="location.href='http://n1.jimi.la/apps_V2/html5/chenfenjiedu.html' ">?</span>
+    </div>
+    <div id="sort"></div>
+</div>
+<div class='middleComponent'>
+    <span>水</span>、<span>水</span>、<span>水</span>、<span>水</span>、<span>水</span>、<span>水</span>、<span>水</span>、<span>水</span>、<span>水</span>、<span>水</span>、<span>水</span>、<span>水</span>、<span>水</span>、<span>水</span>、<span>水</span>、<span>水</span>、<span>水</span>、<span>水</span>、<span>水</span>、<span>水</span>、<span>水</span>、<span>水</span>、<span>水</span>、<span>水</span>、<span>水</span>、<span>水</span>、<span>水</span>、<span>水</span>、<span>水</span>、<span>水</span>、<span>水</span>、<span>水</span>
+</div>
+
+
+<script src='js/jquery-1.7.2.min.js'></script>
+<script src='js/alternateBtn-1.0.0.js'></script>
+<script>
+    $(function () {
+        var sort = document.getElementById('sort');
+        var sortdata = {showTxt: ['按类型', '按安全']}
+        var alternateBtn = new AlternateBtn(sort, sortdata)
+
+
+        var ajaxJson = {
+            component: ['水', '矿油', '癸酸甘油三酯', 'C12-15 醇苯甲酸酯', '甘油', '聚二甲基硅氧烷', '聚丙烯酰胺', 'C13-14 异链烷烃', '水', '矿油', '癸酸甘油三酯', 'C12-15 醇苯甲酸酯', '甘油', '聚二甲基硅氧烷', '聚丙烯酰胺', 'C13-14 异链烷烃']
+        }
+
+    })
+</script>
+</body>
+</html>

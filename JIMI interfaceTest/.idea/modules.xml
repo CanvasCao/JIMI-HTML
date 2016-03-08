@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/JIMI-HTML.iml" filepath="$PROJECT_DIR$/.idea/JIMI-HTML.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/interfaceTest.iml" filepath="$PROJECT_DIR$/.idea/interfaceTest.iml" />
     </modules>
   </component>
 </project>
