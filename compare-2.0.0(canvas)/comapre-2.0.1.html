@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no"/>
+    <title></title>
+    <link rel="stylesheet" href="css/compare.css"/>
+    <style type="text/css">
+        canvas {
+            /*width: 320px;*/
+            /*height: 480px;*/
+        }
+    </style>
+</head>
+<body>
+<!--width='375' height='667'-->
+<canvas id='canvas'>
+    Canvas not supported!
+</canvas>
+</body>
+<script src='js/TableBlock.js'></script>
+<script>
+    //    别的不管先把iphone6做出来
+    var canvas = document.getElementById('canvas');
+
+    //初始化需要的数据
+    var winWidth = document.documentElement.clientWidth; //屏幕宽高
+    var winHeight = document.documentElement.clientHeight;
+    var rate = winWidth / 375;
+
+    //画布设置宽高
+    canvas.height = winHeight;
+    canvas.width = winWidth;//h w 是行内的实际像素数 375 667
+
+    var context = canvas.getContext('2d');//d必须小写
+
+    var cell = {x: 100, y: 100};
+
+
+
+    //实例化
+    var dataBlock = new TableBlock(cell.x, cell.y, 4, 5, 'red')
+    var topBlock=new TableBlock(cell.x, 0, 4, 1, 'green')
+    var leftBlock=new TableBlock(0, cell.y, 1, 5, 'blue')
+    context.fillStyle='yellow'
+    context.fillRect(0,0,100,100)
+
+    //mouseEvent............................................
+    var ifDragging = false;
+    var mouseDown = {};
+    var dxdy = {};
+
+    canvas.addEventListener('touchstart', function (e) {
+        e.preventDefault();
+        ifDragging = true;
+        var touch = e.touches[0];
+        mouseDown.x = touch.pageX;
+        mouseDown.y = touch.pageY;
+    }, false)
+
+
+    canvas.addEventListener('touchmove', function (e) {
+        e.preventDefault();
+        if (ifDragging) {
+            //偏移量计算
+            var touch = e.touches[0];
+            dxdy.x = touch.pageX - mouseDown.x; //就是clientXY
+            dxdy.y = touch.pageY - mouseDown.y;
+
+            //开始重绘
+            context.clearRect(0, 0, winWidth, winHeight)
+            dataBlock.Render(dxdy.x, dxdy.y);
+            topBlock.Render(dxdy.x,0);
+            leftBlock.Render(0,dxdy.y);
+            context.fillStyle='yellow'
+            context.fillRect(0,0,100,100)
+
+
+        }
+    }, false)
+
+
+    canvas.addEventListener('touchend', function (e) {
+        e.preventDefault();
+        ifDragging = false;
+
+        dataBlock.FixLocation(dxdy.x, dxdy.y);
+        topBlock.FixLocation(dxdy.x,0);
+        leftBlock.FixLocation(0,dxdy.y);
+        dxdy = {x: 0, y: 0};//全局还原
+
+
+    }, false)
+
+
+</script>
+</html>
