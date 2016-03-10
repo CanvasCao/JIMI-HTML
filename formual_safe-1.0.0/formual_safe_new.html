@@ -86,9 +86,9 @@
             success: function (data) {
                 component = new MiddleComponent(middleComponent, data);
 
+
                 //associated events................................................
                 //控件与控件的关联
-
                 //点击按钮 类型和成分的切换
                 $('#sort li').click(function () {
                     var index = $(this).index()
@@ -102,7 +102,7 @@
         });
 
         //events.....................................................
-        //底部第一个tab显式
+        //css让底部tab全部隐藏 js显示底部第一个tab
         $('#ft div').eq(0).show().siblings().hide();
     })
 </script>
