@@ -20,6 +20,7 @@
 </canvas>
 </body>
 <script src='js/TableBlock.js'></script>
+<script src='js/data.js'></script>
 <script>
     //    别的不管先把iphone6做出来
     var canvas = document.getElementById('canvas');
@@ -37,32 +38,34 @@
     var context = canvas.getContext('2d');//d必须小写
 
     //网格的宽高 先是一个100的矩形 以后会根据屏幕缩放
-    var cell = {x: 100, y: 100};
-
-
-
+    var cell = {lx: 70, rx: 120, y: 60};
+    var data={x:4,y:10}; //数据块的宽高
 
     //实例化应该是调用ajax以后
     var dataBlock = new TableBlock({
-        Wnum: 4, Hnum: 5,
-        locX: cell.x, locY: cell.y,
+        Wnum: data.x, Hnum: data.y,
+        locX: cell.lx, locY: cell.y,
+        cellX:cell.rx,cellY:cell.y,
         fillStyle: 'red'
-    },context)
+    }, context)
     var topBlock = new TableBlock({
-        Wnum: 4, Hnum: 1,
-        locX: cell.x, locY: 0,
+        Wnum: data.x, Hnum: 1,
+        locX: cell.lx, locY: 0,
+        cellX:cell.rx,cellY:cell.y,
         fillStyle: 'green'
-    },context)
+    }, context)
     var leftBlock = new TableBlock({
-        Wnum: 1, Hnum: 5,
+        Wnum: 1, Hnum: data.y,
         locX: 0, locY: cell.y,
+        cellX:cell.lx,cellY:cell.y,
         fillStyle: 'blue'
-    },context)
+    }, context)
     var fixedBlock = new TableBlock({
         Wnum: 1, Hnum: 1,
         locX: 0, locY: 0,
+        cellX:cell.lx,cellY:cell.y,
         fillStyle: 'yellow'
-    },context)
+    }, context)
 
 
     //mouseEvent............................................
