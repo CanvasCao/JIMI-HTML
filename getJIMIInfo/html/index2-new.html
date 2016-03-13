@@ -1,0 +1,466 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>产品解析</title>
+
+    <style>
+        * {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            font: 12px "微软雅黑";
+            color: #727272;
+        }
+
+        body {
+            background: url(images/bg.jpg) center 0 no-repeat;
+            height: 1000px;
+        }
+
+        -webkit-scrollbar {
+            width: 0px
+        }
+
+        .tc_html {
+            width: 420px;
+            height: 520px;
+            color: #fff;
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 5px 5px 40px rgba(0, 0, 0, 0.5);
+            position: relative;
+            z-index: 990;
+        }
+
+        .tc_html .sj_icon {
+            background: url(images/icon.png) 0 -25px no-repeat;
+            width: 17px;
+            height: 11px;
+            position: absolute;
+            left: 15px;
+            top: -11px;
+            z-index: 991;
+        }
+
+        .top_top {
+            width: 100%;
+            float: left;
+            height: 60px;
+            background: rgba(43, 165, 221, 0.9) url(images/icon.png) 380px -50px no-repeat;
+        }
+
+        .top_top h2 {
+            width: 100%;
+            float: left;
+            font-weight: bold;
+            font-size: 14px;
+            color: #fff;
+            line-height: 60px;
+            text-indent: 15px;
+        }
+
+        .cnt_01 {
+            width: 100%;
+            border-bottom: 1px solid #eaeaea;
+            padding: 15px 0;
+            float: left;
+        }
+
+        .cnt_01_t {
+            width: 100%;
+            float: left;
+            height: 25px;
+        }
+
+        .cnt_01_t h4 {
+            padding: 0 25px 0 15px;
+            line-height: 25px;
+            background: #dcebf2 url(images/icon.png) right 0 no-repeat;
+            height: 25px;
+            float: left;
+        }
+
+        .cnt_01_b {
+            width: 100%;
+            float: left;
+        }
+
+        .cnt_01_b .showContentbox {
+            height: 280px;
+            width: 100%;
+            float: left;
+            margin: 10px 0;
+            /*background: #e9bf8f;*/
+        }
+
+        .cnt_01_b .showTabsTitle {
+            float: left;
+            width: 100%;
+            height: 25px;
+        }
+
+        .cnt_01_b .showTabsTitle li {
+            width: 80px;
+            text-align: center;
+            border-radius: 15px;
+            cursor: pointer;
+            height: 25px;
+            float: left;
+            text-align: center;
+            line-height: 25px;
+        }
+
+        .cpcs_ul {
+            width: 390px;
+            margin-left: 15px;
+            margin-top: 10px;
+        }
+
+        .cpcs_ul li {
+            width: 100%;
+            margin-bottom: 10px;
+            float: left;
+        }
+
+        .cpcs_ul li span {
+            width: 75px;
+            float: left;
+        }
+
+        .cpcs_ul li small {
+            width: 315px;
+            float: left;
+        }
+
+        .ck_more {
+            width: 80px;
+            height: 24px;
+            float: left;
+            line-height: 24px;
+            margin-left: 140px;
+            border: 1px solid #b5b5b5;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        .bq_ul {
+            width: 390px;
+            margin-left: 15px;
+            margin-top: 10px;
+        }
+
+        .bq_ul li {
+            height: 26px;
+            margin: 0 10px 10px 0;
+            padding: 0 9px;
+            border: 1px solid #36aadf;
+            color: #36aadf;
+            line-height: 26px;
+            float: left;
+        }
+
+        /*caoyuhao*/
+        #click {
+            cursor: pointer;
+        }
+
+        .tc_html {
+            display: none;
+        }
+    </style>
+
+
+</head>
+
+<body>
+<div style="width:120px; height:30px; margin:265px 0 0 668px  ;">
+    <div id='click' style=" line-height:30px; color:#363d4f;">温碧泉力透白雪肌霜</div>
+
+    <div class="tc_html" style="margin:10px 0 0 10px;">
+        <div class="sj_icon"></div>
+        <div style=" width:420px; height:520px; overflow: hidden;">
+            <div style=" width:450px; height:520px; overflow-y: auto;">
+                <div class="top_top"><h2></h2></div>
+                <div class="cnt_01">
+                    <div class="cnt_01_t"><h4>成分分布</h4></div>
+                    <div class="cnt_01_b">
+                        <div class="showDetail">
+
+                            <div class="showContentbox" id='cao'  style="width: 420px;height:280px;">
+                                <!--<div id="con_one_1">-->
+                                <!--1-->
+                                <!--</div>-->
+                                <!--<div id="con_one_2" style="display:none">-->
+                                <!--2-->
+                                <!--</div>-->
+                            </div>
+
+                            <div class="showTabsTitle" style="display: none">
+                                <ul>
+                                    <li id="one1" onclick="setTab('one',1,2)" class="hover" style="margin-left:125px;">
+                                        按功效:455
+                                    </li>
+                                    <li id="one2" onclick="setTab('one',2,2)">
+                                        按安全:45
+                                    </li>
+                                    <!--鼠标在按钮上点击切换到当前内容-->
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="cnt_01">
+                    <div class="cnt_01_t"><h4>产品参数</h4></div>
+                    <div class="cnt_01_b">
+                        <ul class="cpcs_ul" id='cpcs'>
+                            <!--<li>-->
+                            <!--<span>品名</span>-->
+                            <!--<small>Esteelauder雅诗兰黛特润修护肌透精华露50ml 小棕瓶 即时特润精华</small>-->
+                            <!--</li>-->
+
+                        </ul>
+
+                    </div>
+                </div>
+                <div class="cnt_01">
+                    <div class="cnt_01_t"><h4>标签</h4></div>
+                    <div class="cnt_01_b">
+                        <ul class="bq_ul">
+                            <!--<li>暗示法</li>-->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="js/jquery.min.js"></script>
+<script src="js/md5.js"></script>
+<script src="js/echarts.min.js"></script>
+<script>
+    // JavaScript Document
+    function setTab(name, cursel, n) {
+        for (i = 1; i <= n; i++) {
+            var menu = document.getElementById(name + i);
+            var con = document.getElementById("con_" + name + "_" + i);
+            menu.className = i == cursel ? "hover" : "";
+            con.style.display = i == cursel ? "block" : "none";
+        }
+    }
+
+
+    var echartJson = {
+        "tooltip": {
+            "formatter": "{a} <br/>{b}: {c}种 ({d}%)"
+        },
+        "textStyle": {
+            "fontSize": 12
+        },
+        "legend": {
+            "show": false,
+            "orient": "horizontal",
+            "x": "left",
+            "data": [
+                "皮肤/头发调理剂",
+                "皮肤柔润剂",
+                "防晒剂",
+                "剂型",
+                "致敏/致痘",
+                "正常成分"
+            ]
+        },
+        "series": [
+            {
+                "name": "按安全分类",
+                "type": "pie",
+                "radius": [
+                    0,
+                    "30%"
+                ],
+                "label": {
+                    "normal": {
+                        "position": "inner"
+                    }
+                },
+
+                "data": [
+                    {
+                        "value": 2,
+                        "name": "致敏/致痘"
+                    },
+                    {
+                        "value": 10,
+                        "name": "正常成分"
+                    }
+                ]
+            },
+            {
+                "name": "按成分分类",
+                "type": "pie",
+                "radius": [
+                    "40%",
+                    "55%"
+                ],
+                "data": [
+                    {
+                        "value": 3,
+                        "name": "皮肤/头发调理剂"
+                    },
+
+                    {
+                        "value": 10,
+                        "name": "剂型"
+                    },
+                    {
+                        "value": 4,
+                        "name": "皮肤柔润剂"
+                    },
+                    {
+                        "value": 5,
+                        "name": "防晒剂"
+                    }
+                ]
+            }
+        ]
+    }
+
+
+    $(function () {
+        var show = false;
+        var cao = document.getElementById('cao');
+        var mychart = echarts.init(cao);
+        mychart.showLoading();
+        $('#click').click(function () {
+            if (show) {
+                $('.tc_html').hide();
+                show = !show;
+            }
+            else {
+                $('.tc_html').show();
+                var name = $(this).html();
+                var md5 = $.md5('123456' + name);
+
+
+//                mychart.showLoading();
+                $.ajax({
+                    type: "post",
+                    url: 'http://n1.jimi.la/jimi_1.0/getInfo.php',
+                    data: {
+                        "grant_type": "product_info",
+                        "appid": "123456",
+                        "data": name,
+                        "access_token": md5,
+                        "req_type": "2",
+                        "ret_type": "1"
+                    },
+                    dataType: "jsonp",
+                    jsonp: "callback",//传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)
+                    jsonpCallback: "jsonpcallback",
+                    success: function (data) {
+                        var o = data.data;
+                        mychart.hideLoading();
+                        //echarts
+                        var formula = o.formula;
+                        var Len = formula.component.length;
+                        var conditionerLen = formula.type.conditioner.length;
+                        var emollientLen = formula.type.emollient.length;
+                        var sunScreenerLen = formula.type.sunScreener.length;
+                        var jxLen = Len - conditionerLen - emollientLen - sunScreenerLen;
+                        var sensitizationLen = formula.safe.sensitization.length;
+                        var normalLen = Len - sensitizationLen
+
+                        echartJson.series[0].data[0].value = sensitizationLen;
+                        echartJson.series[0].data[1].value = normalLen;
+
+                        echartJson.series[1].data[0].value = conditionerLen;
+                        echartJson.series[1].data[1].value = jxLen;
+                        echartJson.series[1].data[2].value = emollientLen;
+                        echartJson.series[1].data[3].value = sunScreenerLen;
+
+
+                        mychart.setOption(echartJson)
+
+                        //title
+                        $('.top_top h2').html(name);
+
+                        //产品参数
+                        var pname = o.pname;
+                        var specification = o.specification;
+                        var alias = o.alias || '无';
+                        var brand = o.brand;
+                        var methods = o.methods;
+
+                        var str = '<li>' +
+                                '<span>' + '品名' + '</span>' +
+                                '<small>' + pname + '</small>' +
+                                '</li>' +
+                                '<li>' +
+                                '<span>' + '容量' + '</span>' +
+                                '<small>' + specification + '</small>' +
+                                '</li>' +
+                                '<li>' +
+                                '<span>' + '别名' + '</span>' +
+                                '<small>' + alias + '</small>' +
+                                '</li>' +
+                                '<li>' +
+                                '<span>' + '品牌' + '</span>' +
+                                '<small>' + brand + '</small>' +
+                                '</li>' +
+                                '<li>' +
+                                '<span>' + '使用方法' + '</span>' +
+                                '<small>' + methods + '</small>' +
+                                '</li>' +
+                                '<a class=" ck_more" style="display:none;" href="javascript:;">查看更多 ↓</a>'
+
+                        $('#cpcs').html(str)
+
+                        var biaoqianArr = o.feature;
+                        //标签
+                        $('.bq_ul').html("")
+                        for (i = 0; i < biaoqianArr.length; i++) {
+                            $('.bq_ul').append('<li>' + biaoqianArr[i] + '</li>')
+
+                        }
+
+
+                        //拉伸
+                        var LanMu = $(".cpcs_ul");
+                        var lanMuSun = LanMu.children('li');
+                        if ((lanMuSun.size()) > 4) {
+                            LanMu.children("li:gt(3)").hide();
+                            $(".ck_more").show();
+                        }
+                        $(".ck_more").bind("click", function () {
+                            if (!$(".ck_more").hasClass('ListMoreOn')) {
+                                $(".ck_more").addClass('ListMoreOn');
+                                LanMu.children("li:gt(3)").slideDown();
+                                $(".ck_more").html("折叠栏目 ↑")
+                            } else {
+                                $(".ck_more").removeClass('ListMoreOn');
+                                LanMu.children("li:gt(3)").slideUp();
+                                $(".ck_more").html("查看更多 ↓");
+
+                            }
+                        })
+
+                        show = !show;
+
+
+                    },
+                    error: function (err) {
+                        alert('wrong')
+                        console.log(err);
+                    }
+                })
+            }
+
+
+        })
+    })
+</script>
+</body>
+</html>

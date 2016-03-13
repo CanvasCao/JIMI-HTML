@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+
+        #mychart{
+            /*border: 1px solid #000;*/
+        }
+    </style>
+</head>
+<body>
+<div id='mychart' style="width: 420px;height:280px;"></div>
+<script src='js/echarts.min.js'></script>
+<script src="js/jquery-1.8.3.min.js"></script>
+<script>
+    $(function () {
+        var mychart = echarts.init(document.getElementById('mychart'));
+
+        mychart.showLoading();
+        $.ajax({
+            type: "GET",
+            url: "pie.json",
+            success: function (jsonStr) {
+//                var json=JSON.parse(jsonStr)
+                mychart.hideLoading();
+
+                console.log(jsonStr)
+                mychart.setOption(jsonStr)
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        })
+    })
+</script>
+</body>
+</html>

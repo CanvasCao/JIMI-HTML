@@ -1,0 +1,73 @@
+{
+  "tooltip": {
+    "formatter": "{a} <br/>{b}: {c}种 ({d}%)"
+  },
+  "textStyle":{
+    "fontSize":12
+  },
+  "legend": {
+    "show":false,
+    "orient": "horizontal",
+    "x": "left",
+    "data": [
+      "皮肤/头发调理剂",
+      "皮肤柔润剂",
+      "防晒剂",
+      "剂型",
+      "致敏/致痘",
+      "正常成分"
+    ]
+  },
+  "series": [
+    {
+      "name": "按分类安全",
+      "type": "pie",
+      "radius": [
+        0,
+        "30%"
+      ],
+      "label": {
+        "normal": {
+          "position": "inner"
+        }
+      },
+
+      "data": [
+        {
+          "value": 2,
+          "name": "致敏/致痘"
+        },
+        {
+          "value": 10,
+          "name": "正常成分"
+        }
+      ]
+    },
+    {
+      "name": "按成分分类",
+      "type": "pie",
+      "radius": [
+        "40%",
+        "55%"
+      ],
+      "data": [
+        {
+          "value": 3,
+          "name": "皮肤/头发调理剂"
+        },
+        {
+          "value": 4,
+          "name": "皮肤柔润剂"
+        },
+        {
+          "value": 5,
+          "name": "防晒剂"
+        },
+        {
+          "value": 10,
+          "name": "剂型"
+        }
+      ]
+    }
+  ]
+}
