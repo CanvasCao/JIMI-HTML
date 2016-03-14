@@ -55,7 +55,7 @@ TableBlock.prototype = {
                     for (i = 0; i < txtValue.length; i++) {
                         var subTxt = txtValue.substring(0, i);
                         var subTxtWidth = this.ctx.measureText(subTxt).width;
-                        console.log(subTxt+"   "+subTxtWidth)
+                       // console.log(subTxt+"   "+subTxtWidth)
                         if (subTxtWidth > cellX) {
                             //res = i;
                             //alert(subTxtWidth);

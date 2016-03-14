@@ -104,6 +104,8 @@
             dxdy.x = touch.pageX - mouseDown.x; //touch.pageX就是clientXY
             dxdy.y = touch.pageY - mouseDown.y;
 
+            console.log(touch);
+
             //当前移动x+鼠标偏移x<=allowDistance.x 说明到左面的极限了 否则不变
             //验收dxdy
             dxdy.x = (moveDistance.x + dxdy.x <= allowDistance.x) ? (allowDistance.x - moveDistance.x) : (dxdy.x);
