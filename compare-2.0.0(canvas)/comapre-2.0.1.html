@@ -1,3 +1,4 @@
+<!--加入类和对象-->
 <!DOCTYPE html>
 <html>
 <head lang="en">
@@ -25,21 +26,21 @@
     //    别的不管先把iphone6做出来
     var canvas = document.getElementById('canvas');
 
-    //初始化需要的数据
+    //获得屏幕宽高和基于i6的放大比例
     var winWidth = document.documentElement.clientWidth; //屏幕宽高
     var winHeight = document.documentElement.clientHeight;
     var rate = winWidth / 375;
 
-    //画布设置宽高
+    //设置画布永远等于屏幕
     canvas.height = winHeight;
     canvas.width = winWidth;//h w 是行内的实际像素数 375 667
 
-
+    //上下文
     var context = canvas.getContext('2d');//d必须小写
 
     //网格的宽高 先是一个100的矩形 以后会根据屏幕缩放
     var cell = {lx: 70, rx: 120, y: 60};
-    var data={x:4,y:10}; //数据块的宽高
+    var data={x:4,y:10}; //数据块的行和列
 
     //实例化应该是调用ajax以后
     var dataBlock = new TableBlock({
@@ -70,8 +71,9 @@
 
     //mouseEvent............................................
     var ifDragging = false;
-    var mouseDown = {};
-    var dxdy = {};
+    var mouseDown = {};//某次鼠标按下的起点位置
+    var dxdy = {};//鼠标按下后移动位置
+    var moveDistance={};//右下角数据块离开起始位置的距离
 
     canvas.addEventListener('touchstart', function (e) {
         e.preventDefault();

@@ -1,13 +1,14 @@
-//Ö»ÄÜäÖÈ¾ÑÕÉ«¿é  Àà¶ÔÏó
-function TableBlock(json,ctx) {
+//åªèƒ½æ¸²æŸ“é¢œè‰²å—  ç±»å¯¹è±¡
+function TableBlock(json,ctx,data) {
     this.ctx=ctx
-    this.Wnum = json.Wnum;
-    this.Hnum = json.Hnum;
-    this.locX = json.locX; //Êı¾İ¿éÆğÊ¼Î»ÖÃ ÒÔºó»áÒÆ¶¯
+    this.columnNum = json.columnNum;//columnNum
+    this.rowNum = json.rowNum;//rowNum
+    this.locX = json.locX; //æ•°æ®å—èµ·å§‹ä½ç½® ä»¥åä¼šç§»åŠ¨
     this.locY = json.locY;
     this.cellX=json.cellX;
     this.cellY=json.cellY;
-    this.fillStyle = json.fillStyle;
+    this.strokeStyle = json.strokeStyle||"#bbb";
+    this.data=data; //ä¿å­˜æ•°æ®çš„äºŒç»´æ•°ç»„
     this.Render();
 
 }
@@ -18,23 +19,24 @@ TableBlock.prototype = {
         this.locX += dx;
         this.locY += dy;
     },
-    Render: function (dx, dy) { //dxdyÊÇÊÖÖ¸»¬¶¯ÖĞµÄĞŞÕıÖµ
+    Render: function (dx, dy) { //dxdyæ˜¯æ‰‹æŒ‡æ»‘åŠ¨ä¸­çš„ä¿®æ­£å€¼
         this.ctx.fillStyle = this.fillStyle;
         dx=dx===undefined?0:dx;
-        dy=dy===undefined?0:dy;//ÕâÁ½ĞĞÖ»ÔÚÍü¼Ç´«ÖµµÄÊ±ºòÓĞÓÃ
+        dy=dy===undefined?0:dy;//è¿™ä¸¤è¡Œåªåœ¨å¿˜è®°ä¼ å€¼çš„æ—¶å€™æœ‰ç”¨(æ„é€ å‡½æ•°ç®€å†™æœ‰ç”¨)
 
-        //Ä¿Ç°Ö»ÊÇÌî³ä¿é
-        //this.ctx.fillRect(this.locX + dx, this.locY + dy, cell.x * this.Wnum, cell.y * this.Hnum);
+        //ç”»ç½‘æ ¼
+        for(i=1;i<=this.rowNum;i++){ //rowNumå°±æ˜¯å‡ è¡Œçš„æ„æ€ éå†è¡Œ
+            for(j=1;j<=this.columnNum;j++){
 
-        //»­Íø¸ñ
-        this.ctx.strokeStyle='#aaa';
-        this.ctx.fillStyle='white';
-        this.ctx.lineWidth=5;
-        for(i=1;i<=this.Hnum;i++){ //Hnum¾ÍÊÇ¼¸ĞĞµÄÒâË¼ ±éÀúĞĞ
-            for(j=1;j<=this.Wnum;j++){
-                //X+Æ«ÒÆÁ¿+ ¼¸¸öj¾ÍÆ«ÒÆÁË¼¸¸öcellX
+                //ç”»çŸ©å½¢
+                this.ctx.lineWidth=5;
+                this.ctx.strokeStyle=this.strokeStyle;
+                //X+åç§»é‡+ å‡ ä¸ªjå°±åç§»äº†å‡ ä¸ªcellX
                 this.ctx.strokeRect(this.locX+dx+(j-1)*this.cellX,this.locY+dy+(i-1)*this.cellY,this.cellX,this.cellY);
+                //çŸ©å½¢å¡«å……ç™½è‰²èƒŒæ™¯
+                this.ctx.fillStyle='white';
                 this.ctx.fillRect(this.locX+dx+(j-1)*this.cellX,this.locY+dy+(i-1)*this.cellY,this.cellX,this.cellY)
+                //
             }
         }
     }
