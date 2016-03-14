@@ -8,7 +8,7 @@ function TableBlock(json, ctx, data) {
     this.cellX = json.cellX;
     this.cellY = json.cellY;
     this.strokeStyle = json.strokeStyle || "#bbb";
-    this.data = data; //保存数据的二维数组
+    this.data = data || [[""]]; //保存数据的二维数组
     this.Render();
 }
 
@@ -29,7 +29,7 @@ TableBlock.prototype = {
                 this.ctx.save();
 
                 //画矩形
-                this.ctx.lineWidth = 5;
+                this.ctx.lineWidth = 2;
                 this.ctx.beginPath();
                 this.ctx.strokeStyle = this.strokeStyle;
                 //X+偏移量+ 几个j就偏移了几个cellX
@@ -39,14 +39,33 @@ TableBlock.prototype = {
                 this.ctx.fillStyle = 'white';
                 this.ctx.fillRect(this.locX + dx + j * this.cellX, this.locY + dy + i * this.cellY, this.cellX, this.cellY)
 
-                //有数据写字再写字
-                if (this.data) {
-                    this.ctx.beginPath();
-                    this.ctx.fillStyle = 'black';
-                    this.ctx.fillText(this.data[i][j]||'无', this.locX + dx + j * this.cellX + this.cellX / 2, this.locY + dy + i * this.cellY + this.cellY / 2)
+                //写字
+                this.ctx.beginPath();
+                this.ctx.fillStyle = 'black';
 
+                var textHeight = parseInt(this.ctx.font);
+                var txtValue = this.data[i][j];
+                var textWidth = this.ctx.measureText(txtValue).width;
+                var cellX = this.cellX;
+
+                //不一样的宽度文字画的行数还不一样
+                if (textWidth > cellX) {
+                    //算出是哪一个字符开始溢出的
+                    var res = 0; //res是溢出的哪一个字符
+                    for (i = 0; i < txtValue.length; i++) {
+                        var subTxt = txtValue.substring(0, i);
+                        var subTxtWidth = this.ctx.measureText(subTxt).width;
+                        console.log(subTxt+"   "+subTxtWidth)
+                        if (subTxtWidth > cellX) {
+                            //res = i;
+                            //alert(subTxtWidth);
+                            //return;
+                        }
+                    }
                 }
-
+                else {
+                    this.ctx.fillText(txtValue, this.locX + dx + j * this.cellX + this.cellX / 2, this.locY + dy + i * this.cellY + this.cellY / 2);
+                }
 
                 this.ctx.restore();
             }

@@ -33,22 +33,23 @@
     var canvas = document.getElementById('canvas');
     canvas.height = winHeight - 1;
     canvas.width = winWidth;//h w 是行内的实际像素数 375 667 设置完宽高会重设上下文我日
-    
+
     var context = canvas.getContext('2d');
     context.textAlign = 'center';
     context.textBaseline = 'middle';
     context.font = "12px 微软雅黑";
 
     //单元格的宽高是根据屏幕比例
-    var cell = {lx: winWidth * 0.2, rx: winWidth * 0.4, y: 60, y: winWidth * 0.2 * 0.667};//lx 左一列宽 rx右所有列宽 ty上一行高
+    var cell = {lx: winWidth * 0.2, rx: winWidth * 0.4, y: 60, y: winWidth * 0.2 * 0.8};//lx 左一列宽 rx右所有列宽 ty上一行高
+//    alert(cell.y)
 
     //ajax得到数据 全是二维数组
     var rowNum = AJAXJSON.detailData.length;
     var columnNum = AJAXJSON.productData[0].length;
 
-    var productData = AJAXJSON.productData
-    var detailData = AJAXJSON.detailData
-    var tableData = AJAXJSON.tableData
+    var productData = AJAXJSON.productData;
+    var detailData = AJAXJSON.detailData;
+    var tableData = AJAXJSON.tableData;
 
     //实例化应该是调用ajax以后
     var dataBlock = new TableBlock({
