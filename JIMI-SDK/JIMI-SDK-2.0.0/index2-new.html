@@ -175,7 +175,7 @@
 
 <body>
 <div style="width:120px; height:30px; margin:265px 0 0 668px  ;">
-    <div id='click' style=" line-height:30px; color:#363d4f;">温碧泉力透白雪肌霜</div>
+    <div id='click' style=" line-height:30px; color:#363d4f;">你好</div>
 
     <div class="tc_html" style="margin:10px 0 0 10px;">
         <div class="sj_icon"></div>
@@ -362,6 +362,7 @@
                     jsonpCallback: "jsonpcallback",
                     success: function (data) {
                         var o = data.data;
+                        console.log(data)
                         mychart.hideLoading();
                         //echarts
                         var formula = o.formula;
