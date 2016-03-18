@@ -73,7 +73,7 @@
         }
 
         #fixB {
-            position: fixed;
+            position: absolute;
             top: 0;
             left: 0;
             display: none;
@@ -186,22 +186,30 @@
         var row = 10;
         var col = 3;
 
+        var srcH=($('#realdiv').outerHeight())
+        var srcW=($('#realdiv').outerWidth())
+//        alert(srcH+"   "+srcW)
+
         $('#real').css({width: 800, height: 1000})
         $('#real').find('tr').css({width: 800, height: 200})
         $('#real').find('td').css({width: 200, height: 200})
 
-        $('#fakeLdiv').css(height,603);
+        $('#fakeLdiv').css('height',srcH);
         $('#fakeL').css({width: 200, height: 1000})
         $('#fakeL').find('tr').css({width: 200, height: 200})
         $('#fakeL').find('td').css({width: 200, height: 200})
+
+        $('#fakeTdiv').css('width',srcW);
         $('#fakeT').css({width: 800, height: 200})
         $('#fakeT').find('tr').css({width: 800, height: 200})
         $('#fakeT').find('td').css({width: 200, height: 200})
 
 
-        $('#realdiv').scroll(function () {
-            var scrollTop = $(this).scrollTop();
-            var scrollLeft = $(this).scrollLeft();
+
+
+        setInterval(function(){
+            var scrollTop = $('#realdiv').scrollTop();
+            var scrollLeft = $('#realdiv').scrollLeft();
 
             $('#fakeLdiv').scrollTop(scrollTop)
             $('#fakeTdiv').scrollLeft(scrollLeft)
@@ -216,7 +224,9 @@
                 $('#fixB').hide();
 
             }
-        })
+
+        },1)
+
     })
 </script>
 </body>
