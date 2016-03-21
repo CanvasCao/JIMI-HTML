@@ -17,6 +17,97 @@
         this.methods = this.ajaxJson.methods || '无';
         this.feature = this.ajaxJson.feature || [];
 
+        this.echartJson= {
+            "tooltip": {
+                "formatter": "{a} <br/>{b}: {c}种 ({d}%)"
+            },
+            "textStyle": {
+                "fontSize": 12,
+//                color:'black'
+//                fontWeight:"bolder"
+
+            },
+            "legend": {
+                "show": false,
+                "orient": "horizontal",
+                "x": "left",
+                "data": [
+                    "皮肤/头发调理剂",
+                    "皮肤柔润剂",
+                    "防晒剂",
+                    "剂型",
+                    "致敏/致痘",
+                    "正常成分"
+                ]
+            },
+            "series": [
+                {
+                    "name": "按安全分类", //鼠标hover时的显示的分类
+                    "type": "pie",
+                    "minAngle": '1',
+                    "radius": [
+                        0,
+                        "35%"
+                    ],
+                    "label": {
+                        "normal": {
+                            "position": "inner"
+                        }
+                    },
+
+                    "data": [
+                        {
+                            "value": 2,
+                            "name": "致敏/致痘"
+                        },
+                        {
+                            "value": 10,
+                            "name": "正常成分"
+                        }
+                    ],
+                },
+                {
+                    "name": "按成分分类",
+                    "type": "pie",
+                    "minAngle": '1',
+                    "radius": [
+                        "45%",
+                        "62%"
+                    ],
+                    "data": [
+                        {
+                            "value": 3,
+                            "name": "皮肤/头发调理剂"
+                        },
+
+                        {
+                            "value": 10,
+                            "name": "剂型"
+                        },
+                        {
+                            "value": 4,
+                            "name": "皮肤柔润剂"
+                        },
+                        {
+                            "value": 5,
+                            "name": "防晒剂"
+                        }
+                    ]
+                }
+            ]
+            ,
+            backgroundColor: '#fff'
+            ,
+            textStyle: {
+                fontWeight: 'bolder',
+            }
+
+            //按series出现的顺序 而不是lengend.data的顺序
+            ,
+            color: ['#c23531', '#2f4554', '#61a0a8', '#d48265', '#91c7ae', '#749f83', '#ca8622', '#bda29a', '#6e7074', '#546570', '#c4ccd3']
+        };
+
+
 
         this.config = {
             height: 520,
@@ -184,7 +275,7 @@
 
             //点击伸缩
             $(this.C).find('.jimi-clickMore').css({
-                width: '100%',
+                width: this.config.width,
                 float: 'left',
                 'text-align': 'center',
                 color: '#000',
@@ -199,7 +290,7 @@
 
             $(this.C).find('.jimi-label').find('ul').css({
                 margin: '10px 15px 0 0',
-                width: '100%',
+                width: this.config.width-15,
             }).find('li').css({
                 float: 'left',
                 height: '26px',
@@ -216,7 +307,7 @@
             //canvasBox
             var canvasBox = $(that.C).find('.jimi-canvasBox')[0];
             var mychart = echarts.init(canvasBox);
-            mychart.setOption(window.echartJson);
+            mychart.setOption(that.echartJson);
 
             //超过五个能缩放
             flex();

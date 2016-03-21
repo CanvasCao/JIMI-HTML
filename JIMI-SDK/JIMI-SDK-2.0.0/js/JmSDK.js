@@ -3,98 +3,6 @@
  */
 ;
 (function () {
-    window.echartJson = {
-        "tooltip": {
-            "formatter": "{a} <br/>{b}: {c}种 ({d}%)"
-        },
-        "textStyle": {
-            "fontSize": 12,
-//                color:'black'
-//                fontWeight:"bolder"
-
-        },
-        "legend": {
-            "show": false,
-            "orient": "horizontal",
-            "x": "left",
-            "data": [
-                "皮肤/头发调理剂",
-                "皮肤柔润剂",
-                "防晒剂",
-                "剂型",
-                "致敏/致痘",
-                "正常成分"
-            ]
-        },
-        "series": [
-            {
-                "name": "按安全分类", //鼠标hover时的显示的分类
-                "type": "pie",
-                "minAngle": '1',
-                "radius": [
-                    0,
-                    "35%"
-                ],
-                "label": {
-                    "normal": {
-                        "position": "inner"
-                    }
-                },
-
-                "data": [
-                    {
-                        "value": 2,
-                        "name": "致敏/致痘"
-                    },
-                    {
-                        "value": 10,
-                        "name": "正常成分"
-                    }
-                ],
-            },
-            {
-                "name": "按成分分类",
-                "type": "pie",
-                "minAngle": '1',
-                "radius": [
-                    "45%",
-                    "62%"
-                ],
-                "data": [
-                    {
-                        "value": 3,
-                        "name": "皮肤/头发调理剂"
-                    },
-
-                    {
-                        "value": 10,
-                        "name": "剂型"
-                    },
-                    {
-                        "value": 4,
-                        "name": "皮肤柔润剂"
-                    },
-                    {
-                        "value": 5,
-                        "name": "防晒剂"
-                    }
-                ]
-            }
-        ]
-        ,
-        backgroundColor: '#fff'
-        ,
-        textStyle: {
-            fontWeight: 'bolder',
-        }
-
-        //按series出现的顺序 而不是lengend.data的顺序
-        ,
-        color: ['#c23531', '#2f4554', '#61a0a8', '#d48265', '#91c7ae', '#749f83', '#ca8622', '#bda29a', '#6e7074', '#546570', '#c4ccd3']
-    };
-
-
-
     //ajax的数据
     var data = {
         "code": 200,
@@ -223,7 +131,7 @@
                 //再让添加的div变成 绝对定位
                 $this.append("<div class='JSC'></div>");
                 //生成的div 绝对定位, left top 根据父容器位置页面动态写
-                $this.find('.JSC').css({'position': 'absolute', left: 50, top: 50});
+                $this.find('.JSC').css({'position': 'absolute', left: 0, top: 50});
 
 
                 //生成的div 对于组件而言就是父容器了
