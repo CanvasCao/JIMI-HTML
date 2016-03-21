@@ -129,14 +129,13 @@
                     $this.css({'position': 'relative'});
                 }
 
-
-                //再让添加的div变成
+                //再让添加的div变成 绝对定位
                 $this.append("<div class='JSC'></div>");
-                //生成的div 绝对定位一定要写 left top 根据父容器位置页面动态写
+                //生成的div 绝对定位, left top 根据父容器位置页面动态写
                 $this.find('.JSC').css({'position': 'absolute', left: 50, top: 50});
 
 
-                //生成的div 对于组建而言就是父容器了
+                //生成的div 对于组件而言就是父容器了
                 var Jsc = new JmSdkComponent($this.find('.JSC')[0], data)
             }
             else {
