@@ -53,10 +53,10 @@
         }
 
         .content {
-            /*width: 100%;*/
+            width: 100%;
             border-bottom: 1px solid #eaeaea;
             padding: 10px 0;
-            float: left;
+            /*float: left;*/
             /*display: block;*/
         }
 
@@ -73,22 +73,22 @@
             /*margin: 10px 0;*/
         }
 
-        .param ul {
-            margin:10px 0 0 15px;
-            /*margin-top: 10px;*/
-            /*width: 390px;*/
+        .ul ul {
+            margin-left: 15px;
+            margin-top: 10px;
+            width: 390px;
         }
 
-        .param li {
-            margin-bottom: 10px;
-            display: block;
-            /*width: 100%;*/
-            float: left;
-        }
+        /*.ul li {*/
+        /*margin-bottom: 10px;*/
+        /*display: block;*/
+        /*width: 100%;*/
+        /*/!*float: left;*!/*/
+        /*}*/
 
-        .param li span {
-            display: block;
-            float: left;
+        .ul span {
+            display: inline-block;
+            /*float: left;*/
             word-wrap: break-word;
         }
 
@@ -116,6 +116,10 @@
             float: left;
         }
 
+        .label a {
+            border: 1px solid #36aadf;
+            word-break: break-all;
+        }
     </style>
 </head>
 <body>
@@ -132,16 +136,11 @@
             </div>
             <div class='content'>
                 <div class="title">产品参数</div>
-                <div class='param'>
-                    <ul>
-                        <li>
-                            <span class='sp1'>111</span><span class='sp2'>22222222222222222222222222222222222222222222222</span>
-                        </li>
-                        <li><span class='sp1'>111</span><span class='sp2'>222</span></li>
-                        <li><span class='sp1'>111</span><span class='sp2'>222</span></li>
-                        <li><span class='sp1'>111</span><span class='sp2'>222</span></li>
-                        <li><span class='sp1'>111</span><span class='sp2'>222</span></li>
-                    </ul>
+                <div class='ul'>
+                    <span class='sp1'>111</span><span class='sp2'>22222222222222222222222222222222222222222222222222222222222222</span>
+                    <span class='sp1'>111</span><span class='sp2'>222</span>
+                    <span class='sp1'>111</span><span class='sp2'>222</span>
+                    <span class='sp1'>111</span><span class='sp2'>222</span>
                 </div>
             </div>
             <div class='content'>
@@ -161,6 +160,7 @@
                         <li>333</li>
                         <li>4444444444444444444444444444444444</li>
                     </ul>
+
                 </div>
             </div>
         </div>
