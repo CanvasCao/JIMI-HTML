@@ -40,6 +40,8 @@
             /*float: left;*/
             height: 60px;
             background: #2BA5DD url(images/icon3.png) no-repeat right 40px center;
+            border-bottom: 3px solid #299bcf;
+
         }
 
         #top-txt {
@@ -70,11 +72,12 @@
 
         .canvasBox {
             box-sizing: border-box;
+            /*border: 1px solid #000;*/
             /*margin: 10px 0;*/
         }
 
         .param ul {
-            margin:10px 0 0 15px;
+            margin: 10px 0 0 15px;
             /*margin-top: 10px;*/
             /*width: 390px;*/
         }
@@ -116,6 +119,57 @@
             float: left;
         }
 
+        /*安心度 匹配度*/
+        .degree {
+            padding: 5px 15px;
+            box-sizing: border-box;
+            float: left;
+        }
+
+        .degreeTxt {
+            float: left;
+            margin-bottom: 8px;
+        }
+
+        .degreeBar {
+            float: left;
+        }
+
+        .degreeBarBar {
+            width: 380px;
+            padding: 2px;
+            border: 1px solid #e8e8e8;
+            border-radius: 5px;
+            background: #f4f4f4;
+            float: left;
+        }
+
+        .degreeBarBar span {
+            float: left;
+            height: 5px;
+            background: #29c741;
+            border-radius: 3px;
+            width: 20%;
+        }
+
+        /*canvas底下的按钮*/
+        .canvasChange {
+            float: left;
+            padding-left: 110px;
+        }
+
+        .canvasBtn {
+            width: 80px;
+            background : #fff;
+            margin: 0 10px;
+            border: 1px solid #d8d8d8;
+            border-radius: 15px;
+            cursor: pointer;
+            float: left;
+            text-align: center;
+            line-height: 25px;
+        }
+        /*background:#36aadf; border:1px solid #36aadf; color:#fff;*/
     </style>
 </head>
 <body>
@@ -126,9 +180,29 @@
             <div id='top'>
                 <div id='top-txt'>温碧泉</div>
             </div>
+
+            <div class="degree">
+                <div class="degreeTxt">安心度：72%</div>
+                <div class="degreeBar">
+                    <div class="degreeBarBar"><span></span></div>
+                </div>
+            </div>
+            <div class="degree">
+                <div class="degreeTxt">匹配度：35%</div>
+                <div class="degreeBar">
+                    <div class="degreeBarBar"><span></span></div>
+                </div>
+            </div>
+
+
             <div class='content'>
-                <div class="title">成分分布</div>
-                <div class="canvasBox" id='cao' style="width: 420px;height:280px;"></div>
+                <div class="title">产品成分</div>
+                <div class="canvasBox" style="width: 420px;height:280px;"></div>
+                <div class="canvasBox" style="width: 420px;height:280px;display: none"></div>
+                <div class="canvasChange">
+                    <div class='canvasBtn'>成分分布</div>
+                    <div class='canvasBtn'>成分详情</div>
+                </div>
             </div>
             <div class='content'>
                 <div class="title">产品参数</div>
@@ -261,8 +335,8 @@
             ,
             color: ['#c23531', '#2f4554', '#61a0a8', '#d48265', '#91c7ae', '#749f83', '#ca8622', '#bda29a', '#6e7074', '#546570', '#c4ccd3']
         };
-        var cao = document.getElementById('cao');
-        var mychart = echarts.init(cao);
+        var canvasBox = $('.canvasBox')[0];
+        var mychart = echarts.init(canvasBox);
         mychart.setOption(echartJson);
 
     })

@@ -3,147 +3,88 @@
  */
 ;
 (function () {
-    //ajax的数据
-    var data = {
-        "code": 200,
-        "message": "",
-        "success": true,
-        "data": {
-            "pname": "温碧泉力透白雪肌霜",
-            "alias": null,
-            "brand": "温碧泉",
-            "formula": {
-                "component": [
-                    "水",
-                    "甘油",
-                    "环五聚二甲基硅氧烷",
-                    "1,2-戊二醇",
-                    "C12-20 烷基葡糖苷",
-                    "丙二醇",
-                    "辛酸/癸酸甘油三酯",
-                    "硬脂醇",
-                    "棕榈酸乙基己酯",
-                    "苯氧乙醇",
-                    "浮游生物提取物",
-                    "小球藻（CHLORELLA VULGARIS）提取物",
-                    "丁二醇",
-                    "凝血酸",
-                    "温泉水",
-                    "异壬酸异壬酯",
-                    "聚二甲基硅氧烷",
-                    "乙基己基甘油",
-                    "角鲨烷",
-                    "氢化卵磷脂",
-                    "山梨坦硬脂酸酯",
-                    "十一碳烯酰基苯丙氨酸",
-                    "3-o-乙基抗坏血酸",
-                    "黄原胶",
-                    "甘草酸二钾",
-                    "丙烯酰二甲基牛磺酸铵/VP 共聚物",
-                    "羟苯甲酯",
-                    "香精",
-                    "EDTA 二钠",
-                    "透明质酸钠"
-                ],
-                "type": {
-                    "conditioner": [
-                        "环五聚二甲基硅氧烷",
-                        "辛酸/癸酸甘油三酯",
-                        "小球藻（CHLORELLA VULGARIS）提取物",
-                        "丁二醇",
-                        "凝血酸",
-                        "温泉水",
-                        "异壬酸异壬酯",
-                        "十一碳烯酰基苯丙氨酸",
-                        "甘草酸二钾",
-                        "透明质酸钠"
-                    ],
-                    "emollient": [
-                        "甘油",
-                        "环五聚二甲基硅氧烷",
-                        "1,2-戊二醇",
-                        "丙二醇",
-                        "辛酸/癸酸甘油三酯",
-                        "硬脂醇",
-                        "棕榈酸乙基己酯",
-                        "角鲨烷",
-                        "透明质酸钠"
-                    ],
-                    "sunScreener": []
-                },
-                "safe": {
-                    "sensitization": [
-                        "丙二醇",
-                        "硬脂醇",
-                        "棕榈酸乙基己酯",
-                        "苯氧乙醇",
-                        "山梨坦硬脂酸酯",
-                        "羟苯甲酯",
-                        "香精"
-                    ]
-                }
-            },
-            "specification": "50ml",
-            "methods": "取适量均匀涂抹于肌肤，直至完全吸收。注意事项：1.请放置于儿童不易触及处；2.避免让产品进入眼睛，如不慎入眼，请用大量清水冲洗；3.如有不适，请立即停用。",
-            "feature": [
-                "中国",
-                "保湿",
-                "抗氧化",
-                "抗皱",
-                "修复",
-                "舒敏",
-                "美白",
-                "0-100元",
-                "易致痘",
-                "含一定香精",
-                "含一定防腐剂",
-                "夜间使用/加强防晒",
-                "滋润度强",
-                "秋冬、夜间"
-            ]
-        }
-    }
-
 
     //init....................................
     //让人有点击的欲望
     $('.jimi-sdk').css({cursor: "pointer"})
 
-    //点击事件
+    //点击事件 先调ajax 注册点击事件再判断是否点击了当前dom
     $('.jimi-sdk').click(function (e) {
-        //var absClassName='JSC' //JmSdkComponent
+        var that=this;
+        //click时还需要得到的是ajax Post时得到的data
+        var appid='123456';
+        var dataName=$(that).text();
+        var access_token= $.md5(appid+dataName);
 
-        //relative(就是点击的span的className是.jimi-sdk)
-        //absoulute（生成的div的className是.JSC）
-
-        //假设ajax正常；
 
 
+        //先判断是否是点击的当前位置 再判断ajax............................................
         //只有当前span被点击才会触发事件
-        if (e.srcElement == this) {
-            var $this = $(this);
+        if (e.srcElement == that) {
+            var $this = $(that); //$this 指点击的span
             if ($this.find('.JSC').length == 0) {
-                //先让点击的span变成relative
-                if ($this.css('position') == 'static') {
-                    $this.css({'position': 'relative'});
-                }
 
-                //再让添加的div变成 绝对定位
-                $this.append("<div class='JSC'></div>");
-                //生成的div 绝对定位, left top 根据父容器位置页面动态写
-                $this.find('.JSC').css({'position': 'absolute', left: 0, top: 50});
+                //ajax之前应该先loading
+                var timer=setInterval(function(){
+                    console.log('loading')
+                },400)
 
 
-                //生成的div 对于组件而言就是父容器了
-                var Jsc = new JmSdkComponent($this.find('.JSC')[0],null,data.data)
+                $.ajax({
+                    type: "post",
+                    url: 'http://openapi.jimi.la/',
+                    //url:'js/r.json',
+                    data: {
+                        "grant_type": "product_info",//获取信息类型
+                        "appid": "123456",
+                        "data": "温碧泉力透白雪肌霜",
+                        "access_token": "76821f67f4fe4636988c51941fb33be0",//md5(appid+data)
+                        "req_type": "2",//请求类型：1为条形码，2为产品名称
+                        "ret_type": "1"//默认1，JSON格式返回消息 2，XML格式返回消息 3，返回HTML内容
+                    },
+                    dataType: "jsonp",
+                    jsonp: "callback",//传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)
+                    jsonpCallback: "jsonpcallback",
+                    success: function (data) {
+                        console.log(data);//状态码是data.code
+                        console.log('finish');
+                        clearInterval(timer)
+                        //relative(就是点击的span的className是.jimi-sdk)
+                        //absoulute（生成的div的className是.JSC）
+                        //先让点击的span变成relative
+                        if ($this.css('position') == 'static') {
+                            $this.css({'position': 'relative'});
+                        }
+
+                        //再让添加的div变成 绝对定位
+                        $this.append("<div class='JSC'></div>");
+                        //生成的div 绝对定位, left top 根据父容器位置页面动态写
+                        $this.find('.JSC').css({'position': 'absolute', left: 0, top: 50});
+
+
+                        //生成的div 对于组件而言就是父容器了  data.data是json的数据
+                        var Jsc = new JmSdkComponent($this.find('.JSC')[0],null,data.data)
+
+                    },
+                    error: function (err) {
+                        //alert('wrong')
+                        console.log(err);
+                    }
+                });
+
             }
             else {
+                //页面已经append过了 那就让他显示/隐藏
                 $this.find('.JSC').toggle();
             }
         }
         else {
-
+            //没有点击当前 什么都不做
         }
+        //.........................................................
+
+
+
 
     })
 })()

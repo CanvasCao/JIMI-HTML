@@ -4,20 +4,23 @@
         console.log(new Date().getTime())
         this.C = this.container = container;
 
-        //data是其他的参数 比方click时候传入的其他参数
+        //这里的data是其他的参数 比方click时候传入的其他参数
         this.data = data;
 
-        //初始化图1用的ajaxJson
+        //初始化图1用的ajaxJson 根据接口接受的是data.data
         this.ajaxJson = ((typeof ajaxJson) == 'string') ? JSON.parse(ajaxJson) : ajaxJson;
         this.pname = this.ajaxJson.pname || '暂无数据';
         this.alias = this.ajaxJson.alias || '无';
         this.brand = this.ajaxJson.brand || '无';
-        this.formula = this.ajaxJson.formula;
-        this.specification = this.ajaxJson.specification || '无';
+        this.specification = this.ajaxJson.specification || '无'; //容量
         this.methods = this.ajaxJson.methods || '无';
         this.feature = this.ajaxJson.feature || [];
+        this.formula = this.ajaxJson.formula;
+        this.anxindu = this.ajaxJson.anxindu || 30;
+        this.pipeidu = this.ajaxJson.pipeidu || 70;
 
-        this.echartJson= {
+        //第一个canvas的原始json
+        this.echartJson = {
             "tooltip": {
                 "formatter": "{a} <br/>{b}: {c}种 ({d}%)"
             },
@@ -25,90 +28,41 @@
                 "fontSize": 12,
 //                color:'black'
 //                fontWeight:"bolder"
-
-            },
-            "legend": {
-                "show": false,
-                "orient": "horizontal",
-                "x": "left",
-                "data": [
-                    "皮肤/头发调理剂",
-                    "皮肤柔润剂",
-                    "防晒剂",
-                    "剂型",
-                    "致敏/致痘",
-                    "正常成分"
-                ]
             },
             "series": [
                 {
                     "name": "按安全分类", //鼠标hover时的显示的分类
                     "type": "pie",
-                    "minAngle": '1',
-                    "radius": [
-                        0,
-                        "35%"
-                    ],
+                    "minAngle": '0',
+                    "radius": [0, "35%"],
                     "label": {
-                        "normal": {
-                            "position": "inner"
-                        }
+                        "normal": {"position": "inner"}
                     },
 
                     "data": [
-                        {
-                            "value": 2,
-                            "name": "致敏/致痘"
-                        },
-                        {
-                            "value": 10,
-                            "name": "正常成分"
-                        }
+                        // {"value": 2, "name": "致敏/致痘"}
                     ],
                 },
                 {
                     "name": "按成分分类",
                     "type": "pie",
-                    "minAngle": '1',
-                    "radius": [
-                        "45%",
-                        "62%"
-                    ],
+                    "minAngle": '4',
+                    "radius": ["45%", "62%"],
                     "data": [
-                        {
-                            "value": 3,
-                            "name": "皮肤/头发调理剂"
-                        },
-
-                        {
-                            "value": 10,
-                            "name": "剂型"
-                        },
-                        {
-                            "value": 4,
-                            "name": "皮肤柔润剂"
-                        },
-                        {
-                            "value": 5,
-                            "name": "防晒剂"
-                        }
+                        //  {"value": 3, "name": "皮肤/头发调理剂"}
                     ]
                 }
             ]
             ,
-            backgroundColor: '#fff'
-            ,
+            backgroundColor: '#fff',
             textStyle: {
                 fontWeight: 'bolder',
-            }
-
-            //按series出现的顺序 而不是lengend.data的顺序
-            ,
+            },
             color: ['#c23531', '#2f4554', '#61a0a8', '#d48265', '#91c7ae', '#749f83', '#ca8622', '#bda29a', '#6e7074', '#546570', '#c4ccd3']
         };
 
 
-
+        //配置文件
         this.config = {
             height: 520,
             width: 420,
@@ -123,31 +77,58 @@
             this.createDom();
             this.initCSS();
             this.bindEvent();
+            this.bindCanvas();
         },
         initConfig: function () {
 
         },
         createDom: function () {
+            var that = this;
             $(this.C).html("<div class='jimi-arrow'></div><div class='jimi-scrOut'></div>")
             $(this.C).find('.jimi-scrOut').html("<div class='jimi-scrIn'></div>")
 
-            //内部 顶部标签 和匹配度 是固定的
-            var str = "<div class='jimi-top'><div class='jimi-topTxt'>温碧泉</div></div>";
-            str += "<div class='jimi-matching'></div>"
+            //内部 顶部标签 是固定的
+            var str = "<div class='jimi-top'><div class='jimi-topTxt'>"+this.pname+"</div></div>";
+            $(this.C).find('.jimi-scrIn').append(str);
+
+
+            //匹配度 安全度 写死了 罪过
+            var str = '<div class="jimi-degree">' +
+                '<div class="jimi-degreeTxt">安心度：' + this.anxindu + '%</div>' +
+                '<div class="jimi-degreeBar"><div class="jimi-degreeBarBar"><span></span></div></div>' +
+                '</div>' +
+                '<div class="jimi-degree">' +
+                '<div class="jimi-degreeTxt">匹配度：' + this.pipeidu + '%</div>' +
+                '<div class="jimi-degreeBar"><div class="jimi-degreeBarBar"><span></span></div></div>' +
+                '</div>'
+            $(this.C).find('.jimi-scrIn').append(str);
+            //改变安全度和匹配度的长度 必须改css
+            $(this.C).find('.jimi-degreeBarBar span').eq(0).css({width: that.anxindu + "%", backgroundColor: '#29c741'})
+            $(this.C).find('.jimi-degreeBarBar span').eq(1).css({width: that.pipeidu + "%", backgroundColor: '#ff9d00'})
 
 
             //内部还有3个jimi-content
-            var contentArr = ['成分分布', '产品参数', '标签']
+            var str = '';
+            var contentArr = ['产品成分', '产品参数', '标签']
             for (i = 0; i < 3; i++) {
                 str += "<div class='jimi-content'>" +
                     "<div class='jimi-title'>" + contentArr[i] + "</div>" +
                     "</div>";
             }
-            $(this.C).find('.jimi-scrIn').html(str);
+            $(this.C).find('.jimi-scrIn').append(str);
 
 
-            //成分分布
-            $(this.C).find('.jimi-content').eq(0).append('<div class="jimi-canvasBox"></div>');
+            //成分分布 有两个canvas 写死了
+            $(this.C).find('.jimi-content').eq(0).append('<div class="jimi-canvasBox"></div>')
+                .append('<div class="jimi-canvasBox" style="display:none"></div>')
+
+            //成分分布 canvas转换代码
+            var str = '';
+            str += '<div class="jimi-canvasChange">' +
+                '<div class="jimi-canvasBtn">成分分布</div>' +
+                '<div class="jimi-canvasBtn">成分详情</div>' +
+                '</div>'
+            $(this.C).find('.jimi-content').eq(0).append(str)
 
 
             //产品参数
@@ -182,7 +163,8 @@
                 height: this.config.height,
                 margin: '10px 0px 0px 0px',
                 'box-shadow': '5px 5px 40px rgba(0, 0, 0, 0.5)',
-                font: "12px '微软雅黑'"
+                font: "12px '微软雅黑'",
+                color: '#727272'
             })
 
             $(this.C).find('.jimi-arrow').css({
@@ -211,17 +193,47 @@
             //顶部........................................................
             $(this.C).find('.jimi-top').css({
                 height: '60px',
-                background: '#2BA5DD url(images/icon3.png) no-repeat right 40px center'
+                background: '#2BA5DD url(images/icon3.png) no-repeat right 40px center',
+                'border-bottom': '3px solid #299bcf'
             })
 
             $(this.C).find('.jimi-topTxt').css({
                 'font-weight': 'bold',
                 'font-size': '14px',
-                color: '#fff',
                 'line-height': '60px',
-                'padding-left': '15px'
+                'padding-left': '15px',
+                color: '#fff',
+
             })
             //...............................................................
+
+
+            //安心度 匹配度
+            $(this.C).find('.jimi-degree').css({
+                padding: '5px 15px',
+                'box-sizing': 'border-box',
+                float: 'left'
+            }).find('.jimi-degreeTxt').css({
+                float: 'left',
+                'margin-bottom': '8px'
+            }).end()
+                .find('.jimi-degreeBar').css({
+                    float: 'left'
+                })
+                .find('.jimi-degreeBarBar').css({
+                    width: '380px',
+                    padding: '2px',
+                    border: '1px solid #e8e8e8',
+                    'border-radius': '5px',
+                    background: '#f4f4f4',
+                    float: 'left'
+                })
+                .find('span').css({
+                    float: 'left',
+                    height: '5px',
+                    'border-radius': '3px'
+                })
+            //.............................................................
 
 
             //内容和内容标签..................................................
@@ -241,12 +253,28 @@
             })
             //...............................................................
 
+
             //canvas..........................................................
             $(this.C).find('.jimi-canvasBox').css({
                 width: this.config.width,
                 height: this.config.canvasHeight
             })
-            //...............................................................
+
+            $(this.C).find('.jimi-canvasChange').css({
+                float: 'left',
+                'padding-left': '110px'
+            })
+                .find('.jimi-canvasBtn').css({
+                    width: '80px',
+                    background: '#fff',
+                    margin: '0 10px',
+                    border: '1px solid #d8d8d8',
+                    'border-radius': '15px',
+                    cursor: 'pointer',
+                    float: 'left',
+                    'text-align': 'center',
+                    'line-height': '25px'
+                })
 
 
             //产品参数.......................................................
@@ -273,24 +301,24 @@
             //...............................................................
 
 
-            //点击伸缩
+            //点击伸缩............................................
             $(this.C).find('.jimi-clickMore').css({
                 width: this.config.width,
                 float: 'left',
                 'text-align': 'center',
-                color: '#000',
                 'margin-bottom': '10px'
             }).find('span').css({
                 'background-color': '#fff',
-                border: '1px solid #000',
+                border: '1px solid #727272',
                 padding: '5px'
 
             })
 
 
+            //标签............................................
             $(this.C).find('.jimi-label').find('ul').css({
                 margin: '10px 15px 0 0',
-                width: this.config.width-15,
+                width: this.config.width - 15,
             }).find('li').css({
                 float: 'left',
                 height: '26px',
@@ -304,38 +332,72 @@
         },
         bindEvent: function () {
             var that = this;
-            //canvasBox
-            var canvasBox = $(that.C).find('.jimi-canvasBox')[0];
-            var mychart = echarts.init(canvasBox);
-            mychart.setOption(that.echartJson);
 
             //超过五个能缩放
-            flex();
-            function flex() {
-                var $jimiParam = $(that.C).find('.jimi-param');
-                var $jimiClickMore = $(that.C).find('.jimi-clickMore');
-                var $jimiClickMoreSpan = $jimiClickMore.find('span');
-                var paramLen = $jimiParam.find('li').length;
-                if (paramLen > 4) {
-                    $jimiParam.find("li:gt(3)").hide();
-                    $jimiClickMore.show();
+            var $jimiParam = $(that.C).find('.jimi-param');
+            var $jimiClickMore = $(that.C).find('.jimi-clickMore');
+            var $jimiClickMoreSpan = $jimiClickMore.find('span');
+            var paramLen = $jimiParam.find('li').length;
+            if (paramLen > 4) {
+                $jimiParam.find("li:gt(3)").hide();
+                $jimiClickMore.show();
 
-                    $jimiClickMore.click(function () {
-                        if ($jimiClickMoreSpan.html() == "查看更多 ↓") {
-                            $jimiParam.find("li:gt(3)").slideDown();
-                            $jimiClickMoreSpan.html("折叠栏目 ↑")
-                        }
-                        else {
-                            $jimiParam.find("li:gt(3)").slideUp();
-                            $jimiClickMoreSpan.html("查看更多 ↓");
-                        }
-                    })
-                }
-
+                $jimiClickMore.click(function () {
+                    if ($jimiClickMoreSpan.html() == "查看更多 ↓") {
+                        $jimiParam.find("li:gt(3)").slideDown();
+                        $jimiClickMoreSpan.html("折叠栏目 ↑")
+                    }
+                    else {
+                        $jimiParam.find("li:gt(3)").slideUp();
+                        $jimiClickMoreSpan.html("查看更多 ↓");
+                    }
+                })
             }
 
 
+            //点击切换canvas画布
+            var clickJson = {background: '#36aadf', border: '1px solid #36aadf', color: '#fff'};
+            var oriJson = {background: '#fff', border: '1px solid #d8d8d8', color: '#727272'};
+            $(this.C).find('.jimi-canvasBtn').eq(0).css(clickJson).end()
+                .each(function (i, ele) {
+                    //canvasBtn
+                    $(ele).click(function () {
+                        $(this).css(clickJson).siblings().css(oriJson)
+                        $(that.C).find('.jimi-canvasBox').eq(i).show().siblings('.jimi-canvasBox').hide();
+                    })
+                })
+        },
+        bindCanvas: function () {
+            //第一个canvas
+            var that = this;
+            var canvasBox1 = $(this.C).find('.jimi-canvasBox')[0];//第一个canvas
+            var mychart1 = echarts.init(canvasBox1);
+            mychart1.showLoading();
+
+            //更新echartJson
+            var formula = this.formula;
+            var comp = formula.component;
+            var sens = formula.safe.sensitization;
+            var cond = formula.type.conditioner;
+            var emol = formula.type.emollient;
+            var sunS = formula.type.sunScreener;
+
+            //安全 "致敏/致痘""正常成分"
+            this.echartJson.series[0].data.push(
+                {"value": sens.length, "name": "致敏/致痘"},
+                {"value": comp.length - sens.length, "name": "正常成分"})
+            //成分 "皮肤/头发调理剂""剂型""皮肤柔润剂""防晒剂"
+            this.echartJson.series[1].data.push(
+                {"value": cond.length, "name": "皮肤/头发调理剂"},
+                {"value": comp.length - cond.length - emol.length - sunS.length, "name": "剂型"},
+                {"value": emol.length, "name": "皮肤柔润剂"},
+                {"value": sunS.length, "name": "防晒剂"})
+            mychart1.setOption(this.echartJson);
+            mychart1.hideLoading();
+
+
             console.log(new Date().getTime())
+
         }
     }
 
