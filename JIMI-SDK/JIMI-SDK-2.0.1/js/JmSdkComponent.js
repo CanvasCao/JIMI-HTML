@@ -20,7 +20,7 @@
         this.pipeidu = this.ajaxJson.pipeidu || 70;
 
         //第一个canvas的原始json
-        this.echartJson = {
+        this.pieJson = {
             "tooltip": {
                 "formatter": "{a} <br/>{b}: {c}种 ({d}%)"
             },
@@ -61,6 +61,59 @@
             color: ['#c23531', '#2f4554', '#61a0a8', '#d48265', '#91c7ae', '#749f83', '#ca8622', '#bda29a', '#6e7074', '#546570', '#c4ccd3']
         };
 
+        this.relationJson = {
+            title: {
+                text: '肌秘科技',
+                subtext: 'Echarts',
+                top: 'bottom',
+                right: 10
+
+            },
+            "tooltip": {
+                "formatter": "{b}"
+
+            },
+            legend: [{//顶部显示
+                data: ['皮肤/头发调理剂', '剂型', '皮肤柔润剂', '防晒剂'],
+                orient: 'vertical',
+                align: 'right',
+                right: 10
+
+            }],
+            animation: true,
+            series: [
+                {
+                    name: '成分详情',
+                    type: 'graph',
+                    layout: 'force',
+                    data: [
+//                            {name: '水', value: 1, category: 0,}
+                    ],
+                    links: [//{source: '水', target: '二氧化碳'},
+                    ],
+                    categories: [{name: '皮肤/头发调理剂'}, {name: '剂型'}, {name: '皮肤柔润剂'}, {name: '防晒剂'}],
+                    roam: true,
+                    label: {
+                        normal: {position: 'right', formatter: ''},
+                    },
+                    force: {
+                        edgeLength: 30,
+                        gravity: 0.1,
+                        repulsion: 100
+                    },
+                    lineStyle: {
+                        normal: {
+                            curveness: 0.3
+                        }
+                    },
+                    color: ['#61a0a8', '#d48265', '#91c7ae', '#749f83']
+                    //color: ['#c23531', '#314656', '#61a0a8', '#dd8668', '#91c7ae', '#6e7074', '#61a0a8', '#bda29a', '#44525d', '#c4ccd3'],
+//                        width:480,
+//                        height:280
+                }
+
+            ]
+        };
 
         //配置文件
         this.config = {
@@ -88,7 +141,7 @@
             $(this.C).find('.jimi-scrOut').html("<div class='jimi-scrIn'></div>")
 
             //内部 顶部标签 是固定的
-            var str = "<div class='jimi-top'><div class='jimi-topTxt'>"+this.pname+"</div></div>";
+            var str = "<div class='jimi-top'><div class='jimi-topTxt'>" + this.pname + "</div></div>";
             $(this.C).find('.jimi-scrIn').append(str);
 
 
@@ -160,11 +213,7 @@
             //父容器设置宽高
             $(this.C).css({
                 width: this.config.width,
-                height: this.config.height,
-                margin: '10px 0px 0px 0px',
-                'box-shadow': '5px 5px 40px rgba(0, 0, 0, 0.5)',
-                font: "12px '微软雅黑'",
-                color: '#727272'
+                height: this.config.height
             })
 
             $(this.C).find('.jimi-arrow').css({
@@ -257,7 +306,7 @@
             //canvas..........................................................
             $(this.C).find('.jimi-canvasBox').css({
                 width: this.config.width,
-                height: this.config.canvasHeight
+                height: this.config.canvasHeight,
             })
 
             $(this.C).find('.jimi-canvasChange').css({
@@ -355,6 +404,75 @@
             }
 
 
+        },
+        bindCanvas: function () {
+            var that = this;
+            var formula = this.formula;
+            var comp = formula.component;
+            var sens = formula.safe.sensitization;
+            var cond = formula.type.conditioner;
+            var emol = formula.type.emollient;
+            var sunS = formula.type.sunScreener;
+            //sunS = ['1', '2', '3', '4']
+            //第一 二个canvas
+            var canvasBox1 = $(this.C).find('.jimi-canvasBox')[0];//第一个canvas
+            var mychart1 = echarts.init(canvasBox1);
+            var canvasBox2 = $(that.C).find('.jimi-canvasBox')[1];//第二个canvas
+            var mychart2 = echarts.init(canvasBox2);
+
+
+            //resetPieJson
+            //安全 "致敏/致痘""正常成分"
+            this.pieJson.series[0].data.push(
+                {"value": sens.length, "name": "致敏/致痘"},
+                {"value": comp.length - sens.length, "name": "正常成分"})
+            //成分 "皮肤/头发调理剂""剂型""皮肤柔润剂""防晒剂"
+            this.pieJson.series[1].data.push(
+                {"value": cond.length, "name": "皮肤/头发调理剂"},
+                {"value": comp.length - cond.length - emol.length - sunS.length, "name": "剂型"},
+                {"value": emol.length, "name": "皮肤柔润剂"},
+                {"value": sunS.length, "name": "防晒剂"})
+            mychart1.setOption(this.pieJson);
+
+
+            //resetRelationJson
+            var arrArr = [cond, comp.difference(cond).difference(emol).difference(sunS), emol, sunS]
+            var arrArrName = ['皮肤/头发调理剂', '剂型', '皮肤柔润剂', '防晒剂']
+            for (i = 0; i < arrArr.length; i++) {
+                var maxSize = 30;
+                var minSize = 10;
+                var step = 5;
+                //点
+                for (a = 0; a < arrArr[i].length; a++) {
+                    that.relationJson.series[0].data.push({
+                        name: arrArrName[i] + ' : ' + arrArr[i][a],
+                        value: (maxSize - a * step) <= minSize ? minSize : (maxSize - a * step),
+                        category: arrArrName[i],
+                        draggable: true,
+                        symbolSize: (maxSize - a * step) <= minSize ? minSize : (maxSize - a * step)
+                    })
+                }
+                //线
+                for (a = 1; a <= arrArr[i].length; a++) {
+                    that.relationJson.series[0].links.push({
+                        source: arrArrName[i] + ' : ' + arrArr[i][0],
+                        target: arrArrName[i] + ' : ' + arrArr[i][a]
+                    })
+                }
+            }
+            //最后把不同剂型连接起来
+            for (i = 0; i < arrArrName.length; i++) {
+//            var oldP = i;
+//            var newP = (i + 1) >= arrArrName.length ? 0 : i + 1;
+                for (j = i; j < arrArrName.length; j++) {
+                    that.relationJson.series[0].links.push({
+                        source: arrArrName[i] + ' : ' + arrArr[i][0],
+                        target: arrArrName[j] + ' : ' + arrArr[j][0]
+                    })
+                }
+            }
+
+
             //点击切换canvas画布
             var clickJson = {background: '#36aadf', border: '1px solid #36aadf', color: '#fff'};
             var oriJson = {background: '#fff', border: '1px solid #d8d8d8', color: '#727272'};
@@ -366,36 +484,18 @@
                         $(that.C).find('.jimi-canvasBox').eq(i).show().siblings('.jimi-canvasBox').hide();
                     })
                 })
-        },
-        bindCanvas: function () {
-            //第一个canvas
-            var that = this;
-            var canvasBox1 = $(this.C).find('.jimi-canvasBox')[0];//第一个canvas
-            var mychart1 = echarts.init(canvasBox1);
-            mychart1.showLoading();
 
-            //更新echartJson
-            var formula = this.formula;
-            var comp = formula.component;
-            var sens = formula.safe.sensitization;
-            var cond = formula.type.conditioner;
-            var emol = formula.type.emollient;
-            var sunS = formula.type.sunScreener;
+            $(this.C).find('.jimi-canvasBtn').eq(0).click(function () {
 
-            //安全 "致敏/致痘""正常成分"
-            this.echartJson.series[0].data.push(
-                {"value": sens.length, "name": "致敏/致痘"},
-                {"value": comp.length - sens.length, "name": "正常成分"})
-            //成分 "皮肤/头发调理剂""剂型""皮肤柔润剂""防晒剂"
-            this.echartJson.series[1].data.push(
-                {"value": cond.length, "name": "皮肤/头发调理剂"},
-                {"value": comp.length - cond.length - emol.length - sunS.length, "name": "剂型"},
-                {"value": emol.length, "name": "皮肤柔润剂"},
-                {"value": sunS.length, "name": "防晒剂"})
-            mychart1.setOption(this.echartJson);
-            mychart1.hideLoading();
+                mychart1.clear()
+                mychart1.setOption(that.pieJson)
 
+            })
+            $(this.C).find('.jimi-canvasBtn').eq(1).click(function () {
+                mychart2.clear()
+                mychart2.setOption(that.relationJson)
 
+            })
             console.log(new Date().getTime())
 
         }
