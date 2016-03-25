@@ -439,9 +439,9 @@
             var arrArr = [cond, comp.difference(cond).difference(emol).difference(sunS), emol, sunS]
             var arrArrName = ['皮肤/头发调理剂', '剂型', '皮肤柔润剂', '防晒剂']
             for (i = 0; i < arrArr.length; i++) {
-                var maxSize = 30;
-                var minSize = 10;
-                var step = 5;
+                var maxSize = 20;
+                var minSize = 8;
+                var step = 2;
                 //点
                 for (a = 0; a < arrArr[i].length; a++) {
                     that.relationJson.series[0].data.push({
@@ -462,8 +462,6 @@
             }
             //最后把不同剂型连接起来
             for (i = 0; i < arrArrName.length; i++) {
-//            var oldP = i;
-//            var newP = (i + 1) >= arrArrName.length ? 0 : i + 1;
                 for (j = i; j < arrArrName.length; j++) {
                     that.relationJson.series[0].links.push({
                         source: arrArrName[i] + ' : ' + arrArr[i][0],
@@ -486,15 +484,12 @@
                 })
 
             $(this.C).find('.jimi-canvasBtn').eq(0).click(function () {
-
                 mychart1.clear()
                 mychart1.setOption(that.pieJson)
-
             })
             $(this.C).find('.jimi-canvasBtn').eq(1).click(function () {
                 mychart2.clear()
                 mychart2.setOption(that.relationJson)
-
             })
             console.log(new Date().getTime())
 
