@@ -65,8 +65,8 @@
 
                 $.ajax({
                     type: "post",
-                    url: 'http://openapi.jimi.la/',
-                    //url: 'js/r.json',
+                    //url: 'http://openapi.jimi.la/',
+                    url: 'js/r.json',
                     data: {
                         "grant_type": "product_info",//获取信息类型
                         "appid": "123456",
@@ -75,9 +75,9 @@
                         "req_type": "2",//请求类型：1为条形码，2为产品名称
                         "ret_type": "1"//默认1，JSON格式返回消息 2，XML格式返回消息 3，返回HTML内容
                     },
-                    dataType: "jsonp",
-                    jsonp: "callback",//传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)
-                    jsonpCallback: "jsonpcallback",
+                    //dataType: "jsonp",
+                    //jsonp: "callback",//传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)
+                    //jsonpCallback: "jsonpcallback",
                     success: function (data) {
                         console.log(JSON.stringify(data));//状态码是data.code
                         console.log('finish');

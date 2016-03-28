@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        *{
+            padding: 0;
+            margin:0;
+        }
+        textarea{
+            width: 49%;
+            height: 200px;
+            box-sizing: border-box;
+            display: inline;
+        }
+    </style>
+</head>
+<body>
+<textarea name="" id="t1" cols="30" rows="10">
+</textarea>
+<textarea name="" id="t2" cols="30" rows="10"></textarea>
+<button id='btn'>Convert!!!</button>
+<script src='jquery-1.8.3.min.js'></script>
+<script>
+    $(function(){
+        $('#btn').click(function(){
+            var a=$('#t1').val();
+            console.log(a)
+            var arr=a.split('\n');
+            var newArr='';
+            for (i = 0; i < arr.length; i++) {
+                if(i!=arr.length){
+                    newArr+='"'+(arr[i])+'",\r\n';
+                }
+                else{
+                    newArr+='"'+(arr[i])+'"';
+                }
+            }
+            $('#t2').html(newArr)
+        })
+    })
+</script>
+</body>
+</html>
