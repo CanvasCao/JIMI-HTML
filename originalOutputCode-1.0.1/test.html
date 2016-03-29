@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="prismHighlight/prism.css"/>
+    <style type="text/css">
+        * {
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+<div id="div"></div>
+
+<script src="jquery-1.8.3.min.js"></script>
+<script src="originalOutputCode-1.0.1.js"></script>
+<script src="prismHighlight/prism.js"></script>
+<script>
+    $(function () {
+        var codeArr = [
+            '&ltuses-permission android:name=&quotandroid.permission.INTERNET&quot /&gt',
+            '// 允许程序访问有关的网络信息',
+            '&ltuses-permission android:name=&quotandroid.permission.ACCESS_NETWORK_STATE&quot /&gt',
+            '// 允许程序访问Wi-Fi网络状态信息',
+            '&ltuses-permission android:name=&quotandroid.permission.ACCESS_WIFI_STATE&quot /&gt',
+            '// 允许应用写（非读）用户的外部存储器&ltuses-permission android:name=&quotandroid.permission.WRITE_EXTERNAL_STORAGE&quot /&gt',
+            '// 允许一个程序获取信息有关当前或最近运行的任务，一个缩略的任务状态，是否活动等等',
+            '&ltuses-permission android:name=&quotandroid.permission.GET_TASKS&quot /&gt',
+            '// 允许程序录制音频&ltuses-permission ',
+
+        ]
+        var ooc = new OriginalOutputCode($('#div'), {codeArr: codeArr, language: 'clike'})
+
+    })
+</script>
+</body>
+</html>

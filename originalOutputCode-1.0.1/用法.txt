@@ -1,0 +1,21 @@
+1开发页面引入
+head
+<link rel="stylesheet" href="prismHighlight/prism.css"/>
+
+body底部
+<script src="jquery-1.8.3.min.js"></script>
+<script src="originalOutputCode-1.0.1.js"></script>
+<script src="prismHighlight/prism.js"></script>
+
+2、originalOutputCode组件用法
+var codeArr = [
+            '// 允许程序打开网络sockets',
+            '&ltuses-permission android:name=&quotandroid.permission.INTERNET&quot /&gt',
+        ]
+var ooc = new OriginalOutputCode($('#div'), {codeArr: codeArr, language: 'clike'})
+
+OriginalOutputCode()两个参数 
+第一个jqery元素 
+第二个{codeArr: codeArr, language: 'clike'}
+codeArr根据textConverter.html来生成 
+language知道语言就传对应语言 不知道就传clike

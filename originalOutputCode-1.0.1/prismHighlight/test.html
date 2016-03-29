@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="prism.css"/>
+    <style>
+        code {
+            /*color:black;*/
+        }
+    </style>
+
+</head>
+<body>
+
+
+<pre>
+    <code class="language-clike">
+        //通过成分名
+        NSDictionary *compositionInfoDic = [SkinSecret getCompositionInfoWithCompositionName::@"甘油"];
+        //通过条形码
+        NSDictionary *compositionInfoDicCopy = [SkinSecret getCompositionInfoWithBarCode:@"265452122"];
+    </code>
+</pre>
+
+
+<script src='prism.js'></script>
+</body>
+</html>
