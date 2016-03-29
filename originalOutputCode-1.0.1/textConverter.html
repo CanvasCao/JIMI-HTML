@@ -9,11 +9,16 @@
             margin:0;
         }
         textarea{
-            width: 90%;
+            width: 100%;
             height: 200px;
             box-sizing: border-box;
-            display: inline;
-            margin:0 auto
+            display: block;
+            margin:0 auto;
+            border: 5px solid #000;
+        }
+        button{
+            height: 200px;
+            width: 100%;
         }
     </style>
 </head>
@@ -30,7 +35,7 @@
 
     //&lt&gt会在页面显示标签字符串 而直接写<>会认为是标签本身
     String.prototype.deenityify=function(){
-        return this.replace(/"/g,'&quot').replace(/</g,'&lt').replace(/>/g,'&gt')
+        return this.replace(/"/g,'&quot').replace(/'/g,'&quot').replace(/</g,'&lt').replace(/>/g,'&gt')
     }
 
     $(function(){
