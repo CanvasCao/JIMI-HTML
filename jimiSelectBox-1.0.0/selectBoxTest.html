@@ -11,11 +11,14 @@
 
         }
 
-        body{
+        body {
             /*background-color: #565656;*/
         }
+
         #div {
             position: relative;
+            font: 18px '微软雅黑';
+            font-weight: bolder;
         }
 
         .top {
@@ -24,11 +27,10 @@
             height: 100px;
             border-radius: 5px;
             box-shadow: 0px 0px 20px #979797;
-            position: absolute;
+            position: relative;
             transition: all 0.4s ease 0s;
             cursor: pointer;
-            font: 18px '微软雅黑';
-            font-weight: bolder;
+
             background-color: white;
         }
 
@@ -75,18 +77,26 @@
             transform: translateX(1px) translateY(-50%) rotate(45deg);
         }
 
+        .bottom {
+            position: relative;
+            height: 500px;
+            width: 500px;
+            overflow: hidden;
+            border-radius: 5px;
+            box-shadow: 0px 5px 20px #979797;
+            display: none;
+        }
+
         .drop {
             position: absolute;
-            top: 100px;
-            display: none;
-            border-radius: 5px;
+            /*border-radius: 5px;*/
             overflow: hidden;
-            box-shadow: 0px 0px 20px #979797;
-            z-index: -1;
-
+            /*height: 500px;*/
+            /*width: 500px;*/
         }
-        .drop .item{
-            width: 500px;
+
+        .drop .item {
+            width: 490px;
             height: 100px;
             border: 1px solid #e6e6e6;
             /*border-radius: 5px;*/
@@ -95,8 +105,21 @@
             line-height: 100px;
             padding-left: 25px;
         }
+
         .drop .item:hover {
-            background-color: #dbdbdb;
+            background-color: #a9d1fa;
+        }
+
+        .bar {
+            position: absolute;
+            width: 10px;
+            height: 200px;
+            background-color: #979797;
+            right: 0;
+            top: 0;
+            display: none;
+            border-radius: 5px;
+            cursor: pointer;
         }
     </style>
 </head>
@@ -106,32 +129,47 @@
 
     <div class='top'>
         <span class='txt'>--城市--</span>
+
         <div class='topBtn'>
             <div class='topBtnArr l'></div>
             <div class='topBtnArr r'></div>
         </div>
+    </div>
+
+    <div class='bottom'>
         <div class='drop'>
             <div class='item'>111</div>
             <div class='item'>222</div>
             <div class='item'>333</div>
             <div class='item'>444</div>
+            <div class='item'>555</div>
+            <div class='item'>666</div>
+            <div class='item'>777</div>
         </div>
-
+        <div class='bar'></div>
     </div>
+
+
 </div>
 
 <script src='jquery-1.8.3.min.js'></script>
 <script src='jquery.easie.js'></script>
 <script>
     $(function () {
-        $('.top').click(function(){
-            $('.drop').stop().fadeToggle('fast')
+        $('.top').click(function () {
+            $('.bottom').stop().fadeToggle('fast')
         })
-        $('.drop .item').click(function(){
-            var html=$(this).html()
+        $('.drop .item').click(function () {
+            var html = $(this).html()
             $('.txt').html(html);
+            $('.bottom').fadeOut('fast')
         })
 
+        $('.item').hover(function () {
+            $('.bar').show()
+        }, function () {
+//            $('.bar').hide()
+        })
     })
 </script>
 </body>

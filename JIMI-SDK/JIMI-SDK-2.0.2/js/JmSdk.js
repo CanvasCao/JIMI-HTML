@@ -70,7 +70,7 @@
 
                 $.ajax({
                     type: "post",
-                    //url: 'http://openapi.jimi.la/',
+                    //url: 'http://openapi.jimi.la',
                     url: 'js/r.json',
                     data: {
                         "grant_type": "product_info",//获取信息类型

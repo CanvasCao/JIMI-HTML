@@ -1,8 +1,12 @@
+/*!
+ * JIMI JavaScriptPlugIn v1.0.0
+ * http://www.jimi.la/
+ *
+ * Copyright 2016, CaoYuhao
+ * Date: 2016年3月31日 14:38:55
+ */
 ;
-(function (w, d, undefined) {
-//version 1.0.0
-//create by CAO on 2016/3/8
-
+(function (w, d,$, undefined) {
     function CAOOOOOO(container, data) {
         this.container = container;
         this.data = data;
@@ -32,6 +36,6 @@
         }
     }
     w.CAOOOOOO = CAOOOOOO;
-})(window, document)
+})(window, document,jQuery)
 
 

@@ -19,8 +19,9 @@
 
 
         $(window).scroll(function () {
-            //不断获得当前body滚上去多少
-            var winScrollTop = ($('body').scrollTop());
+            //不断获得当前body滚上去多少            
+			var winScrollTop = $('body').scrollTop()||$('html').scrollTop();
+
             if (winScrollTop+fixedMarginTop >= fixedTop) {
                 that.css({
                     'position': 'fixed',
