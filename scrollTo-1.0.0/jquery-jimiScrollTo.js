@@ -7,7 +7,6 @@
         for (k in sourceJson) {
             json[k] = sourceJson[k];
         }
-
         //console.log(json)
 
         var scrollTopArr = [];
