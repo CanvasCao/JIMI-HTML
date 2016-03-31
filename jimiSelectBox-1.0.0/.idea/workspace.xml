@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/selectBoxTest.html" line="53" mnemonic="5" />
+    <bookmark url="file://$PROJECT_DIR$/selectBoxTest.html" line="55" mnemonic="5" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ab88b00d-76fc-48be-a778-09a7beffaf46" name="默认的" comment="" />
@@ -37,11 +37,9 @@
       <file leaf-file-name="selectBoxTest.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/selectBoxTest.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.74910396">
-              <caret line="112" column="21" selection-start-line="112" selection-start-column="21" selection-end-line="112" selection-end-column="21" />
-              <folding>
-                <element signature="n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-              </folding>
+            <state vertical-scroll-proportion="0.8064516">
+              <caret line="131" column="33" selection-start-line="131" selection-start-column="33" selection-end-line="131" selection-end-column="33" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -250,11 +248,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/selectBoxTest.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.74910396">
-          <caret line="112" column="21" selection-start-line="112" selection-start-column="21" selection-end-line="112" selection-end-column="21" />
-          <folding>
-            <element signature="n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-          </folding>
+        <state vertical-scroll-proportion="0.8064516">
+          <caret line="131" column="33" selection-start-line="131" selection-start-column="33" selection-end-line="131" selection-end-column="33" />
+          <folding />
         </state>
       </provider>
     </entry>
