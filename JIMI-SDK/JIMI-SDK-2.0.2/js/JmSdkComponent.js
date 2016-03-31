@@ -1,11 +1,11 @@
 ;
-(function (w, d,$, undefined) {
-    function JmSdkComponent(container, data, ajaxJson) {
+(function (w, d, $, undefined) {
+    function JmSdkComponent(container, clickJson, ajaxJson) {
         console.log(new Date().getTime());
         this.C = this.container = container;
 
         //这里的data是其他的参数 比方click时候传入的其他参数
-        this.data = data;
+        this.clickJson = clickJson;
 
         //初始化图1用的ajaxJson 根据接口接受的是data.data
         this.ajaxJson = ((typeof ajaxJson) == 'string') ? JSON.parse(ajaxJson) : ajaxJson;
@@ -156,8 +156,14 @@
                 '</div>';
             $(this.C).find('.jimi-scrIn').append(str);
             //改变安全度和匹配度的长度 必须改css
-            $(this.C).find('.jimi-degreeBarBar span').eq(0).css({width: that.anxindu + "%", backgroundColor: '#29c741'});
-            $(this.C).find('.jimi-degreeBarBar span').eq(1).css({width: that.pipeidu + "%", backgroundColor: '#ff9d00'});
+            $(this.C).find('.jimi-degreeBarBar span').eq(0).css({
+                width: that.anxindu + "%",
+                backgroundColor: '#29c741'
+            });
+            $(this.C).find('.jimi-degreeBarBar span').eq(1).css({
+                width: that.pipeidu + "%",
+                backgroundColor: '#ff9d00'
+            });
 
 
             //内部还有3个jimi-content
@@ -165,7 +171,7 @@
             var contentArr = ['产品成分', '产品参数', '标签'];
             for (i = 0; i < 3; i++) {
                 str += "<div class='jimi-content'>" +
-                    "<div class='jimi-title'>" + contentArr[i] + "</div>" +
+                    "<div class='jimi-title'>" + contentArr[i] + "<div class='jimi-titleArrow'></div></div>" +
                     "</div>";
             }
             $(this.C).find('.jimi-scrIn').append(str);
@@ -191,7 +197,8 @@
                 str += '<li>' +
                     "<span class='jimi-sp1'>" + arrChi[i] + "</span><span class='jimi-sp2'>" + this[arr[i]] + "</span>" +
                     '</li>'
-            };
+            }
+            ;
             str += "</ul></div>";
             str += '<div class="jimi-clickMore" style="display:none;"><span>查看更多 ↓</span></div>';
             $(this.C).find('.jimi-content').eq(1).append(str);
@@ -202,7 +209,8 @@
             str += "<div class='jimi-label'>" + "<ul>"
             for (i = 0; i < this.feature.length; i++) {
                 str += '<li>' + this.feature[i] + '</li>'
-            };
+            }
+            ;
             str += "</ul>" + "</div>";
             $(this.C).find('.jimi-content').eq(2).append(str);
 
@@ -217,11 +225,13 @@
 
             $(this.C).find('.jimi-arrow').css({
                 position: 'absolute',
-                width: '17px',
-                height: '11px',
                 left: '15px',
-                top: '-11px',
-                background: 'url(images/icon1.png) no-repeat'
+                top: '-12px',
+                width: 0,
+                height: 0,
+                'border-left': '14px solid transparent',
+                'border-right': '14px solid transparent',
+                'border-bottom': '12px solid #2BA5DD'
             });
 
             $(this.C).find('.jimi-scrOut').css({
@@ -241,7 +251,7 @@
             //顶部........................................................
             $(this.C).find('.jimi-top').css({
                 height: '60px',
-                background: '#2BA5DD url(images/icon3.png) no-repeat right 40px center',
+                background: '#2BA5DD',
                 'border-bottom': '3px solid #299bcf'
             });
 
@@ -293,12 +303,22 @@
             );
 
             $(this.C).find('.jimi-title').css({
-                padding: '0 25px 0 15px',
+                padding: '0 10px 0 15px',
                 'line-height': '25px',
-                background: '#dcebf2 url(images/icon2.png) no-repeat right center',
+                background: '#dcebf2',
                 height: '25px',
                 display: 'inline-block',
-            });
+                position: 'relative'
+            }).find('.jimi-titleArrow').css({
+                width: 0,
+                height: 0,
+                right: '-10px',
+                top: 0,
+                'border-top': '12.5px solid transparent',
+                'border-left': '10px solid #dcebf2',
+                'border-bottom': '12.5px solid transparent',
+                position: 'absolute'
+            })
             //...............................................................
 
 
@@ -450,14 +470,16 @@
                         draggable: true,
                         symbolSize: (maxSize - a * step) <= minSize ? minSize : (maxSize - a * step)
                     })
-                };
+                }
+                ;
                 //线
                 for (a = 1; a <= arrArr[i].length; a++) {
                     that.relationJson.series[0].links.push({
                         source: arrArrName[i] + ' : ' + arrArr[i][0],
                         target: arrArrName[i] + ' : ' + arrArr[i][a]
                     })
-                };
+                }
+                ;
             }
             //最后把不同剂型连接起来
             for (i = 0; i < arrArrName.length; i++) {
@@ -497,4 +519,4 @@
 
     w.JmSdkComponent = JmSdkComponent;
 })
-(window, document,jQuery)
+(window, document, jQuery)

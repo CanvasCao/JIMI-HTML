@@ -10,7 +10,7 @@
         this.language = data.language;
         this.config = {};
         this.init();
-    }
+    };
 
     OriginalOutputCode.prototype = {
         init: function () {
@@ -56,7 +56,7 @@
                 'background-color': '#f5f5f5',
                 border: '1px solid #ccc',
                 'border-radius': '3px'
-            })
+            });
 
         },
         bindEvent: function () {
