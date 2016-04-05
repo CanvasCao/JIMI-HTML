@@ -16,9 +16,9 @@
         }
 
         #div {
-            position: relative;
+            /*position: relative;*/
             font: 18px '微软雅黑';
-            font-weight: bolder;
+            /*font-weight: bolder;*/
         }
 
         .top {
@@ -30,7 +30,6 @@
             position: relative;
             transition: all 0.4s ease 0s;
             cursor: pointer;
-
             background-color: white;
         }
 
@@ -70,12 +69,12 @@
 
         .l {
             transform: translateX(-5px) translateY(-50%) rotate(-45deg);
-            /*border: 1px solid #000;*/
         }
 
         .r {
             transform: translateX(1px) translateY(-50%) rotate(45deg);
         }
+
 
         .bottom {
             position: relative;
@@ -89,14 +88,10 @@
 
         .drop {
             position: absolute;
-            /*border-radius: 5px;*/
-            overflow: hidden;
-            /*height: 500px;*/
-            /*width: 500px;*/
         }
 
         .drop .item {
-            width: 490px;
+            width: 500px;
             height: 100px;
             border: 1px solid #e6e6e6;
             /*border-radius: 5px;*/
@@ -112,7 +107,7 @@
 
         .bar {
             position: absolute;
-            width: 10px;
+            width: 12px;
             height: 200px;
             background-color: #979797;
             right: 0;
@@ -120,12 +115,13 @@
             display: none;
             border-radius: 5px;
             cursor: pointer;
+            opacity: 0.4;
         }
     </style>
 </head>
 <body>
 
-<div id="div">
+<span id="div">
 
     <div class='top'>
         <span class='txt'>--城市--</span>
@@ -135,7 +131,6 @@
             <div class='topBtnArr r'></div>
         </div>
     </div>
-
     <div class='bottom'>
         <div class='drop'>
             <div class='item'>111</div>
@@ -148,28 +143,76 @@
         </div>
         <div class='bar'></div>
     </div>
-
-
-</div>
+</span>
 
 <script src='jquery-1.8.3.min.js'></script>
-<script src='jquery.easie.js'></script>
+<script src='jquery.mousewheel.min.js'></script>
 <script>
     $(function () {
+        var ifDragging = false;
+        var clientY = 0; //鼠标每次的偏移量
+        var barDy = 0; //bar每次的偏移量
+        var RATE = 2 / 3;
+
+
         $('.top').click(function () {
-            $('.bottom').stop().fadeToggle('fast')
+            $('.bottom').stop().fadeToggle('fast');
+            $('.bar').stop().fadeToggle('fast');
         })
         $('.drop .item').click(function () {
             var html = $(this).html()
             $('.txt').html(html);
-            $('.bottom').fadeOut('fast')
+            $('.bottom').stop().fadeOut('fast')
+            $('.bar').stop().fadeOut('fast')
         })
 
-        $('.item').hover(function () {
-            $('.bar').show()
-        }, function () {
-//            $('.bar').hide()
+        $('.drop').mousewheel(function (e, delta) {
+            var e = e || event;
+            var dy = 100 / (2 / 3);
+            e.preventDefault();
+            //delta可能是-1 1
+//            console.log(delta)
+            if (delta == -1) {
+                barDy += dy;
+            }
+            else if (delta == 1) {
+                barDy -= dy;
+            }
+            barDy = barDy >= 300 ? 300 : barDy;
+            barDy = barDy <= 0 ? 0 : barDy;
+            $('.bar').css({top: barDy})
+
+            $('.drop').css({top: -barDy * RATE})
         })
+
+
+        $('.bar').mousedown(function (e) {
+            e.preventDefault();
+            ifDragging = true;
+            clientY = e.clientY;
+        })
+        $(window).mousemove(function (e) {
+
+            if (ifDragging) {
+                e.preventDefault();
+                //可视距离500 bar高度200 可移动距离500-200=300
+                var dy = e.clientY - clientY;
+                //验收
+                dy = (dy + barDy >= 300) ? 300 - barDy : dy;
+                dy = (dy + barDy <= 0) ? 0 - barDy : dy;
+                $('.bar').css({top: dy + barDy})//bar移动完 drop也要移动
+                $('.drop').css({top: (dy + barDy) * (-RATE)})
+
+
+            }
+        })
+        $(window).mouseup(function (e) {
+            e.preventDefault();
+            barDy = parseInt($('.bar').css('top'));//修正一下bar的偏移量
+            ifDragging = false;
+        })
+
+
     })
 </script>
 </body>
