@@ -117,10 +117,9 @@
 
         //配置文件
         this.config = {
-            height: 520, //原高度520-顶部60
+            height: 520,
             width: 420,
-            canvasHeight: 280,
-            topHeight:60
+            canvasHeight: 280
         };
         this.init();
     }
@@ -138,17 +137,12 @@
         },
         createDom: function () {
             var that = this;
-            $(this.C).html("<div class='jimi-arrow'></div>" +
-                "<div class='jimi-top'><div class='jimi-topTxt'>" + this.pname + "</div></div>" +
-                "<div class='jimi-scrOut'></div>");
-
-            $(this.C).find('.jimi-top').append( "<div class='topCir'>" +
-                "<div class='topArr topArrL'></div>" +
-                "<div class='topArr topArrR'></div>" +
-                "</div>")
-
-            //内层html
+            $(this.C).html("<div class='jimi-arrow'></div><div class='jimi-scrOut'></div>");
             $(this.C).find('.jimi-scrOut').html("<div class='jimi-scrIn'></div>");
+
+            //内部 顶部标签 是固定的
+            var str = "<div class='jimi-top'><div class='jimi-topTxt'>" + this.pname + "</div></div>";
+            $(this.C).find('.jimi-scrIn').append(str);
 
 
             //匹配度 安全度 写死了 罪过
@@ -223,7 +217,6 @@
 
         },
         initCSS: function () {
-            var that=this;
             //父容器设置宽高
             $(this.C).css({
                 width: this.config.width,
@@ -244,24 +237,23 @@
             $(this.C).find('.jimi-scrOut').css({
                 'background-color': '#0093ff',
                 width: this.config.width,
-                height: this.config.height-this.config.topHeight,
+                height: this.config.height,
                 overflow: 'hidden'
             });
 
             $(this.C).find('.jimi-scrIn').css({
                 'background-color': '#fff',
                 width: this.config.width + 30,
-                height: this.config.height-this.config.topHeight,
+                height: this.config.height,
                 'overflow-y': 'auto',
-                'position': 'relative'
+                'position':'relative'
             });
 
             //顶部........................................................
             $(this.C).find('.jimi-top').css({
-                height: this.config.topHeight,
+                height: '60px',
                 background: '#2BA5DD',
                 'border-bottom': '3px solid #299bcf',
-                'position':'relative'
             });
 
             $(this.C).find('.jimi-topTxt').css({
@@ -273,36 +265,6 @@
 
             });
             //...............................................................
-
-
-            //顶部的选择箭头
-            $(this.C).find('.topCir').css({
-                position: 'absolute',
-                width: 20,
-                height: 20,
-                right: '20px',
-                top: '50%',
-                transform: 'translateY(-50%)',
-                'background-color': '#a5a5a5',
-                'border-radius': '50%',
-            })
-
-            $(this.C).find('.topArr').css({
-                position: 'absolute',
-                'background-color': 'white',
-                width: '3px',
-                height: '6px',
-                top: '50%',
-                left: '50%',
-                'transform-origin': '50% 50%'
-            })
-            $(this.C).find('.topArrL').css({
-                transform: 'translateX(-3px) translateY(-50%) rotate(-45deg)'
-            })
-            $(this.C).find('.topArrR').css({
-                transform: 'translateX(-0px) translateY(-50%) rotate(45deg)'
-            })
-
 
 
             //安心度 匹配度
@@ -550,7 +512,7 @@
             $(this.C).find('.jimi-canvasBtn').eq(1).click(function () {
                 mychart2.clear();
                 mychart2.setOption(that.relationJson);
-                document.getElementsByTagName('canvas')[1].onmousewheel = null;
+                document.getElementsByTagName('canvas')[1].onmousewheel=null;
 
             })
 

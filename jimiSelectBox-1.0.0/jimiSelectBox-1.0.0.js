@@ -30,16 +30,20 @@
             this.bindEvent();
         },
         initConfig: function () {
-            var itemDis = (this.data.length - this.showLimit) * this.config.height;
-            var barDis = this.showLimit * this.config.height - this.config.barHeight;
-            this.config.RATE = barDis / itemDis;
+            var itemDis = (this.data.length - this.config.showLimit) * this.config.height;
+            var barDis = this.config.showLimit * this.config.height - this.config.barHeight;
+            this.config.RATE = itemDis / barDis;
+            this.config.itemDis = itemDis;
+            this.config.barDis = barDis;
+            //console.log(this.config.RATE)
+            //item移动1格bar移动RATE格
         },
         createDom: function () {
             $(this.C).html("<div class='selTop'></div><div class='selBottom'></div>");
             $(this.C).find('.selTop').html("<span class='selTxt'>" + this.data[0] + "</span>" +
-                "<div class='topBtn'>" +
-                "<div class='topBtnArr l'></div>" +
-                "<div class='topBtnArr r'></div>" +
+                "<div class='topCir'>" +
+                "<div class='topArr topArrL'></div>" +
+                "<div class='topArr topArrR'></div>" +
                 "</div>")
 
             var str = '';
@@ -54,14 +58,23 @@
         },
         initCSS: function () {
             var that = this;
-            $(this.C).css({font: "12px '微软雅黑'"})
 
+            //容器本身
+            $(this.C).css({
+                //'z-index':2,
+                font: "12px '微软雅黑'",
+                width: that.config.width,
+                height: that.config.height,
+                position: 'relative'
+            })
+
+            //头部显示当前数据
             $(this.C).find('.selTop').css({
                 width: that.config.width,
                 height: that.config.height,
                 'border-radius': '3px',
                 'box-shadow': '0px 0px 10px #979797',
-                position: 'relative',
+                position: 'absolute',
                 transition: 'all 0.4s ease 0s',
                 cursor: 'pointer',
                 'background-color': 'white'
@@ -79,22 +92,28 @@
                 $(this).css({'box-shadow': '0px 0px 10px #979797'})
             })
 
+            //底部显示供选择的数据
             var bottomNum = this.data.length >= this.config.showLimit ? this.config.showLimit : this.data.length;
             $(this.C).find('.selBottom').css({
-                position: 'relative',
+                top: that.config.height,
+                position: 'absolute',
                 height: that.config.height * bottomNum,
                 width: that.config.width,
                 overflow: 'hidden',
                 'border-radius': '3px',
                 'box-shadow': '0px 5px 10px #979797',
-                display: 'none'
+                display: 'none',
+                'z-index': 2
+
             })
 
 
+            //列表
             $(this.C).find('.list').css({
-                position: 'absolute'
+                position: 'absolute',
             })
 
+            //列表中的每个选项
             $(this.C).find('.item').css({
                 width: that.config.width,
                 height: that.config.height,
@@ -110,6 +129,8 @@
                 $(this).css({'background-color': 'white'})
             })
 
+
+            //滚动条
             $(this.C).find('.bar').css({
                 position: 'absolute',
                 width: '10px',
@@ -117,49 +138,105 @@
                 'background-color': '#979797',
                 right: '0',
                 top: '0',
-                display: 'none',
                 'border-radius': '3px',
                 cursor: 'pointer',
                 opacity: '0.4'
+            })
+
+
+            //顶部的选择箭头
+            $(this.C).find('.topCir').css({
+                position: 'absolute',
+                width: that.config.height * 0.5,
+                height: that.config.height * 0.5,
+                right: '5px',
+                top: '50%',
+                transform: 'translateY(-50%)',
+                'background-color': '#a5a5a5',
+                'border-radius': '50%',
+            })
+
+            $(this.C).find('.topArr').css({
+                position: 'absolute',
+                'background-color': 'white',
+                width: '3px',
+                height: '6px',
+                top: '50%',
+                left: '50%',
+                'transform-origin': '50% 50%'
+            })
+            $(this.C).find('.topArrL').css({
+                transform: 'translateX(-3px) translateY(-50%) rotate(-45deg)'
+            })
+            $(this.C).find('.topArrR').css({
+                transform: 'translateX(-0px) translateY(-50%) rotate(45deg)'
             })
 
         },
         bindEvent: function () {
             var that = this;
             $(this.C).find('.selTop').click(function () {
-                $(that.C).find('.selBottom').stop().fadeToggle('fast');
-                $(that.C).find('.bar').stop().fadeToggle('fast');
+                $(that.C).find('.selBottom').toggle();
             })
             $(this.C).find('.item').click(function () {
                 var html = $(this).html()
+                //$(this).backgroundColor
                 $(that.C).find('.selTxt').html(html);
-                $(that.C).find('.selBottom').stop().fadeOut('fast')
-                $(that.C).find('.bar').stop().fadeOut('fast')
+                $(that.C).find('.selBottom').hide()
             })
 
 
             $(this.C).find('.list').mousewheel(function (e, delta) {
                 var e = e || event;
-                var dy = that.config.barHeight / that.config.RATE;
                 e.preventDefault();
                 //delta可能是-1 1
-                console.log(delta)
+                //console.log(delta)
+                var dy = that.config.height / that.config.RATE;
                 if (delta == -1) {
-                    that.barDy += dy;
+                    that.config.barDy += dy;
                 }
                 else if (delta == 1) {
-                    that.barDy -= dy;
+                    that.config.barDy -= dy;
                 }
-                //that.barDy = that.barDy >= 300 ? 300 : that.barDy;
-                that.barDy = that.barDy <= 0 ? 0 : that.barDy;
-                $(that.C).find('.bar').css({top: that.barDy})
+                that.config.barDy = that.config.barDy >= that.config.barDis ? that.config.barDis : that.config.barDy;
+                that.config.barDy = that.config.barDy <= 0 ? 0 : that.config.barDy;
 
-                //$('.drop').css({top: -barDy * RATE})
+                $(that.C).find('.bar').css({top: that.config.barDy})
+                $(that.C).find('.list').css({top: -that.config.barDy * that.config.RATE})
+            })
+
+
+            $(this.C).find('.bar').mousedown(function (e) {
+                e.preventDefault();
+                that.config.ifDragging = true;
+                that.config.clientY = e.clientY;
+            })
+
+            $(window).mousemove(function (e) {
+
+                if (that.config.ifDragging) {
+                    e.preventDefault();
+                    //可视距离500 bar高度200 可移动距离500-200=300
+                    var dy = e.clientY - that.config.clientY;
+                    //验收
+                    dy = (dy + that.config.barDy >= that.config.barDis) ? that.config.barDis - that.config.barDy : dy;
+                    dy = (dy + that.config.barDy <= 0) ? 0 - that.config.barDy : dy;
+                    $(that.C).find('.bar').css({top: dy + that.config.barDy})//bar移动完 drop也要移动
+                    $(that.C).find('.list').css({top: (dy + that.config.barDy) * (-that.config.RATE)})
+                }
+            })
+            $(window).mouseup(function (e) {
+                e.preventDefault();
+                that.config.barDy = parseInt($(that.C).find('.bar').css('top'));//修正一下bar的偏移量
+                that.config.ifDragging = false;
             })
         },
         GetValue: function () {
+            return $(this.C).find('.selTxt').html()
         },
-        Refresh: function () {
+        Refresh: function (data) {
+            this.data = data;
+            this.init();
         }
 
     }

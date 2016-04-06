@@ -105,7 +105,7 @@
             }
             else {
                 //页面已经append过了 那就让他显示/隐藏
-                $this.find('.jimi-C').toggle();
+                $this.find('.jimi-C').show();
             }
         }
         else {
