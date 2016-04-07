@@ -3,7 +3,8 @@
     $.fn.jimiScrollFixed = function (json) {
         var that = this;
         var fixedMarginTop=json.fixedMarginTop||15;
-
+		var $html=$('html');
+        var $body=$('body');
 
         //获得当前元素距离 顶部和左侧的距离
         //因为当元素基于窗口fixed的时候 top值已知是15 left就是一开始的元素基于左侧的距离

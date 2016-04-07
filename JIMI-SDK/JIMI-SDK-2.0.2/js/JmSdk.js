@@ -1,5 +1,6 @@
 ;
 (function (w, d, $, undefined) {
+    //添加数组原型方法
     Array.prototype.difference = function (other) {
         var res = [];
         for (var i = 0; i < this.length; i++) {
@@ -61,7 +62,8 @@
                     font: "12px '微软雅黑'",
                     color: '#727272',
                     width: 420,
-                    height: 520
+                    height: 520,
+                    cursor:'default'
                 });
 
                 //假canvas假装加载

@@ -117,9 +117,10 @@
 
         //配置文件
         this.config = {
-            height: 520,
+            height: 520, //原高度520-顶部60
             width: 420,
-            canvasHeight: 280
+            canvasHeight: 280,
+            topHeight:60
         };
         this.init();
     }
@@ -137,12 +138,18 @@
         },
         createDom: function () {
             var that = this;
-            $(this.C).html("<div class='jimi-arrow'></div><div class='jimi-scrOut'></div>");
-            $(this.C).find('.jimi-scrOut').html("<div class='jimi-scrIn'></div>");
+            //箭头 顶部title 屏幕Out 三部分是并列关系
+            $(this.C).html("<div class='jimi-arrow'></div>" +
+                "<div class='jimi-top'><div class='jimi-topTxt'>" + this.pname + "</div></div>" +
+                "<div class='jimi-scrOut'></div>");
 
-            //内部 顶部标签 是固定的
-            var str = "<div class='jimi-top'><div class='jimi-topTxt'>" + this.pname + "</div></div>";
-            $(this.C).find('.jimi-scrIn').append(str);
+            $(this.C).find('.jimi-top').append( "<div class='jimi-topCir'>" +
+                "<div class='jimi-topArr jimi-topArrL'></div>" +
+                "<div class='jimi-topArr jimi-topArrR'></div>" +
+                "</div>")
+
+            //内层html
+            $(this.C).find('.jimi-scrOut').html("<div class='jimi-scrIn'></div>");
 
 
             //匹配度 安全度 写死了 罪过
@@ -217,6 +224,7 @@
 
         },
         initCSS: function () {
+            var that=this;
             //父容器设置宽高
             $(this.C).css({
                 width: this.config.width,
@@ -237,23 +245,24 @@
             $(this.C).find('.jimi-scrOut').css({
                 'background-color': '#0093ff',
                 width: this.config.width,
-                height: this.config.height,
+                height: this.config.height-this.config.topHeight,
                 overflow: 'hidden'
             });
 
             $(this.C).find('.jimi-scrIn').css({
                 'background-color': '#fff',
                 width: this.config.width + 30,
-                height: this.config.height,
+                height: this.config.height-this.config.topHeight,
                 'overflow-y': 'auto',
-                'position':'relative'
+                'position': 'relative'
             });
 
             //顶部........................................................
             $(this.C).find('.jimi-top').css({
-                height: '60px',
+                height: this.config.topHeight,
                 background: '#2BA5DD',
                 'border-bottom': '3px solid #299bcf',
+                'position':'relative'
             });
 
             $(this.C).find('.jimi-topTxt').css({
@@ -264,7 +273,37 @@
                 color: '#fff',
 
             });
-            //...............................................................
+
+
+            //顶部的选择箭头
+            $(this.C).find('.jimi-topCir').css({
+                position: 'absolute',
+                width: 20,
+                height: 20,
+                right: '20px',
+                top: '50%',
+                transform: 'translateY(-50%)',
+                'background-color': 'white',
+                'border-radius': '50%',
+                cursor:'pointer'
+            })
+
+            $(this.C).find('.jimi-topArr').css({
+                position: 'absolute',
+                'background-color': '#2BA5DD',
+                width: '3px',
+                height: '10px',
+                top: '50%',
+                left: '50%',
+                'transform-origin': '50% 50%',
+            })
+            $(this.C).find('.jimi-topArrL').css({
+                transform: 'translateX(-1.5px) translateY(-50%) rotate(-45deg)'
+            })
+            $(this.C).find('.jimi-topArrR').css({
+                transform: 'translateX(-1.5px) translateY(-50%) rotate(45deg)'
+            })
+
 
 
             //安心度 匹配度
@@ -423,6 +462,11 @@
                 });
             }
 
+            //点击隐藏容器
+            $(this.C).find('.jimi-topCir').click(function(){
+                $(that.C).hide();
+            })
+
 
         },
         bindCanvas: function () {
@@ -512,12 +556,9 @@
             $(this.C).find('.jimi-canvasBtn').eq(1).click(function () {
                 mychart2.clear();
                 mychart2.setOption(that.relationJson);
-                document.getElementsByTagName('canvas')[1].onmousewheel=null;
-
             })
 
             console.log(new Date().getTime());
-
         }
     }
 

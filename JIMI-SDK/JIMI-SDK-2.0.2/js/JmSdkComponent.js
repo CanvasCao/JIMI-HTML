@@ -138,13 +138,14 @@
         },
         createDom: function () {
             var that = this;
+            //箭头 顶部title 屏幕Out 三部分是并列关系
             $(this.C).html("<div class='jimi-arrow'></div>" +
                 "<div class='jimi-top'><div class='jimi-topTxt'>" + this.pname + "</div></div>" +
                 "<div class='jimi-scrOut'></div>");
 
-            $(this.C).find('.jimi-top').append( "<div class='topCir'>" +
-                "<div class='topArr topArrL'></div>" +
-                "<div class='topArr topArrR'></div>" +
+            $(this.C).find('.jimi-top').append( "<div class='jimi-topCir'>" +
+                "<div class='jimi-topArr jimi-topArrL'></div>" +
+                "<div class='jimi-topArr jimi-topArrR'></div>" +
                 "</div>")
 
             //内层html
@@ -272,34 +273,35 @@
                 color: '#fff',
 
             });
-          
+
 
             //顶部的选择箭头
-            $(this.C).find('.topCir').css({
+            $(this.C).find('.jimi-topCir').css({
                 position: 'absolute',
                 width: 20,
                 height: 20,
                 right: '20px',
                 top: '50%',
                 transform: 'translateY(-50%)',
-                'background-color': '#a5a5a5',
+                'background-color': 'white',
                 'border-radius': '50%',
+                cursor:'pointer'
             })
 
-            $(this.C).find('.topArr').css({
+            $(this.C).find('.jimi-topArr').css({
                 position: 'absolute',
-                'background-color': 'white',
+                'background-color': '#2BA5DD',
                 width: '3px',
-                height: '6px',
+                height: '10px',
                 top: '50%',
                 left: '50%',
-                'transform-origin': '50% 50%'
+                'transform-origin': '50% 50%',
             })
-            $(this.C).find('.topArrL').css({
-                transform: 'translateX(-3px) translateY(-50%) rotate(-45deg)'
+            $(this.C).find('.jimi-topArrL').css({
+                transform: 'translateX(-1.5px) translateY(-50%) rotate(-45deg)'
             })
-            $(this.C).find('.topArrR').css({
-                transform: 'translateX(-0px) translateY(-50%) rotate(45deg)'
+            $(this.C).find('.jimi-topArrR').css({
+                transform: 'translateX(-1.5px) translateY(-50%) rotate(45deg)'
             })
 
 
@@ -460,6 +462,11 @@
                 });
             }
 
+            //点击隐藏容器
+            $(this.C).find('.jimi-topCir').click(function(){
+                $(that.C).hide();
+            })
+
 
         },
         bindCanvas: function () {
@@ -549,12 +556,9 @@
             $(this.C).find('.jimi-canvasBtn').eq(1).click(function () {
                 mychart2.clear();
                 mychart2.setOption(that.relationJson);
-                document.getElementsByTagName('canvas')[1].onmousewheel = null;
-
             })
 
             console.log(new Date().getTime());
-
         }
     }
 
