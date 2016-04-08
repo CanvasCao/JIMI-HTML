@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        * {
+            padding: 0px;
+            margin: 0px;
+            list-style: none;
+        }
+
+        #box {
+            margin: 0px auto;
+            border: 1px solid #000;
+            height: 500px;
+            width: 400px;
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        #box ul li {
+            position: absolute;
+            width: 400px;
+            height: 100px;
+            /*border: 1px solid red;*/
+            box-sizing: border-box;
+            transition: all 0.5s ease-out 0s;
+            line-height: 100px;
+        }
+
+        #box ul li.SA {
+            transform: translateY(0px) scaleX(0.6) scaleY(0.6);
+            opacity: 0.4;
+        }
+
+        #box ul li.SB {
+            transform: translateY(100px) scaleX(0.8) scaleY(0.8);
+            opacity: 0.7;
+        }
+
+        #box ul li.SC {
+            transform: translateY(200px);
+        }
+
+        #box ul li.SD {
+            transform: translateY(300px) scaleX(0.8) scaleY(0.8);
+            opacity: 0.7;
+        }
+
+        #box ul li.SE {
+            transform: translateY(400px) scaleX(0.6) scaleY(0.6);
+            opacity: 0.4;
+        }
+
+        .wait{
+            opacity: 0;
+
+        }
+
+        button {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100px;
+            height: 100px;
+        }
+
+        .compL {
+            box-sizing: border-box;
+            padding-right: 40px;
+            line-height: 100px;
+            height: 100px;
+            width: 150px;
+            position: absolute;
+            left: 0;
+            text-align: right;
+        }
+
+        .compR {
+            box-sizing: border-box;
+            padding-left: 40px;
+            line-height: 100px;
+            height: 100px;
+            width: 150px;
+            position: absolute;
+            right: 0;
+            text-align: left;
+
+        }
+
+        .compCir {
+            text-align: center;
+            clear: both;
+            margin: auto auto;
+            border-radius: 50%;
+            background-color: blue;
+            width: 100px;
+            height: 100px;
+            line-height: 100px;
+        }
+    </style>
+</head>
+<body>
+<div id='box'>
+    <ul>
+        <li class='SA'>
+            <span class='compL'>日本1111111</span>
+            <span class='compR'>美国1111111</span>
+
+            <div class='compCir'>aaa</div>
+        </li>
+        <li class='SB'>
+            <span class='compL'>日本1111111</span>
+            <span class='compR'>美国</span>
+
+            <div class='compCir'>bbb</div>
+        </li>
+        <li class='SC'>
+            <span class='compL'>日本</span>
+            <span class='compR'>美国1111111</span>
+
+            <div class='compCir'>ccc</div>
+        </li>
+        <li class='SD'>
+            <span class='compL'>日本</span>
+            <span class='compR'>美国</span>
+
+            <div class='compCir'>ddd</div>
+        </li>
+        <li class='SE'>
+            <span class='compL'>日本</span>
+            <span class='compR'>美国</span>
+
+            <div class='compCir'>eee</div>
+        </li>
+
+        <li class='wait'>
+            <span class='compL'>日本</span>
+            <span class='compR'>美国</span>
+
+            <div class='compCir'>fff</div>
+        </li>
+        <li class='wait'>
+            <span class='compL'>日本</span>
+            <span class='compR'>美国</span>
+
+            <div class='compCir'>ggg</div>
+        </li>
+    </ul>
+</div>
+
+<button>CLICK!!!</button>
+<script src='jquery-1.8.2.min.js'></script>
+<script src='jquery.mousewheel.min.js'></script>
+<script>
+    $(function () {
+        var classArr = ['SA', 'SB', 'SC', 'SD', 'SE','wait'];
+        console.log(classArr);
+
+
+        var animateFlag = false;
+        $('#box').mousewheel(function (e, d) {
+            e.preventDefault();
+
+            //这时候B要变成A 把最后一个插到第一个
+            if (!animateFlag) {
+                if (d == -1) {
+                    classArr.unshift(classArr.pop());//上移
+                }
+                else if (d == 1) {
+                    classArr.push(classArr.shift());//下移
+                }
+
+                animateFlag = true;
+                setTimeout(function () {
+                    animateFlag = false;
+                }, 1000)
+                $('#box li').each(function (i, e) {
+                    $(e).attr('class', classArr[i]);
+                });
+            }
+
+        })
+    })
+</script>
+</body>
+</html>
