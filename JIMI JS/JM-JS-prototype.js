@@ -1,10 +1,12 @@
 /*!
- * JIMI JavaScriptPlugIn v1.0.0
+ * JimiSdk, a JavaScriptPlugIn v1.0.0
  * http://www.jimi.la/
  *
  * Copyright 2016, CaoYuhao
- * Date: 2016年3月31日 14:38:55
+ * All rights reserved.
+ * Date: 2016-4-8 10:08:28
  */
+
 ;
 (function (w, d,$, undefined) {
     function CAOOOOOO(container, data) {
