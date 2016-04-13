@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no"/>
+    <title>账号登录</title>
+    <link rel="stylesheet" href="css/weui.css"/>
+    <style type="text/css">
+        * {
+            padding: 0;
+            margin: 0;
+            text-decoration: none;
+        }
+
+        body {
+            background-color: #f6f6f6;
+            overflow: hidden;
+        }
+
+        #fullPage {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            display: none;
+            box-sizing: border-box;
+            padding: 0 15px 0 15px;
+        }
+
+        .imgCon {
+            border: 8px solid #fff;
+            border-radius: 50%;
+            margin: 0 auto;
+            width: 70px;
+            height: 70px;
+            margin: 20px auto 15px;
+            overflow: hidden;
+
+        }
+
+        .top img {
+            display: block;
+        }
+
+        .protocol {
+            /*width: 100%;*/
+            margin: 15px auto 25px;
+            font: 14px '微软雅黑';
+        }
+
+        .protocol span {
+            font: 14px '微软雅黑';
+
+        }
+
+        /*alert*/
+        #alert {
+            top: 0;
+            left: 0;
+            position: fixed;
+            overflow: auto;
+            width: 100%;
+            height: 100%;
+            background-color: #fff;
+            display: none;
+        }
+
+        #con {
+            width: 100%;
+        }
+
+        .item {
+            width: 100%;
+            height: 50px;
+            border-bottom: 1px solid #D9D9D9;
+            background-color: white;
+
+            line-height: 50px;
+            padding-left: 25px;
+            box-sizing: border-box;
+            cursor: pointer;
+
+        }
+
+        /*输入名字*/
+        .pname {
+            padding: 10px 15px;
+        }
+
+        .pnameRight {
+            float: right;
+            border: none;
+            outline: medium;
+            text-align: right;
+            font-size: 17px;
+            width: 70%;
+        }
+
+        .mask {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            display: none;
+        }
+
+    </style>
+</head>
+<body>
+
+<div id='fullPage'>
+    <div class='top'>
+        <div class='imgCon'>
+            <img src="img/b.jpg" alt="" width="70px" height="70px"/>
+        </div>
+    </div>
+
+
+    <div class="weui_cells weui_cells_access">
+        <div class='pname'>
+            用户名
+            <input class="pnameRight" value=""/>
+        </div>
+        <a id='data1' class="weui_cell" href="javascript:;">
+            <div class="weui_cell_bd weui_cell_primary">
+                <p>性别</p>
+            </div>
+            <div class="weui_cell_ft">请选择</div>
+        </a>
+        <a id='data2' class="weui_cell" href="javascript:;">
+            <div class="weui_cell_bd weui_cell_primary">
+                <p>年龄</p>
+            </div>
+            <div class="weui_cell_ft">请选择</div>
+        </a>
+        <a id='data3' class="weui_cell" href="javascript:;">
+            <div class="weui_cell_bd weui_cell_primary">
+                <p>常住地</p>
+            </div>
+            <div class="weui_cell_ft">请选择</div>
+        </a>
+
+    </div>
+
+    <div class='protocol'>继续注册表示同意 <span style='color:#83d471'
+                                         onclick="location = 'http://www.baidu.com';">《肌秘用户协议》</span></div>
+    <a href="javascript:;" class="weui_btn weui_btn_primary">提交资料</a>
+    <a href="javascript:;" class="weui_btn weui_btn_default">管理已有帐号</a>
+
+</div>
+
+<!--全屏滚动弹出框-->
+<div id="alert">
+    <div id='con'></div>
+</div>
+
+<!--pof的遮罩层 和 底部弹出的actionSheet框-->
+<div class='mask'></div>
+<div class="weui_actionsheet" id="weui_actionsheet">
+    <div class="weui_actionsheet_menu">
+        <div class="weui_actionsheet_cell">示例菜单</div>
+        <div class="weui_actionsheet_cell">示例菜单</div>
+        <div class="weui_actionsheet_cell">示例菜单</div>
+        <div class="weui_actionsheet_cell">示例菜单</div>
+    </div>
+    <div class="weui_actionsheet_action">
+        <div class="weui_actionsheet_cell" id="actionsheet_cancel">取消</div>
+    </div>
+</div>
+
+<script src='js/jquery-1.8.3.min.js'></script>
+<script>
+    $(function () {
+        var winH = $(window).outerHeight();
+        var winW = $(window).outerWidth();
+        //整页slideIn
+        setTimeout(function () {
+            $('#fullPage').css({right: -winW}).show()
+            $('#fullPage').animate({right: 0}, 'slow')
+        }, 1000)
+
+        var dataJSON = {
+            data1: ['男', '女'],
+            data2: ['小于25', '大于25'],
+            data3: [
+                '北京市',
+                '天津市',
+                '上海市',
+                '重庆市',
+                '河北省',
+                '河南省',
+                '云南省',
+                '辽宁省',
+                '黑龙江省',
+                '湖南省',
+                '安徽省',
+                '山东省',
+                '新疆省',
+                '江苏省',
+                '浙江省',
+                '江西省',
+                '湖北省',
+                '广西省',
+                '甘肃省',
+                '山西省',
+                '内蒙古省',
+                '陕西省',
+                '吉林省',
+                '福建省',
+                '贵州省',
+                '广东省',
+                '青海省',
+                '西藏省',
+                '四川省',
+                '宁夏省',
+                '海南省',
+                '台湾省',
+                '香港特别行政区',
+                '澳门特别行政区']
+        };
+
+        //常住地 整屏滚动框
+        $('#data3').click(function () {
+            //整屏滚动框 append数据然后显示
+            var str = '';
+            for (i = 0; i < dataJSON['data3'].length; i++) {
+                str += "<div class='item'>" + dataJSON['data3'][i] + "</div>";
+            }
+            $('#con').html(str);
+
+            //绑定事件
+            $('.item').click(function () {
+                var html = $(this).html();//√
+                $(this).css({backgroundColor: '#eee'}) //点击的item着色
+                $('#data3 .weui_cell_ft').html(html); //赋值
+                $('#alert').fadeOut('normal');
+            })
+            $('#alert').fadeIn('normal');
+        })
+
+
+        //性别 年龄 actionSheet
+        var $mask = $('.mask');
+        var $actionSheet = $('.weui_actionsheet')
+        $('#data1,#data2').click(function () {
+            //整屏滚动框 append数据然后显示
+            var idName = $(this).attr('id');
+
+            var str = '';
+            for (i = 0; i < dataJSON[idName].length; i++) {
+                str += "<div class='weui_actionsheet_cell'>" + dataJSON[idName][i] + "</div>";
+            }
+            $('.weui_actionsheet_menu').html(str);
+
+
+            //绑定事件
+            $('.weui_actionsheet_menu .weui_actionsheet_cell').click(function () {
+                var html = $(this).html();//√
+                $(this).css({backgroundColor: '#eee'}) //点击的item着色
+                $('#' + idName + ' .weui_cell_ft').html(html); //赋值
+
+                $mask.fadeOut();
+                $actionSheet.animate({bottom: 0})
+            })
+
+            $mask.fadeIn();
+            var asHeight = $actionSheet.outerHeight();
+            $actionSheet.animate({bottom: asHeight})
+        })
+
+
+        //cancelBtn事件
+        $('#actionsheet_cancel').click(function () {
+            $mask.fadeOut();
+            $actionSheet.animate({bottom: 0})
+        })
+
+    })
+</script>
+</body>
+</html>

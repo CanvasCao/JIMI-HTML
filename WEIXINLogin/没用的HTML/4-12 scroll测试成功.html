@@ -62,11 +62,7 @@
     $(function () {
         var winH = $(window).outerHeight();
         var winW = $(window).outerWidth();
-        var ifDragging = false;
-        var mouseY = 0; //鼠标每次的偏移量
-        var listDy = 0;//list移动以后的偏移量
-        var listMoveLimit = 10 * 100 - winH;//list可以移动的极限距离
-
+     
         $('.item').click(function () {
             var html = $(this).html();
             $('button').html(html);
