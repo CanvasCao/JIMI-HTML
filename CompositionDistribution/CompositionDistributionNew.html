@@ -14,11 +14,11 @@
 
 <div class="header">
     <div class='imgCon'>
-        <img src="img/a.png" class='headerImg' height='165px'/>
+        <img src="" class='headerImg' height='165px'/>
     </div>
 
 
-    <div class='pname'>123131111111111111111111111123<br>456</div>
+    <div class='pname'></div>
 </div>
 <!--类型和安全的成分  一个二选一按钮-->
 <div class='compositionsContainer'>
@@ -59,7 +59,7 @@
 </div>
 
 <!--中间是成分表-->
-<div class='middleComponent'>
+<div class='middleComponent' >
 </div>
 
 <script src='js/jquery-1.8.3.min.js'></script>
@@ -67,6 +67,23 @@
 <script src='js/middleComponent-1.0.0.js'></script>
 <script>
     $(function () {
+        //得到请求地址的URL
+        if(!window.location.search){
+            window.location=window.location+'?pid=56829a0fefb80c4e26c2f894';
+        }
+
+        // 56c6aea3efb80c9b2541ced4 有数据的
+//        56829a0fefb80c4e26c2f894 没数据的
+
+//        var search=window.location.search.replace('?',"");
+//        var kvArr=search.split('&');
+//        var finalJson={}
+//        for(i=0;i<kvArr.length;i++){
+//            var kvSplit=kvArr[i].split('=');
+//            finalJson[kvSplit[0]]=kvSplit[1]
+//        }
+
+//        console.log(finalJson);
         //控件 Init......................................................
         var alBtnData = {showTxt: ['按类型', '按安全']};
         var alternateBtn = new AlternateBtn($('#alBtn')[0], alBtnData);
@@ -75,24 +92,34 @@
         $altBtn = $('#alBtn');
         $compositions = $('.compositions'); //成分两大类型
         $middleComponent = $('.middleComponent');//所有成分
+        $imgCon=$('.imgCon');
+        $pname=$('.pname');
+
+        console.log('http://n1.jimi.la/apps_V3/formual_safe.php'+window.location.search)
         //中间的控件要jsonp
         $.ajax({
             type: "get",
-//            url: 'http://n1.jimi.la/apps_V2/cp/formual_safe.php?pid=56c6ae75efb80c9b2541cd67',
-            url: 'package.json',
-            data: {
-                pids: '56c6ae75efb80c9b2541cd66,56c6ae4fefb80c9b2541cc39',
-                'cate': 70
-            },
-//            dataType: "jsonp",
-//            jsonp: "callback",
-//            jsonpCallback: "jsonpcallback",
+            url: 'http://n1.jimi.la/apps_V3/formual_safe.php'+window.location.search,
+//            url: 'package.json',
+//            data: {
+//                pids: '56c6ae75efb80c9b2541cd66,56c6ae4fefb80c9b2541cc39',
+//                'cate': 70
+//            },
+            dataType: "jsonp",
+            jsonp: "callback",
+            jsonpCallback: "jsonpcallback",
             success: function (data) {
                 console.log(JSON.stringify(data))
                 var component = new MiddleComponent($('.middleComponent')[0], data);
 
 
                 //更新头部图片和文字
+                var englishName=data.englishName;
+                var chineseName=data.chineseName;
+                var imgUrl=data.imgUrl||'img/a.png';
+                $imgCon.find('img').attr('src',imgUrl);
+                $pname.html(englishName+"<br>"+chineseName)
+
 
                 //bind events................................................
                 //控件与控件的关联 点击按钮 类型和成分的切换

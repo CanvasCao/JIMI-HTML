@@ -31,15 +31,26 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="JmSdk-2.0.4.min.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/js/JmSdk-2.0.4.min.js">
+      <file leaf-file-name="JmSdkContainer-2.0.3.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/js/JmSdkContainer-2.0.3.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.606414">
-              <caret line="17" column="7682" selection-start-line="17" selection-start-column="7682" selection-end-line="17" selection-end-column="7682" />
+            <state vertical-scroll-proportion="0.2932961">
+              <caret line="17" column="6" selection-start-line="2" selection-start-column="4" selection-end-line="17" selection-end-column="6" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="JmSdkComponent-2.0.3.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/JmSdkComponent-2.0.3.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="478" column="48" selection-start-line="474" selection-start-column="11" selection-end-line="478" selection-end-column="48" />
               <folding>
-                <element signature="n#!!doc" expanded="true" />
-                <marker date="1460114896547" expanded="true" signature="258770:258782" placeholder="..." />
-                <marker date="1460114896547" expanded="true" signature="259313:259326" placeholder="..." />
+                <element signature="e#925#2215#0" expanded="false" />
+                <element signature="e#2246#3973#0" expanded="false" />
+                <marker date="1459995956179" expanded="true" signature="6661:6673" placeholder="..." />
+                <marker date="1459995956179" expanded="true" signature="7553:7566" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -134,7 +145,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../jimiSelectBox" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../CompositionDistribution" />
     <property name="WebServerToolWindowFactoryState" value="true" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
   </component>
@@ -153,7 +164,7 @@
     <editor active="true" />
     <layout>
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25642672" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2596401" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="版本控制" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -183,6 +194,26 @@
     <entry file="file://$PROJECT_DIR$/实际开发的页面.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
+          <caret line="5" column="27" selection-start-line="5" selection-start-column="27" selection-end-line="5" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/JmSdk-2.0.4.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+            <marker date="1460114896547" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1460114896547" expanded="true" signature="-1:-1" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/实际开发的页面.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
@@ -193,9 +224,9 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="17" column="12130" selection-start-line="17" selection-start-column="12130" selection-end-line="17" selection-end-column="12130" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <marker date="1460114896547" expanded="true" signature="258770:258782" placeholder="..." />
-            <marker date="1460114896547" expanded="true" signature="259313:259326" placeholder="..." />
+            <element signature="n#!!doc" expanded="false" />
+            <marker date="1460114896547" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1460114896547" expanded="true" signature="-1:-1" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -221,18 +252,10 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="8" column="2485" selection-start-line="8" selection-start-column="2485" selection-end-line="8" selection-end-column="2485" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <marker date="1460114896547" expanded="true" signature="258770:258782" placeholder="..." />
-            <marker date="1460114896547" expanded="true" signature="259313:259326" placeholder="..." />
+            <element signature="n#!!doc" expanded="false" />
+            <marker date="1460114896547" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1460114896547" expanded="true" signature="-1:-1" placeholder="..." />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/JmSdkContainer-2.0.3.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3980447">
-          <caret line="19" column="17" selection-start-line="19" selection-start-column="17" selection-end-line="19" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -241,6 +264,18 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/JmSdk-2.0.4.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="45.479652">
+          <caret line="17" column="7682" selection-start-line="17" selection-start-column="7682" selection-end-line="17" selection-end-column="7682" />
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+            <marker date="1460114896547" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1460114896547" expanded="true" signature="-1:-1" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -254,24 +289,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/JmSdkComponent-2.0.3.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.09916201">
-          <caret line="529" column="53" selection-start-line="529" selection-start-column="53" selection-end-line="529" selection-end-column="53" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="478" column="48" selection-start-line="474" selection-start-column="11" selection-end-line="478" selection-end-column="48" />
           <folding>
-            <marker date="1459995956179" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1459995956179" expanded="true" signature="-1:-1" placeholder="..." />
+            <element signature="e#925#2215#0" expanded="false" />
+            <element signature="e#2246#3973#0" expanded="false" />
+            <marker date="1459995956179" expanded="true" signature="6661:6673" placeholder="..." />
+            <marker date="1459995956179" expanded="true" signature="7553:7566" placeholder="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/JmSdk-2.0.4.min.js">
+    <entry file="file://$PROJECT_DIR$/js/JmSdkContainer-2.0.3.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.606414">
-          <caret line="17" column="7682" selection-start-line="17" selection-start-column="7682" selection-end-line="17" selection-end-column="7682" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <marker date="1460114896547" expanded="true" signature="258770:258782" placeholder="..." />
-            <marker date="1460114896547" expanded="true" signature="259313:259326" placeholder="..." />
-          </folding>
+        <state vertical-scroll-proportion="0.2932961">
+          <caret line="17" column="6" selection-start-line="2" selection-start-column="4" selection-end-line="17" selection-end-column="6" />
+          <folding />
         </state>
       </provider>
     </entry>

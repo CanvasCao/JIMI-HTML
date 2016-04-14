@@ -29,14 +29,23 @@
 
         },
         createDom: function () {
+            var componentsWithIdArr = this.data.component;//二维数组 [0]是name [1]是id
+
 
             $(this.C).html('<div class="typeCom"></div><div class="safeCom"></div>');
 
             var str = '';
-            for (i = 0; i < this.data.component.length; i++) {
-                var pname = (this.data.component[i].length > 12) ? this.data.component[i].substr(0, 12) + '...' : this.data.component[i]
-                //console.log(pname)
-                str += '<span>' + pname + '</span>'
+            if (componentsWithIdArr) {
+                for (i = 0; i < componentsWithIdArr.length; i++) {
+                    var pname = (componentsWithIdArr[i].name.length > 12) ? componentsWithIdArr[i].name.substr(0, 12) + '...' : componentsWithIdArr[i].name
+                    //console.log(pname)
+                    var event = "onclick=window.location='" + componentsWithIdArr[i].obj_id + "'";
+                    str += '<span ' + event + ' >' + pname + '</span>'
+                }
+            }
+
+            else {
+                str += '<span>暂无成分</span>'
             }
 
             $(this.C).find('.typeCom,.safeCom').html(str);
@@ -53,7 +62,7 @@
                 'background-color': that.config.backgroundColor,
                 'padding-bottom': '80px',
                 'text-align': 'center',
-                'font-size':'12px'
+                'font-size': '12px'
             })
             $(this.C).find('span').css({
                 border: '1px solid black',
@@ -66,35 +75,40 @@
 
 
             //给文字加颜色了
-            $(this.C).find('.typeCom span').map(function () {
-                var innerHtml = $(this).html(); //span是单个成分
-                for (i = 0; i < that.data.type.length; i++) {//遍历过来的 type数组
-                    var name = that.data.type[i].name;
-                    var arr = that.data.type[i].arr;
+            if (that.data.type) {
+                $(this.C).find('.typeCom span').map(function () {
+                    var innerHtml = $(this).html(); //span是单个成分
+                    for (i = 0; i < that.data.type.length; i++) {//遍历过来的 type数组
+                        var name = that.data.type[i].name;
+                        var arr = that.data.type[i].arr;
 
-                    if ($.inArray(innerHtml, arr) != -1) { //!=-1说明在数组里
-                        $(this).css({
-                            'color': that.config.colorList[name],
-                            'border-color': that.config.colorList[name]
-                        })
+                        if ($.inArray(innerHtml, arr) != -1) { //!=-1说明在数组里
+                            $(this).css({
+                                'color': that.config.colorList[name],
+                                'border-color': that.config.colorList[name]
+                            })
+                        }
                     }
-                }
-            })
+                })
+            }
 
-            $(this.C).find('.safeCom span').map(function () {
-                var innerHtml = $(this).html(); //span是单个成分
-                for (i = 0; i < that.data.safe.length; i++) {//遍历过来的 type数组
-                    var name = that.data.safe[i].name;
-                    var arr = that.data.safe[i].arr;
+            if (that.data.safe) {
+                $(this.C).find('.safeCom span').map(function () {
+                    var innerHtml = $(this).html(); //span是单个成分
+                    for (i = 0; i < that.data.safe.length; i++) {//遍历过来的 type数组
+                        var name = that.data.safe[i].name;
+                        var arr = that.data.safe[i].arr;
 
-                    if ($.inArray(innerHtml, arr) != -1) { //!=-1说明在数组里
-                        $(this).css({
-                            'color': that.config.colorList[name],
-                            'border-color': that.config.colorList[name]
-                        })
+                        if ($.inArray(innerHtml, arr) != -1) { //!=-1说明在数组里
+                            $(this).css({
+                                'color': that.config.colorList[name],
+                                'border-color': that.config.colorList[name]
+                            })
+                        }
                     }
-                }
-            })
+                })
+
+            }
 
         },
         bindEvent: function () {
