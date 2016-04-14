@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no"/>
+    <title>Document</title>
+    <link rel="stylesheet" href="css/CompositionDistribution.css"/>
+    <style type="text/css">
+    </style>
+</head>
+<body>
+
+
+<div class="header">
+    <div class='imgCon'>
+        <img src="img/a.png" class='headerImg' height='165px'/>
+    </div>
+
+
+    <div class='pname'>123131111111111111111111111123<br>456</div>
+</div>
+<!--类型和安全的成分  一个二选一按钮-->
+<div class='compositionsContainer'>
+    <div class='compositions'>
+        <div>
+            <ul>
+                <li>
+                    <span class='point' style='background-color:#ff9000'></span>
+                    <span style='color:#ff9000'>皮肤调理剂</span>
+                </li>
+                <li>
+                    <span class='point' style='background-color:#000'></span>
+                    <span>剂型</span>
+                </li>
+                <li>
+                    <span class='point' style='background-color:#018cff'></span>
+                    <span style='color:#018cff'>皮肤柔润剂</span>
+                </li>
+                <li>
+                    <span class='point' style='background-color:#52d200'></span>
+                    <span style='color:#52d200'>防晒剂</span>
+                </li>
+            </ul>
+        </div>
+        <div style='display: none'>
+            <li>
+                <span class='point' style='background-color:#ff4005'></span>
+                <span style='color:#ff4005'>致敏/致痘</span>
+            </li>
+            <li>
+                <span class='point' style='background-color:#000'></span>
+                <span>正常成分</span>
+            </li>
+
+        </div>
+    </div>
+    <div id="alBtn"></div>
+</div>
+
+<!--中间是成分表-->
+<div class='middleComponent'>
+</div>
+
+<script src='js/jquery-1.8.3.min.js'></script>
+<script src='js/alternateBtn-1.0.0.js'></script>
+<script src='js/middleComponent-1.0.0.js'></script>
+<script>
+    $(function () {
+        //控件 Init......................................................
+        var alBtnData = {showTxt: ['按类型', '按安全']};
+        var alternateBtn = new AlternateBtn($('#alBtn')[0], alBtnData);
+
+        //jq对象
+        $altBtn = $('#alBtn');
+        $compositions = $('.compositions'); //成分两大类型
+        $middleComponent = $('.middleComponent');//所有成分
+        //中间的控件要jsonp
+        $.ajax({
+            type: "get",
+//            url: 'http://n1.jimi.la/apps_V2/cp/formual_safe.php?pid=56c6ae75efb80c9b2541cd67',
+            url: 'package.json',
+            data: {
+                pids: '56c6ae75efb80c9b2541cd66,56c6ae4fefb80c9b2541cc39',
+                'cate': 70
+            },
+//            dataType: "jsonp",
+//            jsonp: "callback",
+//            jsonpCallback: "jsonpcallback",
+            success: function (data) {
+                console.log(JSON.stringify(data))
+                var component = new MiddleComponent($('.middleComponent')[0], data);
+
+
+                //更新头部图片和文字
+
+                //bind events................................................
+                //控件与控件的关联 点击按钮 类型和成分的切换
+                $altBtn.find('li').click(function () {
+                    var index = $(this).index()
+                    $compositions.find('div').eq(index).show().siblings().hide();
+                    $middleComponent.children('div').eq(index).show().siblings().hide();
+                })
+            },
+            error: function (err) {
+                console.log('ERROR!');
+                console.log(err);
+            }
+        });
+
+        //events.....................................................
+
+    })
+</script>
+</body>
+</html>

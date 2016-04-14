@@ -1,0 +1,68 @@
+*{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    text-decoration: none;
+    font-family:'微软雅黑';
+
+}
+
+/*头部有产品图片和文字*/
+.header{
+    height: 200px;
+    padding:15px;
+    box-sizing:border-box;
+}
+
+.header .imgCon{
+    float: left;
+    width: 40%;
+}
+
+.header .pname{
+    width: 55%;
+    float: right;
+    word-break: break-all;
+
+}
+
+
+/*左侧成分 加 二选一控件*/
+.compositionsContainer{
+    box-sizing: border-box;
+    padding:10px 15px;
+    background-color: #f3f3f3;
+    height: 60px;
+}
+
+.compositions{
+    width: 180px;
+    float: left;
+}
+
+.compositions li{
+    float: left;
+    width: 50%;
+    font-size: 12px;
+    position: relative;
+    padding:2px 0;
+}
+
+.compositions li span{
+    float:left;
+}
+.compositions li .point{
+    float:left;
+    width: 10px;
+    height: 10px;
+    border-radius: 3px;
+    margin-right: 5px;
+    margin-top:4px;
+}
+
+
+#alBtn{
+    float: right;
+    padding:3px 0;
+}
+

@@ -1,13 +1,13 @@
 ;
-(function (w, d, undefined) {
-//version 1.0.0
-//create by CAO on 2016/3/8
-
+(function (w, d, $, undefined) {
+//version 1.0.1
+//2016-4-14 16:24:52
     function MiddleComponent(container, data) {
-        this.container = container;
+        this.C = this.container = container;
         this.data = data;
+        //console.log(JSON.stringify(data))
         this.config = {
-            backgroundColor: '#f3f3f3',
+            backgroundColor: 'white',
             colorList: {
                 conditioner: '#ff9000',//调理
                 emollient: '#018cff',//柔润
@@ -30,48 +30,68 @@
         },
         createDom: function () {
 
-            $(this.container).html('').html('<div class="typeCom"></div><div class="safeCom"></div>');
+            $(this.C).html('<div class="typeCom"></div><div class="safeCom"></div>');
 
             var str = '';
             for (i = 0; i < this.data.component.length; i++) {
-                str += '<span>' + this.data.component[i] + '</span>' + ( (i == this.data.component.length - 1) ? "" : "、")
+                var pname = (this.data.component[i].length > 12) ? this.data.component[i].substr(0, 12) + '...' : this.data.component[i]
+                //console.log(pname)
+                str += '<span>' + pname + '</span>'
             }
 
-            $('.typeCom,.safeCom').html(str);
+            $(this.C).find('.typeCom,.safeCom').html(str);
 
             //第一个显示 第二个隐藏
-            $('.typeCom').show().siblings().hide();
+            $(this.C).find('.typeCom').show().siblings().hide();
         },
         initCSS: function () {
             var that = this;
 
-            $(this.container).css({
-                'line-height': '30px',
-                padding: '15px',
-                'background-color': that.config.backgroundColor
-            }).css('padding-bottom','80px')//成分很长的时候看见最后几排
+            $(this.C).css({
+                //'line-height': '30px',
+                padding: '10px',
+                'background-color': that.config.backgroundColor,
+                'padding-bottom': '80px',
+                'text-align': 'center',
+                'font-size':'12px'
+            })
+            $(this.C).find('span').css({
+                border: '1px solid black',
+                display: 'inline-block',
+                padding: '5px 16px',
+                'margin': '5px 5px',
+                'border-radius': 20
+
+            })
+
 
             //给文字加颜色了
-            $('.typeCom').find('span').map(function () {
+            $(this.C).find('.typeCom span').map(function () {
                 var innerHtml = $(this).html(); //span是单个成分
                 for (i = 0; i < that.data.type.length; i++) {//遍历过来的 type数组
                     var name = that.data.type[i].name;
                     var arr = that.data.type[i].arr;
 
                     if ($.inArray(innerHtml, arr) != -1) { //!=-1说明在数组里
-                        $(this).css({'color': that.config.colorList[name]})
+                        $(this).css({
+                            'color': that.config.colorList[name],
+                            'border-color': that.config.colorList[name]
+                        })
                     }
                 }
             })
 
-            $('.safeCom').find('span').map(function () {
+            $(this.C).find('.safeCom span').map(function () {
                 var innerHtml = $(this).html(); //span是单个成分
                 for (i = 0; i < that.data.safe.length; i++) {//遍历过来的 type数组
                     var name = that.data.safe[i].name;
                     var arr = that.data.safe[i].arr;
 
                     if ($.inArray(innerHtml, arr) != -1) { //!=-1说明在数组里
-                        $(this).css({'color': that.config.colorList[name]})
+                        $(this).css({
+                            'color': that.config.colorList[name],
+                            'border-color': that.config.colorList[name]
+                        })
                     }
                 }
             })
@@ -82,6 +102,6 @@
         }
     }
     w.MiddleComponent = MiddleComponent;
-})(window, document)
+})(window, document, jQuery)
 
 

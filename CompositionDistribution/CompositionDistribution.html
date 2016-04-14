@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no"/>
     <title>Document</title>
-    <link rel="stylesheet" href="css/formual_safe_new.css"/>
+    <link rel="stylesheet" href="css/CompositionDistribution.css"/>
     <style type="text/css">
     </style>
 </head>
@@ -39,57 +39,34 @@
     </div>
 </div>
 
-<script src='js/jquery-1.7.2.min.js'></script>
+<script src='js/jquery-1.8.3.min.js'></script>
 <script src='js/alternateBtn-1.0.0.js'></script>
 <script src='js/middleComponent-1.0.0.js'></script>
 <script>
     $(function () {
         //Initialize......................................................
-        var sort = document.getElementById('sort');
         var sortdata = {showTxt: ['按类型', '按安全']};
-        var alternateBtn = new AlternateBtn(sort, sortdata);
+        var alternateBtn = new AlternateBtn($('#sort')[0], sortdata);
 
 
         //中间的控件要jsonp
-        var middleComponent = document.getElementById('com');
-        var component;
-//        var ajaxJson = {
-//            component: ['水', '矿油', '癸酸甘油三酯', 'C12-15 醇苯甲酸酯', '甘油', '聚二甲基硅氧烷', '聚丙烯酰胺', 'C13-14 异链烷烃', '水', '矿油', '癸酸甘油三酯', 'C12-15 醇苯甲酸酯', '甘油', '聚二甲基硅氧烷', '聚丙烯酰胺', 'C13-14 异链烷烃', '水', '矿油', '癸酸甘油三酯', 'C12-15 醇苯甲酸酯', '甘油', '聚二甲基硅氧烷', '聚丙烯酰胺', 'C13-14 异链烷烃', '水', '矿油', '癸酸甘油三酯', 'C12-15 醇苯甲酸酯', '甘油', '聚二甲基硅氧烷', '聚丙烯酰胺', 'C13-14 异链烷烃', '水', '矿油', '癸酸甘油三酯', 'C12-15 醇苯甲酸酯', '甘油', '聚二甲基硅氧烷', '聚丙烯酰胺', 'C13-14 异链烷烃', '水', '矿油', '癸酸甘油三酯', 'C12-15 醇苯甲酸酯', '甘油', '聚二甲基硅氧烷', '聚丙烯酰胺', 'C13-14 异链烷烃', '水', '矿油', '癸酸甘油三酯', 'C12-15 醇苯甲酸酯', '甘油', '聚二甲基硅氧烷', '聚丙烯酰胺', 'C13-14 异链烷烃'],
-//            type: [
-//                {
-//                    name: 'conditioner',//调理
-//                    arr: ['C12-15 醇苯甲酸酯']
-//                },
-//                {
-//                    name: 'emollient',//柔润
-//                    arr: ['C13-14 异链烷烃']
-//                },
-//                {
-//                    name: 'sunScreener',//防晒
-//                    arr: ['聚二甲基硅氧烷']
-//                }
-//            ],
-//            safe: [
-//                {
-//                    name: 'sensitization',//致敏
-//                    arr: ['聚二甲基硅氧烷', '水']
-//                }
-//            ],
-//        };
         $.ajax({
             type: "get",
             url: 'http://n1.jimi.la/apps_V2/cp/formual_safe.php?pid=56c6ae75efb80c9b2541cd67',
-            data: {pids: '56c6ae75efb80c9b2541cd66,56c6ae4fefb80c9b2541cc39', 'cate': 70},
+            data: {
+                pids: '56c6ae75efb80c9b2541cd66,56c6ae4fefb80c9b2541cc39',
+                'cate': 70
+            },
             dataType: "jsonp",
             jsonp: "callback",//传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)
             jsonpCallback: "jsonpcallback",
             success: function (data) {
-                component = new MiddleComponent(middleComponent, data);
+                console.log(JSON.stringify(data))
+                var component = new MiddleComponent($('#com')[0], data);
 
 
                 //associated events................................................
-                //控件与控件的关联
-                //点击按钮 类型和成分的切换
+                //控件与控件的关联 点击按钮 类型和成分的切换
                 $('#sort li').click(function () {
                     var index = $(this).index()
                     $('#com div').eq(index).show().siblings().hide();
@@ -97,6 +74,7 @@
                 })
             },
             error: function (err) {
+                console.log('ERROR!');
                 console.log(err);
             }
         });
