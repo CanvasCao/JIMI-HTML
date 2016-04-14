@@ -1,0 +1,96 @@
+/*我让page里所有的第一层div都居中*/
+.page>div{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+
+/*page0*/
+
+.page0 {
+    background: url("../img/P1/P1_BG.jpg") 100% 100% ;
+    background-size: contain;
+}
+.page0 .title {
+    font: 45px '微软雅黑';
+    transform: translateY(-150px);
+    color:#3881e0;
+}
+
+.page0 .btn{
+    border: 1px solid #3881e0;
+    border-radius: 10px;
+    width: 300px;
+    height: 70px;
+    text-align: center;
+    cursor: pointer;
+    padding: 15px;
+    box-sizing: border-box;
+    transition: all 0.5s ease;
+}
+
+.page0 .btn:hover{
+    background-color: rgb(205, 230, 255);
+    box-shadow: 0px 0px 8px rgb(139, 177, 230);
+}
+
+.page0 .btnIOS{
+    transform: translateX(75px) translateY(0px);
+}
+
+.page0 .btnAZ{
+    transform: translateX(75px) translateY(100px);
+}
+
+.page0 .btn img{
+    float: left;
+    display: block;
+    margin: -3px 0 0 7px;
+}
+
+.page0 .btn .des{
+    /*box-sizing: border-box;*/
+    /*padding-left: 5px;*/
+    font: 20px '微软雅黑';
+    width: 75%;
+    float: right;
+    height: 100%;
+    /*height-2*padding  70-2*10*/
+    line-height: 40px;
+    color: #3881e0;
+    border-left: 1px solid #3881e0;
+}
+
+.page0 .eye{
+    /*border: 1px solid #000;*/
+    transform:translateX(-492px) translateY(-265px);
+}
+
+.page0 .vs{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+}
+.page0 .pink{
+    position: absolute;
+    left: 28%;
+    top: 15%;
+    transform: translateX(-50%);
+}
+.page0 .orange{
+    position: absolute;
+    left: 72%;
+    top: 15%;
+    transform: translateX(-50%);
+}
+
+/*滚轮插件*/
+.page0 .scroll{
+    transform: translateX(-500px) translateY(-100px);
+}
+/*page2 第三页*/
+.page2 img {
+    position: absolute;
+    display: block;
+}

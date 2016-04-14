@@ -13,9 +13,11 @@
 
         body {
             overflow: hidden;
+            display: none;
         }
 
         .innerC {
+            display: none;
             position: fixed;
             border: 1px solid #000;
             width: 1024px;
@@ -35,54 +37,76 @@
         /*单页*/
         .page {
             box-sizing: border-box;
-            border: 1px solid #000;
+            /*border: 1px solid #000;*/
             width: 100%;
             height: 100%;
             overflow: hidden;
             position: relative;
         }
 
-        .page2 img {
-            position: absolute;
-            display: block;
-        }
-
         /*右面的圆*/
         #circles {
             position: fixed;
             height: 70px;
-            width: 10px;
-            top: 40%;
-            right: 25px;
+            width: 15px;
+            top: 50%;
+            right: 80px;
         }
 
         #circles ul li {
-            width: 5px;
-            height: 5px;
+            width: 8px;
+            height: 8px;
             background-color: transparent;
             border: 1px solid #3881e0;
             margin: 0 auto 10px;
-            transition: all 0.5s ease 0s;
+            transition: all 0.8s ease 0s;
             border-radius: 50%;
             cursor: pointer;
         }
 
         #circles ul li.cur {
-            width: 2px;
-            height: 2px;
             background-color: #3881e0;
         }
+
+        .header {
+            position: fixed;
+            height: 80px;
+            width: 100%;
+            background-color: white;
+            z-index: 2;
+            top: 0;
+            box-shadow: 0px 3px 30px rgba(0, 0, 0, 0.2);
+            opacity: 0.3;
+        }
     </style>
+    <link rel="stylesheet" href="css/pages.css"/>
 </head>
 <body>
-<!--版心测试-->
-<div class='innerC'></div>
-
+<div class='header'>
+    header
+</div>
 <!--装所有page的容器-->
 <div id="container">
-    <div class="page page0"></div>
+    <div class="page page0">
+        <div class="eye">
+            <img src="img/P1/P1_yanjing.png" alt="" width="380" class='eyeImg'/>
+            <img src="img/P1/P1_vs.png" class='vs' width="42"/>
+            <img src="img/P1/P1_pink.png" class='pink'/>
+            <img src="img/P1/P1_orange.png" class='orange'/>
+        </div>
+        <div class='scroll'></div>
+        <div class='title'>最好用的<span style='font-weight: bold;'>美妆对比神器</span></div>
+        <div class='btnIOS btn'>
+            <img src="img/P1/P1_apple.png"/>
 
+            <div class="des">IOS版APP下载</div>
+        </div>
+        <div class='btnAZ btn'>
+            <img src="img/P1/P1_android.png"/>
 
+            <div class="des">Android版APP下载</div>
+        </div>
+    </div>
     <div class="page page1">2</div>
     <div class="page page2">3<img src="img/b.jpg" alt=""/></div>
     <div class="page page3">4</div>
@@ -100,14 +124,28 @@
         <li></li>
     </ul>
 </div>
+
+<!--版心测试-->
+<div class='innerC'></div>
+
+
 <script src='js/tool/jquery-1.8.3.min.js'></script>
 <script src='js/tool/jquery.mousewheel.min.js'></script>
 <script src='js/tool/jquery.easie.js'></script>
 <script src='js/tool/velocity.min.js'></script>
+<script src='js/tool/velocity.ui.js'></script>
+<script src='js/module/verticalScrollMagnifier-2.0.1.js'></script>
 <script src='js/index/index.js'></script>
 <script>
     $(function () {
+        var data = {
+            title: ['生产国', '规格', '单价', '适应场景', '致痘性'],
+            pro1: ['日本', '125ml', '￥220', '淡妆或防晒', '一般致痘性'],
+            pro2: ['美国', '150ml', '￥180', '淡妆或防晒', '轻微致痘性'],
+        };
+        var vsm = new VerticalScrollMagnifier($('.page0 .scroll'), data,{height:85,width:400,circleMargin:30})
 
+        $('body').show()
     })
 </script>
 </body>

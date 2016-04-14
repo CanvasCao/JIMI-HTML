@@ -1,8 +1,9 @@
 $(function () {
+    //#3881e0
     //窗口宽高
     var winH = $(window).height();
     var winW = $(window).width();
-    var pageIndex = 1;//当前页面（初始化用）
+    var pageIndex = 0;//当前页面（初始化用）
 
     //操作的jq对象
     var $cirLis = $('#circles ul li');
@@ -10,7 +11,7 @@ $(function () {
     var $pages = $con.find('.page');
 
     //添加背景颜色
-    var colorArr = ['#46AC99', 'yellowgreen', '#46AC99', 'yellowgreen', '#46AC99'];
+    var colorArr = ['#fff', '#ddd', '#fff', '#ddd', 'white'];
     $pages.each(function (i, e) {
         $(this).css('backgroundColor', colorArr[i]);
     })
@@ -35,6 +36,14 @@ $(function () {
     $(window).mousewheel(function (e, delta) {
         var e = e || event;
         e.preventDefault();	//阻止页面的默认滚动。
+
+
+        //e.target是事件环的第一环
+        if($.contains($('.scroll')[0], e.target)){
+            //jQuery.contains(document.documentElement, document.body); // true
+
+            return;
+        }
 
         if (!$con.is(':animated')) {
             var oldIndex = pageIndex;
@@ -90,7 +99,7 @@ $(function () {
         }
         $con.animate({'top': -pageTopValueArr[pageIndex]}, 1000, 'easieEaseInOutQuart');
 
-        var cirArr = [0, 1, 2, 3, 4, 5, 5];
+        var cirArr = [0, 1, 2, 3, 3];//
         $cirLis.eq(cirArr[pageIndex]).addClass('cur').siblings().removeClass('cur');
 
         AnimateInArr[pageIndex]();
@@ -99,7 +108,7 @@ $(function () {
 
 
     //AnimateJSON.................................................................
-    AnimateInArr = [
+    var AnimateInArr = [
         function () {
         },
         function () {
@@ -114,7 +123,7 @@ $(function () {
         function () {
         }
     ];
-    AnimateOutArr = [
+    var AnimateOutArr = [
         function () {
         },
         function () {
@@ -129,6 +138,7 @@ $(function () {
         function () {
         }
     ];
+
 
 
 })
