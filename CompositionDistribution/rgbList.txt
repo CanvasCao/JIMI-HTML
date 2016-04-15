@@ -1,0 +1,8 @@
+<span class='point' style='background-color:#ff9000'></span>
+<span style='color:#ff9000'>Æ¤·ôµ÷Àí¼Á</span>
+<span class='point' style='background-color:#018cff'></span>
+<span style='color:#018cff'>Æ¤·ôÈáÈó¼Á</span>
+<span class='point' style='background-color:#52d200'></span>
+<span style='color:#52d200'>·ÀÉ¹¼Á</span>
+<span class='point' style='background-color:#ff4005'></span>
+<span style='color:#ff4005'>ÖÂÃô/ÖÂ¶»</span>

@@ -10,7 +10,7 @@
 /*头部有产品图片和文字*/
 .header{
     height: 200px;
-    padding:15px;
+    /*padding:15px;*/
     box-sizing:border-box;
     position: relative;
 }
@@ -20,15 +20,16 @@
     transform: translateY(-50%);
     width: 40%;
     position: absolute;
-    left: 15px;
+    left: 4%;
+    overflow: hidden;
 }
 
 .header .pname{
     top: 50%;
     transform: translateY(-50%);
-    width: 55%;
+    width: 50%;
     position: absolute;
-    right: 15px;
+    right: 4%;
     word-break: break-all;
 
 }
