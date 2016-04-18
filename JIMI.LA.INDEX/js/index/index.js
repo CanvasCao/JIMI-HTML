@@ -3,7 +3,7 @@ $(function () {
     //窗口宽高
     var winH = $(window).height();
     var winW = $(window).width();
-    var pageIndex = 0;//当前页面（初始化用）
+    var pageIndex = 1;//当前页面（初始化用）
 
     //操作的jq对象
     var $cirLis = $('#circles ul li');
@@ -11,7 +11,7 @@ $(function () {
     var $pages = $con.find('.page');
 
     //添加背景颜色
-    var colorArr = ['#fff', '#ddd', '#fff', '#ddd', 'white'];
+    var colorArr = ['#fff', '#fff', '#fff', '#ddd', 'white'];
     $pages.each(function (i, e) {
         $(this).css('backgroundColor', colorArr[i]);
     })
@@ -138,7 +138,5 @@ $(function () {
         function () {
         }
     ];
-
-
 
 })

@@ -34,15 +34,7 @@
             /*overflow: hidden;*/
         }
 
-        /*单页*/
-        .page {
-            box-sizing: border-box;
-            /*border: 1px solid #000;*/
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            position: relative;
-        }
+
 
         /*右面的圆*/
         #circles {
@@ -87,8 +79,11 @@
 </div>
 <!--装所有page的容器-->
 <div id="container">
+
+    <!-- page0 -->
     <div class="page page0">
         <div class="eye">
+            <!-- 除了眼睛全部绝对定位 -->
             <img src="img/P1/P1_yanjing.png" alt="" width="380" class='eyeImg'/>
             <img src="img/P1/P1_vs.png" class='vs' width="42"/>
             <img src="img/P1/P1_pink.png" class='pink'/>
@@ -107,7 +102,22 @@
             <div class="des">Android版APP下载</div>
         </div>
     </div>
-    <div class="page page1">2</div>
+
+    <!-- page1 -->
+    <div class="page page1">
+        <div class='bottle'>
+            <img src="img/P2/P2_huazhuangpin.png" alt="" width='180'/>
+            <div class='hoverArea'>
+                <img src="img/P2/P2_angels.png" alt="" class='angels'/>
+                <div class='scanBar'></div>
+            </div>
+        </div>
+        <div class="cirsCon">
+            <div>1</div>
+            <div>2</div>
+            <div>3</div>
+        </div>
+    </div>
     <div class="page page2">3<img src="img/b.jpg" alt=""/></div>
     <div class="page page3">4</div>
 
@@ -136,6 +146,7 @@
 <script src='js/tool/velocity.ui.js'></script>
 <script src='js/module/verticalScrollMagnifier-2.0.1.js'></script>
 <script src='js/index/index.js'></script>
+<script src='js/index/page1.js'></script>
 <script>
     $(function () {
         var data = {
@@ -143,7 +154,7 @@
             pro1: ['日本', '125ml', '￥220', '淡妆或防晒', '一般致痘性'],
             pro2: ['美国', '150ml', '￥180', '淡妆或防晒', '轻微致痘性'],
         };
-        var vsm = new VerticalScrollMagnifier($('.page0 .scroll'), data,{height:85,width:400,circleMargin:30})
+        var vsm = new VerticalScrollMagnifier($('.page0 .scroll')[0], data,{height:85,width:400,circleMargin:30})
 
         $('body').show()
     })

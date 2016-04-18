@@ -1,23 +1,33 @@
+/*单页*/
+.page {
+    box-sizing: border-box;
+    /*border: 1px solid #000;*/
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
 /*我让page里所有的第一层div都居中*/
-.page>div{
+.page > div {
     position: absolute;
     top: 50%;
     left: 50%;
 }
 
 /*page0*/
-
 .page0 {
-    background: url("../img/P1/P1_BG.jpg") 100% 100% ;
+    background: url("../img/P1/P1_BG.jpg") 100% 100%;
     background-size: contain;
 }
+
 .page0 .title {
     font: 45px '微软雅黑';
     transform: translateY(-150px);
-    color:#3881e0;
+    color: #3881e0;
 }
 
-.page0 .btn{
+.page0 .btn {
     border: 1px solid #3881e0;
     border-radius: 10px;
     width: 300px;
@@ -29,26 +39,26 @@
     transition: all 0.5s ease;
 }
 
-.page0 .btn:hover{
+.page0 .btn:hover {
     background-color: rgb(205, 230, 255);
     box-shadow: 0px 0px 8px rgb(139, 177, 230);
 }
 
-.page0 .btnIOS{
+.page0 .btnIOS {
     transform: translateX(75px) translateY(0px);
 }
 
-.page0 .btnAZ{
+.page0 .btnAZ {
     transform: translateX(75px) translateY(100px);
 }
 
-.page0 .btn img{
+.page0 .btn img {
     float: left;
     display: block;
     margin: -3px 0 0 7px;
 }
 
-.page0 .btn .des{
+.page0 .btn .des {
     /*box-sizing: border-box;*/
     /*padding-left: 5px;*/
     font: 20px '微软雅黑';
@@ -61,24 +71,26 @@
     border-left: 1px solid #3881e0;
 }
 
-.page0 .eye{
+.page0 .eye {
     /*border: 1px solid #000;*/
-    transform:translateX(-492px) translateY(-265px);
+    transform: translateX(-492px) translateY(-265px);
 }
 
-.page0 .vs{
+.page0 .vs {
     position: absolute;
     left: 50%;
     top: 50%;
     transform: translateX(-50%) translateY(-50%);
 }
-.page0 .pink{
+
+.page0 .pink {
     position: absolute;
     left: 28%;
     top: 15%;
     transform: translateX(-50%);
 }
-.page0 .orange{
+
+.page0 .orange {
     position: absolute;
     left: 72%;
     top: 15%;
@@ -86,9 +98,69 @@
 }
 
 /*滚轮插件*/
-.page0 .scroll{
+.page0 .scroll {
     transform: translateX(-500px) translateY(-100px);
 }
+
+/*page1 第二页*/
+.page1 .bottle {
+    transform: translateX(-450px) translateY(-250px);
+}
+
+.page1 .bottle .hoverArea {
+    width: 220px;
+    height: 220px;
+    position: absolute;
+    /*border: 1px solid #000;*/
+    transform: translateX(-50%);
+    left: 50%;
+    bottom: -10px;
+    opacity: 0;
+    background: rgba(105, 105, 105, 0.1);
+}
+
+/*四个顶角*/
+.page1 .bottle .hoverArea .angels {
+    transform: translateX(-50%);
+    left: 50%;
+    bottom: -10px;
+    position: absolute;
+    width: 240px;
+}
+
+.page1 .bottle .hoverArea .scanBar {
+    position: absolute;
+    transform: translateX(-50%);
+    left: 50%;
+    width: 120%;
+    height: 5px;
+    background-color: rgba(56, 129, 224, 1);
+    border-radius: 2px;
+
+    /*top才是scanBar移动的核心*/
+    top: 20%;
+
+    -webkit-filter: blur(3px);
+    -moz-filter: blur(3px);
+    -o-filter: blur(3px);
+    -ms-filter: blur(3px);
+    filter: blur(3px);
+
+}
+
+.page1 .cirsCon {
+    border: 1px solid #000;
+}
+
+.page1 .cirsCon div {
+    display: inline-block;
+    width: 200px;
+    height: 200px;
+    border: 1px solid #3881e0;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+
 /*page2 第三页*/
 .page2 img {
     position: absolute;
