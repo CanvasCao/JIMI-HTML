@@ -25,12 +25,12 @@
     <div class='ulCon'>
         <ul>
             <li>
-                <span class='point' style='background-color:#d13052'></span>
-                <span style='color:#d13052'>致敏/致痘</span>
+                <span class='point' style='background-color:#e5004f'></span>
+                <span style='color:#e5004f'>致敏/致痘</span>
             </li>
             <li>
-                <span class='point' style='background-color:#d1d2d3'></span>
-                <span style='color:#d1d2d3'>正常成分</span>
+                <span class='point' style='background-color:#d2d2d2'></span>
+                <span style='color:#d2d2d2'>正常成分</span>
             </li>
         </ul>
     </div>
@@ -70,9 +70,9 @@
         //初始化数据 echartJson 和canvas宽高
         var RATE = 420 / 420;
         var winW = $(window).width();
-        var canvasHeight = (winW * RATE>=300)?300:winW * RATE;
+        var canvasHeight = (winW * RATE >= 300) ? 300 : winW * RATE;
         $canvas = $('.canvasBox');
-        $canvas.css({height: canvasHeight, width: winW,'overflow':'hidden'});
+        $canvas.css({height: canvasHeight, width: winW, 'overflow': 'hidden'});
 
         //初始化Echart div转canvas
         var canvasBox = $canvas[0];//第一个canvas
@@ -82,8 +82,8 @@
 
         $.ajax({
             type: "get",
-            url: 'http://n1.jimi.la/apps_V3/formual_safe.php' + window.location.search,
-//            url: 'package.json',
+//            url: 'http://n1.jimi.la/apps_V3/formual_safe.php' + window.location.search,
+            url: 'package.json',
             dataType: "jsonp",
             jsonp: "callback",
             jsonpCallback: "jsonpcallback",
@@ -110,12 +110,11 @@
 
                         },
                         legend: [{//顶部显示
-                            data: ['功效型','剂型需求', '保湿型', '防晒型'],
+                            data: ['功效型', '剂型需求', '保湿型', '防晒型'],
                             orient: 'vertical',
                             align: 'right',
                             top: 10,
                             right: 10
-
                         }],
                         animation: true,
                         series: [
@@ -147,7 +146,8 @@
 //                                        curveness: 0.3
                                     }
                                 },
-                                color: ['#efa14e','#d1d2d3', '#4b81da', '#53a949']
+                                color: ['#fba41a', '#d2d2d2', '#3982e1', '#23ad39']
+
 
                             }
 
@@ -166,8 +166,8 @@
 
                     ResetRelationJsonAndInit();
                     function ResetRelationJsonAndInit() {
-                        var arrArr = [cond, comp.difference(cond).difference(emol).difference(sunS),emol, sunS];
-                        var arrArrName = ['功效型','剂型需求', '保湿型', '防晒型'];
+                        var arrArr = [cond, comp.difference(cond).difference(emol).difference(sunS), emol, sunS];
+                        var arrArrName = ['功效型', '剂型需求', '保湿型', '防晒型'];
                         for (i = 0; i < arrArr.length; i++) {
                             var maxSize = 16;
                             var minSize = 10;
@@ -212,6 +212,12 @@
                     var sensLen = sens.length;
                     var normalLen = compLen - sensLen;
                     var sensPct = sensLen / compLen; //0-1之间的数字
+                    if (sensPct == 1) {
+                        $('.barSafe').hide()
+                    }
+                    if (sensPct == 0) {
+                        $('.barSense').hide()
+                    }
                     var normalPct = (1 - sensPct);
                     $('.number').html('共' + compLen + '种成份');
                     $('.barSense').css({width: sensPct * 100 + '%'});

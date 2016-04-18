@@ -20,7 +20,6 @@
                 isTop = !isTop;
                 move();
             });
-
         }
         else {
             $scanBar.animate({top: GetRandom(70, 90) + '%'}, duration, 'easieEase', function () {
@@ -33,4 +32,10 @@
     function GetRandom(begin, end) {
         return Math.floor(Math.random() * (end - begin)) + begin;
     }
+})(window, document, $);
+
+
+(function (w, d, $) {
+    $page2 = $('.page2');
+
 })(window, document, $)

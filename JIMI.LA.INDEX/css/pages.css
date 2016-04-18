@@ -18,7 +18,7 @@
 /*page0*/
 .page0 {
     background: url("../img/P1/P1_BG.jpg") 100% 100%;
-    background-size: contain;
+    background-size: cover;
 }
 
 .page0 .title {
@@ -36,12 +36,12 @@
     cursor: pointer;
     padding: 15px;
     box-sizing: border-box;
-    transition: all 0.5s ease;
+    transition: all 0.4s ease;
 }
 
 .page0 .btn:hover {
-    background-color: rgb(205, 230, 255);
-    box-shadow: 0px 0px 8px rgb(139, 177, 230);
+    /*background-color: rgb(114, 35, 255);*/
+    box-shadow: 0px 0px 10px rgb(63, 103, 200);
 }
 
 .page0 .btnIOS {
@@ -103,6 +103,11 @@
 }
 
 /*page1 第二页*/
+.page1 {
+    background: url("../img/P2/P2_beijing.png") 100% 100%;
+    background-size: cover;
+}
+
 .page1 .bottle {
     transform: translateX(-450px) translateY(-250px);
 }
@@ -149,16 +154,38 @@
 }
 
 .page1 .cirsCon {
+    /*border: 1px solid #000;*/
+    transform: translateX(-160px) translateY(-180px);
+    width: 800px;
+}
+
+.page1 .cirsCon .circle {
+    display: inline-block;
+    width: 180px;
+    height: 180px;
+    border: 1px solid #3881e0;
+    border-radius: 50%;
+    margin-right: 40px;
+    transition: all 0.4s ease;
+    background-color: white;
+    text-align: center;
+}
+
+.page1 .cirsCon .circle:hover {
+    box-shadow: 0px 0px 10px rgb(63, 103, 200);
+}
+
+.page1 .cirsCon .circle .cirImg{
+    height: 100px;
     border: 1px solid #000;
 }
 
-.page1 .cirsCon div {
-    display: inline-block;
-    width: 200px;
-    height: 200px;
-    border: 1px solid #3881e0;
-    border-radius: 50%;
-    margin-right: 20px;
+
+.page1 .title {
+    font: 45px '微软雅黑';
+    font-weight: bold;
+    transform: translateX(-40px) translateY(80px);
+    color: #3881e0;
 }
 
 /*page2 第三页*/

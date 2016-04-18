@@ -9,10 +9,10 @@
         this.config = {
             backgroundColor: 'white',
             colorList: {
-                conditioner: '#efa14e',//调理
-                emollient: '#4b81da',//柔润
-                sunScreener: '#53a949', //防晒
-                sensitization: '#d13052'//致敏
+                conditioner: '#fba41a',//调理
+                emollient: '#3982e1',//柔润
+                sunScreener: '#23ad39', //防晒
+                sensitization: '#e5004f'//致敏
             }
         };
         this.init();
