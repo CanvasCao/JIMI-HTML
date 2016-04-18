@@ -1,0 +1,77 @@
+* {
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    list-style: none;
+    font-size: 14px;
+    font-weight: bold;
+    -webkit-user-select: none; /*禁用手机浏览器的用户选择功能 */
+    -moz-user-select: none;
+    -webkit-touch-callout: none;
+}
+
+.canvasBox {
+    /*margin-top: 20px;*/
+}
+
+.nonCanvas {
+    padding: 0 20px;
+    box-sizing: border-box;
+    display: none;
+}
+
+.barCon {
+    height: 24px;
+
+}
+
+.barSafe {
+    background-color: #d1d2d3;
+    /*width: 30%;*/
+    float: left;
+    text-align: right;
+    height: 24px;
+    color: #d13052;
+    padding-right: 10px;
+    box-sizing: border-box;
+    line-height: 24px;
+
+}
+
+.barSense {
+    background-color: #d13052;
+    color: #d1d2d3;
+    /*width: 70%;*/
+    float: right;
+    text-align: left;
+    height: 24px;
+    padding-left: 10px;
+    box-sizing: border-box;
+    line-height: 24px;
+
+}
+
+.number {
+    margin: 10px 0;
+}
+
+.ulCon li {
+    float: right;
+    width: 30%;
+    font-size: 12px;
+    position: relative;
+    padding: 2px 0;
+}
+
+.ulCon li span {
+    float: left;
+}
+
+.ulCon li .point {
+    float: left;
+    width: 10px;
+    height: 10px;
+    border-radius: 3px;
+    margin-right: 5px;
+    margin-top: 4px;
+}

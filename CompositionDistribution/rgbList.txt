@@ -1,8 +1,26 @@
-<span class='point' style='background-color:#ff9000'></span>
-<span style='color:#ff9000'>皮肤调理剂</span>
-<span class='point' style='background-color:#018cff'></span>
-<span style='color:#018cff'>皮肤柔润剂</span>
-<span class='point' style='background-color:#52d200'></span>
-<span style='color:#52d200'>防晒剂</span>
-<span class='point' style='background-color:#ff4005'></span>
-<span style='color:#ff4005'>致敏/致痘</span>
+功效性：
+efa14e   
+
+
+
+ 
+保湿：
+4b81da   
+
+
+
+
+防晒：
+53a949   
+
+
+
+
+致痘：
+d13052  
+
+
+
+
+安全：
+d1d2d3

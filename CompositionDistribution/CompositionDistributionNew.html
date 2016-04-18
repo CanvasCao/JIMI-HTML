@@ -10,8 +10,6 @@
     </style>
 </head>
 <body>
-
-
 <div class="header">
     <div class='imgCon'>
         <img src="" class='headerImg' height='165px'/>
@@ -25,30 +23,30 @@
     <div class='compositions'>
         <div>
             <ul>
-                <li>
-                    <span class='point' style='background-color:#ff9000'></span>
-                    <span style='color:#ff9000'>皮肤调理剂</span>
+                <li data='功效型成分'>
+                    <span class='point' style='background-color:#efa14e'></span>
+                    <span style='color:#efa14e'>功效型成分</span>
                 </li>
-                <li>
+                <li data='剂型需求'>
                     <span class='point' style='background-color:#000'></span>
-                    <span>剂型</span>
+                    <span>剂型需求</span>
                 </li>
-                <li>
-                    <span class='point' style='background-color:#018cff'></span>
-                    <span style='color:#018cff'>皮肤柔润剂</span>
+                <li data='保湿型成分'>
+                    <span class='point' style='background-color:#4b81da'></span>
+                    <span style='color:#4b81da'>保湿型成分</span>
                 </li>
-                <li>
-                    <span class='point' style='background-color:#52d200'></span>
-                    <span style='color:#52d200'>防晒剂</span>
+                <li data='防晒型成分'>
+                    <span class='point' style='background-color:#53a949'></span>
+                    <span style='color:#53a949'>防晒型成分</span>
                 </li>
             </ul>
         </div>
         <div style='display: none'>
-            <li>
-                <span class='point' style='background-color:#ff4005'></span>
-                <span style='color:#ff4005'>致敏/致痘</span>
+            <li data='致敏/致痘'>
+                <span class='point' style='background-color:#d13052'></span>
+                <span style='color:#d13052'>致敏/致痘</span>
             </li>
-            <li>
+            <li data='正常成分'>
                 <span class='point' style='background-color:#000'></span>
                 <span>正常成分</span>
             </li>
@@ -59,7 +57,15 @@
 </div>
 
 <!--中间是成分表-->
-<div class='middleComponent' >
+<div class='middleComponent'>
+</div>
+
+<div class='alertCon'>
+    <div class="alert">
+        <div class="title1"></div>
+        <div class="title2"></div>
+        <div class="close">关闭</div>
+    </div>
 </div>
 
 <script src='js/jquery-1.8.3.min.js'></script>
@@ -68,22 +74,14 @@
 <script>
     $(function () {
         //得到请求地址的URL
-        if(!window.location.search){
-            window.location=window.location+'?pid=56c6aea3efb80c9b2541ced4';
+        if (!window.location.search) {
+            window.location = window.location + '?pid=56c6aea3efb80c9b2541ced4';
         }
 
         // 56c6aea3efb80c9b2541ced4 有数据的
 //        56829a0fefb80c4e26c2f894 没数据的
 
-//        var search=window.location.search.replace('?',"");
-//        var kvArr=search.split('&');
-//        var finalJson={}
-//        for(i=0;i<kvArr.length;i++){
-//            var kvSplit=kvArr[i].split('=');
-//            finalJson[kvSplit[0]]=kvSplit[1]
-//        }
 
-//        console.log(finalJson);
         //控件 Init......................................................
         var alBtnData = {showTxt: ['按类型', '按安全']};
         var alternateBtn = new AlternateBtn($('#alBtn')[0], alBtnData);
@@ -92,33 +90,30 @@
         $altBtn = $('#alBtn');
         $compositions = $('.compositions'); //成分两大类型
         $middleComponent = $('.middleComponent');//所有成分
-        $imgCon=$('.imgCon');
-        $pname=$('.pname');
+        $imgCon = $('.imgCon');
+        $pname = $('.pname');
+        $alertCon = $('.alertCon')
+//        console.log('http://n1.jimi.la/apps_V3/formual_safe.php' + window.location.search)
 
-        console.log('http://n1.jimi.la/apps_V3/formual_safe.php'+window.location.search)
+
         //中间的控件要jsonp
         $.ajax({
             type: "get",
-            url: 'http://n1.jimi.la/apps_V3/formual_safe.php'+window.location.search,
+            url: 'http://n1.jimi.la/apps_V3/formual_safe.php' + window.location.search,
 //            url: 'package.json',
-//            data: {
-//                pids: '56c6ae75efb80c9b2541cd66,56c6ae4fefb80c9b2541cc39',
-//                'cate': 70
-//            },
             dataType: "jsonp",
             jsonp: "callback",
             jsonpCallback: "jsonpcallback",
             success: function (data) {
                 console.log(JSON.stringify(data))
-                var component = new MiddleComponent($('.middleComponent')[0], data);
-
+                var component = new MiddleComponent($middleComponent[0], data);
 
                 //更新头部图片和文字
-                var englishName=data.englishName;
-                var chineseName=data.chineseName;
-                var imgUrl=data.imgUrl||'img/a.png';
-                $imgCon.find('img').attr('src',imgUrl);
-                $pname.html(englishName+"<br>"+chineseName)
+                var englishName = data.englishName;
+                var chineseName = data.chineseName;
+                var imgUrl = data.imgUrl || 'img/a.png';
+                $imgCon.find('img').attr('src', imgUrl);
+                $pname.html(englishName + "<br><br>" + chineseName)
 
 
                 //bind events................................................
@@ -136,7 +131,30 @@
         });
 
         //events.....................................................
+        var alertJson = {
+            '保湿型成分': '提供皮肤保湿、锁水功效的成分',
+            '功效型成分': '在皮肤或头发上起生理功效（如美白、修复、抗氧化等）的成分',
+            '防晒型成分': '有效阻挡紫外线，为皮肤提供屏障，起防护作用的成分',
+            '剂型需求': '改善产品质地质感，维持产品稳定的成分（如溶剂成分、防腐剂成分等）',
+            '致敏/致痘': '对皮肤有一定的刺激性，可能导致过敏/长痘',
+            '正常成分': '正常情况下对皮肤没有安全风险的成分',
+        }
 
+        //默认touch触发屏幕滚动  禁止
+//        $alertCon[0].addEventListener('touchmove', function (e) {
+//            e.preventDefault();
+//        }, false)
+
+
+        $compositions.find('li').click(function () {
+            var data = $(this).attr('data')
+            $alertCon.find('.title1').html(data);
+            $alertCon.find('.title2').html(alertJson[data]);
+            $alertCon.fadeIn('fast');
+        })
+        $alertCon.find('.close').click(function () {
+            $alertCon.fadeOut('fast')
+        })
     })
 </script>
 </body>

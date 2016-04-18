@@ -4,7 +4,11 @@
     list-style: none;
     text-decoration: none;
     font-family:'微软雅黑';
-
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 /*头部有产品图片和文字*/
@@ -18,6 +22,9 @@
 .header .imgCon{
     top: 50%;
     transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
     width: 40%;
     position: absolute;
     left: 4%;
@@ -27,11 +34,13 @@
 .header .pname{
     top: 50%;
     transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
     width: 50%;
     position: absolute;
     right: 4%;
-    word-break: break-all;
-
+    word-break: normal;
 }
 
 
@@ -74,3 +83,49 @@
     padding:3px 0;
 }
 
+
+/*弹出框*/
+.alertCon{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(0,0,0,0.2);
+    display: none;
+}
+
+.alert{
+
+    width: 80%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform:translateX(-50%) translateY(-50%);
+    -webkit-transform:translateX(-50%)  translateY(-50%);
+    -ms-transform:translateX(-50%)  translateY(-50%);
+    -moz-transform:translateX(-50%)  translateY(-50%);
+    text-align: center;
+    background-color: white;
+    font-size: 12px;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.alert .title1{
+    color: #8b8b8b;
+}
+
+.alert .title2{
+    font-size: 14px;
+    margin: 8px 0;
+}
+.alert .close{
+    height: 25px;
+    width: 100px;
+    border-radius: 20px;
+    background-color:#018cff ;
+    margin: 0 auto;
+    line-height: 25px;
+    color: white;
+}

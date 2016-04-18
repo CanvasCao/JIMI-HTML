@@ -6,89 +6,10 @@
           content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no"/>
     <title>Document</title>
     <style type="text/css">
-        * {
-            padding: 0;
-            margin: 0;
-            text-decoration: none;
-            list-style: none;
-            font-size: 14px;
 
-            -webkit-user-select: none; /*禁用手机浏览器的用户选择功能 */
-            -moz-user-select: none;
-            -webkit-touch-callout: none;
-        }
-
-        body {
-
-        }
-
-        .canvasBox {
-            /*margin-top: 20px;*/
-        }
-
-        .nonCanvas {
-            padding: 0 20px;
-            box-sizing: border-box;
-            display: none;
-        }
-
-        .barCon {
-            height: 24px;
-
-        }
-
-        .barSafe {
-            background-color: #404040;
-            /*width: 30%;*/
-            float: left;
-            text-align: right;
-            height: 24px;
-            color: #ff4005;
-            padding-right: 10px;
-            box-sizing: border-box;
-            line-height: 24px;
-
-        }
-
-        .barSense {
-            background-color: #ff4005;
-            color: #404040;
-            /*width: 70%;*/
-            float: right;
-            text-align: left;
-            height: 24px;
-            padding-left: 10px;
-            box-sizing: border-box;
-            line-height: 24px;
-
-        }
-
-        .number {
-            margin: 10px 0;
-        }
-
-        .ulCon li {
-            float: right;
-            width: 30%;
-            font-size: 12px;
-            position: relative;
-            padding: 2px 0;
-        }
-
-        .ulCon li span {
-            float: left;
-        }
-
-        .ulCon li .point {
-            float: left;
-            width: 10px;
-            height: 10px;
-            border-radius: 3px;
-            margin-right: 5px;
-            margin-top: 4px;
-        }
 
     </style>
+    <link rel="stylesheet" href="css/ProductDetailCanvas.css"/>
 </head>
 <body>
 
@@ -104,12 +25,12 @@
     <div class='ulCon'>
         <ul>
             <li>
-                <span class='point' style='background-color:#ff4005'></span>
-                <span style='color:#ff4005'>致敏/致痘</span>
+                <span class='point' style='background-color:#d13052'></span>
+                <span style='color:#d13052'>致敏/致痘</span>
             </li>
             <li>
-                <span class='point' style='background-color:#404040'></span>
-                <span style='color:#404040'>正常成分</span>
+                <span class='point' style='background-color:#d1d2d3'></span>
+                <span style='color:#d1d2d3'>正常成分</span>
             </li>
         </ul>
     </div>
@@ -147,12 +68,11 @@
 
 
         //初始化数据 echartJson 和canvas宽高
-
-        var RATE = 280 / 420;
+        var RATE = 420 / 420;
         var winW = $(window).width();
-        var canvasHeight = winW * RATE;
+        var canvasHeight = (winW * RATE>=300)?300:winW * RATE;
         $canvas = $('.canvasBox');
-        $canvas.css({height: canvasHeight, width: winW});
+        $canvas.css({height: canvasHeight, width: winW,'overflow':'hidden'});
 
         //初始化Echart div转canvas
         var canvasBox = $canvas[0];//第一个canvas
@@ -164,10 +84,6 @@
             type: "get",
             url: 'http://n1.jimi.la/apps_V3/formual_safe.php' + window.location.search,
 //            url: 'package.json',
-//            data: {
-//                pids: '56c6ae75efb80c9b2541cd66,56c6ae4fefb80c9b2541cc39',
-//                'cate': 70
-//            },
             dataType: "jsonp",
             jsonp: "callback",
             jsonpCallback: "jsonpcallback",
@@ -189,12 +105,12 @@
                         "tooltip": {
                             "formatter": "{b}",
 //                            showContent: false
-                            triggerOn:'click',
+                            triggerOn: 'click',
                             position: [10, 10]
 
                         },
                         legend: [{//顶部显示
-                            data: ['调理剂', '柔润剂', '防晒剂'],
+                            data: ['功效型','剂型需求', '保湿型', '防晒型'],
                             orient: 'vertical',
                             align: 'right',
                             top: 10,
@@ -207,15 +123,14 @@
                                 name: '成分详情',
                                 type: 'graph',
                                 layout: 'force',
-//                                layout: 'circular',
                                 data: [
 //                        {name: '水', value: 1, category: 0,}
                                 ],
                                 links: [
 //                        {source: '水', target: '二氧化碳'},
                                 ],
-                                categories: [{name: '调理剂'}, {name: '柔润剂'}, {name: '防晒剂'}],
-                                roam: 'move',
+                                categories: [{name: '功效型'}, {name: '剂型需求'}, {name: '保湿型'}, {name: '防晒型'}],
+                                roam: 'false',
                                 label: {
                                     normal: {
                                         position: 'right',
@@ -223,16 +138,16 @@
                                     },
                                 },
                                 force: {
-                                    edgeLength: 30,
+                                    edgeLength: 20,
                                     gravity: 0.1,
-                                    repulsion: 100
+                                    repulsion: 180
                                 },
                                 lineStyle: {
                                     normal: {
-                                        curveness: 0.3
+//                                        curveness: 0.3
                                     }
                                 },
-                                color: ['#ff9000', '#018cff', '#52d200']
+                                color: ['#efa14e','#d1d2d3', '#4b81da', '#53a949']
 
                             }
 
@@ -251,11 +166,11 @@
 
                     ResetRelationJsonAndInit();
                     function ResetRelationJsonAndInit() {
-                        var arrArr = [cond, emol, sunS];
-                        var arrArrName = ['调理剂', '柔润剂', '防晒剂'];
+                        var arrArr = [cond, comp.difference(cond).difference(emol).difference(sunS),emol, sunS];
+                        var arrArrName = ['功效型','剂型需求', '保湿型', '防晒型'];
                         for (i = 0; i < arrArr.length; i++) {
-                            var maxSize = 20;
-                            var minSize = 8;
+                            var maxSize = 16;
+                            var minSize = 10;
                             var step = 2;
                             //点
                             for (a = 0; a < arrArr[i].length; a++) {
@@ -265,14 +180,10 @@
                                     category: arrArrName[i],
 //                                    draggable: true,
                                     symbolSize: (maxSize - a * step) <= minSize ? minSize : (maxSize - a * step),
-//                                    label: {
-//                                        normal: {show: true}
-//                                    }
                                 })
                             }
                             ;
 
-//                            console.log(relationJson.series[0].data)
                             //线
                             for (a = 1; a <= arrArr[i].length; a++) {
                                 relationJson.series[0].links.push({
@@ -282,6 +193,7 @@
                             }
                             ;
                         }
+                        ;
                         //最后把不同剂型连接起来
                         for (i = 0; i < arrArrName.length; i++) {
                             for (j = i; j < arrArrName.length; j++) {
@@ -315,12 +227,37 @@
                     }
 
 
-                    //显示下面
+                    //canvas下面本来是隐藏的
                     $('.nonCanvas').show();
                 }
 
                 else {//说明没有成分
-                    $('body').html("<div style='text-align: center ;margin-top: 20px '>暂无成分</div>");
+//                    mychart.hideLoading();
+                    $('body').html('<div class="Con"></div>');
+                    $('.Con').css({
+                        padding: 20,
+                        'text-align': 'center'
+                    }).html('<img class="nodataImg" src="img/nodata.png">' +
+                            '<div class="txt">成分数据补全中...</div>' +
+                            '<div class="btn">补全成分</div>')
+                    $('.nodataImg').css({display: 'block', margin: '0 auto'});
+                    $('.txt').css({
+//                        'font-size':'16px',
+                        color: '#bcbcbc',
+                        margin: '20px auto',
+                    });
+                    $('.btn').css({
+                        padding: '12px 30px',
+                        margin: '0 auto',
+                        'border-radius': 30,
+                        'backgroundColor': '#018cff',
+                        color: 'white',
+                        'font-size': '16px',
+                        'display': 'inline-block'
+                    }).click(function () {
+//                        location = 'http://www.baidu.com';
+                    })
+
                 }
             },
             error: function (err) {
@@ -328,6 +265,8 @@
                 console.log(err);
             }
         });
+
+//        alert($('body').height())
     })
 </script>
 </body>

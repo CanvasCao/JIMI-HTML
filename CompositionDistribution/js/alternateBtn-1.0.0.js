@@ -1,15 +1,15 @@
 ;
-(function (w, d, undefined) {
+(function (w, d, $, undefined) {
 //version 1.0.1
 //2016-4-14 14:24:55
 
     function AlternateBtn(container, data) {
-        this.C=this.container = container;
+        this.C = this.container = container;
         this.data = data;
         this.config = {
-            jsonUnCurrent:{'color': '#000',background:'#fff'},
-            jsonCurrent:{'color': '#fff',background:'rgb(39, 126, 234)'}
-    };
+            jsonUnCurrent: {'color': '#000', background: '#fff'},
+            jsonCurrent: {'color': '#fff', background: 'rgb(39, 126, 234)'}
+        };
         this.init();
     }
 
@@ -36,15 +36,15 @@
 
         },
         initCSS: function () {
-            var that=this;
+            var that = this;
 
             $(this.C).find('.alterTab').css({
                 background: '#fff',
                 border: '1px solid #bdbdbd',
-                'box-sizing':'border-box',
+                'box-sizing': 'border-box',
                 'border-radius': '20px',
                 display: 'inline-block',
-                font:'12px "微软雅黑"',
+                font: '12px "微软雅黑"',
             })
 
             $(this.C).find('.alterTab li').css({
@@ -55,14 +55,14 @@
 
         },
         bindEvent: function () {
-            var that=this;
+            var that = this;
 
-            $(this.C).find('.alterTab li').click(function(){
+            $(this.C).find('.alterTab li').click(function () {
                 $(this).css(that.config.jsonCurrent).siblings().css(that.config.jsonUnCurrent)
             })
         }
     }
     w.AlternateBtn = AlternateBtn;
-})(window, document)
+})(window, document, jQuery)
 
 
