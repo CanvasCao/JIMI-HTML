@@ -1,5 +1,7 @@
 (function (w, d, $) {
     $page1 = $('.page1');
+
+    //scanBar动画
     $scanBar = $page1.find('.scanBar')
     var timer = null;
     var isTop = true;
@@ -32,6 +34,9 @@
     function GetRandom(begin, end) {
         return Math.floor(Math.random() * (end - begin)) + begin;
     }
+
+
+
 })(window, document, $);
 
 

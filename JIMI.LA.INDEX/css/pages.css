@@ -15,6 +15,7 @@
     left: 50%;
 }
 
+/**********************************************************************************************/
 /*page0*/
 .page0 {
     background: url("../img/P1/P1_BG.jpg") 100% 100%;
@@ -102,6 +103,7 @@
     transform: translateX(-500px) translateY(-100px);
 }
 
+/**********************************************************************************************/
 /*page1 第二页*/
 .page1 {
     background: url("../img/P2/P2_beijing.png") 100% 100%;
@@ -169,18 +171,36 @@
     transition: all 0.4s ease;
     background-color: white;
     text-align: center;
+    box-sizing: border-box;
+    padding: 20px;
+    cursor: pointer;
 }
 
 .page1 .cirsCon .circle:hover {
     box-shadow: 0px 0px 10px rgb(63, 103, 200);
 }
 
-.page1 .cirsCon .circle .cirImg{
-    height: 100px;
-    border: 1px solid #000;
+.page1 .cirsCon .circle img {
+    display: block;
+    height: 40%;
+    /*border: 1px solid #000;*/
+    margin: 0 auto;
 }
 
+.page1 .cirsCon .circle .title1 {
+    font: 20px '微软雅黑';
+    color: #3881e0;
+    margin: 8px auto;
 
+}
+
+.page1 .cirsCon .circle .title2 {
+    font: 30px '微软雅黑';
+    color: #3881e0;
+    font-weight: bold;
+}
+
+/*文字*/
 .page1 .title {
     font: 45px '微软雅黑';
     font-weight: bold;
@@ -188,8 +208,9 @@
     color: #3881e0;
 }
 
+/**********************************************************************************************/
 /*page2 第三页*/
-.page2 img {
-    position: absolute;
-    display: block;
+.page2 {
+    background: url("../img/P3/P3_beijing.png") 100% 100%;
+    background-size: cover;
 }

@@ -21,7 +21,8 @@
             totalNum: 0,
             colorArr: ['#ff794c', '#f2ae24', '#8cb33e', '#62b3ac', '#6286b3'],
             duration: 500, //单位是秒
-            circleMargin: 20
+            circleMargin: 20,
+            timer: null
         };
         this.init();
     };
@@ -119,7 +120,7 @@
                 position: 'relative',
                 'user-select': 'none',
                 cursor: 'default',
-                'font-weight':'bold'
+                'font-weight': 'bold'
             });
 
             $(this.C).find('.verticalScrollMagnifier li').css({
@@ -182,11 +183,11 @@
 
         //目前只更新间距
         adjustVelocityArr: function () {
-            var jsonArr =this.config.jsonArr;
-            var translateY=0.000001;//设0velocity会忽略这一行代码
-            for(i=0;i<5;i++){
-                jsonArr[i]['translateY']=translateY;
-                translateY+=this.config.height;
+            var jsonArr = this.config.jsonArr;
+            var translateY = 0.000001;//设0velocity会忽略这一行代码
+            for (i = 0; i < 5; i++) {
+                jsonArr[i]['translateY'] = translateY;
+                translateY += this.config.height;
             }
 
 
@@ -202,7 +203,7 @@
 
             var animateFlag = false;
             $(that.C).find('.verticalScrollMagnifier').mousewheel(function (e, d) {
-                e.preventDefault();
+                //e.preventDefault();
 
                 if (!animateFlag) {
                     if (d == -1) {
@@ -224,6 +225,24 @@
             });
 
 
+            $(that.C).hover(function () {
+                clearInterval(that.config.timer);
+            }, function () {
+                that.config.timer = setInterval(MoveOnce, 3000)
+            })
+
+
+            //init.............................................................
+            that.config.timer = setInterval(MoveOnce, 3000)
+
+
+            //Fns...............................................................
+            function MoveOnce() {
+                that.config.jsonArr.unshift(that.config.jsonArr.pop());//上移
+                $(that.C).find('.verticalScrollMagnifier li').each(function (i, e) {
+                    $(e).velocity(that.config.jsonArr[i], that.config.duration, 'swing');
+                });
+            }
         }
     };
     w.VerticalScrollMagnifier = VerticalScrollMagnifier;

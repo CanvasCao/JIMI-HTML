@@ -112,6 +112,25 @@ $(function () {
         function () {
         },
         function () {
+            //数字动画
+            var count = 0;
+            var txt1= 0,txt2= 0,txt3=0;
+            var txtTimer = setInterval(function () {
+                txt1+=60/60;
+                $('.page1 .title2').eq(0).html(txt1+'万');
+
+                txt2+=15000/60;
+                $('.page1 .title2').eq(1).html(txt2);
+
+                txt3+=6000/60;
+                $('.page1 .title2').eq(2).html(txt3);
+
+                count++;
+                if (count >= 60) {
+                    clearTimeout(txtTimer);
+                }
+            }, 2000/60)
+
         },
         function () {
             $('.page2 img').show().css({'top': '80%', 'opacity': 0}).animate({'top': '20%', 'opacity': 1}, 1200);
