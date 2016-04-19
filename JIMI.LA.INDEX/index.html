@@ -116,17 +116,20 @@
         <div class="cirsCon">
             <div class='circle'>
                 <img src="img/P2/P2_1.png" alt=""/>
+
                 <div class='title1'>护肤品</div>
                 <div class='title2'>20万</div>
             </div>
             <div class='circle'>
                 <img src="img/P2/P2_2.png" alt=""/>
+
                 <div class='title1'>成分</div>
                 <div class='title2'>15000</div>
 
             </div>
             <div class='circle'>
                 <img src="img/P2/P2_3.png" alt=""/>
+
                 <div class='title1'>原料</div>
                 <div class='title2'>6000</div>
 
@@ -162,19 +165,22 @@
 <script src='js/tool/jquery.easie.js'></script>
 <script src='js/tool/velocity.min.js'></script>
 <script src='js/tool/velocity.ui.js'></script>
-<script src='js/module/verticalScrollMagnifier-2.0.2.js'></script>
-<script src='js/index/index.js'></script>
-<script src='js/index/page1.js'></script>
+<script src='js/module/verticalScrollMagnifier-2.0.3.js'></script>
 <script>
-    $(function () {
+    (function () {
         var data = {
             title: ['生产国', '规格', '单价', '适应场景', '致痘性'],
             pro1: ['日本', '125ml', '￥220', '淡妆或防晒', '一般致痘性'],
             pro2: ['美国', '150ml', '￥180', '淡妆或防晒', '轻微致痘性'],
         };
-        var vsm = new VerticalScrollMagnifier($('.page0 .scroll')[0], data, {height: 85, width: 400, circleMargin: 30})
-
-        $('body').show()
+        var vsm =window.vsm= new VerticalScrollMagnifier($('.page0 .scroll')[0], data, {height: 85, width: 400, circleMargin: 30});
+    })()
+</script>
+<script src='js/index/index.js'></script>
+<script src='js/index/page1.js'></script>
+<script>
+    $(function () {
+        $('body').show();
     })
 </script>
 </body>

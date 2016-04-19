@@ -3,12 +3,24 @@ $(function () {
     //窗口宽高
     var winH = $(window).height();
     var winW = $(window).width();
-    var pageIndex = 1;//当前页面（初始化用）
+    var pageIndex = 1;//当前页面（初始化用） 这个变量必须暴露给全局因为其他组件的运动与这个变量有关
+    window.pageIndex = pageIndex; //但是这是值类型无法传递指针
 
     //操作的jq对象
     var $cirLis = $('#circles ul li');
     var $con = $('#container');
     var $pages = $con.find('.page');
+
+    //jqPage对象
+    var $page0 = $pages.eq(0);
+    var $page1 = $pages.eq(1);
+    var $page2 = $pages.eq(2);
+    var $page3 = $pages.eq(3);
+    var $page4 = $pages.eq(4);
+
+    //page0 jq对象
+    var $scroll = $page0.find('.scroll');
+
 
     //添加背景颜色
     var colorArr = ['#fff', '#fff', '#fff', '#ddd', 'white'];
@@ -39,9 +51,8 @@ $(function () {
 
 
         //e.target是事件环的第一环
-        if($.contains($('.scroll')[0], e.target)){
+        if ($.contains($scroll[0], e.target)) {
             //jQuery.contains(document.documentElement, document.body); // true
-
             return;
         }
 
@@ -110,30 +121,33 @@ $(function () {
     //AnimateJSON.................................................................
     var AnimateInArr = [
         function () {
+            vsm.START();
         },
         function () {
-            //数字动画
-            var count = 0;
-            var txt1= 0,txt2= 0,txt3=0;
-            var txtTimer = setInterval(function () {
-                txt1+=60/60;
-                $('.page1 .title2').eq(0).html(txt1+'万');
+            (function () {
+                //数字动画
+                var count = 0;
+                var txt1 = 0, txt2 = 0, txt3 = 0;
+                var txtTimer = setInterval(function () {
+                    txt1 += 60 / 60;
+                    $page1.find('.title2').eq(0).html(txt1 + '万');
 
-                txt2+=15000/60;
-                $('.page1 .title2').eq(1).html(txt2);
+                    txt2 += 15000 / 60;
+                    $page1.find('.title2').eq(1).html(txt2);
 
-                txt3+=6000/60;
-                $('.page1 .title2').eq(2).html(txt3);
+                    txt3 += 6000 / 60;
+                    $page1.find('.title2').eq(2).html(txt3);
 
-                count++;
-                if (count >= 60) {
-                    clearTimeout(txtTimer);
-                }
-            }, 2000/60)
+                    count++;
+                    if (count >= 60) {
+                        clearTimeout(txtTimer);
+                    }
+                }, 2000 / 60)
+            })()
 
         },
         function () {
-            $('.page2 img').show().css({'top': '80%', 'opacity': 0}).animate({'top': '20%', 'opacity': 1}, 1200);
+            //$('.page2 img').show().css({'top': '80%', 'opacity': 0}).animate({'top': '20%', 'opacity': 1}, 1200);
         },
         function () {
         },
@@ -144,11 +158,12 @@ $(function () {
     ];
     var AnimateOutArr = [
         function () {
+            vsm.STOP();
         },
         function () {
         },
         function () {
-            $('.page2 img').fadeOut(800);
+            //$('.page2 img').fadeOut(800);
         },
         function () {
         },

@@ -6,16 +6,16 @@
     var timer = null;
     var isTop = true;
     var duration = 1000;
-    $page1.find('.hoverArea').hover(function () {
-        $(this).animate({opacity: 1}, 'fast');
+    $page1.find('.bottle').hover(function () {
+        $page1.find('.hoverArea').animate({opacity: 1}, 'fast');
         timer = setTimeout(move, 50);
 
     }, function () {
-        $(this).animate({opacity: 0}, 'fast');
+        $page1.find('.hoverArea').animate({opacity: 0}, 'fast');
         timer = null;
     });
 
-
+    //递归
     function move() {
         if (!isTop) {
             $scanBar.animate({top: GetRandom(20, 40) + '%'}, duration, 'easieEase', function () {

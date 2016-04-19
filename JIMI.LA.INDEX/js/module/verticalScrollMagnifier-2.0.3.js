@@ -1,15 +1,17 @@
 /*!
- * verticalScrollMagnifier, a JavaScriptModule v2.0.1
+ * verticalScrollMagnifier, a JavaScriptModule v2.0.3
  * http://www.jimi.la/
  *
  * Copyright 2016, CaoYuhao
  * All rights reserved.
- * Date: 2016-4-13 17:48:52
+ * Date: 2016-4-19 11:12:10
  */
 
-//2.0.1自定义动态高度
+//2.0.3 加入jqMap 暴露两个全局方法STOP和START
 ;
 (function (w, d, $, undefined) {
+
+
     function VerticalScrollMagnifier(container, data, newConfig) {
         this.C = this.container = container;
         this.data = data;
@@ -22,8 +24,10 @@
             colorArr: ['#ff794c', '#f2ae24', '#8cb33e', '#62b3ac', '#6286b3'],
             duration: 500, //单位是秒
             circleMargin: 20,
-            timer: null
+            timer: null,
+            ifTimer:false
         };
+        this.jQueryMap = {}
         this.init();
     };
 
@@ -108,6 +112,9 @@
             }
             ;
             $(this.C).find('.verticalScrollMagnifier ul').html(str);
+
+
+            this.jQueryMap.$vsm = $(this.C).find('.verticalScrollMagnifier');
 
         },
         initCSS: function () {
@@ -195,14 +202,15 @@
         bindEvent: function () {
             var that = this;
 
+
             //init
-            $(that.C).find('.verticalScrollMagnifier li').each(function (i, e) {
+            that.jQueryMap.$vsm.find('li').each(function (i, e) {
                 $(e).velocity(that.config.jsonArr[i], 0);
             });
             $(that.C).show();
 
             var animateFlag = false;
-            $(that.C).find('.verticalScrollMagnifier').mousewheel(function (e, d) {
+            that.jQueryMap.$vsm.mousewheel(function (e, d) {
                 //e.preventDefault();
 
                 if (!animateFlag) {
@@ -218,31 +226,42 @@
                         animateFlag = false;
                     }, that.config.duration)
 
-                    $(that.C).find('.verticalScrollMagnifier li').each(function (i, e) {
+                    that.jQueryMap.$vsm.find('li').each(function (i, e) {
                         $(e).velocity(that.config.jsonArr[i], that.config.duration, 'swing');
                     });
                 }
             });
 
 
-            $(that.C).hover(function () {
+            //Fns...............................................................
+            that.START = function () {
+                if (!that.config.ifTimer) {
+                    that.config.timer = setInterval(MoveOnce, 3000);
+                    that.config.ifTimer=true;
+                }
+            }
+            that.STOP = function () {
                 clearInterval(that.config.timer);
-            }, function () {
-                that.config.timer = setInterval(MoveOnce, 3000)
-            })
+                that.config.ifTimer=false;
+            }
+            function MoveOnce() {
+                that.config.jsonArr.unshift(that.config.jsonArr.pop());//上移
+                that.jQueryMap.$vsm.find('li').each(function (i, e) {
+                    $(e).velocity(that.config.jsonArr[i], that.config.duration, 'swing');
+                });
+                //console.log('Move');
+            }
 
 
             //init.............................................................
-            that.config.timer = setInterval(MoveOnce, 3000)
+            that.START();
 
+            $(that.C).hover(function () {
+                that.STOP();
+            }, function () {
+                that.START();
+            })
 
-            //Fns...............................................................
-            function MoveOnce() {
-                that.config.jsonArr.unshift(that.config.jsonArr.pop());//上移
-                $(that.C).find('.verticalScrollMagnifier li').each(function (i, e) {
-                    $(e).velocity(that.config.jsonArr[i], that.config.duration, 'swing');
-                });
-            }
         }
     };
     w.VerticalScrollMagnifier = VerticalScrollMagnifier;
