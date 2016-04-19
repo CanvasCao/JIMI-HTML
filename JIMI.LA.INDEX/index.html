@@ -3,78 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <title>肌秘官方网站</title>
-    <style>
-        * {
-            padding: 0;
-            margin: 0;
-            text-decoration: none;
-            list-style: none;
-            -webkit-user-select: none;
-        }
-
-        body {
-            overflow: hidden;
-            display: none;
-        }
-
-        .innerC {
-            /*display: none;*/
-            position: fixed;
-            border: 1px solid #000;
-            width: 1024px;
-            height: 100%;
-            margin: 0 auto;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        #container {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            /*overflow: hidden;*/
-        }
-
-        /*右面的圆*/
-        #circles {
-            position: fixed;
-            height: 70px;
-            width: 15px;
-            top: 50%;
-            right: 80px;
-        }
-
-        #circles ul li {
-            width: 8px;
-            height: 8px;
-            background-color: transparent;
-            border: 1px solid #3881e0;
-            margin: 0 auto 10px;
-            transition: all 0.8s ease 0s;
-            border-radius: 50%;
-            cursor: pointer;
-        }
-
-        #circles ul li.cur {
-            background-color: #3881e0;
-        }
-
-        .header {
-            position: fixed;
-            height: 80px;
-            width: 100%;
-            background-color: white;
-            z-index: 2;
-            top: 0;
-            box-shadow: 0px 3px 30px rgba(0, 0, 0, 0.2);
-            opacity: 0.3;
-        }
-    </style>
+    <style></style>
+    <link rel="stylesheet" href="css/main.css"/>
     <link rel="stylesheet" href="css/pages.css"/>
 </head>
 <body>
 <div class='header'>
-    header
+    <div class='hInnerC'>
+        <div class='company'>
+            <div><img src="img/logo.jpg" alt="" width="60" style='margin-top: 10px'/></div>
+            <div class='title1'>肌秘</div>
+            <div style='border-left: 1px solid #a1a1a1; margin-top:25px;height: 30px;'></div>
+            <div class='title2'>用科学重新定义美丽</div>
+        </div>
+        <div class='options'>
+            <div class='cur'>首页</div>
+            <div>关于我们</div>
+            <div>专业服务</div>
+            <div>加入我们</div>
+        </div>
+
+    </div>
 </div>
 <!--装所有page的容器-->
 <div id="container">
@@ -138,7 +87,28 @@
         <div class='title'>我们用数据诠释美丽</div>
     </div>
     <div class="page page2">
-
+        <div class="table"></div>
+        <div class="pc">
+            <img src="img/P3/P3_pc.png" alt=""/>
+        </div>
+        <div class="light">
+            <img src="img/P3/P3_dengguang.png" alt=""/>
+        </div>
+        <div class="lamp">
+            <img src="img/P3/P3_taideng.png" alt=""/>
+        </div>
+        <div class="dashLine">
+            <img src="img/P3/P3_xuxian.png" alt=""/>
+        </div>
+        <div class="dashImg1">
+            <img src="img/P3/P3_chengfentu.png" alt=""/>
+        </div>
+        <div class="dashImg2">
+            <img src="img/P3/P3_bingtu.png" alt=""/>
+        </div>
+        <div class="dashImg3">
+            <img src="img/P3/P3_jindutiao1.png" alt=""/>
+        </div>
     </div>
     <div class="page page3">4</div>
 
@@ -173,7 +143,12 @@
             pro1: ['日本', '125ml', '￥220', '淡妆或防晒', '一般致痘性'],
             pro2: ['美国', '150ml', '￥180', '淡妆或防晒', '轻微致痘性'],
         };
-        var vsm =window.vsm= new VerticalScrollMagnifier($('.page0 .scroll')[0], data, {height: 85, width: 400, circleMargin: 30});
+        var vsm = window.vsm = new VerticalScrollMagnifier($('.page0 .scroll')[0], data, {
+            height: 85,
+            width: 400,
+            circleMargin: 30
+        });
+        window.vsm = vsm;
     })()
 </script>
 <script src='js/index/index.js'></script>

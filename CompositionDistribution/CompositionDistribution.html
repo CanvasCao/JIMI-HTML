@@ -28,8 +28,8 @@
                     <span style='color:#fba41a'>功效型成分</span>
                 </li>
                 <li data='剂型需求'>
-                    <span class='point' style='background-color:#000'></span>
-                    <span>剂型需求</span>
+                    <span class='point' style='background-color:#949494'></span>
+                    <span style='color:#949494'>剂型需求</span>
                 </li>
                 <li data='保湿型成分'>
                     <span class='point' style='background-color:#3982e1'></span>
@@ -41,16 +41,17 @@
                 </li>
             </ul>
         </div>
-        <div style='display: none'>
-            <li data='致敏/致痘'>
-                <span class='point' style='background-color:#e5004f'></span>
-                <span style='color:#e5004f'>致敏/致痘</span>
-            </li>
-            <li data='正常成分'>
-                <span class='point' style='background-color:#000'></span>
-                <span>正常成分</span>
-            </li>
-
+        <div style='display: none; margin-top: 10px'>
+            <ul>
+                <li data='致敏/致痘'>
+                    <span class='point' style='background-color:#e5004f'></span>
+                    <span style='color:#e5004f'>致敏/致痘</span>
+                </li>
+                <li data='正常成分'>
+                    <span class='point' style='background-color:#949494'></span>
+                    <span style='color:#949494'>正常成分</span>
+                </li>
+            </ul>
         </div>
     </div>
     <div id="alBtn"></div>
@@ -113,7 +114,7 @@
                 var chineseName = data.chineseName;
                 var imgUrl = data.imgUrl || 'img/a.png';
                 $imgCon.find('img').attr('src', imgUrl);
-                $pname.html(englishName + "<br><br>" + chineseName)
+                $pname.html(englishName + '<br>' + chineseName)
 
 
                 //bind events................................................

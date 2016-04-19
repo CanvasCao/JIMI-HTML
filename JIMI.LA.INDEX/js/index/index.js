@@ -3,8 +3,8 @@ $(function () {
     //窗口宽高
     var winH = $(window).height();
     var winW = $(window).width();
-    var pageIndex = 1;//当前页面（初始化用） 这个变量必须暴露给全局因为其他组件的运动与这个变量有关
-    window.pageIndex = pageIndex; //但是这是值类型无法传递指针
+    var pageIndex = 2;//当前页面（初始化用） 这个变量必须暴露给全局因为其他组件的运动与这个变量有关
+    //window.pageIndex = pageIndex; //但是这是值类型无法传递指针
 
     //操作的jq对象
     var $cirLis = $('#circles ul li');

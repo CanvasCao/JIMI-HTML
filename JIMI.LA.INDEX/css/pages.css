@@ -214,3 +214,49 @@
     background: url("../img/P3/P3_beijing.png") 100% 100%;
     background-size: cover;
 }
+
+.page2 .table {
+    left: 0;
+    width: 100%;
+    height: 30px;
+    background-color: #858585;
+    transform: translateY(220px);
+    box-shadow: 2px 5px 20px rgba(0, 0, 0, 0.6);
+}
+
+.page2 .pc {
+    transform: translateX(-388px) translateY(-92px);
+}
+
+.page2 .lamp {
+    transform: translateX(-514px) translateY(-236px);
+}
+
+.page2 .light {
+    transform: translateX(-292px) translateY(-177px);
+    animation: shining 2s ease-in-out 0s infinite alternate;
+
+}
+
+@keyframes shining {
+    from {
+        opacity: 0.4;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.page2 .dashLine {
+    transform: translateX(-60px) translateY(-202px);
+}
+
+.page2 .dashImg1{
+    transform: translateX(70px) translateY(-231px);
+}
+.page2 .dashImg2{
+    transform: translateX(292px) translateY(-147px);
+}
+.page2 .dashImg3{
+    transform: translateX(330px) translateY(18px);
+}

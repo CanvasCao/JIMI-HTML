@@ -12,7 +12,8 @@
                 conditioner: '#fba41a',//调理
                 emollient: '#3982e1',//柔润
                 sunScreener: '#23ad39', //防晒
-                sensitization: '#e5004f'//致敏
+                sensitization: '#e5004f', //致敏
+                safe:'#949494'
             }
         };
         this.init();
@@ -66,12 +67,12 @@
                 'font-size': '12px'
             })
             $(this.C).find('a').css({
-                border: '1px solid black',
+                border: '1px solid '+that.config.colorList.safe,
                 display: 'inline-block',
                 padding: '5px 16px',
                 'margin': '5px 5px',
                 'border-radius': 20,
-                color:'black'
+                color:that.config.colorList.safe,
 
             })
 

@@ -4,7 +4,7 @@
     text-decoration: none;
     list-style: none;
     font-size: 14px;
-    font-weight: bold;
+    /*font-weight: bold;*/
     -webkit-user-select: none; /*禁用手机浏览器的用户选择功能 */
     -moz-user-select: none;
     -webkit-touch-callout: none;
@@ -26,7 +26,7 @@
 }
 
 .barSafe {
-    background-color: #d1d2d3;
+    background-color: #d2d2d2;
     /*width: 30%;*/
     float: left;
     text-align: right;
@@ -40,7 +40,7 @@
 
 .barSense {
     background-color: #d13052;
-    color: #d1d2d3;
+    color: #d2d2d2;
     /*width: 70%;*/
     float: right;
     text-align: left;
@@ -48,11 +48,11 @@
     padding-left: 10px;
     box-sizing: border-box;
     line-height: 24px;
-
 }
 
 .number {
     margin: 10px 0;
+    color: #d2d2d2;
 }
 
 .ulCon li {

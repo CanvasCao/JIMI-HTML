@@ -1,0 +1,128 @@
+* {
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    list-style: none;
+    -webkit-user-select: none;
+    font-family: '微软雅黑';
+}
+
+body {
+    overflow: hidden;
+    display: none;
+}
+
+.innerC {
+    /*display: none;*/
+    position: fixed;
+    border: 1px solid #000;
+    width: 1024px;
+    height: 100%;
+    margin: 0 auto;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    /*overflow: hidden;*/
+}
+
+/*右面的圆*/
+#circles {
+    position: fixed;
+    height: 70px;
+    width: 15px;
+    top: 50%;
+    right: 3%;
+}
+
+#circles ul li {
+    width: 8px;
+    height: 8px;
+    background-color: transparent;
+    border: 1px solid #3881e0;
+    margin: 0 auto 10px;
+    transition: all 0.8s ease 0s;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+#circles ul li.cur {
+    background-color: #3881e0;
+}
+
+/*头部 以后改组件*/
+.header {
+    position: fixed;
+    height: 80px;
+    width: 100%;
+    background-color: white;
+    z-index: 2;
+    top: 0;
+    box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.1);
+    /*opacity: 0.3;*/
+}
+
+.header .hInnerC {
+    width: 1024px;
+    box-sizing: border-box;
+    /*border: 1px solid #000;*/
+    margin: 0 auto;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.header .hInnerC .company {
+    float: left;
+    height: 80px;
+}
+
+.header .hInnerC .company > div {
+    display: block;
+    float: left;
+    height: 80px;
+    line-height: 80px;
+    color: #464646;
+    margin-right: 20px;
+}
+
+.header .hInnerC .company .title1 {
+    font-size: 25px;
+}
+
+.header .hInnerC .company .title2 {
+    font-size: 12px;
+}
+
+.header .hInnerC .options {
+    float: right;
+    padding-top: 20px;
+}
+
+.header .hInnerC .options > div {
+    text-align: center;
+    color: black;
+    display: block;
+    float: left;
+    width: 60px;
+    height: 30px;
+    line-height: 30px;
+    margin-right: 20px;
+    border: 1px solid white;
+    background-color: white;
+    border-radius: 20px;
+    font-size: 12px;
+    /*box-sizing: border-box;*/
+    padding: 0px 12px;
+    cursor: pointer;
+}
+
+.header .hInnerC .options > div.cur {
+    border: 1px solid #3881e0;
+    background-color: #3881e0;
+    color: white;
+
+}
