@@ -82,17 +82,13 @@
 
         $.ajax({
             type: "get",
-//            url: 'http://n1.jimi.la/apps_V3/formual_safe.php' + window.location.search,
-            url: 'package.json',
+            url: 'http://n1.jimi.la/apps_V3/formual_safe.php' + window.location.search,
+//            url: 'package.json',
             dataType: "jsonp",
             jsonp: "callback",
             jsonpCallback: "jsonpcallback",
             success: function (data) {
                 mychart.hideLoading();
-                console.log(JSON.stringify(data))
-
-
-                //ResetRelationJson().............................................
                 if (data.component) { //说明有成分
                     var relationJson = {
                         title: {
@@ -148,7 +144,6 @@
                                 },
                                 color: ['#fba41a', '#d2d2d2', '#3982e1', '#23ad39']
 
-
                             }
 
                         ]
@@ -159,9 +154,12 @@
                         comp.push(data.component[i].name);
                     }
                     ;
-                    var cond = data.type[0].arr;
-                    var emol = data.type[1].arr;
-                    var sunS = data.type[2].arr;
+
+                    var sunS = data.type[2].arr;//防晒arr权限最高
+                    var emol = data.type[1].arr.difference(sunS);//保湿arr次之
+                    var cond = data.type[0].arr.difference(sunS).difference(emol);
+                    
+                    //防晒型arr独立存在
                     var sens = data.safe[0].arr;
 
                     ResetRelationJsonAndInit();
@@ -265,6 +263,10 @@
                     })
 
                 }
+                console.log(JSON.stringify(data))
+
+
+                //ResetRelationJson().............................................
             },
             error: function (err) {
                 console.log('ERROR!');

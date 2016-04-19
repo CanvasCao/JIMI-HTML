@@ -1,7 +1,7 @@
 ;
 (function (w, d, $, undefined) {
-//version 1.0.1
-//2016-4-14 16:24:52
+//version 1.0.2 中间改成a标签 最大显示长度为18+...
+//2016-4-19 11:32:15
     function MiddleComponent(container, data) {
         this.C = this.container = container;
         this.data = data;
@@ -37,7 +37,7 @@
             var str = '';
             if (componentsWithIdArr) {
                 for (i = 0; i < componentsWithIdArr.length; i++) {
-                    var pname = (componentsWithIdArr[i].name.length > 12) ? componentsWithIdArr[i].name.substr(0, 12) + '...' : componentsWithIdArr[i].name
+                    var pname = (componentsWithIdArr[i].name.length > 18) ? componentsWithIdArr[i].name.substr(0, 18) + '...' : componentsWithIdArr[i].name
                     //console.log(pname)
                     var event = "href='" + componentsWithIdArr[i].obj_id + "'";
                     //var event = "href='" + "jimi://eyJmaWQiOiI1NjcyNWUwMGVmYjgwYzM0NDUxNzRmNTUifQ==" + "'";
