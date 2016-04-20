@@ -13,7 +13,7 @@
                 emollient: '#3982e1',//柔润
                 sunScreener: '#23ad39', //防晒
                 sensitization: '#e5004f', //致敏
-                safe:'#949494'
+                safe: '#949494'
             }
         };
         this.init();
@@ -38,11 +38,19 @@
             var str = '';
             if (componentsWithIdArr) {
                 for (i = 0; i < componentsWithIdArr.length; i++) {
-                    var pname = (componentsWithIdArr[i].name.length > 18) ? componentsWithIdArr[i].name.substr(0, 18) + '...' : componentsWithIdArr[i].name
-                    //console.log(pname)
-                    var event = "href='" + componentsWithIdArr[i].obj_id + "'";
+                    var oriName = componentsWithIdArr[i].name;
+                    var oriId = componentsWithIdArr[i].obj_id;
+
+                    //pname是字符串截过的
+                    var pname = (oriName.length > 22) ? oriName.substr(0, 22) + '...' : oriName;
+
+                    //加跳转事件
+                    var event = " href='" + oriId + "' ";
                     //var event = "href='" + "jimi://eyJmaWQiOiI1NjcyNWUwMGVmYjgwYzM0NDUxNzRmNTUifQ==" + "'";
-                    str += '<a ' + event + ' >' + pname + '</a>'
+
+                    //存贮原名
+                    var oriData = " data-ori='" + oriName + "' ";
+                    str += '<a ' + event + oriData + ' >' + pname + '</a>';
                 }
             }
 
@@ -67,12 +75,12 @@
                 'font-size': '12px'
             })
             $(this.C).find('a').css({
-                border: '1px solid '+that.config.colorList.safe,
+                border: '1px solid ' + that.config.colorList.safe,
                 display: 'inline-block',
                 padding: '5px 16px',
                 'margin': '5px 5px',
                 'border-radius': 20,
-                color:that.config.colorList.safe,
+                color: that.config.colorList.safe,
 
             })
 
@@ -80,7 +88,8 @@
             //给文字加颜色了
             if (that.data.type) {
                 $(this.C).find('.typeCom a').map(function () {
-                    var innerHtml = $(this).html(); //span是单个成分
+                    var innerHtml = $(this).attr('data-ori'); //span是单个成分
+
                     for (i = 0; i < that.data.type.length; i++) {//遍历过来的 type数组
                         var name = that.data.type[i].name;
                         var arr = that.data.type[i].arr;
@@ -97,7 +106,8 @@
 
             if (that.data.safe) {
                 $(this.C).find('.safeCom a').map(function () {
-                    var innerHtml = $(this).html(); //span是单个成分
+                    var innerHtml = $(this).attr('data-ori'); //span是单个成分
+
                     for (i = 0; i < that.data.safe.length; i++) {//遍历过来的 type数组
                         var name = that.data.safe[i].name;
                         var arr = that.data.safe[i].arr;

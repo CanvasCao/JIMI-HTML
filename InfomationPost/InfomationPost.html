@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no"/>
+    <title>Document</title>
+    <style type="text/css">
+        * {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+
+        body {
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        img {
+            display: block;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+<div id='con'></div>
+
+<script src='js/jquery-1.8.2.min.js'></script>
+<script>
+    $(function () {
+        if (!window.location.search) {
+            window.location = window.location + '?rid=109';
+        }
+
+        //alert(2)
+        var w = $(window).width()
+        $.ajax({
+            type: "get",
+            url: 'http://n1.jimi.la/apps_V3/informationPost.php' + window.location.search,
+//                url: 'package.json',
+//                data: {pids: '56c6ae75efb80c9b2541cd66,56c6ae4fefb80c9b2541cc39', 'cate': 70},
+            dataType: "jsonp",
+            jsonp: "callback",//传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)
+            jsonpCallback: "jsonpcallback",
+            success: function (data) {
+                console.log(JSON.stringify(data));
+//                    $('body').html(data.content.replace(/"/g,'&quot').replace(/'/g,'&quot').replace(/</g,'&lt').replace(/>/g,'&gt'))
+                $('#con').html(data.content);
+                $('img').css({width: (w - 20)})//padding*2
+                $('iframe').css({width: (w - 20)})//padding*2
+                //alert($('img').width());
+                //alert(w);
+            },
+            error: function (err) {
+                console.log('ERROR!');
+                console.log(err);
+            }
+        });
+
+    })
+</script>
+</body>
+</html>

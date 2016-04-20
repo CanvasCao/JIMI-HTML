@@ -43,8 +43,11 @@
 
         //得到请求地址的URL
         if (!window.location.search) {
-            window.location = window.location + '?pid=56c6aea3efb80c9b2541ced4';
+            window.location = window.location + '?pid=5682a03defb80c4e26c48c39';
         }
+
+
+        // 调理剂有问题 5682a03defb80c4e26c48c39
         // 56c6aea3efb80c9b2541ced4 有数据的
         // 56829a0fefb80c4e26c2f894 没数据的
 
@@ -134,7 +137,7 @@
                                 },
                                 force: {
                                     edgeLength: 20,
-                                    gravity: 0.1,
+                                    gravity: 0.1,//重力算法 30--0.1 100-0.8
                                     repulsion: 180
                                 },
                                 lineStyle: {
@@ -168,8 +171,8 @@
                         var arrArr = [cond, comp.difference(cond).difference(emol).difference(sunS), emol, sunS];
                         var arrArrName = ['功效型', '剂型需求', '保湿型', '防晒型'];
                         for (i = 0; i < arrArr.length; i++) {
-                            var maxSize = 16;
-                            var minSize = 10;
+                            var maxSize = 14;
+                            var minSize = 8;
                             var step = 2;
                             //点
                             for (a = 0; a < arrArr[i].length; a++) {
@@ -202,6 +205,13 @@
                                 })
                             }
                         }
+
+
+                        //更新重力 算法 30种-0.1 100种-0.8
+                        if (comp.length > 30) {
+                            relationJson.series[0].force.gravity = 0.1+(comp.length-30)*0.01;
+                        }
+
                         mychart.setOption(relationJson);
                     }
 
