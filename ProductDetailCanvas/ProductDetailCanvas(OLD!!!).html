@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no"/>
+    <title>Document</title>
+    <style type="text/css">
+
+
+    </style>
+    <link rel="stylesheet" href="css/ProductDetailCanvas.css"/>
+</head>
+<body>
+
+<!--420 280-->
+<div id='con'>
+    <div class='canvasBox'></div>
+    <div class='nonCanvas'>
+        <div style='height: 20px ;border-top: 1px solid #bdbdbd;'></div>
+        <div class='barCon'>
+            <div class="barSafe"></div>
+            <div class="barSense"></div>
+        </div>
+        <div class='number'></div>
+        <div class='ulCon'>
+            <ul>
+                <li>
+                    <span class='point' style='background-color:#e5004f'></span>
+                    <span style='color:#e5004f'>致敏/致痘</span>
+                </li>
+                <li>
+                    <span class='point' style='background-color:#d2d2d2'></span>
+                    <span style='color:#d2d2d2'>正常成分</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<script src='js/jquery-1.8.2.min.js'></script>
+<script src='js/echartsBasic&Graph.min.js'></script>
+<script>
+    $(function () {
+
+        //得到请求地址的URL
+        if (!window.location.search) {
+            window.location = window.location + '?pid=56c6aea3efb80c9b2541ced4';
+        }
+
+
+        // 调理剂有问题 5682a03defb80c4e26c48c39
+        // 56c6aea3efb80c9b2541ced4 有数据的
+        // 56829a0fefb80c4e26c2f894 没数据的
+
+
+        //添加数组原型方法
+        Array.prototype.difference = function (other) {
+            var res = [];
+            for (var i = 0; i < this.length; i++) {
+                var flag = true;
+                for (var j = 0; j < other.length; j++) {
+                    if (this[i] == other[j]) {
+                        flag = false;
+                    }
+                }
+                if (flag) {
+                    res.push(this[i]);
+                }
+            }
+            return res;
+        };
+
+
+        //初始化数据 echartJson 和canvas宽高
+        var RATE = 420 / 420;
+        var winW = $(window).width();
+        var canvasHeight = (winW * RATE >= 300) ? 300 : winW * RATE;
+        $canvas = $('.canvasBox');
+        $canvas.css({height: canvasHeight, width: winW, 'overflow': 'hidden'});
+
+        //初始化Echart div转canvas
+        var canvasBox = $canvas[0];//第一个canvas
+        var mychart = echarts.init(canvasBox);
+        mychart.showLoading();
+
+
+        $.ajax({
+            type: "get",
+            url: 'http://n1.jimi.la/apps_V3/formual_safe.php' + window.location.search,
+//            url: 'package.json',
+            dataType: "jsonp",
+            jsonp: "callback",
+            jsonpCallback: "jsonpcallback",
+            success: function (data) {
+                mychart.hideLoading();
+                if (data.component) { //说明有成分
+                    var relationJson = {
+                        title: {
+                            //text: '肌秘科技',
+                            //subtext: 'Echarts',
+                            top: 'bottom',
+                            right: 10
+
+                        },
+                        "tooltip": {
+                            "formatter": "{b}",
+//                            showContent: false
+                            triggerOn: 'click',
+                            position: [10, 10]
+
+                        },
+                        legend: [{//顶部显示
+                            data: ['功效型', '剂型需求', '保湿型', '防晒型'],
+                            orient: 'vertical',
+                            align: 'right',
+                            top: 10,
+                            right: 10
+                        }],
+                        animation: true,
+                        series: [
+                            {
+                                name: '成分详情',
+                                type: 'graph',
+                                layout: 'force',
+                                data: [
+//                        {name: '水', value: 1, category: 0,}
+                                ],
+                                links: [
+//                        {source: '水', target: '二氧化碳'},
+                                ],
+                                categories: [{name: '功效型'}, {name: '剂型需求'}, {name: '保湿型'}, {name: '防晒型'}],
+                                roam: 'false',
+                                label: {
+                                    normal: {
+                                        position: 'right',
+                                        formatter: ''
+                                    },
+                                },
+                                force: {
+                                    edgeLength: 20,
+                                    gravity: 0.1,//重力算法 30--0.1 100-0.8
+                                    repulsion: 180
+                                },
+                                lineStyle: {
+                                    normal: {
+//                                        curveness: 0.3
+                                    }
+                                },
+                                color: ['#fba41a', '#d2d2d2', '#3982e1', '#23ad39']
+
+                            }
+
+                        ]
+                    };
+
+                    var comp = []; //总成分数组
+                    for (i = 0; i < data.component.length; i++) { //data.component是个对象数组
+                        comp.push(data.component[i].name);
+                    }
+                    ;
+
+                    var sunS = data.type[2].arr;//防晒arr权限最高
+                    var emol = data.type[1].arr.difference(sunS);//保湿arr次之
+                    var cond = data.type[0].arr.difference(sunS).difference(emol);
+
+
+                    //防晒型arr独立存在
+                    var sens = data.safe[0].arr;
+
+                    ResetRelationJsonAndInit();
+                    function ResetRelationJsonAndInit() {
+                        var arrArr = [cond, comp.difference(cond).difference(emol).difference(sunS), emol, sunS];
+                        var arrArrName = ['功效型', '剂型需求', '保湿型', '防晒型'];
+                        for (i = 0; i < arrArr.length; i++) {
+                            var maxSize = 14;
+                            var minSize = 8;
+                            var step = 2;
+                            //点
+                            for (a = 0; a < arrArr[i].length; a++) {
+                                relationJson.series[0].data.push({
+                                    name: arrArrName[i] + ' : ' + arrArr[i][a],
+                                    value: (maxSize - a * step) <= minSize ? minSize : (maxSize - a * step),
+                                    category: arrArrName[i],
+//                                    draggable: true,
+                                    symbolSize: (maxSize - a * step) <= minSize ? minSize : (maxSize - a * step),
+                                })
+                            }
+                            ;
+
+                            //线
+                            for (a = 1; a <= arrArr[i].length; a++) {
+                                relationJson.series[0].links.push({
+                                    source: arrArrName[i] + ' : ' + arrArr[i][0],
+                                    target: arrArrName[i] + ' : ' + arrArr[i][a]
+                                })
+                            }
+                            ;
+                        }
+                        ;
+                        //最后把不同剂型连接起来
+                        for (i = 0; i < arrArrName.length; i++) {
+                            for (j = i; j < arrArrName.length; j++) {
+                                relationJson.series[0].links.push({
+                                    source: arrArrName[i] + ' : ' + arrArr[i][0],
+                                    target: arrArrName[j] + ' : ' + arrArr[j][0]
+                                })
+                            }
+                        }
+
+
+                        //更新重力 算法 30种-0.1 100种-0.8
+                        if (comp.length > 30) {
+                            relationJson.series[0].force.gravity = 0.1 + (comp.length - 30) * 0.01;
+                        }
+
+                        mychart.setOption(relationJson);
+                    }
+
+
+                    //更新 共x种成分 和n/m
+                    var compLen = comp.length;
+                    var sensLen = sens.length;
+                    var normalLen = compLen - sensLen;
+                    var sensPct = sensLen / compLen; //0-1之间的数字
+                    if (sensPct == 1) {
+                        $('.barSafe').hide()
+                    }
+                    if (sensPct == 0) {
+                        $('.barSense').hide()
+                    }
+                    var normalPct = (1 - sensPct);
+                    $('.number').html('共' + compLen + '种成份');
+                    $('.barSense').css({width: sensPct * 100 + '%'});
+                    $('.barSafe').css({width: normalPct * 100 + '%'});
+
+
+                    if (normalLen > sensLen) {
+                        //说明安全的多 多的一边显示少的数量
+                        $('.barSafe').html(sensLen + '/' + compLen);
+                    }
+                    else {
+                        $('.barSense').html(normalLen + '/' + compLen);
+                    }
+
+
+                    //canvas下面本来是隐藏的
+                    $('.nonCanvas').show();
+                }
+
+                else {//说明没有成分
+//                    mychart.hideLoading();
+                    $('body').html('<div class="Con"></div>');
+                    $('.Con').css({
+                        padding: 20,
+                        'text-align': 'center'
+                    }).html('<img class="nodataImg" src="img/nodata.png" width="30">' +
+                            '<div class="txt">成分数据补全中...</div>' +
+                            '<a class="btn" href="http://n1.jimi.la/apps_V2/html5/whatever.html">补全成分</a>')
+                    $('.nodataImg').css({display: 'block', margin: '0 auto'});
+                    $('.txt').css({
+//                        'font-size':'16px',
+                        color: '#bcbcbc',
+                        margin: '20px auto',
+                    });
+                    $('.btn').css({
+                        padding: '6px 15px',
+                        margin: '0 auto',
+                        'border-radius': 30,
+                        'backgroundColor': '#018cff',
+                        color: 'white',
+                        'display': 'inline-block'
+                    })
+
+                }
+                console.log(JSON.stringify(data))
+
+
+                //ResetRelationJson().............................................
+            },
+            error: function (err) {
+                console.log('ERROR!');
+                console.log(err);
+            }
+        });
+
+//        alert($('body').height())
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no"/>
+    <title>Document</title>
+    <style type="text/css">
+        * {
+            padding: 0;
+            margin: 0;
+            text-decoration: none;
+            list-style: none;
+            font: 14px '微软雅黑';
+            /*font-weight: bold;*/
+            -webkit-user-select: none; /*禁用手机浏览器的用户选择功能 */
+            -moz-user-select: none;
+            -webkit-touch-callout: none;
+        }
+
+        #con {
+            box-sizing: border-box;
+            padding: 10px;
+
+        }
+
+        .honeyCon{
+            position: relative;
+            height: 260px;
+            overflow: scroll;
+        }
+        /*第一张是 下标是1*/
+        .honeyCon .honeyComb {
+            position: absolute;
+            height: 63px;
+            width: 57px;
+            background: url("img/honeyComb.png") 0 0;
+            text-align: center;
+            word-break: break-all;
+            display: table;
+            color: #3881e0;
+            display: table;
+            left: 0;
+            top: 0;
+        }
+
+        .honeyCon .honeyTxt {
+            font-size: 12px;
+            display: table-cell;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+<div id="con">
+</div>
+<script src='js/jquery-1.8.2.min.js'></script>
+<script src='js/Honeycomb-1.0.0.js'></script>
+<script>
+
+    //得到请求地址的URL
+    if (!window.location.search) {
+        window.location = window.location + '?pid=56829a0fefb80c4e26c2f894';
+    }
+
+    // 调理剂有问题 5682a03defb80c4e26c48c39
+    // 56c6aea3efb80c9b2541ced4 有数据的
+    // 56829a0fefb80c4e26c2f894 没数据的
+
+    $.ajax({
+        type: "get",
+//        url: 'http://n1.jimi.la/apps_V3/formual_safe.php' + window.location.search,
+        url: 'package.json',
+        dataType: "jsonp",
+        jsonp: "callback",
+        jsonpCallback: "jsonpcallback",
+        success: function (data) {
+            console.log(JSON.stringify(data));
+
+
+            if( data.feature.length==0){
+                $('.honeyCon').hide().parent().hide();
+            }
+            for (i = 0; i < data.feature.length; i++) {
+                $('.honeyCon').append("<div class='honeyComb'>" + "<div class='honeyTxt'>" + data.feature[i] + "</div>" + "</div>");
+            }
+            var dX = -20;
+            var dY = 40;
+            var honeyArr = [
+                {left: 80, top: 50},
+                {left: 50, top: 0},
+                {left: 140, top: 50},
+                {left: 110, top: 0},
+                {left: 50, top: 100},
+                {left: 20, top: 50},
+                {left: 200, top: 50},
+                {left: 260, top: 50},
+                {left: 290, top: 100},
+                {left: 170, top: 100},
+                {left: 290, top: 0},
+                {left: 230, top: 0},
+                {left: 320, top: 50},
+                {left: 380, top: 50},
+                {left: 410, top: 0},
+                {left: 350, top: 100},
+                {left: 410, top: 100},
+            ]
+
+            $('.honeyComb').each(function (i, e) {
+                var json = honeyArr[i];
+                if (json) {
+                    $(e).css({left: (json.left + dX), top: (json.top + dY)});
+                }
+                else {
+                    $(e).hide();
+                }
+            })
+        },
+        error: function (err) {
+            console.log('ERROR!');
+            console.log(err);
+        }
+    })
+
+
+
+</script>
+</body>
+</html>

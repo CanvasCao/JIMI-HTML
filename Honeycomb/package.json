@@ -4,7 +4,8 @@ jsonpcallback({
 "imgUrl": null,
 "volume": '50ml',
 "price": "",
-"feature": ['标签1', '标签1', '标签1'],
+//        "feature":[],
+"feature": ['标签1', '标签2', '标签3', '标签4', '标签5', '标签6', '标签7', '标签8'],
 "alias": '别名',
 "brand": '品牌',
 "component": [

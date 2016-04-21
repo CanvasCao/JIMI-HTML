@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no"/>
+    <title>Document</title>
+    <style type="text/css">
+
+        * {
+            padding: 0;
+            margin: 0;
+            text-decoration: none;
+            list-style: none;
+            font: 14px '微软雅黑';
+            /*font-weight: bold;*/
+            -webkit-user-select: none; /*禁用手机浏览器的用户选择功能 */
+            -moz-user-select: none;
+            -webkit-touch-callout: none;
+        }
+
+        body {
+            margin-bottom: 150px;
+        }
+
+        .download {
+            height: 35px;
+            /*border: 1px solid #000;*/
+            margin: 10px 0;
+        }
+
+        .downloadBtn {
+            float: right;
+            height: 35px;
+            /*border: 1px solid #000;*/
+            line-height: 35px;
+            border-radius: 35px;
+            background-color: #3881e0;
+            /*padding: 3px 10px;*/
+            box-sizing: border-box;
+            padding: 0 20px;
+            color: white;
+            margin-right: 10px;
+        }
+
+        .top {
+            text-align: center;
+            box-sizing: border-box;
+            padding: 10px;
+        }
+
+        .top img {
+            display: block;
+            margin: 0 auto 20px;
+        }
+
+        .top div {
+            margin: 0 auto 10px;
+            font-size: 16px;
+        }
+
+        .navBar {
+            /*box-sizing: border-box;*/
+            padding: 10px;
+            height: 20px;
+            /*border: 1px solid #000;*/
+            border-bottom: 3px solid #f4f4f4;
+            border-top: 10px solid #f4f4f4;
+
+        }
+
+        .navBar img {
+            float: left;
+            margin-right: 10px;
+        }
+
+        .navBar div {
+            float: left;
+        }
+
+        #params {
+            box-sizing: border-box;
+            padding: 10px 20px;
+        }
+
+        #params .row {
+            margin-bottom: 7px;
+            display: table;
+            width: 100%;
+
+        }
+
+        #params .rowL {
+            display: table-cell;
+            width: 20%;
+            color: #5a5a5a;
+        }
+
+        #params .rowR {
+            display: table-cell;
+            width: 70%;
+            word-break: break-all;
+            color: #808080;
+
+        }
+
+
+    </style>
+</head>
+<body>
+<div class="download">
+    <div class='downloadBtn'>下载肌秘APP</div>
+</div>
+<div class="top">
+    <img src="" alt=""/>
+
+    <div class="title"></div>
+    <div class="title2"></div>
+</div>
+<div style='background-color: #f4f4f4; height:10px'></div>
+<div class='navBar'>
+    <img src="img/a.png" alt=""/>
+
+    <div> 产品特征</div>
+</div>
+
+<div id='honeyComb'></div>
+
+
+<div class='navBar'>
+    <img src="img/b.png" alt=""/>
+
+    <div> 产品参数</div>
+</div>
+
+<div id='params'>
+    <div class='row'>
+        <div class="rowL">品名</div>
+        <div class="rowR"></div>
+    </div>
+    <div class='row'>
+        <div class="rowL">容量</div>
+        <div class="rowR"></div>
+    </div>
+    <div class='row'>
+        <div class="rowL">别名</div>
+        <div class="rowR"></div>
+    </div>
+    <div class='row'>
+        <div class="rowL">品牌</div>
+        <div class="rowR"></div>
+    </div>
+
+</div>
+<div class='navBar' id='compositionDistribution'>
+    <img src="img/c.png" alt=""/>
+
+    <div> 成分分布</div>
+
+</div>
+<div id="productDetailCanvas"></div>
+
+
+<script src='js/jquery-1.8.2.min.js'></script>
+<script src='js/echartsBasic&Graph.min.js'></script>
+<script src='js/productDetailCanvas-1.0.0.js'></script>
+<script src='js/Honeycomb-1.0.0.js'></script>
+<script>
+    if (!window.location.search) {
+        window.location = window.location + '?pid=56829a0fefb80c4e26c2f894';
+    }
+    // 调理剂有问题 5682a03defb80c4e26c48c39
+    // 56c6aea3efb80c9b2541ced4 有数据的
+    // 56829a0fefb80c4e26c2f894 没数据的
+
+
+    $.ajax({
+        type: "get",
+        url: 'http://n1.jimi.la/apps_V3/formual_safe.php' + window.location.search,
+//            url: 'package.json',
+        dataType: "jsonp",
+        jsonp: "callback",
+        jsonpCallback: "jsonpcallback",
+        success: function (data) {
+            console.log(JSON.stringify(data));
+            //给按钮不同的链接
+            var ua=navigator.userAgent;
+            if(ua.charAt('iphone')!=-1&&ua.charAt('Mac')!=-1){//说明不是IPHONE
+                $('.downloadBtn').click(function(){
+                    window.location.href='http://a.app.qq.com/o/simple.jsp?pkgname=com.jimi.skinsecret#opened';
+                })
+            }
+            else{
+                $('.downloadBtn').click(function(){
+                    window.location.href='https://itunes.apple.com/us/app/id1074206874';
+                })
+            }
+
+
+            //加title的数据
+            $('.top img').attr('src', data.imgUrl || 'img/nodata.png').attr('height', 100);
+            $('.top .title').html(data.chineseName + '<br>' + data.englishName);
+
+            if (data.volume && data.price) {
+                $('.top .title2').html(data.volume + '  |  ￥' + data.price);
+            }
+            else {
+                var str = '';
+                if (data.volume) {
+                    str = data.volume;
+                }
+                if (data.price) {
+                    str = data.price;
+                }
+                $('.top .title2').html(str)
+            }
+
+            //参数数据
+            $rowR = $('.rowR');
+            $rowR.eq(0).html(data.chineseName);
+            $rowR.eq(1).html(data.volume || '暂无数据');
+            $rowR.eq(2).html(data.alias || '无');
+            $rowR.eq(3).html(data.brand);
+
+            //中间蜂巢的数据
+            var pdc = new Honeycomb($('#honeyComb')[0], data);
+
+            //中间canvas的数据
+            var pdc = new ProductDetailCanvas($('#productDetailCanvas')[0], data);
+
+
+            //没成分不允许跳转
+            if (data.component) {
+                $('#compositionDistribution').click(function () {
+                            window.location.href = 'http://n1.jimi.la/apps_V3/CompositionDistribution/CompositionDistribution.html' + window.location.search
+                        }
+                )
+                $('#compositionDistribution').append(' <img src="img/arrow.png" alt="" height=20 style="float: right"/>')
+            }
+        },
+        error: function (err) {
+            console.log('ERROR!');
+            console.log(err);
+        }
+    })
+</script>
+</body>
+</html>
