@@ -33,6 +33,9 @@
             window.location = window.location + '?rid=109';
         }
 
+//        109是虚线图
+        //168
+        //54
         //alert(2)
         var w = $(window).width()
         $.ajax({
@@ -47,8 +50,20 @@
                 console.log(JSON.stringify(data));
 //                    $('body').html(data.content.replace(/"/g,'&quot').replace(/'/g,'&quot').replace(/</g,'&lt').replace(/>/g,'&gt'))
                 $('#con').html(data.content);
-                $('img').css({width: (w - 20)})//padding*2
-                $('iframe').css({width: (w - 20)})//padding*2
+                $('img').each(function (i, e) {
+//                    alert(parseInt($(e).css('width')))
+                    if (parseInt($(e).css('width')) > (w - 20)) {
+                        var imgW = parseInt($(e).css('width'));
+                        var imgH = parseInt($(e).css('height'));
+                        var RATE = imgH / imgW; //宽高比
+                        $(e).attr({width: (w - 20), height: (w - 20) * RATE})
+                        $(e).css({width: (w - 20), height: (w - 20) * RATE})
+                    }
+                    if(parseInt($(e).css('width'))==0){
+                        $(e).attr({width: (w - 20)});
+                    }
+                })
+                $('iframe').css({width: (w - 20), height: (w - 20) * 49 / 51})//padding*2
                 //alert($('img').width());
                 //alert(w);
             },
