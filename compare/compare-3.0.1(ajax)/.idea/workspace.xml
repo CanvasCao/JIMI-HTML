@@ -2,8 +2,8 @@
 <project version="4">
   <component name="BookmarkManager">
     <bookmark url="file://$PROJECT_DIR$/compare.html" line="171" />
-    <bookmark url="file://$PROJECT_DIR$/compare.html" line="212" />
-    <bookmark url="file://$PROJECT_DIR$/compare.html" line="153" />
+    <bookmark url="file://$PROJECT_DIR$/compare.html" line="213" />
+    <bookmark url="file://$PROJECT_DIR$/compare.html" line="154" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cccabdcb-0cb5-45df-b8c5-48d342438325" name="默认的" comment="" />
@@ -29,8 +29,8 @@
       <file leaf-file-name="compare.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/compare.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5811594">
-              <caret line="204" column="24" selection-start-line="204" selection-start-column="24" selection-end-line="204" selection-end-column="24" />
+            <state vertical-scroll-proportion="0.73913044">
+              <caret line="153" column="31" selection-start-line="153" selection-start-column="31" selection-end-line="153" selection-end-column="31" />
               <folding />
             </state>
           </provider>
@@ -40,7 +40,7 @@
         <entry file="file://$PROJECT_DIR$/r.json">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="-11.538462">
-              <caret line="20" column="2" selection-start-line="20" selection-start-column="2" selection-end-line="20" selection-end-column="2" />
+              <caret line="20" column="1" selection-start-line="20" selection-start-column="1" selection-end-line="20" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -49,7 +49,7 @@
       <file leaf-file-name="3-19 确定版.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/3-19 确定版.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-89.42308">
+            <state vertical-scroll-proportion="-15.0">
               <caret line="157" column="9" selection-start-line="155" selection-start-column="3" selection-end-line="157" selection-end-column="9" />
               <folding />
             </state>
@@ -122,6 +122,20 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="compare-3.0.1(ajax)" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="compare-3.0.1(ajax)" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="Scope" />
@@ -135,6 +149,10 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Administrator\Desktop\JIMI HTML\JIMI-HTML\compare\compare-3.0.1(ajax)\img" />
+      <recent name="C:\Users\Administrator\Desktop\JIMI HTML\JIMI-HTML\compare\compare-3.0.1(ajax)" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Administrator\Desktop\JIMI HTML\JIMI-HTML\compare\compare-3.0.1(ajax)" />
     </key>
   </component>
@@ -237,7 +255,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/3-19 确定版.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-89.42308">
+        <state vertical-scroll-proportion="-15.0">
           <caret line="157" column="9" selection-start-line="155" selection-start-column="3" selection-end-line="157" selection-end-column="9" />
           <folding />
         </state>
@@ -246,15 +264,15 @@
     <entry file="file://$PROJECT_DIR$/r.json">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-11.538462">
-          <caret line="20" column="2" selection-start-line="20" selection-start-column="2" selection-end-line="20" selection-end-column="2" />
+          <caret line="20" column="1" selection-start-line="20" selection-start-column="1" selection-end-line="20" selection-end-column="1" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/compare.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5811594">
-          <caret line="204" column="24" selection-start-line="204" selection-start-column="24" selection-end-line="204" selection-end-column="24" />
+        <state vertical-scroll-proportion="0.73913044">
+          <caret line="153" column="31" selection-start-line="153" selection-start-column="31" selection-end-line="153" selection-end-column="31" />
           <folding />
         </state>
       </provider>
