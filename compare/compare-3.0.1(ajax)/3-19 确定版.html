@@ -1,5 +1,8 @@
+<!--解释
+realdiv只是100% 100%一个容器 里面的#real是通过scrollLeft和ScrollTop移动的table -->
+<!--fakeLdiv 只是一个 psa 高度必须是屏幕高的容器 里面的#fakeL也是通过scrollLeft和ScrollTop移动的table-->
+
 <!DOCTYPE html>
-<!-- saved from url=(0036)http://www.caoyuhao.top/tablemy.html -->
 <html>
 <head lang="en">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -72,22 +75,14 @@
 
         }
 
-        #fixB {
+        #fixLT {
             position: absolute;
             top: 0;
             left: 0;
             display: none;
             z-index: 1000;
-
         }
 
-        #fixS {
-            position: fixed;
-            top: 0;
-            left: 0;
-            display: none;
-
-        }
 
 
     </style>
@@ -157,13 +152,7 @@
     </table>
 </div>
 
-<table id='fixB' border="1" cellspacing="0" cellpadding="0">
-    <tr>
-        <td>111</td>
-    </tr>
-</table>
-
-<table id='fixS' border="1" cellspacing="0" cellpadding="0">
+<table id='fixLT' border="1" cellspacing="0" cellpadding="0">
     <tr>
         <td>111</td>
     </tr>
@@ -177,6 +166,8 @@
 //                console.log($(this).scrollLeft())
 //            }) //测试用
 
+
+        alert('这是demo！！！')
         var hh = 150;
         var h = 50;
         var w = 128;
@@ -211,12 +202,12 @@
 
             if (scrollTop >= 200) {
                 $('#fakeTdiv').show();
-                $('#fixB').show();
+                $('#fixLT').show();
 
             }
             else {
                 $('#fakeTdiv').hide();
-                $('#fixB').hide();
+                $('#fixLT').hide();
 
             }
         })
