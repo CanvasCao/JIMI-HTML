@@ -145,14 +145,22 @@
                 for (i = 0; i < mainArr.length; i++) {
                     var row = mainArr[i];
                     $('#real').append('<tr></tr>')
-                    for (j = 0; j < row.length; j++) {
-                        $('#real').find('tr').eq(i).append('<td>' + mainArr[i][j] + '</td>');
+                    //第一行还要绑定图片的哟~~
+                    if (i == 0) { //第一行还要绑定图片的哟~~
+                        for (j = 0; j < row.length; j++) {
+                            $('#real').find('tr').eq(i).append('<td>' + 'hahhhhhhhhhhhahaha' + '<br>' + mainArr[i][j] + '</td>');
+                        }
+
+                    } else {    //第二行开始正常绑定
+                        for (j = 0; j < row.length; j++) {
+                            $('#real').find('tr').eq(i).append('<td>' + mainArr[i][j] + '</td>');
+                        }
                     }
                 }
                 $('#realdiv').css({height: srcH, width: srcW});//√
                 $('#real').css({width: totalColLen});//real必须设宽 不然table不管多宽自动宽度100%
                 //real的第一行应该特别高
-                $('#real tr').eq(0).find('td').css('height', 200);
+//                $('#real tr').eq(0).find('td').css('height', 59);
 
 
                 //fakeL 绑定第一列数据

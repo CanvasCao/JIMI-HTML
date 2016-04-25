@@ -22,7 +22,7 @@
             showLimit: 5,
             totalNum: 0,
             colorArr: ['#ff794c', '#f2ae24', '#8cb33e', '#62b3ac', '#6286b3'],
-            duration: 500, //单位是秒
+            duration: 600, //单位是秒
             circleMargin: 20,
             timer: null,
             ifTimer:false
@@ -57,13 +57,13 @@
                 {
                     translateY: 0.0001,
                     scale: 0.6,
-                    opacity: 0.4
+                    opacity: 0.2
                 },
                 {
                     translateY: 100,
 
                     scale: 0.8,
-                    opacity: 0.7
+                    opacity: 0.6
                 },
                 {
                     translateY: 200,
@@ -75,13 +75,13 @@
                     translateY: 300,
 
                     scale: 0.8,
-                    opacity: 0.7
+                    opacity: 0.6
                 },
                 {
                     translateY: 400,
 
                     scale: 0.6,
-                    opacity: 0.4
+                    opacity: 0.2
                 }
             ];
             //this.config.jsonArr = [];
@@ -227,7 +227,7 @@
                     }, that.config.duration)
 
                     that.jQueryMap.$vsm.find('li').each(function (i, e) {
-                        $(e).velocity(that.config.jsonArr[i], that.config.duration, 'swing');
+                        $(e).velocity(that.config.jsonArr[i], that.config.duration, 'easieEaseInOutQuart');
                     });
                 }
             });
@@ -247,7 +247,7 @@
             function MoveOnce() {
                 that.config.jsonArr.unshift(that.config.jsonArr.pop());//上移
                 that.jQueryMap.$vsm.find('li').each(function (i, e) {
-                    $(e).velocity(that.config.jsonArr[i], that.config.duration, 'swing');
+                    $(e).velocity(that.config.jsonArr[i], that.config.duration, 'easieEaseInOutQuart');
                 });
                 //console.log('Move');
             }
