@@ -23,12 +23,6 @@ body {
     transform: translateX(-50%);
 }
 
-#container {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    /*overflow: hidden;*/
-}
 
 /*右面的圆*/
 #circles {
