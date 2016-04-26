@@ -36,7 +36,6 @@
         var e = e || event;
         e.preventDefault();	//阻止页面的默认滚动。
 
-
         //e.target是事件环的第一环
         if ($.contains($scroll[0], e.target)) {
             return;
@@ -44,8 +43,7 @@
 
         if (!isConVelocited) {
             //console.log('可动')
-            //isConVelocited=true;
-
+            
             var oldIndex = pageIndex;
             if (delta == -1) {
                 pageIndex++;
@@ -60,15 +58,12 @@
         }
         else {
             //console.log('不可动')
-
         }
     })
 
     $(window).keydown(function (e) {
             var e = e || event;
             if (!isConVelocited) {
-                //isConVelocited=true;
-
                 var oldIndex = pageIndex;
 
                 if (e.keyCode == 38 || e.keyCode == 40) {
