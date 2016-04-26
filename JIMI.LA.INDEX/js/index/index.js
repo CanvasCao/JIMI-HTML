@@ -43,7 +43,7 @@
 
         if (!isConVelocited) {
             //console.log('可动')
-            
+
             var oldIndex = pageIndex;
             if (delta == -1) {
                 pageIndex++;
@@ -257,7 +257,7 @@
         function () {
 
             //scanBar的退场动画
-            $page1.find('.hoverArea').stop().animate({opacity: 0}, 'fast');
+            $page1.find('.hoverArea').css({opacity: 0});
             clearInterval(window.scanBarTimer);
             window.ifScanBarTimer = false;
         },
