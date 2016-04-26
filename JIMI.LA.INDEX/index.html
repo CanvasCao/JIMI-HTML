@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+
     <title>肌秘官方网站</title>
     <style></style>
     <link rel="stylesheet" href="css/main.css"/>
@@ -100,6 +101,8 @@
                 <div class="carousel" style='background-color: #4fe056;'>
                     <!--<img src="img/P3/P3_jindutiao1.png" alt=""/>-->
                 </div>
+
+                <div class='carBtn'></div>
             </div>
 
         </div>
@@ -150,11 +153,14 @@
 <script src='js/tool/jquery.easie.js'></script>
 <script src='js/tool/velocity.min.js'></script>
 <script src='js/tool/velocity.ui.js'></script>
+<script src='js/tool/echartsBasic&Graph.min.js'></script>
+
 <script src='js/module/header.js'></script>
 <script>
     (function(){
         var header=new Header($('.header')[0],null);
         header.initCur(0)
+        window.header=header;
     })()
 </script>
 <script src='js/module/verticalScrollMagnifier-2.0.3.js'></script>

@@ -226,6 +226,11 @@
                 var emol = data.type[1].arr.difference(sunS);//保湿arr次之
                 var cond = data.type[0].arr.difference(sunS).difference(emol);
 
+                console.log(comp)
+                console.log(sunS)
+                console.log(emol)
+                console.log(cond)
+
 
                 //防晒型arr独立存在
                 var sens = data.safe[0].arr;

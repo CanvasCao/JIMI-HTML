@@ -209,7 +209,9 @@
             });
             $(that.C).show();
 
-            var animateFlag = false;
+
+
+            var animateFlag = false; //mouseWheel的flag
             that.jQueryMap.$vsm.mousewheel(function (e, d) {
                 //e.preventDefault();
 
@@ -235,14 +237,10 @@
 
             //Fns...............................................................
             that.START = function () {
-                if (!that.config.ifTimer) {
-                    that.config.timer = setInterval(MoveOnce, 3000);
-                    that.config.ifTimer=true;
-                }
+                    that.config.timer = setInterval(MoveOnce, 4000);
             }
             that.STOP = function () {
                 clearInterval(that.config.timer);
-                that.config.ifTimer=false;
             }
             function MoveOnce() {
                 that.config.jsonArr.unshift(that.config.jsonArr.pop());//上移
@@ -254,7 +252,7 @@
 
 
             //init.............................................................
-            that.START();
+            //that.START();
 
             $(that.C).hover(function () {
                 that.STOP();

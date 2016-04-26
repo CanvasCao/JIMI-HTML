@@ -13,6 +13,11 @@
             word-break: break-all;
             text-align: center;
             box-sizing: border-box;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+            -webkit-text-size-adjust: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
 
         }
 
@@ -31,6 +36,7 @@
             box-sizing: border-box;
             height: 50px;
             border: 1px solid #d2d2d2;
+            /*cursor: none;*/
 
         }
 
@@ -61,6 +67,8 @@
 
         #fakeL td {
             /*border: 1px solid blue;*/
+            box-shadow: inset -10px 0px 10px rgba(0, 0, 0, 0.1);
+
         }
 
         #fakeTdiv {
@@ -89,6 +97,10 @@
             opacity: 0;
             /*display: none;*/
             z-index: 1000;
+        }
+
+        #fixLT td {
+            box-shadow: inset -10px 0px 10px rgba(0, 0, 0, 0.1);
         }
 
     </style>
@@ -166,7 +178,7 @@
                 //fakeL 绑定第一列数据
                 for (i = 0; i < mainArr.length; i++) {
                     $('#fakeL').append('<tr></tr>');
-                    $('#fakeL').find('tr').eq(i).append('<td>' + mainArr[i][0] + '</td>');
+                    $('#fakeL').find('tr').eq(i).append('<td data="unclicked">' + mainArr[i][0] + '</td>');
                 }
                 $('#fakeLdiv').css({height: srcH, width: leftW});//fakeLdiv是个容器 宽度20% 高度必须是屏幕高
                 //这里fakeL 不用设置高 不知道为什么
@@ -228,6 +240,56 @@
                         $('#fixLT').css({opacity: 0});
                     }
                 })
+
+
+                //点击变换shadow
+//                box-shadow: inset -10px 0px 10px rgba(0,0,0,0.1);
+
+//                box-shadow: inset 0px 0px 8px rgba(50,50,255,0.3);
+//                background-color: #cdf8ff;
+                $fakeLdivTd=$('#fakeLdiv td');
+                $realdiv=$('#realdiv');
+
+                $fakeLdivTd.click(function () {
+                    var index=$(this).parent().index()
+                    if(index==0){
+                        return;
+                    }
+                    ChangeShadow(index);
+                })
+
+                $realdiv.find('td').click(function () {
+                    var index=$(this).parent().index()
+                    if(index==0){
+                        return;
+                    }
+                    ChangeShadow(index);
+                })
+
+
+                function ChangeShadow(index){
+                    if($fakeLdivTd.eq(index).attr('data')=='unclicked'){
+                        $fakeLdivTd.eq(index).css({
+                            'box-shadow': 'inset 0px 0px 8px rgba(50,50,255,0.3)',
+                            'background-color': '#cdf8ff'
+                        });
+                        $realdiv.find('tr').eq(index).find('td').css({
+                            'background-color': '#cdf8ff'
+                        });
+
+                        $fakeLdivTd.eq(index).attr('data','clicked');
+                    }
+                    else{
+                        $fakeLdivTd.eq(index).css({
+                            'box-shadow': 'inset -10px 0px 10px rgba(0, 0, 0, 0.1)',
+                            'backgroundColor': 'white'
+                        });
+                        $fakeLdivTd.eq(index).attr('data','unclicked');
+                        $realdiv.find('tr').eq(index).find('td').css({
+                            'background-color': 'white'
+                        })
+                    }
+                }
             },
             error: function (err) {
                 console.log('ERROR!')

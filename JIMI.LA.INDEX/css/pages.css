@@ -20,6 +20,7 @@
     left:0;
     overflow: hidden;
     position: absolute;
+    perspective: 1000px;
 }
 
 /*我让page里所有的第一层div都居中*/
@@ -51,11 +52,13 @@
     cursor: pointer;
     padding: 15px;
     box-sizing: border-box;
-    transition: box-shadow 0.4s ease;
+    transition: box-shadow 0.2s ease;
 }
 
 .page0 .btn:hover {
-    box-shadow: 0px 0px 10px rgb(63, 103, 200);
+    box-shadow:inset 0px 0px 20px rgba(0,0,0,0.18);
+    border: 1px solid #4093ff;
+
 }
 
 .page0 .btnIOS {
@@ -87,7 +90,7 @@
 
 .page0 .eye {
     /*border: 1px solid #000;*/
-    transform: translateX(-463px) translateY(-236px);
+    transform: translateX(-459px) translateY(-236px);
 }
 
 .page0 .vs {
@@ -190,7 +193,9 @@
 }
 
 .page1 .cirsCon .circle:hover {
-    box-shadow: 0px 0px 10px rgb(63, 103, 200);
+    /*box-shadow: 0px 0px 10px rgb(63, 103, 200);*/
+    box-shadow:inset 0px 0px 20px rgba(0,0,0,0.18);
+    border: 1px solid #4093ff;
 }
 
 .page1 .cirsCon .circle img {
@@ -251,12 +256,32 @@
     /*border: 1px solid red;*/
     width: 414px;
     height: 180px;
-    top: 41px;
+    top: 62px;
     left: 47px;
     position: absolute;
     /*background: #3881e0;*/
     overflow: hidden;
+    background-color: white;
 
+}
+
+.page2 .screen .carBtn{
+    position: absolute;
+    border-radius: 50%;
+    background-color: black;
+    background: url("../img/logo.jpg") 100% 100% no-repeat;
+    background-size: contain;
+    height: 25px;
+    width: 25px;
+    right: 10px;
+    bottom: 5px;
+    cursor: pointer;
+    border: 4px solid #e7e7e7;
+    transition:box-shadow 0.5s ease ;
+}
+
+.page2 .screen .carBtn:hover{
+    box-shadow: 0px 0px 3px rgba(0,0,0,0.8);
 }
 
 .page2 .carousel {
@@ -267,7 +292,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: #9db3f6 url("../img/logo.jpg") no-repeat;
+    background-color: white;
 }
 
 .page2 .lamp {
@@ -277,6 +302,7 @@
 .page2 .light {
     transform: translateX(-312px) translateY(-137px);
     animation: shining 3s ease-in-out 0s infinite alternate;
+    display: none;
 
 }
 
@@ -291,6 +317,7 @@
 
 .page2 .title {
     font: 45px '微软雅黑';
+    font-weight: bold;
     transform: translateX(-50%) translateY(-220px);
     color: #3881e0;
 }
