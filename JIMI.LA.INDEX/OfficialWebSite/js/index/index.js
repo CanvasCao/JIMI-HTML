@@ -160,7 +160,6 @@
                 $scanBar = $page1.find('.scanBar')
                 window.scanBarTimer = null;
                 window.ifScanBarTimer = false;
-                var isTop = true;
                 var duration = 1500;
 
                 if (!window.ifScanBarTimer) {
@@ -176,14 +175,18 @@
 
                 function MoveOnce() {
                     //console.log(1);
-                    if (!isTop) {
+                    //总长是220所以110是分界线
+                    var topValue = parseInt($scanBar.css('top'));
+                    //console.log(topValue);
+                    if (topValue >= 110) {
                         $scanBar.animate({top: GetRandom(20, 40) + '%'}, duration, 'easieEase', function () {
-                            isTop = !isTop;
+                            //isTop = !isTop;
                         });
                     }
                     else {
+
                         $scanBar.animate({top: GetRandom(70, 90) + '%'}, duration, 'easieEase', function () {
-                            isTop = !isTop;
+                            //isTop = !isTop;
                         });
                     }
                 }
@@ -219,22 +222,31 @@
             var total = 1200;
             $page2.find('.pc').velocity(
                 {
-                    'translateZ': '-5000px',
-                    'translateX': '-50%',
-                    'translateY': '-92px',
+                    'translateX': '-350',
+                    'translateY': '-82',
+                    'translateZ': '-10000px',
                     'top': '50%',
-                    'opacity':0
+                    'opacity': 0
                 }, 0).delay(600).velocity({
+                    'translateX': '-350',
+                    'translateY': '-82',
                     'translateZ': 1,
-                    'translateX': '-50%',
-                    'translateY': '-92px',
                     'top': '50%',
-                    'opacity':1
-                }, (total-600), 'ease');
+                    'opacity': 1
+                }, (total - 600), 'ease');
             $page2.find('.roof').velocity({'top': '-200%'}, 0).delay(700).velocity({'top': '50%'}, (total), 'ease');
-            $page2.find('.lamp', '.light').velocity({'left': '-100%'}, 0).delay(0).velocity({'left': '50%'}, (total + 600), 'ease');
+            $page2.find('.lamp').velocity({'left': '-100%'}, 0).delay(0).velocity({'left': '50%'}, (total + 600), 'ease');
             $page2.find('.title').velocity({'top': '-200%'}, 0).delay(0).velocity({'top': '50%'}, (total + 400), 'ease');
 
+
+            var circleTotal=700;
+            var circleDalay=1800;
+            $page2.find('.dashLine').velocity({'opacity':0,'left': '20%'}, 0).delay(circleDalay).velocity({'opacity':1,'left': '50%'}, (circleTotal + 0), 'ease');
+            $page2.find('.pie').velocity({'opacity':0,'left': '20%'}, 0).delay(circleDalay+100).velocity({'opacity':1,'left': '50%'}, (circleTotal + 0), 'ease');
+            $page2.find('.line3').velocity({'opacity':0,'left': '20%'}, 0).delay(circleDalay+200).velocity({'opacity':1,'left': '50%'}, (circleTotal + 0), 'ease');
+            $page2.find('.apple').velocity({'opacity':0,'left': '20%'}, 0).delay(circleDalay+300).velocity({'opacity':1,'left': '50%'}, (circleTotal + 0), 'ease');
+            $page2.find('.az').velocity({'opacity':0,'left': '20%'}, 0).delay(circleDalay+400).velocity({'opacity':1,'left': '50%'}, (circleTotal + 0), 'ease');
+            $page2.find('.sdk').velocity({'opacity':0,'left': '20%'}, 0).delay(circleDalay+500).velocity({'opacity':1,'left': '50%'}, (circleTotal + 0), 'ease');
             window.canvasStart();
 
         },

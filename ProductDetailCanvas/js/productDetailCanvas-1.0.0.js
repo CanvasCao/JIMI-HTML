@@ -56,7 +56,7 @@
                 "<ul>" +
                 "<li>" +
                 "<span class='point' style='background-color:#e5004f'></span>" +
-                "<span style='color:#e5004f'>致敏/致痘</span>" +
+                "<span style='color:#e5004f'>慎用成分</span>" +
                 "</li>" +
                 "<li>" +
                 "<span class='point' style='background-color:#d2d2d2'></span>" +

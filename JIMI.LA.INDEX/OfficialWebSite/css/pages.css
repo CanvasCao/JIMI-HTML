@@ -40,6 +40,7 @@
 .page0 .title {
     font: 45px '微软雅黑';
     transform: translateY(-150px);
+    -webkit-transform: translateY(-150px);
     color: #3881e0;
 }
 
@@ -53,6 +54,7 @@
     padding: 15px;
     box-sizing: border-box;
     transition: box-shadow 0.2s ease;
+    -webkit-transition: box-shadow 0.2s ease;
 }
 
 .page0 .btn:hover {
@@ -63,10 +65,12 @@
 
 .page0 .btnIOS {
     transform: translateX(75px) translateY(0px);
+    -webkit-transform: translateX(75px) translateY(0px);
 }
 
 .page0 .btnAZ {
     transform: translateX(75px) translateY(100px);
+    -webkit-transform: translateX(75px) translateY(100px);
 }
 
 .page0 .btn img {
@@ -91,6 +95,7 @@
 .page0 .eye {
     /*border: 1px solid #000;*/
     transform: translateX(-459px) translateY(-236px);
+    -webkit-transform: translateX(-459px) translateY(-236px);
 }
 
 .page0 .vs {
@@ -98,6 +103,7 @@
     left: 50%;
     top: 50%;
     transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(-50%) translateY(-50%);
 }
 
 .page0 .pink {
@@ -105,6 +111,7 @@
     left: 28%;
     top: 15%;
     transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
 }
 
 .page0 .orange {
@@ -112,11 +119,13 @@
     left: 72%;
     top: 15%;
     transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
 }
 
 /*滚轮插件*/
 .page0 .scroll {
     transform: translateX(-500px) translateY(-110px);
+    -webkit-transform: translateX(-500px) translateY(-110px);
 }
 
 /**********************************************************************************************/
@@ -128,6 +137,7 @@
 
 .page1 .bottle {
     transform: translateX(-460px) translateY(-200px);
+    -webkit-transform: translateX(-460px) translateY(-200px);
 }
 
 .page1 .bottle .hoverArea {
@@ -136,6 +146,7 @@
     position: absolute;
     /*border: 1px solid #000;*/
     transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
     left: 50%;
     bottom: -10px;
     opacity: 0;
@@ -145,6 +156,7 @@
 /*四个顶角*/
 .page1 .bottle .hoverArea .angels {
     transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
     left: 50%;
     bottom: -10px;
     position: absolute;
@@ -154,6 +166,7 @@
 .page1 .bottle .hoverArea .scanBar {
     position: absolute;
     transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
     left: 50%;
     width: 120%;
     height: 5px;
@@ -174,6 +187,7 @@
 .page1 .cirsCon {
     /*border: 1px solid #000;*/
     transform: translateX(-160px) translateY(-180px);
+    -webkit-transform: translateX(-160px) translateY(-180px);
     width: 800px;
 }
 
@@ -185,6 +199,7 @@
     border-radius: 50%;
     margin-right: 40px;
     transition: all 0.4s ease;
+    -webkit-transition: all 0.4s ease;
     background-color: white;
     text-align: center;
     box-sizing: border-box;
@@ -223,6 +238,7 @@
     font: 45px '微软雅黑';
     font-weight: bold;
     transform: translateX(-40px) translateY(80px);
+    -webkit-transform: translateX(-40px) translateY(80px);
     color: #3881e0;
 }
 
@@ -238,17 +254,20 @@
     width: 100%;
     height: 20px;
     background-color: #858585;
-    transform: translateY(220px);
+    transform: translateY(230px);
+    -webkit-transform: translateY(230px);
     box-shadow: 2px 5px 20px rgba(0, 0, 0, 0.6);
 }
 
 .page2 .roof {
-    transform: translateX(-269px) translateY(-92px);
+    transform: translateX(-365px) translateY(-82px);
+    -webkit-transform: translateX(-365px) translateY(-82px);
     position: absolute;
 }
 
 .page2 .pc {
-    transform: translateX(-50%) translateY(-92px);
+    transform: translateX(-350px) translateY(-82px);
+    -webkit-transform: translateX(-350px) translateY(-82px);
     position: absolute;
 }
 
@@ -274,14 +293,22 @@
     height: 25px;
     width: 25px;
     right: 10px;
-    bottom: 5px;
+    bottom: 10px;
     cursor: pointer;
-    border: 4px solid #e7e7e7;
-    transition:box-shadow 0.5s ease ;
+    border: 1px solid #e7e7e7;
+    /*transition:box-shadow 2s ease ;*/
+    animation: shining 2s ease-in-out 0s infinite alternate;
+    -webkit-animation: shining 2s ease-in-out 0s infinite alternate;
 }
 
-.page2 .screen .carBtn:hover{
-    box-shadow: 0px 0px 3px rgba(0,0,0,0.8);
+
+@keyframes shining {
+    from {
+        box-shadow:  0px 0px 15px rgba(64,147,255,1);
+    }
+    to {
+        box-shadow:  0px 0px 0px rgba(64,147,255,1);
+    }
 }
 
 .page2 .carousel {
@@ -295,30 +322,56 @@
     background-color: white;
 }
 
+
 .page2 .lamp {
-    transform: translateX(-514px) translateY(-186px);
+    transform: translateX(-512px) translateY(-176px);
+    -webkit-transform: translateX(-512px) translateY(-176px);
 }
 
-.page2 .light {
-    transform: translateX(-312px) translateY(-137px);
-    animation: shining 3s ease-in-out 0s infinite alternate;
-    display: none;
 
+.page2 .dashLine {
+    transform:translateX(-46px) translateY(-132px);
+    -webkit-transform:translateX(-46px) translateY(-132px);
 }
 
-@keyframes shining {
-    from {
-        opacity: 0.2;
-    }
-    to {
-        opacity: 1;
-    }
+
+.page2 .pie {
+    transform:translateX(184px) translateY(-172px);
+    -webkit-transform:translateX(184px) translateY(-172px);
 }
+
+
+.page2 .line3 {
+    transform:translateX(334px) translateY(-2px);
+    -webkit-transform:translateX(334px) translateY(-2px);
+}
+
+
+.page2 .apple {
+    transform:translateX(184px) translateY(98px);
+    -webkit-transform:translateX(184px) translateY(98px);
+}
+
+.page2 .az {
+    transform:translateX(294px) translateY(98px);
+    -webkit-transform:translateX(294px) translateY(98px);
+}
+
+
+
+.page2 .sdk {
+    transform:translateX(164px) translateY(8px);
+    -webkit-transform:translateX(164px) translateY(8px);
+}
+
+
+
 
 .page2 .title {
     font: 45px '微软雅黑';
     font-weight: bold;
-    transform: translateX(-50%) translateY(-220px);
+    transform: translateX(-50%) translateY(-230px);
+    -webkit-transform: translateX(-50%) translateY(-230px);
     color: #3881e0;
 }
 
@@ -330,10 +383,12 @@
 
 .page3 .points {
     transform: translateX(-50%) translateY(-360px);
+    -webkit-transform: translateX(-50%) translateY(-360px);
 }
 
 .page3 .title1 {
     transform: translateX(-50%) translateY(-170px);
+    -webkit-transform: translateX(-50%) translateY(-170px);
     font-size: 35px;
     color: #3881e0;
     text-shadow: 5px 5px 20px rgba(0,0,0,0.2);
@@ -342,6 +397,7 @@
 
 .page3 .title2 {
     transform: translateX(-50%) translateY(-70px);
+    -webkit-transform: translateX(-50%) translateY(-70px);
     font-size: 70px;
     font-weight: bold;
     color: #faa4bf;
@@ -351,12 +407,14 @@
 
 .page3 .title3 {
     transform: translateX(-50%) translateY(40px);
+    -webkit-transform: translateX(-50%) translateY(40px);
     color: #3881e0;
     font-size: 50px;
 }
 
 .page3 .btn1 {
     transform: translateX(-50%) translateY(140px);
+    -webkit-transform: translateX(-50%) translateY(140px);
     color: white;
     background-color: #3881e0;
     box-sizing: border-box;
@@ -367,6 +425,7 @@
     cursor: pointer;
 
 }
+
 
 /*page4 第五页*/
 .page4 .txt {

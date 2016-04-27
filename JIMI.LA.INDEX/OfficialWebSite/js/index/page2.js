@@ -8,14 +8,17 @@
     //电脑内部的轮播
     var cIndex = 0;//电脑内部的轮播序号
     var cNext = 0;//下一张轮播序号
-    var clen = 3;//轮播数量
+    var clen = $cars.length;//轮播数量
 
 
     //event................................
     $page2.find('.carBtn').click(function () {
-        MoveOnce()
+        MoveOnce();
     });
 
+    $page2.find('.carBtn').mouseover(function () {
+
+    })
 
     var canvasTimer = null;
     $cars.hover(function () {
@@ -24,10 +27,10 @@
         canvasTimer = setInterval(MoveOnce, 4000);
     })
 
-    w.canvasStart=function(){
+    w.canvasStart = function () {
         canvasTimer = setInterval(MoveOnce, 4000);
     }
-    w.canvasStop=function(){
+    w.canvasStop = function () {
         clearInterval(canvasTimer);
     }
 
@@ -42,6 +45,20 @@
 
     function MoveOnce() {
         if (!$cars.is(':animated')) {
+
+            //弹一下
+            $page2.find('.carBtn').velocity({
+                scaleX: 0.9,
+                scaleY: 1.1
+            }, 100).velocity({
+                scaleX: 1.1,
+                scaleY: 0.9
+            }, 200).velocity({
+                scaleX: 1,
+                scaleY: 1
+            }, 100);
+
+
             //console.log(11);
             $cars.eq(cIndex).animate({left: '-100%'}, 'slow', 'easieEaseInOutQuart');
             cNext = (cIndex + 1) >= clen ? 0 : (cIndex + 1);
@@ -58,100 +75,100 @@
 
     //canvas
     //pie
-    var pieJson = {
-        "tooltip": {
-            "formatter": "{a} <br/>{b}: {c}种 ({d}%)"
-        },
-        "textStyle": {
-            "fontSize": 12,
-//                color:'black'
-//                fontWeight:"bolder"
-        },
-        "legend": {
-            "show": false,
-            "orient": "horizontal",
-            "x": "left",
-            "data": [
-                "功效型",
-                "保湿型",
-                "防晒型",
-                "剂型需求",
-                "致敏/致痘",
-                "正常成分"
-            ]
-        },
-        "series": [
-
-            {
-                "name": "按成分分类",
-                "type": "pie",
-                "minAngle": '1',
-                "radius": [
-                    "50%",
-                    "70%"
-                ],
-                "data": [
-                    {
-                        "value": 3,
-                        "name": "功效型"
-                    },
-
-                    {
-                        "value": 10,
-                        "name": "剂型需求"
-                    },
-                    {
-                        "value": 4,
-                        "name": "保湿型"
-                    },
-                    {
-                        "value": 2,
-                        "name": "防晒型"
-                    }
-                ]
-            },
-
-            {
-                "name": "按安全分类", //鼠标hover时的显示的分类
-                "type": "pie",
-                "minAngle": '1',
-                "radius": [
-                    0,
-                    "30%"
-                ],
-                //"label": {
-                //    "normal": {
-                //        "position": "inner"
-                //    }
-                //},
-
-                "data": [
-                    {
-                        "value": 2,
-                        "name": "致敏/致痘"
-                    },
-                    {
-                        "value": 10,
-                        "name": "正常成分"
-                    }
-                ],
-                "z": 3,
-            },
-        ]
-        ,
-        backgroundColor: '#fff'
-        ,
-        textStyle: {
-            fontWeight: 'bolder',
-        }
-
-        //按series出现的顺序 而不是lengend.data的顺序
-        ,
-        color: ['#61a0a8', '#d48265', '#91c7ae', '#749f83', '#c23531', '#2f4554', '#ca8622', '#bda29a', '#6e7074', '#546570', '#c4ccd3'],
-//            color: ['#eb231d', '#126dac', '#51c2d0', '#e67851', '#90e0bb', '#51d880', '#ea9211', '#ecbcae', '#6e7074', '#7fadcb', '#d7e3ee']
-    };
-    var pieChart = echarts.init($cars[0]);
-    pieChart.setOption(pieJson);
+//    var pieJson = {
+//        "tooltip": {
+//            "formatter": "{a} <br/>{b}: {c}种 ({d}%)"
+//        },
+//        "textStyle": {
+//            "fontSize": 12,
+////                color:'black'
+////                fontWeight:"bolder"
+//        },
+//        "legend": {
+//            "show": false,
+//            "orient": "horizontal",
+//            "x": "left",
+//            "data": [
+//                "功效型",
+//                "保湿型",
+//                "防晒型",
+//                "剂型需求",
+//                "致敏/致痘",
+//                "正常成分"
+//            ]
+//        },
+//        "series": [
+//
+//            {
+//                "name": "按成分分类",
+//                "type": "pie",
+//                "minAngle": '1',
+//                "radius": [
+//                    "50%",
+//                    "70%"
+//                ],
+//                "data": [
+//                    {
+//                        "value": 3,
+//                        "name": "功效型"
+//                    },
+//
+//                    {
+//                        "value": 10,
+//                        "name": "剂型需求"
+//                    },
+//                    {
+//                        "value": 4,
+//                        "name": "保湿型"
+//                    },
+//                    {
+//                        "value": 2,
+//                        "name": "防晒型"
+//                    }
+//                ]
+//            },
+//
+//            {
+//                "name": "按安全分类", //鼠标hover时的显示的分类
+//                "type": "pie",
+//                "minAngle": '1',
+//                "radius": [
+//                    0,
+//                    "30%"
+//                ],
+//                //"label": {
+//                //    "normal": {
+//                //        "position": "inner"
+//                //    }
+//                //},
+//
+//                "data": [
+//                    {
+//                        "value": 2,
+//                        "name": "致敏/致痘"
+//                    },
+//                    {
+//                        "value": 10,
+//                        "name": "正常成分"
+//                    }
+//                ],
+//                "z": 3,
+//            },
+//        ]
+//        ,
+//        backgroundColor: '#fff'
+//        ,
+//        textStyle: {
+//            fontWeight: 'bolder',
+//        }
+//
+//        //按series出现的顺序 而不是lengend.data的顺序
+//        ,
+//        color: ['#61a0a8', '#d48265', '#91c7ae', '#749f83', '#c23531', '#2f4554', '#ca8622', '#bda29a', '#6e7074', '#546570', '#c4ccd3'],
+////            color: ['#eb231d', '#126dac', '#51c2d0', '#e67851', '#90e0bb', '#51d880', '#ea9211', '#ecbcae', '#6e7074', '#7fadcb', '#d7e3ee']
+//    };
+//    var pieChart = echarts.init($cars[0]);
+//    pieChart.setOption(pieJson);
 
 
     //line
@@ -211,7 +228,7 @@
             }
         ]
     };
-    var lineChart = echarts.init($cars[1]);
+    var lineChart = echarts.init($cars[0]);
     lineChart.setOption(lineJson);
 
 
@@ -285,7 +302,7 @@
 
         ]
     };
-    var relationChart = echarts.init($cars[2]);
+    var relationChart = echarts.init($cars[1]);
 
     //四个初始化数组
     var comp = ["水", "乙醇", "甘油", "东当归（ANGELICA ACUTILOBA）根提取物", "川谷（COIX LACRYMA-JOBI MA-YUEN）籽提取物", "甘草酸二钾", "北美金缕梅（HAMAMELIS VIRGINIANA）提取物", "茅瓜（MELOTHRIA HETEROPHYLLA）根提取物", "生育酚乙酸酯", "小麦（TRITICUMVULGARE）胚芽油", "柠檬酸", "二C12-15 链烷醇聚醚-8 磷酸酯", "甲氧基肉桂酸乙基己酯", "柠檬酸钠", "山梨坦倍半油酸酯", "甘油三（乙基己酸）酯", "羟苯乙酯", "香精", "聚山梨醇酯-80", "丁二醇", "羟苯甲酯", "羟苯丙酯"];
