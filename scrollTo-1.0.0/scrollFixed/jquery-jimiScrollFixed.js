@@ -2,32 +2,29 @@
 (function ($) {
     $.fn.jimiScrollFixed = function (json) {
         var that = this;
-        var fixedMarginTop=json.fixedMarginTop||15;
-		var $html=$('html');
-        var $body=$('body');
+        var fixedMarginTop = json.fixedMarginTop || 15; //å½“æˆ‘fixedçš„æ—¶å€™
+        var $html = $('html');
+        var $body = $('body');
 
-        //»ñµÃµ±Ç°ÔªËØ¾àÀë ¶¥²¿ºÍ×ó²àµÄ¾àÀë
-        //ÒòÎªµ±ÔªËØ»ùÓÚ´°¿ÚfixedµÄÊ±ºò topÖµÒÑÖªÊÇ15 left¾ÍÊÇÒ»¿ªÊ¼µÄÔªËØ»ùÓÚ×ó²àµÄ¾àÀë
+        //èŽ·å¾—å½“å‰å…ƒç´ è·ç¦» é¡¶éƒ¨å’Œå·¦ä¾§çš„è·ç¦»
+        //å› ä¸ºå½“å…ƒç´ åŸºäºŽçª—å£fixedçš„æ—¶å€™ topå€¼å·²çŸ¥æ˜¯15 leftå°±æ˜¯ä¸€å¼€å§‹çš„å…ƒç´ åŸºäºŽå·¦ä¾§çš„è·ç¦»
         var fixedTop = $(this[0]).offset().top;
         var fixedLeft = $(this[0]).offset().left;
 
-        //±£´æÐèÒªfixedµÄÔªËØµÄ±¾À´ÊÇÄÄÖÖÎÄµµÁ÷
+        //ä¿å­˜éœ€è¦fixedçš„å…ƒç´ çš„æœ¬æ¥æ˜¯å“ªç§æ–‡æ¡£æµ
         var oriPos = that.css('position');
 
-        $(window).size(function(){
-
-        })
-
-
         $(window).scroll(function () {
-            //²»¶Ï»ñµÃµ±Ç°body¹öÉÏÈ¥¶àÉÙ            
-			var winScrollTop = $('body').scrollTop()||$('html').scrollTop();
+            //ä¸æ–­èŽ·å¾—å½“å‰bodyæ»šä¸ŠåŽ»å¤šå°‘
 
-            if (winScrollTop+fixedMarginTop >= fixedTop) {
+            //windowä¸Šæ»šçš„å€¼ IEå’Œè°·æ­Œåˆ†åˆ«åªæœ‰bodyæˆ–htmlæœ‰å€¼
+            var winScrollTop = $body.scrollTop() || $html.scrollTop();
+
+            //æ»šåŠ¨å€¼+15
+            if (winScrollTop + fixedMarginTop >= fixedTop) {
                 that.css({
                     'position': 'fixed',
                     top: fixedMarginTop,
-                    //left: fixedLeft
                 })
             }
             else {
