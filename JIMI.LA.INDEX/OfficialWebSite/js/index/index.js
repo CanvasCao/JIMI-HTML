@@ -174,7 +174,7 @@
 
 
                 function MoveOnce() {
-                    //console.log(1);
+                    console.log(1);
                     //总长是220所以110是分界线
                     var topValue = parseInt($scanBar.css('top'));
                     //console.log(topValue);
@@ -269,7 +269,7 @@
         function () {
 
             //scanBar的退场动画
-            $page1.find('.hoverArea').css({opacity: 0});
+            $page1.find('.hoverArea').stop().animate({opacity: 0},0);
             clearInterval(window.scanBarTimer);
             window.ifScanBarTimer = false;
         },

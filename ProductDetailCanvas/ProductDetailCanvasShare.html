@@ -184,15 +184,15 @@
         success: function (data) {
             console.log(JSON.stringify(data));
             //给按钮不同的链接
-            var ua=navigator.userAgent;
-            if(ua.charAt('iphone')!=-1&&ua.charAt('Mac')!=-1){//说明不是IPHONE
-                $('.downloadBtn').click(function(){
-                    window.location.href='http://a.app.qq.com/o/simple.jsp?pkgname=com.jimi.skinsecret#opened';
+            var ua = navigator.userAgent;
+            if (ua.charAt('iphone') != -1 && ua.charAt('Mac') != -1) {//说明不是IPHONE
+                $('.downloadBtn').click(function () {
+                    window.location.href = 'http://a.app.qq.com/o/simple.jsp?pkgname=com.jimi.skinsecret#opened';
                 })
             }
-            else{
-                $('.downloadBtn').click(function(){
-                    window.location.href='https://itunes.apple.com/us/app/id1074206874';
+            else {
+                $('.downloadBtn').click(function () {
+                    window.location.href = 'https://itunes.apple.com/us/app/id1074206874';
                 })
             }
 
@@ -201,7 +201,7 @@
             $('.top img').attr('src', data.imgUrl || 'img/nodata.png').attr('height', 100);
             $('.top .title').html(data.chineseName + '<br>' + data.englishName);
 
-            if (data.volume && data.price) {
+            if (data.volume && data.price) { //都有数据加竖杠
                 $('.top .title2').html(data.volume + '  |  ￥' + data.price);
             }
             else {
@@ -226,10 +226,10 @@
             var pdc = new Honeycomb($('#honeyComb')[0], data);
 
             //中间canvas的数据
-            var pdc = new ProductDetailCanvas($('#productDetailCanvas')[0], data,false);
+            var pdc = new ProductDetailCanvas($('#productDetailCanvas')[0], data, false);
 
 
-            //没成分不允许跳转
+            //没成分 canvas点击不允许跳转
             if (data.component) {
                 $('#compositionDistribution').click(function () {
                             window.location.href = 'http://n1.jimi.la/apps_V3/CompositionDistribution/CompositionDistribution.html' + window.location.search
