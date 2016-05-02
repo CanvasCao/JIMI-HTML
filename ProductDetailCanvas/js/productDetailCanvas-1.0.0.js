@@ -9,10 +9,10 @@
 
 ;
 (function (w, d, $, undefined) {
-    function ProductDetailCanvas(container, data,ifBtn) {
+    function ProductDetailCanvas(container, data, ifBtn) {
         this.C = this.container = container;
         this.data = data;
-        this.ifBtn=ifBtn;
+        this.ifBtn = ifBtn;
         this.config = {};
         this.init();
     }
@@ -319,9 +319,9 @@
 //                    mychart.hideLoading();
 
                 //下面是否加补全成分的按钮Btn 代码很不好
-                var BtnTXT='';
-                if(that.ifBtn){
-                    BtnTXT='<a class="btn" href="http://n1.jimi.la/apps_V2/html5/whatever.html">补全成分</a>';
+                var BtnTXT = '';
+                if (that.ifBtn) {
+                    BtnTXT = '<a class="btn" href="http://n1.jimi.la/apps_V4/html5/whatever.html">补全成分</a>';
                 }
 
 
@@ -330,9 +330,8 @@
                     padding: 20,
                     'text-align': 'center'
                 }).html('<img class="nodataImg" src="img/nodata.png" width="30">' +
-                    '<div class="txt">成分数据补全中...</div>'+
+                    '<div class="txt">成分数据补全中...</div>' +
                     BtnTXT
-
                 )
                 $(that.C).find('.nodataImg').css({display: 'block', margin: '0 auto'});
                 $(that.C).find('.txt').css({

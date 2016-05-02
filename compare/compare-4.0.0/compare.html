@@ -36,9 +36,12 @@
             padding: 10px;
             box-sizing: border-box;
             height: 50px;
-            border: 1px solid #d2d2d2;
+            border-left: 1px solid #d2d2d2;
+            border-top: 1px solid #d2d2d2;
             /*cursor: none;*/
 
+            /*啊哟我操 只是因为方辉要在里面加a标签*/
+            position: relative;
         }
 
         #realdiv {
@@ -111,8 +114,6 @@
             box-sizing: border-box;
         }
 
-
-
         #real img {
             /*background-color: red;*/
             height: 50px;
@@ -135,7 +136,7 @@
             line-height: 28px;
         }
 
-        #con{
+        #con {
             position: relative;
         }
 
@@ -158,7 +159,7 @@
 <div id='con'>
     <div id='line2'>
         <div id='line2col1'>基本参数</div>
-        <div id='line2col2'><span style='font-weight: bold;'>—</span>  无数据</div>
+        <div id='line2col2'><span style='font-weight: bold;'>—</span> 无数据</div>
     </div>
 </div>
 
@@ -170,19 +171,22 @@
 <script>
     $(function () {
         if (!window.location.search) {
-            window.location = window.location + '?pids=56f4d16cefb80c57428b6400,56f4d3e3efb80c57428b67cd,56f4d0d0efb80c57428b630a&cate=3';
+            window.location = window.location +  '?pids=56f57b91efb80c57428c767f,56f57b9cefb80c57428c7688&cate=54';
 //            window.location = window.location + '?pids=56f57a7defb80c57428c74f6,56f56b2befb80c57428c654f&cate=6';
         }
 
 //        ?pids=56f57a7defb80c57428c74f6,56f56b2befb80c57428c654f&cate=6
 //        ?pids=56f4d16cefb80c57428b6400,56f4d3e3efb80c57428b67cd,56f4d0d0efb80c57428b630a&cate=3
-
+//变窄bug        ?pids=56f57b91efb80c57428c767f,56f57b9cefb80c57428c7688&cate=54
 
         //initParas
         var srcH = ($(window).height())
         var srcW = ($(window).width())
+
+        alert(srcH+" "+srcW)
         var leftW = srcW * 0.24;
         var mainW = srcW * 0.38; //(100-24)/2
+        alert(leftW+" "+mainW)
 
         //createDom
         $('#con').append('<div id="realdiv"></div>');
@@ -237,8 +241,9 @@
                         $('#real').find('tr').eq(i + 2).append('<td>' + cellData + '</td>'); //find('tr').eq(i + 2) 一定要+2
                     }
                 }
-                $('#realdiv').css({height: srcH, width: srcW});//√
+                $('#realdiv').css({height: srcH, width: srcW});//容器
                 $('#real').css({width: totalColLen});//real必须设宽 不然table不管多宽自动宽度100%
+
 
                 //mainData需要一个数组判断重复项........................................................................
                 var repeatLineArr = [];
@@ -273,10 +278,11 @@
                 $('#fakeLdiv').css({height: srcH, width: leftW});//fakeLdiv是个容器 宽度20% 高度必须是屏幕高
 
 
-                //fakeTop 绑定第一行数据
+                //fakeTop 绑定数据............................................................................
                 $('#fakeT').append('<tr></tr>');
                 //第一行第一格是空
                 $('#fakeT').find('tr').eq(0).append('<td>' + '</td>')
+                //第一行第二格开始绑定数据
                 for (i = 0; i < headerArr.length; i++) {
                     $('#fakeT').find('tr').append('<td>' + headerArr[i]['title'] + '</td>');
                 }
@@ -294,7 +300,7 @@
                     }
                 })
 
-                //同步左右表高度 fakeL里面每一个td的高度要根据mainData的每个td的高度来决定
+                //同步左右表高度 fakeL里面每一个td的高度要根据mainData的每个td的高度来决定.............................
                 $('#fakeLdiv td').each(function (i, e) {
                     var height = $('#real tr').eq(i).css('height');
                     $(e).css({height: height});
@@ -317,13 +323,13 @@
                     'text-align': 'right'
                 })
 
-                // 同步完左右表高度 同步fixLT高度
+                // 同步完左右表高度 同步fixLT高度..................................................................
                 var realLine1Height = $('#real tr').eq(0).height();
                 var fakeTLine1Height = $('#fakeT tr').eq(0).height();
                 $('#fixLT').css({height: fakeTLine1Height});
 
 
-                //.........................................................................................................................................................................
+                //滚动跟随效果....................................................................................
                 var scrollTopValue;//scrollTopValue就是往上Scroll多少就开始hide和show了
                 scrollTopValue = realLine1Height - fakeTLine1Height;
                 //滚动跟随效果
@@ -375,12 +381,12 @@
                 function ChangeShadow(index) {
                     if ($fakeLdivTd.eq(index).attr('data') == 'unclicked') {
                         $fakeLdivTd.eq(index).css({
-                            'box-shadow': 'inset 0px 0px 8px rgba(50,50,255,0.3)',
-                            'background-color': '#cdf8ff',
+                            'box-shadow': 'inset 0px 5px 10px rgba(113,187,230,0.3)',
+                            'background-color': '#e7f4ff',
                             'color': '#3982e1'
                         });
                         $realdiv.find('tr').eq(index).find('td').css({
-                            'background-color': '#cdf8ff'
+                            'background-color': '#e7f4ff'
                         });
 
                         $fakeLdivTd.eq(index).attr('data', 'clicked');
@@ -408,28 +414,66 @@
                 })
 
 
-                var ifHide=false;
+                var ifHide = false;
                 //隐藏相同...............................................................
                 $('.hideSame').parent().click(function () {
 
-                    if(!ifHide){
+                    if (!ifHide) {
                         for (i = 0; i < repeatLineArr.length; i++) {
                             $realdiv.find('tr').eq(repeatLineArr[i]).hide();
                             $('#fakeL').find('tr').eq(repeatLineArr[i]).hide();
                         }
-                        ifHide=!ifHide;
+                        ifHide = !ifHide;
                         $('.hideSame').html('显示相同');
                     }
-                    else{
+                    else {
                         for (i = 0; i < repeatLineArr.length; i++) {
                             $realdiv.find('tr').eq(repeatLineArr[i]).show();
                             $('#fakeL').find('tr').eq(repeatLineArr[i]).show();
                         }
-                        ifHide=!ifHide;
+                        ifHide = !ifHide;
                         $('.hideSame').html('隐藏相同');
                     }
 
                 })
+
+
+                //绑定方辉的a标签.............................................................
+                //第一行第二格开始添加a标签并且绑定事件 需要跳转
+                $('#real').find('tr').eq(0).find('td:gt(0)').each(function (i, e) {
+                    $(e).append('<a></a>');
+                })
+                $('#real').find('a').css({
+                    'position': 'absolute',
+                    'width': '100%',
+                    'height': '100%',
+                    'top': 0,
+                    'left': 0,
+//                    'border':'1px solid red'
+                }).each(function (i, e) {
+                    $(e).click(function () {
+                        $(this).attr('href', headerArr[i]['pid']); //这里的pid不是pid 而是一个jimi协议头的base64 url
+                    })
+                })
+
+
+                //第二格开始绑定事件 需要跳转
+                $('#fakeT').find('td:gt(0)').each(function (i, e) {
+                    $(e).append('<a></a>');
+                })
+                $('#fakeT').find('a').css({
+                    'position': 'absolute',
+                    'width': '100%',
+                    'height': '100%',
+                    'top': 0,
+                    'left': 0,
+//                    'border':'1px solid red'
+                }).each(function (i, e) {
+                    $(e).click(function () {
+                        $(this).attr('href', headerArr[i]['pid']); //这里的pid不是pid 而是一个jimi协议头的base64 url
+                    })
+                })
+
             },
             error: function (err) {
                 console.log('ERROR!')

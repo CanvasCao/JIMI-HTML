@@ -7,7 +7,8 @@
 
     var isConVelocited = false;
     //操作的jq对象
-    var $cirLis = $('#circles ul li');
+    var $cirs=$('#circles');
+    var $cirLis = $cirs.find('li');
     var $con = $('#container');
     var $pages = $con.find('.page');
     var pageNum = $pages.length - 1;//最大索引数所以-1
@@ -102,6 +103,15 @@
         isConVelocited = true;
         var duration = 1000;
         var ease = 'easeInOutQuart';
+        var lastPageHeight = 150;
+
+        //滚到底部 右侧点消失
+        if(pageIndex==pageNum){
+            $cirs.fadeOut('normal');
+        }
+        else{
+            $cirs.fadeIn('normal');
+        }
 
 
         //判断当前的page是上移还是下移
@@ -110,14 +120,14 @@
         //上移的代码
         if (dir == 'up') {
             var oldIndexTop = parseInt($pages.eq(oldIndex).css('top'));
-            var newTop = (pageIndex == pageNum) ? 150 : winH;//是最后一页只移动150 不然就移动整屏
+            var newTop = (pageIndex == pageNum) ? lastPageHeight : winH;//是最后一页只移动150 不然就移动整屏
             $pages.eq(oldIndex).velocity({'top': (oldIndexTop - newTop)}, duration, ease);
             $pages.eq(pageIndex).velocity({top: winH}, 0).velocity({'top': winH - newTop}, duration, ease);
         }
         //下移的代码
         else {
             var oldIndexTop = parseInt($pages.eq(oldIndex).css('top'));
-            var newTop = (oldIndex == pageNum) ? 150 : winH;//是最后一页只移动150 不然就移动整屏
+            var newTop = (oldIndex == pageNum) ? lastPageHeight : winH;//是最后一页只移动150 不然就移动整屏
             $pages.eq(oldIndex).stop().velocity({'top': (oldIndexTop + newTop)}, duration, ease);
             $pages.eq(pageIndex).stop().velocity({top: 0 - newTop}, 0).velocity({'top': 0}, duration, ease);
         }
@@ -126,14 +136,13 @@
             isConVelocited = false;
         }, 1500)
 
-        var cirArr = [0, 1, 2, 3, 3];//
-        $cirLis.eq(cirArr[pageIndex]).addClass('cur').siblings().removeClass('cur');
+        //var cirArr = [0, 1, 2, 3];//
+        $cirLis.eq(pageIndex).addClass('cur').siblings().removeClass('cur');
 
         if (oldIndex != pageNum) { //如果是5到4这一步不需要出入场动画
             AnimateInArr[pageIndex]();
             AnimateOutArr[oldIndex]();
         }
-
     }
 
     //AnimateJSON.................................................................
@@ -239,14 +248,32 @@
             $page2.find('.title').velocity({'top': '-200%'}, 0).delay(0).velocity({'top': '50%'}, (total + 400), 'ease');
 
 
-            var circleTotal=700;
-            var circleDalay=1800;
-            $page2.find('.dashLine').velocity({'opacity':0,'left': '20%'}, 0).delay(circleDalay).velocity({'opacity':1,'left': '50%'}, (circleTotal + 0), 'ease');
-            $page2.find('.pie').velocity({'opacity':0,'left': '20%'}, 0).delay(circleDalay+100).velocity({'opacity':1,'left': '50%'}, (circleTotal + 0), 'ease');
-            $page2.find('.line3').velocity({'opacity':0,'left': '20%'}, 0).delay(circleDalay+200).velocity({'opacity':1,'left': '50%'}, (circleTotal + 0), 'ease');
-            $page2.find('.apple').velocity({'opacity':0,'left': '20%'}, 0).delay(circleDalay+300).velocity({'opacity':1,'left': '50%'}, (circleTotal + 0), 'ease');
-            $page2.find('.az').velocity({'opacity':0,'left': '20%'}, 0).delay(circleDalay+400).velocity({'opacity':1,'left': '50%'}, (circleTotal + 0), 'ease');
-            $page2.find('.sdk').velocity({'opacity':0,'left': '20%'}, 0).delay(circleDalay+500).velocity({'opacity':1,'left': '50%'}, (circleTotal + 0), 'ease');
+            var circleTotal = 700;
+            var circleDalay = 1800;
+            $page2.find('.dashLine').velocity({
+                'opacity': 0,
+                'left': '20%'
+            }, 0).delay(circleDalay).velocity({'opacity': 1, 'left': '50%'}, (circleTotal + 0), 'ease');
+            $page2.find('.pie').velocity({
+                'opacity': 0,
+                'left': '20%'
+            }, 0).delay(circleDalay + 100).velocity({'opacity': 1, 'left': '50%'}, (circleTotal + 0), 'ease');
+            $page2.find('.line3').velocity({
+                'opacity': 0,
+                'left': '20%'
+            }, 0).delay(circleDalay + 200).velocity({'opacity': 1, 'left': '50%'}, (circleTotal + 0), 'ease');
+            $page2.find('.apple').velocity({
+                'opacity': 0,
+                'left': '20%'
+            }, 0).delay(circleDalay + 300).velocity({'opacity': 1, 'left': '50%'}, (circleTotal + 0), 'ease');
+            $page2.find('.az').velocity({
+                'opacity': 0,
+                'left': '20%'
+            }, 0).delay(circleDalay + 400).velocity({'opacity': 1, 'left': '50%'}, (circleTotal + 0), 'ease');
+            $page2.find('.sdk').velocity({
+                'opacity': 0,
+                'left': '20%'
+            }, 0).delay(circleDalay + 500).velocity({'opacity': 1, 'left': '50%'}, (circleTotal + 0), 'ease');
             window.canvasStart();
 
         },
@@ -269,7 +296,7 @@
         function () {
 
             //scanBar的退场动画
-            $page1.find('.hoverArea').stop().animate({opacity: 0},0);
+            $page1.find('.hoverArea').stop().animate({opacity: 0}, 0);
             clearInterval(window.scanBarTimer);
             window.ifScanBarTimer = false;
         },

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no"/>
-    <title>Document</title>
+    <title>产品详情</title>
     <style type="text/css">
 
         * {
@@ -196,8 +196,9 @@
                 })
             }
 
-
             //加title的数据
+            $('title').html(data.chineseName)
+
             $('.top img').attr('src', data.imgUrl || 'img/nodata.png').attr('height', 100);
             $('.top .title').html(data.chineseName + '<br>' + data.englishName);
 
