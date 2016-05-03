@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src='js/jquery.min.js'></script>
+    <script>
+        $(function () {
+            $.ajax({
+                type: "post",
+                url: 'luosimao.php',
+                data: {
+                    uname: "aaa",
+                    company: 'jimi',
+                    phone: '11111111111',
+                    email: '111@qq.com',
+                },
+//                dataType: "jsonp",
+//                jsonp: "callback",//传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)
+//                jsonpCallback: "jsonpcallback",
+                success: function (data) {
+                    alert(data);
+                },
+                error: function (err) {
+                    console.log(err);
+                }
+            });
+        })
+    </script>
+</head>
+<body>
+
+</body>
+</html>

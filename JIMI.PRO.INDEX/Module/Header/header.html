@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>肌秘首页Header控件</title>
+    <style type="text/css">
+        * {
+            padding: 0;
+            margin: 0;
+            text-decoration: none;
+            list-style: none;
+            font-family: Arial, "微软雅黑";
+        }
+
+        body {
+            background-color: #f0f0f0;
+        }
+
+        .header {
+            height: 90px;
+            background-color: white;
+
+        }
+
+        .headerInnerC {
+            width: 1024px;
+            /*border: 1px solid #000;*/
+            margin: 0px auto;
+            height: 100%;
+            box-sizing: border-box;
+        }
+
+        .span {
+            height: 90px;
+            float: left;
+            box-sizing: border-box;
+            /*border: 3px solid red;*/
+            cursor: pointer;
+        }
+
+        .aaa, .ccc {
+            /*width: 192px;*/
+            width: 18.75%;
+        }
+
+        .bbb {
+            /*width: 640px;*/
+            width: 62.5%;
+            font-size: 16px;
+            color: #292929;
+        }
+
+        .aaa {
+            background-color: rgba(56, 129, 224, 0.8);
+        }
+
+        .aaa img {
+            display: block;
+            margin: 24px auto;
+        }
+
+        .bbb > div {
+            width: 20%;
+            float: left;
+            /*border: 1px solid #000;*/
+            height: 90px;
+            box-sizing: border-box;
+            text-align: center;
+            line-height: 90px;
+            transition: color 0.5s ease;
+            transition: background-color 0.5s ease;
+        }
+
+        .bbb > div.cur {
+            border-bottom: 3px solid rgba(56, 129, 224, 0.8);
+            color: #3881e0;
+        }
+
+        .bbb > div:hover {
+            background-color: rgba(56, 129, 224, 0.1);
+        }
+
+        .bbb > div:nth-child(3) img {
+            margin: 14px auto;
+        }
+
+        .ccc > div {
+            float: left;
+            width: 35%;
+            text-align: center;
+            line-height: 30px;
+            border: 1px solid rgba(56, 129, 224, 0.8);
+            border-radius: 30px;
+            box-sizing: border-box;
+            margin: 30px 0 0 16px;
+            transition: all 0.5s ease;
+        }
+
+        .ccc > div:hover {
+            background-color: rgba(56, 129, 224, 0.8);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+<div class="header">
+    <div class='headerInnerC'>
+        <div class='aaa span'>
+            <img src="img/logoTxt.png" alt=""/>
+        </div>
+        <div class='bbb span'>
+            <div class='cur'>肌秘首页</div>
+            <div>原材料 ▼</div>
+            <div class='logo'><img src="img/logo.png" alt=""/></div>
+            <div>产品检测</div>
+            <div>个人中心</div>
+        </div>
+        <div class='ccc span'>
+            <div>登录</div>
+            <div>注册</div>
+        </div>
+    </div>
+</div>
+
+<script src='js/jquery-1.8.3.min.js'></script>
+<script src='js/header.js'></script>
+<script>
+    $(function () {
+        $('.bbb>div').click(function () {
+            $(this).addClass('cur').siblings().removeClass('cur');
+        })
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+@charset "utf-8";
+/* CSS Document */
+
+body{ margin:0 auto; font-family: Arial,"微软雅黑"; color:#3e3e3e; background:#f1f1f1; }
+div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,input,button,textarea,select,p,span{ margin:0;padding:0;}
+img{ border:0; vertical-align:top;}
+ul,li,ol,ul {list-style:none;}
+h1,h2,h3,h4,h5,h6 {font-size:14px; font-weight:normal;list-style:none;}
+i{font-style: italic;}
+a { text-decoration:none;}
+a:hover {text-decoration: none}
+input{ border:0;}
+input,button,textarea,select{ font-family: Arial,"微软雅黑";}

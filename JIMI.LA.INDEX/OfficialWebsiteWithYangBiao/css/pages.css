@@ -1,0 +1,437 @@
+/*容器*/
+#container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top:0;
+    left:0;
+    /*box-sizing: border-box;*/
+    /*border: 20px solid #000;*/
+    /*overflow: hidden;*/
+}
+
+/*单页*/
+.page {
+    box-sizing: border-box;
+    /*border: 1px solid #000;*/
+    width: 100%;
+    height: 100%;
+    /*top:0;*/
+    left:0;
+    overflow: hidden;
+    position: absolute;
+    perspective: 1000px;
+}
+
+/*我让page里所有的第一层div都居中*/
+.page > div {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+
+/**********************************************************************************************/
+/*page0*/
+.page0 {
+    background: url("../img/P1/P1_BG.jpg") 100% 100%;
+    background-size: cover;
+}
+
+.page0 .title {
+    font: 45px '微软雅黑';
+    transform: translateY(-150px);
+    -webkit-transform: translateY(-150px);
+    -moz-transform: translateY(-150px);
+    -ms-transform: translateY(-150px);
+    color: #3881e0;
+}
+
+.page0 .btn {
+    border: 1px solid #3881e0;
+    border-radius: 10px;
+    width: 300px;
+    height: 70px;
+    text-align: center;
+    cursor: pointer;
+    padding: 15px;
+    box-sizing: border-box;
+    transition: box-shadow 0.2s ease;
+    -webkit-transition: box-shadow 0.2s ease;
+}
+
+.page0 .btn:hover {
+    box-shadow:inset 0px 0px 20px rgba(0,0,0,0.18);
+    border: 1px solid #4093ff;
+
+}
+
+.page0 .btnIOS {
+    transform: translateX(75px) translateY(0px);
+    -webkit-transform: translateX(75px) translateY(0px);
+}
+
+.page0 .btnAZ {
+    transform: translateX(75px) translateY(100px);
+    -webkit-transform: translateX(75px) translateY(100px);
+}
+
+.page0 .btn img {
+    float: left;
+    display: block;
+    margin: -3px 0 0 7px;
+}
+
+.page0 .btn .des {
+    /*box-sizing: border-box;*/
+    /*padding-left: 5px;*/
+    font: 20px '微软雅黑';
+    width: 75%;
+    float: right;
+    height: 100%;
+    /*height-2*padding  70-2*10*/
+    line-height: 40px;
+    color: #3881e0;
+    border-left: 1px solid #3881e0;
+}
+
+.page0 .eye {
+    /*border: 1px solid #000;*/
+    transform: translateX(-459px) translateY(-236px);
+    -webkit-transform: translateX(-459px) translateY(-236px);
+}
+
+.page0 .vs {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(-50%) translateY(-50%);
+}
+
+.page0 .pink {
+    position: absolute;
+    left: 28%;
+    top: 15%;
+    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+}
+
+.page0 .orange {
+    position: absolute;
+    left: 72%;
+    top: 15%;
+    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+}
+
+/*滚轮插件*/
+.page0 .scroll {
+    transform: translateX(-500px) translateY(-110px);
+    -webkit-transform: translateX(-500px) translateY(-110px);
+}
+
+/**********************************************************************************************/
+/*page1 第二页*/
+.page1 {
+    background: url("../img/P2/P2_beijing.png") 100% 100%;
+    background-size: cover;
+}
+
+.page1 .bottle {
+    transform: translateX(-460px) translateY(-200px);
+    -webkit-transform: translateX(-460px) translateY(-200px);
+}
+
+.page1 .bottle .hoverArea {
+    width: 220px;
+    height: 220px;
+    position: absolute;
+    /*border: 1px solid #000;*/
+    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    left: 50%;
+    bottom: -10px;
+    opacity: 0;
+    background: rgba(105, 105, 105, 0.1);
+}
+
+/*四个顶角*/
+.page1 .bottle .hoverArea .angels {
+    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    left: 50%;
+    bottom: -10px;
+    position: absolute;
+    width: 240px;
+}
+
+.page1 .bottle .hoverArea .scanBar {
+    position: absolute;
+    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    left: 50%;
+    width: 120%;
+    height: 5px;
+    background-color: rgba(56, 129, 224, 1);
+    border-radius: 2px;
+
+    /*top才是scanBar移动的核心*/
+    top: 20%;
+
+    -webkit-filter: blur(3px);
+    -moz-filter: blur(3px);
+    -o-filter: blur(3px);
+    -ms-filter: blur(3px);
+    filter: blur(3px);
+
+}
+
+.page1 .cirsCon {
+    /*border: 1px solid #000;*/
+    transform: translateX(-160px) translateY(-180px);
+    -webkit-transform: translateX(-160px) translateY(-180px);
+    width: 800px;
+}
+
+.page1 .cirsCon .circle {
+    display: inline-block;
+    width: 180px;
+    height: 180px;
+    border: 1px solid #3881e0;
+    border-radius: 50%;
+    margin-right: 40px;
+    transition: all 0.4s ease;
+    -webkit-transition: all 0.4s ease;
+    background-color: white;
+    text-align: center;
+    box-sizing: border-box;
+    padding: 20px;
+    cursor: pointer;
+}
+
+.page1 .cirsCon .circle:hover {
+    /*box-shadow: 0px 0px 10px rgb(63, 103, 200);*/
+    box-shadow:inset 0px 0px 20px rgba(0,0,0,0.18);
+    border: 1px solid #4093ff;
+}
+
+.page1 .cirsCon .circle img {
+    display: block;
+    height: 40%;
+    /*border: 1px solid #000;*/
+    margin: 0 auto;
+}
+
+.page1 .cirsCon .circle .title1 {
+    font: 20px '微软雅黑';
+    color: #3881e0;
+    margin: 8px auto;
+
+}
+
+.page1 .cirsCon .circle .title2 {
+    font: 30px '微软雅黑';
+    color: #3881e0;
+    font-weight: bold;
+}
+
+/*文字*/
+.page1 .title {
+    font: 45px '微软雅黑';
+    font-weight: bold;
+    transform: translateX(-40px) translateY(80px);
+    -webkit-transform: translateX(-40px) translateY(80px);
+    color: #3881e0;
+}
+
+/**********************************************************************************************/
+/*page2 第三页*/
+.page2 {
+    background: url("../img/P3/P3_beijing.png") 100% 100%;
+    background-size: cover;
+}
+
+.page2 .table {
+    left: 0;
+    width: 100%;
+    height: 20px;
+    background-color: #858585;
+    transform: translateY(230px);
+    -webkit-transform: translateY(230px);
+    box-shadow: 2px 5px 20px rgba(0, 0, 0, 0.6);
+}
+
+.page2 .roof {
+    transform: translateX(-365px) translateY(-82px);
+    -webkit-transform: translateX(-365px) translateY(-82px);
+    position: absolute;
+}
+
+.page2 .pc {
+    transform: translateX(-350px) translateY(-82px);
+    -webkit-transform: translateX(-350px) translateY(-82px);
+    position: absolute;
+}
+
+.page2 .screen {
+    /*border: 1px solid red;*/
+    width: 414px;
+    height: 180px;
+    top: 62px;
+    left: 47px;
+    position: absolute;
+    /*background: #3881e0;*/
+    overflow: hidden;
+    background-color: white;
+
+}
+
+.page2 .screen .carBtn{
+    position: absolute;
+    border-radius: 50%;
+    background-color: black;
+    background: url("../img/logo.jpg") 100% 100% no-repeat;
+    background-size: contain;
+    height: 25px;
+    width: 25px;
+    right: 10px;
+    bottom: 10px;
+    cursor: pointer;
+    border: 1px solid #e7e7e7;
+    /*transition:box-shadow 2s ease ;*/
+    animation: shining 2s ease-in-out 0s infinite alternate;
+    -webkit-animation: shining 2s ease-in-out 0s infinite alternate;
+}
+
+
+@keyframes shining {
+    from {
+        box-shadow:  0px 0px 15px rgba(64,147,255,1);
+    }
+    to {
+        box-shadow:  0px 0px 0px rgba(64,147,255,1);
+    }
+}
+
+.page2 .carousel {
+    /*display: none;*/
+    position: absolute;
+    /*border: 1px solid red;*/
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+}
+
+
+.page2 .lamp {
+    transform: translateX(-512px) translateY(-176px);
+    -webkit-transform: translateX(-512px) translateY(-176px);
+}
+
+
+.page2 .dashLine {
+    transform:translateX(-46px) translateY(-132px);
+    -webkit-transform:translateX(-46px) translateY(-132px);
+}
+
+
+.page2 .pie {
+    transform:translateX(184px) translateY(-172px);
+    -webkit-transform:translateX(184px) translateY(-172px);
+}
+
+
+.page2 .line3 {
+    transform:translateX(334px) translateY(-2px);
+    -webkit-transform:translateX(334px) translateY(-2px);
+}
+
+
+.page2 .apple {
+    transform:translateX(184px) translateY(98px);
+    -webkit-transform:translateX(184px) translateY(98px);
+}
+
+.page2 .az {
+    transform:translateX(294px) translateY(98px);
+    -webkit-transform:translateX(294px) translateY(98px);
+}
+
+
+
+.page2 .sdk {
+    transform:translateX(164px) translateY(8px);
+    -webkit-transform:translateX(164px) translateY(8px);
+}
+
+
+
+
+.page2 .title {
+    font: 45px '微软雅黑';
+    font-weight: bold;
+    transform: translateX(-50%) translateY(-230px);
+    -webkit-transform: translateX(-50%) translateY(-230px);
+    color: #3881e0;
+}
+
+/*page3 第四页*/
+.page3 {
+    background: url("../img/P4/P4_dise.png") 100% 100%;
+    background-size: cover;
+}
+
+.page3 .points {
+    transform: translateX(-50%) translateY(-360px);
+    -webkit-transform: translateX(-50%) translateY(-360px);
+}
+
+.page3 .title1 {
+    transform: translateX(-50%) translateY(-170px);
+    -webkit-transform: translateX(-50%) translateY(-170px);
+    font-size: 35px;
+    color: #3881e0;
+    text-shadow: 5px 5px 20px rgba(0,0,0,0.2);
+
+}
+
+.page3 .title2 {
+    transform: translateX(-50%) translateY(-70px);
+    -webkit-transform: translateX(-50%) translateY(-70px);
+    font-size: 70px;
+    font-weight: bold;
+    color: #faa4bf;
+    text-shadow: 5px 5px 20px rgba(0,0,0,0.2);
+
+}
+
+.page3 .title3 {
+    transform: translateX(-50%) translateY(40px);
+    -webkit-transform: translateX(-50%) translateY(40px);
+    color: #3881e0;
+    font-size: 50px;
+}
+
+.page3 .btn1 {
+    transform: translateX(-50%) translateY(140px);
+    -webkit-transform: translateX(-50%) translateY(140px);
+    color: white;
+    background-color: #3881e0;
+    box-sizing: border-box;
+    padding: 8px 30px;
+    border-radius: 10px;
+    font-size: 20px;
+    box-shadow: 5px 5px 20px rgba(0,0,0,0.4);
+    cursor: pointer;
+}
+
+
+/*page4 第五页*/
+.page4 .txt {
+    display: block;
+    margin: 50px auto;
+    color: #8e8e8e;
+    width: 440px;
+}

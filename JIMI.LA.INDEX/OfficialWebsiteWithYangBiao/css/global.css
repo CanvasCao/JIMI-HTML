@@ -1,0 +1,69 @@
+@charset "utf-8";
+/* CSS Document */
+
+body {
+    margin: 0 auto;
+    font: 12px/24px "宋体", Arial;
+    color: #8b8b8b;
+}
+
+div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, input, button, textarea, select, p, span {
+    margin: 0;
+    padding: 0;
+}
+
+div {
+    margin: 0 auto;
+}
+
+img {
+    border: 0;
+    vertical-align: top;
+}
+
+ul, li, ol, ul {
+    list-style: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-size: 12px;
+    font-weight: normal;
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none
+}
+
+input {
+    border: 0;
+}
+
+input, button, textarea, select {
+    font: 12px/24px "宋体", Arial;
+    color: #646464;
+}
+
+.wbq_a span {
+    transition:all 0.3s ease;
+    -moz-transition:all 0.3s ease;
+    -webkit-transition:all 0.3s ease;
+    -o-transition:all 0.3s ease;
+}
+
+.clear {
+    clear: both;
+}
+
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
+

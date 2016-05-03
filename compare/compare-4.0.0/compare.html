@@ -159,7 +159,7 @@
 <div id='con'>
     <div id='line2'>
         <div id='line2col1'>基本参数</div>
-        <div id='line2col2'><span style='font-weight: bold;'>—</span> 无数据</div>
+        <div id='line2col2'>√ 有&nbsp ×无&nbsp - 无数据</div>
     </div>
 </div>
 
@@ -171,8 +171,8 @@
 <script>
     $(function () {
         if (!window.location.search) {
-            window.location = window.location +  '?pids=56f57b91efb80c57428c767f,56f57b9cefb80c57428c7688&cate=54';
-//            window.location = window.location + '?pids=56f57a7defb80c57428c74f6,56f56b2befb80c57428c654f&cate=6';
+//            window.location = window.location +  '?pids=56f57b91efb80c57428c767f,56f57b9cefb80c57428c7688&cate=54';
+            window.location = window.location + '?pids=56f57a7defb80c57428c74f6,56f56b2befb80c57428c654f&cate=6';
         }
 
 //        ?pids=56f57a7defb80c57428c74f6,56f56b2befb80c57428c654f&cate=6
@@ -183,10 +183,10 @@
         var srcH = ($(window).height())
         var srcW = ($(window).width())
 
-        alert(srcH+" "+srcW)
+//        alert(srcH+" "+srcW)
         var leftW = srcW * 0.24;
         var mainW = srcW * 0.38; //(100-24)/2
-        alert(leftW+" "+mainW)
+//        alert(leftW+" "+mainW)
 
         //createDom
         $('#con').append('<div id="realdiv"></div>');
@@ -201,7 +201,7 @@
 
         $.ajax({
             type: "get",
-            url: 'http://n1.jimi.la/apps_V3/compare.php' + window.location.search,
+            url: 'http://n1.jimi.la/apps_V4/compare.php' + window.location.search,
 //            url: 'r.json',
             dataType: "jsonp",
             jsonp: "callback",//传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)
@@ -451,9 +451,7 @@
                     'left': 0,
 //                    'border':'1px solid red'
                 }).each(function (i, e) {
-                    $(e).click(function () {
-                        $(this).attr('href', headerArr[i]['pid']); //这里的pid不是pid 而是一个jimi协议头的base64 url
-                    })
+                    $(e).attr('href', headerArr[i]['pid']); //这里的pid不是pid 而是一个jimi协议头的base64 url
                 })
 
 
@@ -469,11 +467,9 @@
                     'left': 0,
 //                    'border':'1px solid red'
                 }).each(function (i, e) {
-                    $(e).click(function () {
-                        $(this).attr('href', headerArr[i]['pid']); //这里的pid不是pid 而是一个jimi协议头的base64 url
-                    })
+                    $(e).attr('href', headerArr[i]['pid']); //这里的pid不是pid 而是一个jimi协议头的base64 url
+//                    console.log(headerArr[i]['pid'])
                 })
-
             },
             error: function (err) {
                 console.log('ERROR!')

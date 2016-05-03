@@ -1,0 +1,448 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>开放数据平台</title>
+    <link href="css/global.css" rel="stylesheet" type="text/css"/>
+    <link href="css/style.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="css/prism.css"/>
+    <style type="text/css">
+        * {
+            padding: 0;
+            margin: 0;
+            text-decoration: none;
+            list-style: none;
+            font-family: '微软雅黑';
+        }
+    </style>
+
+<body>
+<div class="header"></div>
+<div class="ny_banner">
+    <h4>用科学重新定义美丽</h4>
+</div>
+<div class="aboutlb">
+    <div class="kfsj">
+        <ul class="kfsj_left left">
+            <li>
+                <div class='tri'></div>
+                <a href="javascript:;">肌秘开放数据平台</a></li>
+            <li>
+                <div class='tri'></div>
+                <a href="javascript:;">应用安全</a></li>
+            <li>
+                <div class='tri'></div>
+                <a href="javascript:;">账号登录方式</a></li>
+            <li>
+                <div class='tri'></div>
+                <a href="javascript:;">开放者获取权限</a></li>
+            <li>
+                <div class='tri'></div>
+                <a href="javascript:;">效果示例</a></li>
+            <li>
+                <div class='tri'></div>
+                <a href="javascript:;">服务器集成</a></li>
+            <li>
+                <div class='tri'></div>
+                <a href="javascript:;">客户端集成</a></li>
+        </ul>
+        <div class="kfsj_right left">
+            <div class="wz_nrlb left">
+                <div class="wz_nrlb_t left">肌秘开放数据平台</div>
+                <div class="wz_nrlb_b left">
+                    <p class="p2">
+                        肌秘开放数据平台为您的电商类应用、数据类应用提供了一个易用、安全、有助于用户进行化妆品数据对比评测的后端解决方案，我们提供轻量级的SDK开发包，让开发者以最小的配置和最简单的方式使用开放平台提供的服务，进而完全消除开发者编写服务器代码以及维护服务器的操作。</p>
+                </div>
+            </div>
+            <div class="wz_nrlb left">
+                <div class="wz_nrlb_t left">应用安全</div>
+                <div class="wz_nrlb_b left">
+                    <p>手机客户端保存申请到的appid跟appkey，用来请求产品的成分信息及账户登录。</p>
+
+                    <p><img src="images/img_03.jpg" width="595" height="60"/></p>
+
+                    <p>Web端只保存申请的appid，通过向应用服务器进行请求获取accesstoken来请求产品信息</p>
+
+                    <p><img src="images/img_06.jpg" width="595" height="153"/></p>
+                </div>
+            </div>
+            <div class="wz_nrlb left">
+                <div class="wz_nrlb_t left">账号登录方式</div>
+                <div class="wz_nrlb_b left">
+                    <p class="p2">通过第三方平台上传对应的用户识别码及产品信息到肌秘服务器，肌秘服务器返回相应的产品信息，并根据该用户识别码返回该产品是否适用于该用户，给用户选择化妆品提供意见。</p>
+
+                    <p class="p2">
+                        应用端或应用服务器生成uuid，请求获取产品成分信息时，上传用户的uuid及其他参数，肌秘服务器返回相应的产品信息及用户匹配度信息，当不存在该uuid时，客户端提供h5登录界面进行用户登录和绑定。</p>
+                </div>
+            </div>
+            <div class="wz_nrlb left">
+                <div class="wz_nrlb_t left">开发者获取权限</div>
+                <div class="wz_nrlb_b left">
+                    <p class="p0">通过肌秘的运营人员进行联系，来获取appid及appkey：<a href="javascript:;" class="a">点此申请</a></p>
+
+                    <p class="p0">APPID:10位整型数据，用户身份标识；</p>
+
+                    <p class="p0">APPKEY:16位随机hash值，对用户身份的鉴定。</p>
+                </div>
+            </div>
+            <div class="wz_nrlb left">
+                <div class="wz_nrlb_t left">效果示例</div>
+                <div class="wz_nrlb_b left">
+                    <div class="wbq_a">
+                        <small>示例产品名称：</small>
+                        <span class='jimi-data'>温碧泉力透白雪肌霜</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="wz_nrlb left">
+                <div class="wz_nrlb_t left">服务器集成</div>
+                <div class="wz_nrlb_b left">
+                    <p>获取产品信息</p>
+
+                    <p>说明：通过条形码或者产品title获取一个产品的信息</p>
+
+                    <p>请求说明：</p>
+
+                    <p id="dmyun1" class="p0"></p>
+                    <table class="bgbd" width="100%" border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                            <td>字段</td>
+                            <td>描述</td>
+                        </tr>
+                        <tr>
+                            <td>grant_type</td>
+                            <td>获取信息类型</td>
+                        </tr>
+                        <tr>
+                            <td>appid</td>
+                            <td>app应用id，允许在后台更新</td>
+                        </tr>
+                        <tr>
+                            <td>access_token</td>
+                            <td>32位hash(data+appkey)(优先)</td>
+                        </tr>
+                        <tr>
+                            <td>req_type</td>
+                            <td>请求类型：1为条形码，2为产品名称</td>
+                        </tr>
+                        <tr>
+                            <td>data</td>
+                            <td>请求数据，产品条形码或产品名称</td>
+                        </tr>
+                        <tr>
+                            <td>req_type</td>
+                            <td>默认1，JSON格式返回消息<br/>
+                                2，XML格式返回消息<br/>
+                                3，返回HTML内容（JS调用）
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>uuid</td>
+                            <td>绑定的uuid信息</td>
+                        </tr>
+                    </table>
+                    <p>错误代码：</p>
+                    <table class="bgbd" width="100%" border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                            <td>编号</td>
+                            <td>含义</td>
+                        </tr>
+                        <tr>
+                            <td>200</td>
+                            <td>成功</td>
+                        </tr>
+                        <tr>
+                            <td>201</td>
+                            <td>appid不存在</td>
+                        </tr>
+                        <tr>
+                            <td>202</td>
+                            <td>请求参数不完整，barcode与title至少需要一个</td>
+                        </tr>
+                        <tr>
+                            <td>203</td>
+                            <td>accesstoken无效</td>
+                        </tr>
+                        <tr>
+                            <td>204</td>
+                            <td>服务不可用（appid超限或屏蔽）</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="wz_nrlb left">
+                <div class="wz_nrlb_t left">客户端集成</div>
+                <div class="wz_nrlb_b left">
+                    <p>客户端集成需要使用appid跟appkey，每次请求时讲请求数据跟appkey进行加密上传到服务器，服务器根据appid以及上传的accesstoken进行用户的验证以及返回相应的数据。</p>
+
+                    <p class="pt">1、android客户端集成</p>
+
+                    <p class="p4">（1）<a href="javascript:;" class="a">下载sdk</a></p>
+
+                    <p class="p4">（2）配置工程</p>
+
+                    <p class="p4">导入sdk</p>
+
+                    <p class="p4">配置工程 （权限配置）</p>
+
+                    <p id="dmyun2" class="p0"></p>
+
+                    <p class="p4">（3）功能集成</p>
+
+                    <p id="dmyun3" class="p0"></p>
+
+                    <p class="pt">2、ios客户端集成</p>
+
+                    <p class="p4">（1）SDK集成</p>
+
+                    <p class="p6">①<a href="javascript:;" class="a">下载SDK</a></p>
+
+                    <p class="p6">②拖拽SkinSecret.framework文件到Xcode工程内（请勾选Copy items if needed选项）</p>
+
+                    <p class="p6">③添加依赖库UIKit.framework</p>
+
+                    <p class="p4">（2）初始化SDK</p>
+
+                    <p class="p6">①导入头文件</p>
+
+                    <p class="p6">在工程的APPDelegate.m中导入头文件</p>
+
+                    <p id="dmyun4" class="p0"></p>
+
+                    <p class="p6">如果是Swift工程，请在对应bridging-header.h中导入</p>
+
+                    <p class="p6">②初始化SkinSecret</p>
+
+                    <p class="p6">在工程的APPDelegate.m的application didFinishLaunch...方法中初始化SkinSecret</p>
+
+                    <p id="dmyun5" class="p0"></p>
+
+                    <p class="p6">您的工程已经成功集成了SkinSecret，接下来编译并运行吧！:)</p>
+
+                    <p class="p4">（3）获取产品详情信息输出页面</p>
+
+                    <p id="dmyun6" class="p0"></p>
+
+                    <p class="p4">（4）获取产品详情数据</p>
+
+                    <p id="dmyun7" class="p0"></p>
+
+                    <p class="pt">3、web客户端集成</p>
+
+                    <p class="p4">（1）页面中按顺序引用jquery.min.js(1.8+)JmSdk-2.0.4.min.js</p>
+
+                    <p id="dmyun8" class="p0"></p>
+
+                    <p class="p4">（2）在需要提供查询的标签内部加入类名:jimi-data，加入工作人员分配的jimiAPPID和后台生成的jimiAccessToken</p>
+
+                    <p id="dmyun9" class="p0"></p>
+
+                    <p class="p4">（3）ajax返回正确json后显示数据</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="bottom_btm">版权所有©2016-2017 Jimi.la 版权所有 沪ICP备15051069号</div>
+
+
+<div class="xf_bg" style="display:none;"></div>
+<div class="shenqing_tc">
+    <div class="sq_top"><h3>联系我们</h3> <a href="javascript:;" class="qx_btn">取消</a></div>
+    <ul class="sq_cnt">
+        <li><span>姓名:</span>
+            <small><input type="text" id='tjPname'></small>
+        </li>
+        <li><span>公司:</span>
+            <small><input type="text" id='tjCompany'></small>
+        </li>
+        <li><span>电话:</span>
+            <small><input type="text" id='tjPhone'></small>
+        </li>
+        <li><span>邮箱:</span>
+            <small><input type="text" id='tjEmail'></small>
+        </li>
+    </ul>
+    <div class="sq_btm">
+        <div id='tixing'></div>
+        <a href="javascript:;" class="tijiao">提交</a></div>
+</div>
+
+<script src="js/jquery.min.js"></script>
+<script src='js/module/header.js'></script>
+<script>
+    $(function () {
+        var header = new Header($('.header')[0], null);
+        header.initCur(2);
+    })
+</script>
+<script src="js/originalOutputCode-1.0.1.js"></script>
+<script src="js/prism.js"></script>
+<script>
+    var codeArr = [
+        'HTTP Method : get',
+        'URL Params : 无',
+        'Request Headers : {&quotContent-Type&quot:&quotapplication/json&quot}',
+        'Request Body : {',
+        '&quotgrant_type&quot: &quotproduct_info&quot,',
+        '&quotappid&quot: &quotapp的client_id&quot,',
+        '&quotaccess_token&quot: &quot&quot,',
+        '&quotreq_type&quot:&quot请求类型&quot,',
+        '&quotdata&quot:&quot&quot,',
+        '&quotret_type&quot:&quot&quot,',
+        '&quotuuid&quot:&quot&quot',
+        '}',
+        'Request Body : &quot&quot',
+
+    ]
+    var ooc = new OriginalOutputCode($('#dmyun1'), {codeArr: codeArr, language: 'json'})
+    var codeArr2 = [
+        '// 允许程序打开网络sockets',
+        '&ltuses-permission android:name=&quotandroid.permission.INTERNET&quot /&gt',
+        '// 允许程序访问有关的网络信息',
+        '&ltuses-permission android:name=&quotandroid.permission.ACCESS_NETWORK_STATE&quot /&gt',
+        '// 允许程序访问Wi-Fi网络状态信息',
+        '&ltuses-permission android:name=&quotandroid.permission.ACCESS_WIFI_STATE&quot /&gt',
+        '// 允许应用写（非读）用户的外部存储器',
+        '&ltuses-permission android:name=&quotandroid.permission.WRITE_EXTERNAL_STORAGE&quot /&gt',
+        '// 允许一个程序获取信息有关当前或最近运行的任务，一个缩略的任务状态，是否活动等等',
+        '&ltuses-permission android:name=&quotandroid.permission.GET_TASKS&quot /&gt',
+        '// 允许程序录制音频',
+        '&ltuses-permission android:name=&quotandroid.permission.RECORD_AUDIO&quot /&gt',
+        '// 允许应用程序修改全局声音设置的权限',
+        '&ltuses-permission android:name=&quotandroid.permission.MODIFY_AUDIO_SETTINGS&quot /&gt',
+        '// 允许使用PowerManager的WakeLocks保持进程在休眠时从屏幕消失',
+        '&ltuses-permission android:name=&quotandroid.permission.WAKE_LOCK&quot/&gt',
+        '// 允许请求访问使用照相设备',
+        '&ltuses-permission android:name=&quotandroid.permission.CAMERA&quot /&gt',
+    ]
+    var ooc2 = new OriginalOutputCode($('#dmyun2'), {codeArr: codeArr2, language: 'clike'})
+    var codeArr3 = [
+        '//初始化SkinSecret sdk',
+        'SkinSecret.getinstance(Context context).init(String appid,String appSecret)',
+        '//启动产品详细信息输出页面（参数：title或code）',
+        'SkinSecret.getinstance(Context context).startProductInfoActivity(int type,String data)',
+        '//获取产品详细信息数据（参数：title或code）',
+        'SkinSecret.getinstance(Context context).getProductInfo(int type,String data);',
+    ]
+    var ooc3 = new OriginalOutputCode($('#dmyun3'), {codeArr: codeArr3, language: 'clike'})
+    var codeArr4 = [
+        '#import &ltSkinSecret/SkinSecret.h&gt',
+    ]
+    var ooc4 = new OriginalOutputCode($('#dmyun4'), {codeArr: codeArr4, language: 'clike'})
+    var codeArr5 = [
+        '- (BOOL)application:(UIApplication *)',
+        '   application didFinishLaunchingWithOptions:(NSDictionary *)',
+        '   launchOptions {',
+        '	[SkinSecret startWithAppId:@&quot此处替换为你的AppId&quot appKey:@&quot此处替换为你的AppKey&quot];',
+        '	return YES;',
+        '}',
+    ]
+    var ooc5 = new OriginalOutputCode($('#dmyun5'), {codeArr: codeArr5, language: 'clike'})
+    var codeArr6 = [
+        '//通过产品名初始化',
+        'SKSProductInfoView*productInfoView1 = [[SKSProductInfoView alloc] initWithProductName:@&quot此处为产品名&quot];',
+        '//通过条形码初始化',
+        'SKSProductInfoView*productInfoView2 = [[SKSProductInfoView alloc] initWithBarCode:@&quot此处为Barcode&quot];',
+        'productInfoView.frame = CGRectMake(0, 0, 320, 220);',
+        '[self.view addSubview:compositionInfoView];',
+
+    ]
+    var ooc6 = new OriginalOutputCode($('#dmyun6'), {codeArr: codeArr6, language: 'clike'})
+    var codeArr7 = [
+        '//通过产品名',
+        'NSDictionary*productInfoDic1 = [SkinSecret getProductInfoWithProductName::@&quot此处为产品名&quot];',
+        '//通过条形码',
+        'NSDictionary*productInfoDic2 = [SkinSecret getProductInfoWithBarCode:@&quot此处为Barcode&quot];',
+    ]
+    var ooc7 = new OriginalOutputCode($('#dmyun7'), {codeArr: codeArr7, language: 'clike'})
+    var codeArr8 = [
+        '//需jquery1.8+支持，无需二次引用',
+        '&ltscript src=&quothttp://apps.bdimg.com/libs/jquery/1.8.2/jquery.min.js&quot&gt&lt/script&gt',
+        '//肌秘服务器下载JmSdk-2.0.4.min.js',
+        '&ltscript src=&quothttp://openapi.jimi.la/js/JmSdk-2.0.4.min.js&quot&gt&lt/script&gt',
+    ]
+    var ooc8 = new OriginalOutputCode($('#dmyun8'), {codeArr: codeArr8, language: 'markup'})
+    var codeArr9 = [
+        '&ltspan class=&quotjimi-data&quot jimiAccessToken=&quot6b9fd222441158ad2a38bbdee23ff7f6&quot jimiAPPID=&quot123456&quot&gt',
+        '温碧泉力透白雪肌霜',
+        '&lt/span&gt',
+    ]
+    var ooc9 = new OriginalOutputCode($('#dmyun9'), {codeArr: codeArr9, language: 'markup'})
+</script>
+<script src="js/jquery-jimiScrollTo-2.0.0.js"></script>
+<script src="js/jquery-jimiScrollFixed.js"></script>
+<script src="js/JmSdk-2.0.3.min.js"></script>
+<script src="js/echarts.min.js"></script>
+<script>
+
+    $('.a').click(function () {
+        $('.xf_bg').fadeIn(200);
+        $('.shenqing_tc').show().css({top: '50%', left: '50%', transform: 'translateY(-50%) translateX(-50%)'});
+    })
+    $('.qx_btn').click(function () {
+        $('.xf_bg').fadeOut(200);
+        $('.shenqing_tc').css({top: '50%', left: '50%', transform: 'translateY(-50%) translateX(-50%)'}).hide();
+    })
+
+    $('.kfsj_left li').jimiScrollTo($('.kfsj_right>div'), null, 'hover')
+
+    //插件已经做了add和removeClass
+    //        $('.kfsj_left li').click(function () {
+    //            $(this).addClass('hover').siblings().removeClass('hover');
+    //        })
+
+    //左面固定
+//    $('.aboutlb').jimiScrollFixed({fixedMarginTop: 115})
+    $('.kfsj_left').jimiScrollFixed({fixedMarginTop: 100})
+
+    //提交
+    $('.tijiao').click(function () {
+        var tjPname = $('#tjPname').val().trim();
+        var tjCompany = $('#tjCompany').val().trim();
+        var tjPhone = $('#tjPhone').val().trim();
+        var tjEmail = $('#tjEmail').val().trim();
+
+        if (tjPname == '' || tjCompany == '' || tjPhone == '' || tjEmail == '') {
+            $('#tixing').html('输入内容不能为空')
+            return;
+        }
+//        console.log(tjPname);
+//        console.log(tjCompany);
+//        console.log(tjPhone);
+//        console.log(tjEmail);
+        $.ajax({
+            type: "post",
+            url: 'http://n1.jimi.la/apps_V2/luosimao.php',
+            data: {
+                uname: tjPname,
+                'company': tjCompany,
+                'phone': tjPhone,
+                'email': tjEmail
+            },
+            dataType: "jsonp",
+            jsonp: "callback",//传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)
+            jsonpCallback: "jsonpcallback",
+            success: function (data) {
+                console.log('success');
+                console.log(data);
+            },
+            error: function (err) {
+                console.log('error');
+                console.log(err);
+            }
+        });
+
+        //还原
+        $('#tjPname').val("")
+        $('#tjCompany').val("")
+        $('#tjPhone').val("")
+        $('#tjEmail').val("")
+        $('#tixing').html('发送成功')
+    })
+</script>
+
+</body>
+</html>
