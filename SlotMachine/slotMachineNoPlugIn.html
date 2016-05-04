@@ -20,7 +20,7 @@
             user-select: none;
         }
 
-        #slot{
+        #slot {
             position: absolute;
             width: 100%;
             height: 100%;
@@ -28,43 +28,51 @@
             left: 0;
         }
 
-        .machine{
+        .machine {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translateX(-50%) translateY(-50%);
             border: 1px solid red;
             width: 300px;
-            height: 300px;
+            height: 100px;
+            overflow: hidden;
         }
 
-        .win{
+        .win {
             position: absolute;
             width: 100px;
-            height: 300px;
+            height: 100px;
             border: 1px solid blue;
         }
 
-        .win .item{
+        .win .item {
             position: absolute;
             height: 100px;
             width: 100px;
             border: 1px solid green;
+            top: -100px;
+            background-color: aqua;
+
         }
-        .win:nth-child(1){
+
+        .win:nth-child(1) {
             left: 0%;
         }
-        .win:nth-child(2){
+
+        .win:nth-child(2) {
             left: 33.3%;
 
         }
-        .win:nth-child(3){
+
+        .win:nth-child(3) {
             left: 66.6%;
         }
 
-        .btn{
-            position: absolute;
-            bottom: -20px;
+        .btn {
+            width: 100px;
+            height: 100px;
+            border: 1px solid #000;
             cursor: pointer;
         }
     </style>
@@ -80,26 +88,105 @@
             <div class='item'>4</div>
             <div class='item'>5</div>
         </div>
-        <div class='win win2'>2</div>
-        <div class='win win3'>3</div>
-        <div class='btn'>START</div>
+        <div class='win win2'>
+            <div class='item'>0</div>
+            <div class='item'>1</div>
+            <div class='item'>2</div>
+            <div class='item'>3</div>
+            <div class='item'>4</div>
+            <div class='item'>5</div>
+        </div>
+        <div class='win win3'>
+            <div class='item'>0</div>
+            <div class='item'>1</div>
+            <div class='item'>2</div>
+            <div class='item'>3</div>
+            <div class='item'>4</div>
+            <div class='item'>5</div>
+        </div>
+
     </div>
-    <div>开始对比</div>
+    <div class='btn'>START</div>
+    <div class='score'></div>
 </div>
 
 <script src='jquery-1.8.3.min.js'></script>
 <script src='slotMachine-1.0.0.js'></script>
 <script>
     $(function () {
-        var index=0
 
-        $('.btn').click(function(){
-//            $('.win1').find('')
+        RefreshColor();
+        function RefreshColor() {
+            $('.item').each(function (i, e) {
+                $(e).css('backgroundColor', GetRandomColor());
+            })
+        }
+
+
+        var index = 0
+        var ifTimer = false;
+        var ifStopping = false;
+        var timer = null;
+        var len = 6; //不是下标最大值 而是数量
+        var duration = 500;
+        var score = 0;
+        var stopCount = 5;
+        $('.btn').click(function () {
+//            console.log(timer)
+            if (!ifTimer) {
+                duration = 500;
+                timer = setTimeout(MoveOnce, duration);
+                ifTimer = !ifTimer;
+            }
+            else {
+                stopCount = 5;
+                duration = 100;
+                ifStopping = true;
+            }
         })
 
 
-        function MoveOnce(){
+        function MoveOnce() {
+            var indexAdd1 = (index + 1) >= len ? 0 : (index + 1);
+//            var indexAdd2 = (indexAdd1 + 1) >= len ? 0 : (indexAdd1 + 1);
+//            var indexMinus1 = (index - 1) < 0 ? (len - 1) : (index - 1);
+            $('.win').each(function (i, e) {
+//               console.log($(e))
+                $(e).find('.item').eq(index).css({top: 0}).animate({top: -100}, duration, 'linear');
+                $(e).find('.item').eq(indexAdd1).css({top: 100}).animate({top: 0}, duration, 'linear', function () {
+                });
+            })
 
+            index = (index + 1) >= len ? 0 : (index + 1);
+
+            if (ifStopping) {
+                stopCount--;
+                duration += 150;
+                if (stopCount == 0) {
+                    clearInterval(timer);
+                    ifTimer = !ifTimer;
+                    ifStopping = false;
+                    return;
+                }
+                timer = setTimeout(MoveOnce, duration);
+            }
+
+            else {
+                duration = (duration - 50) <= 100 ? 100 : (duration - 50);
+                timer = setTimeout(MoveOnce, duration);
+
+            }
+
+        }
+
+
+        function GetRandomColor() {
+            var o = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f"];
+            var txt = '';
+            for (i = 0; i < 6; i++) {
+                txt += o[parseInt(Math.random() * o.length)];
+            }
+            return '#' + txt;
         }
     })
 </script>

@@ -94,7 +94,7 @@
         eval(
             'setTimeout(function(){' +
             'svgCirCleArr[' + i + '].draw();' +
-            '},' + i *500+')'
+            '},' + i * 500 + ')'
         )
     }
 
@@ -105,18 +105,23 @@
         window.AnimateInArr[0]()
     });
 
-    $('.svgBtn').hover(function(){
-        //$(this).velocity({
-        //    scaleX: 0.9,
-        //    scaleY: 1.1
-        //}, 100).velocity({
-        //    scaleX: 1.1,
-        //    scaleY: 0.9
-        //}, 200).velocity({
-        //    scaleX: 1,
-        //    scaleY: 1
-        //}, 100);
-    },function(){
+    $('.svgBtn').hover(function () {
+        $(this).velocity({
+            top: '50%',
+            left: '50%',
+            translateX: '-50%',
+            translateY: '200',
+        }, 0).velocity({
+            scaleX: 0.9,
+            scaleY: 1.1
+        }, 100).velocity({
+            scaleX: 1.1,
+            scaleY: 0.9
+        }, 200).velocity({
+            scaleX: 1,
+            scaleY: 1
+        }, 100);
+    }, function () {
 
     })
 })();

@@ -1,0 +1,14 @@
+  function GetRandomColor() {
+            var o = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f"];
+            var txt = '';
+            for (i = 0; i < 6; i++) {
+                txt += o[parseInt(Math.random() * o.length)];
+            }
+            return '#' + txt;
+        }
+			
+			  function getRandomColor(){
+        return '#'+(function(h){
+                    return new Array(7-h.length).join("0")+h
+                })((Math.random()*0x1000000<<0).toString(16)) 
+    }

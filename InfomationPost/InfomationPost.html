@@ -13,7 +13,7 @@
         }
 
         body {
-            padding: 10px;
+            padding: 10px 15px;
             box-sizing: border-box;
         }
 
@@ -30,7 +30,7 @@
 <script>
     $(function () {
         if (!window.location.search) {
-            window.location = window.location + '?rid=146';
+            window.location = window.location + '?rid=109';
         }
 
 //        109是虚线图
@@ -52,18 +52,18 @@
                 $('#con').html(data.content);
                 $('img').each(function (i, e) {
 //                    alert(parseInt($(e).css('width')))
-                    if (parseInt($(e).css('width')) > (w - 20)) {
+                    if (parseInt($(e).css('width')) > (w - 30)) {
                         var imgW = parseInt($(e).css('width'));
                         var imgH = parseInt($(e).css('height'));
                         var RATE = imgH / imgW; //宽高比
-                        $(e).attr({width: (w - 20), height: (w - 20) * RATE})
-                        $(e).css({width: (w - 20), height: (w - 20) * RATE})
+                        $(e).attr({width: (w - 30), height: (w - 30) * RATE})
+                        $(e).css({width: (w - 30), height: (w - 30) * RATE})
                     }
-                    if(parseInt($(e).css('width'))==0){
-                        $(e).attr({width: (w - 20)});
+                    if (parseInt($(e).css('width')) == 0) {
+                        $(e).attr({width: (w - 30)});
                     }
                 })
-                $('iframe').css({width: (w - 20), height: (w - 20) * 49 / 51})//padding*2
+                $('iframe').css({width: (w - 30), height: (w - 30) * 9 / 16})//padding*2
                 //alert($('img').width());
                 //alert(w);
             },
@@ -76,4 +76,4 @@
     })
 </script>
 </body>
-</html>
+</html
