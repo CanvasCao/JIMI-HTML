@@ -7,7 +7,7 @@
 
     var isConVelocited = false;
     //操作的jq对象
-    var $cirs=$('#circles');
+    var $cirs = $('#circles');
     var $cirLis = $cirs.find('li');
     var $con = $('#container');
     var $pages = $con.find('.page');
@@ -106,10 +106,10 @@
         var lastPageHeight = 150;
 
         //滚到底部 右侧点消失
-        if(pageIndex==pageNum){
+        if (pageIndex == pageNum) {
             $cirs.fadeOut('normal');
         }
-        else{
+        else {
             $cirs.fadeIn('normal');
         }
 
@@ -289,6 +289,8 @@
         function () {
         }
     ];
+    window.AnimateInArr = AnimateInArr;
+
     var AnimateOutArr = [
         function () {
             vsm.STOP();
@@ -310,12 +312,13 @@
         function () {
         }
     ];
-
+    window.AnimateOutArr = AnimateOutArr;
 
     //init.............................................................
     $cirLis.eq(pageIndex).addClass('cur').siblings().removeClass('cur');
-    $pages.eq(pageIndex).css({top: 0}).siblings().css({top: '100%'})
-    AnimateInArr[pageIndex]() //首页入场
-    $header.css({top: '-80px'}).delay(1000).velocity({top: 0}, 'slow', 'easeInQuart')
+    //
+    //$pages.eq(pageIndex).css({top: 0}).siblings('.page').css({top: '100%'}) //siblings 有page 也有pageSvg
+    //AnimateInArr[pageIndex]() //首页入场
+    $header.css({top: '-80px'});//.delay(1000).velocity({top: 0}, 'slow', 'easeInQuart')
 
 })()

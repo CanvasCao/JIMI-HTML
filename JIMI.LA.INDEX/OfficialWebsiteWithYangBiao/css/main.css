@@ -40,9 +40,6 @@ body {
     border: 1px solid #3881e0;
     margin: 0 auto 10px;
     transition: all 0.8s ease 0s;
-    -webkit-transition: all 0.8s ease 0s;
-    transition: all 0.8s ease 0s;
-    transition: all 0.8s ease 0s;
     border-radius: 50%;
     cursor: pointer;
 }

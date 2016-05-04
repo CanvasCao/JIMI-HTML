@@ -71,7 +71,7 @@
                 height: '80',
                 width: '100%',
                 'background-color': 'white',
-                'z-index': '2',
+                'z-index': '100',
                 top: '0',
                 'box-shadow': '0px 3px 15px rgba(0, 0, 0, 0.1)'
             })
