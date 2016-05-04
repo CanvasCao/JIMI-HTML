@@ -11,6 +11,13 @@
             margin: 0;
             text-decoration: none;
             list-style: none;
+
+            /**/
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+            -webkit-text-size-adjust: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
         }
 
         #slot{
@@ -20,14 +27,62 @@
             top: 0;
             left: 0;
         }
+
+        .machine{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-50%);
+            border: 1px solid red;
+            width: 300px;
+            height: 300px;
+        }
+
+        .win{
+            position: absolute;
+            width: 100px;
+            height: 300px;
+            border: 1px solid blue;
+        }
+
+        .win .item{
+            position: absolute;
+            height: 100px;
+            width: 100px;
+            border: 1px solid green;
+        }
+        .win:nth-child(1){
+            left: 0%;
+        }
+        .win:nth-child(2){
+            left: 33.3%;
+
+        }
+        .win:nth-child(3){
+            left: 66.6%;
+        }
+
+        .btn{
+            position: absolute;
+            bottom: -20px;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
 <div id='slot'>
     <div class='machine'>
-        <div class='win win1'>1</div>
+        <div class='win win1'>
+            <div class='item'>0</div>
+            <div class='item'>1</div>
+            <div class='item'>2</div>
+            <div class='item'>3</div>
+            <div class='item'>4</div>
+            <div class='item'>5</div>
+        </div>
         <div class='win win2'>2</div>
         <div class='win win3'>3</div>
+        <div class='btn'>START</div>
     </div>
     <div>开始对比</div>
 </div>
@@ -36,7 +91,16 @@
 <script src='slotMachine-1.0.0.js'></script>
 <script>
     $(function () {
+        var index=0
 
+        $('.btn').click(function(){
+//            $('.win1').find('')
+        })
+
+
+        function MoveOnce(){
+
+        }
     })
 </script>
 </body>
