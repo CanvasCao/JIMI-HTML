@@ -209,7 +209,8 @@
 //                                        curveness: 0.3
                                 }
                             },
-                            color: ['#fba41a', '#d2d2d2', '#3982e1', '#23ad39']
+                            color: ['#fba41a', '#d2d2d2', '#3982e1', '#23ad39'],
+
 
                         }
 
@@ -249,7 +250,7 @@
                                 name: arrArrName[i] + ' : ' + arrArr[i][a],
                                 value: (maxSize - a * step) <= minSize ? minSize : (maxSize - a * step),
                                 category: arrArrName[i],
-//                                    draggable: true,
+                                    //draggable: true,
                                 symbolSize: (maxSize - a * step) <= minSize ? minSize : (maxSize - a * step),
                             })
                         }
@@ -282,6 +283,8 @@
                     }
 
                     mychart.setOption(relationJson);
+
+
                 }
 
 
@@ -313,6 +316,18 @@
 
                 //canvas下面本来是隐藏的
                 $(that.C).find('.nonCanvas').show();
+
+
+
+                var canvasBeenClicked=false;
+                $(that.C).click(function(){
+                    if(!canvasBeenClicked){
+                        mychart = echarts.init(canvasBox);
+                        mychart.setOption(relationJson);
+                        canvasBeenClicked=true;
+                    }
+
+                })
             }
 
             else {//说明没有成分
@@ -321,7 +336,7 @@
                 //下面是否加补全成分的按钮Btn 代码很不好
                 var BtnTXT = '';
                 if (that.ifBtn) {
-                    BtnTXT = '<a class="btn" href="http://n1.jimi.la/apps_V4/html5/whatever.html">补全成分</a>';
+                    BtnTXT = '<a class="btn" href="http://n1.jimi.la/apps_T1/html5/whatever.html">补全成分</a>';
                 }
 
 
@@ -354,5 +369,3 @@
     }
     w.ProductDetailCanvas = ProductDetailCanvas;
 })(window, document, jQuery)
-
-

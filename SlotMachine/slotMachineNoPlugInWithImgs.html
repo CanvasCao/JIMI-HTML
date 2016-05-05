@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no"/>
+    <title>老虎机</title>
+    <style type="text/css">
+        * {
+            padding: 0;
+            margin: 0;
+            text-decoration: none;
+            list-style: none;
+
+            /**/
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+            -webkit-text-size-adjust: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        #slotCon {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+        }
+
+        .machine {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-50%);
+            /*border: 1px solid red;*/
+            background-color: #9ab1a7;
+            width: 340px;
+            height: 320px;
+            border-radius: 10px;
+        }
+
+        .board {
+            position: absolute;
+            width: 320px;
+            height: 180px;
+            top: 50%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-50%);
+            background-color: #decfa4;
+            border-radius: 10px;
+        }
+
+        .win {
+            position: absolute;
+            width: 90px;
+            height: 90px;
+            /*box-sizing: border-box;*/
+
+            /*item的宽高是100% 所以box-sizing不能写border-box*/
+            background-color: white;
+            border: 5px solid #cf7649;
+            top: 15%;
+            overflow: hidden;
+        }
+
+        .win:nth-child(1) {
+            left: 8%;
+        }
+
+        .win:nth-child(2) {
+            right: 8%;
+        }
+
+        .win .item {
+            position: absolute;
+            height: 90px;
+            width: 90px;
+            top: 100px;
+            background-color: white;
+            font-size: 80px;
+            text-align: center;
+            line-height: 80px;
+
+        }
+
+        .item img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .btn {
+            position: absolute;
+            width: 100%;
+            height: 50px;
+            top: 80%;
+            border: 1px solid #000;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div id='slotCon'>
+    <div class='machine'>
+        <div class="board">
+            <div class="win">
+                <div class='item'><img src="img/1.jpg" alt=""/></div>
+                <div class='item'><img src="img/2.jpg" alt=""/></div>
+                <div class='item'><img src="img/3.jpg" alt=""/></div>
+                <div class='item'><img src="img/pro1.jpg" alt=""/></div>
+            </div>
+            <div class="win">
+                <div class='item'><img src="img/4.jpg" alt=""/></div>
+                <div class='item'><img src="img/5.jpg" alt=""/></div>
+                <div class='item'><img src="img/6.jpg" alt=""/></div>
+                <div class='item'><img src="img/pro2.jpg" alt=""/></div>
+            </div>
+        </div>
+        <div class='btn'>START</div>
+
+    </div>
+
+</div>
+
+<script src='jquery-1.8.3.min.js'></script>
+<script src='jQuery-jimiFixRate-1.0.0.js'></script>
+<script src='velocity.min.js'></script>
+<script src='slotMachine-1.0.0.js'></script>
+<script>
+    $(function () {
+        var data = {
+            data: [{
+                name: '111',
+                pid: 'ewrvwthjjey',
+                imgUrl: 'baidu.com'
+            }, {
+                name: '222',
+                pid: 'ewrvwthjjey',
+                imgUrl: 'baidu.com'
+            }]
+
+        }
+
+        var winH = $(window).height();
+        var winW = $(window).width();
+
+        //修正比例
+        var RATE = winW / 375;
+        $('.machine').jimiFixedRate();
+        $('.board').jimiFixedRate();
+        $('.win').jimiFixedRate();
+        $('.win .item').jimiFixedRate();
+        $('.btn').jimiFixedRate();
+
+
+        var itemEdgeLength = 90 * RATE;
+        var index = 0
+        var ifTimer = false;
+        var ifStopping = false;
+        var timer = null;
+        var len = 4; //不是下标最大值 而是数量
+        var duration = 500;
+        var stopCount = 5;
+
+//      init..............................................
+        $('.win').each(function (i, e) {
+            $(e).find('.item').eq(index).css({top:0}).siblings().css({top:1000});
+        });
+
+
+        $('.btn').click(function () {
+//            console.log(timer)
+            if (!ifTimer) {
+                duration = 500;
+                timer = setTimeout(MoveOnce, duration);
+                ifTimer = !ifTimer;
+            }
+            else {
+                stopCount = 10;
+                duration = 50;
+                ifStopping = true;
+            }
+        })
+
+
+        function MoveOnce() {
+            var indexAdd1 = (index + 1) >= len ? 0 : (index + 1);
+            $('.win').each(function (i, e) {
+//               console.log($(e))
+                $(e).find('.item').eq(index).css({
+                    top: 0,
+                    'z-index': 0
+                }).velocity({top: -itemEdgeLength}, duration, 'linear');
+                $(e).find('.item').eq(indexAdd1).css({
+                    top: itemEdgeLength,
+                    'z-index': 1
+                }).velocity({top: 0}, duration, 'linear', function () {
+                });
+            })
+
+            index = (index + 1) >= len ? 0 : (index + 1);
+
+            if (ifStopping) { //正在停止的情况下dur++ 否则dur--
+
+                if (stopCount == 0) {
+                    clearInterval(timer);
+                    ifTimer = !ifTimer;
+                    ifStopping = false;
+                    return;
+                }
+                timer = setTimeout(MoveOnce, duration);
+
+                stopCount--;
+                duration += 50;
+            }
+
+            else {
+                duration = (duration - 50) <= 50 ? 100 : (duration - 50);
+                timer = setTimeout(MoveOnce, duration);
+            }
+        }
+
+
+    })
+</script>
+</body>
+</html>

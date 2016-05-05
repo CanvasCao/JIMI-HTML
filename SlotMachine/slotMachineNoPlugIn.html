@@ -139,8 +139,8 @@
                 ifTimer = !ifTimer;
             }
             else {
-                stopCount = 5;
-                duration = 100;
+                stopCount = 10;
+                duration = 50;
                 ifStopping = true;
             }
         })
@@ -159,9 +159,9 @@
 
             index = (index + 1) >= len ? 0 : (index + 1);
 
-            if (ifStopping) {
+            if (ifStopping) { //正在停止的情况下dur++ 否则dur--
                 stopCount--;
-                duration += 150;
+                duration += 50;
                 if (stopCount == 0) {
                     clearInterval(timer);
                     ifTimer = !ifTimer;
@@ -172,11 +172,9 @@
             }
 
             else {
-                duration = (duration - 50) <= 100 ? 100 : (duration - 50);
+                duration = (duration - 50) <= 50 ? 100 : (duration - 50);
                 timer = setTimeout(MoveOnce, duration);
-
             }
-
         }
 
 

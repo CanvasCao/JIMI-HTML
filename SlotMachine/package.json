@@ -1,0 +1,16 @@
+jsonpcallback(
+{
+  "data": [
+    {
+      "name": "伊诺姿水蓝净润美肌精华露",
+      "pid": "56829cb9efb80c4e26c3a7f1",
+      "imgUrl": "http://7xo2me.com1.z0.glb.clouddn.com/proImg/image_20160325_56f4a71798396.jpg"
+    },
+    {
+      "name": "SK-II男士焕活护肤精华露",
+      "pid": "5682a100efb80c4e26c4bdf3",
+      "imgUrl": "http://7xo2me.com1.z0.glb.clouddn.com/proImg/image_20160114_56977aa6afc51.jpg"
+    }
+  ]
+}
+)
