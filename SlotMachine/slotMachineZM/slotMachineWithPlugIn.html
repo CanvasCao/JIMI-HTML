@@ -41,24 +41,7 @@
 
 <script>
     $(function () {
-//        window.location.search
-        $.ajax({
-            type: "get",
-//            url: 'http://n1.jimi.la/apps_T1/slotMachine.php',
-            url: 'package.json',
-            dataType: "jsonp",
-            jsonp: "callback",
-            jsonpCallback: "jsonpcallback",
-            success: function (data) {
-                console.log(JSON.stringify(data));
-                var slotMachine = new SlotMachine($('#slotCon')[0], data.data);
-            },
-            error: function (err) {
-                console.log('ERROR!')
-                console.log(err);
-            }
-        });
-
+                var slotMachine = new SlotMachine($('#slotCon')[0],null);
     })
 </script>
 </body>

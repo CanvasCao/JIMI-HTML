@@ -1,11 +1,12 @@
 ;
 (function ($) {
-    $.fn.jimiFixedRate = function () {
+    $.fn.jimiFixedRate = function (standardWidth) {
+        var standardWidth=standardWidth||375;
         var that=this;
 
         var winH=$(window).height();
         var winW=$(window).width();
-        var RATE = winW / 375;
+        var RATE = winW / standardWidth;
 
 
         var h = parseFloat(that.css('height')) * RATE;

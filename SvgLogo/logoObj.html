@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            font-family: '微软雅黑';
+        }
+
+        body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        path, line, polyline {
+            stroke: #ededed;
+            stroke-width: 1px;
+            fill: transparent;
+        }
+
+        .path {
+            position: absolute;
+            display: none;
+        }
+
+        #imgDiv {
+            position: absolute;
+            left: -36px;
+            top: -36px;
+            opacity: 0;
+        }
+
+        #imgDiv img {
+            width: 270px;
+        }
+
+        #Con {
+            /*border: 1px solid #000;*/
+            position: absolute;
+            width: 190px;
+            height: 190px;
+            top: 50%;
+            left: 50%;
+            -webkit-transform: translateX(-50%) translateY(-200px);
+            -moz-transform: translateX(-50%) translateY(-200px);
+            -ms-transform: translateX(-50%) translateY(-200px);
+            transform: translateX(-50%) translateY(-200px);
+        }
+
+        #jimi {
+            position: absolute;
+            width: 200px;
+            font-size: 45px;
+            top: 50%;
+            left: 50%;
+            -webkit-transform: translateX(-50%) translateY(50px);
+            -moz-transform: translateX(-50%) translateY(50px);
+            -ms-transform: translateX(-50%) translateY(50px);
+            transform: translateX(-50%) translateY(50px);
+            display: none;
+            color: #525252;
+        }
+    </style>
+</head>
+<body>
+
+<div id='Con'>
+    <div id='imgDiv'><img src="logoBig.jpg" alt=""/></div>
+    <div id='svgCon'></div>
+</div>
+<div id='jimi'>JIMI 肌秘</div>
+<script src="walkway.min.js"></script>
+<script src="jquery-1.8.2.min.js"></script>
+<script>
+    $(function () {
+		console.log(new Date().getTime());
+        function svgCircle(container, x, y, elength, index, callback) {
+            this.C = this.container = container;
+            this.x = x;//left
+            this.y = y;//top
+            this.EL = this.elength = elength;
+            this.index = index;
+            this.pathId = 'path' + this.index;
+            this.callback = callback;
+            this.svgObj = null;
+            this.init();
+
+        }
+
+        svgCircle.prototype = {
+            init: function () {
+                this.createDom();
+                this.initCSS();
+            },
+            createDom: function () {
+                $(this.C).append(
+                        //宽高关系不大 因为没有overflow hidden
+                        '<svg class="path"  id=' + this.pathId + ' width="300" height="300" version="1.1" xmlns="http://www.w3.org/2000/svg">' +
+                        '<path xmlns="http://www.w3.org/2000/svg"' +
+                        'd="M' + 3 * this.EL + ' ' + this.EL + ' ' +
+                        'C' + 3 * this.EL + ' ' + this.EL + ' ' + 5 * this.EL + ' ' + this.EL + ' ' + 5 * this.EL + ' ' + 3 * this.EL + ' ' +
+                        'C' + 5 * this.EL + ' ' + 3 * this.EL + ' ' + 5 * this.EL + ' ' + 5 * this.EL + ' ' + 3 * this.EL + ' ' + 5 * this.EL + ' ' +
+                        'C' + 3 * this.EL + ' ' + 5 * this.EL + ' ' + 1 * this.EL + ' ' + 5 * this.EL + ' ' + 1 * this.EL + ' ' + 3 * this.EL + ' ' +
+                        'C' + 1 * this.EL + ' ' + 3 * this.EL + ' ' + 1 * this.EL + ' ' + 1 * this.EL + ' ' + 3 * this.EL + ' ' + 1 * this.EL + ' "/>' +
+                        '</svg>'
+                );
+            },
+            initCSS: function () {
+                var that = this;
+                $(this.C).find('#' + that.pathId).css({top: that.y}).css({left: that.x});
+            },
+            draw: function () {
+                var that = this;
+                $(that.C).find('#' + that.pathId).show();
+//                console.log($(this.C).find('#' + that.pathId))
+                that.svgObj = new Walkway({
+                    selector: '#' + that.pathId,
+                    duration: 2500,
+                    easing: 'easeInOut'
+                }).draw(that.callback);
+
+
+            }
+        }
+
+
+        var B = 30;
+        var gen3 = Math.sqrt(3);
+        var cirCenterArr = [ //六个圆心的坐标
+            [0, -B],
+            [B * gen3 / 2, -B / 2],
+            [B * gen3 / 2, B / 2],
+            [0, B],
+            [-B * gen3 / 2, B / 2],
+            [-B * gen3 / 2, -B / 2],
+        ]
+
+        var svgCirCleArr = [];
+        for (i = 0; i < 6; i++) {
+            var callback = (i == 5) //等于最后一个就加回调 否则不加
+                    ? function () {
+                $('#svgCon').animate({opacity: 0});
+                $('#jimi').show().css({top:'100%'}).animate({top:'50%'},1200,'swing');
+                $('#imgDiv').css({'z-index': 2}).animate({opacity: 1}, 1200, 'swing', function () {
+                    $('#svgCon').empty(); //这里只是图片出来的回调 不要加其他代码
+				    console.log(new Date().getTime());
+                });
+            }
+                    : function () {
+            };
+
+            svgCirCleArr.push(new svgCircle($('#svgCon')[0], cirCenterArr[i][0], cirCenterArr[i][1], 33, i, callback))
+        }
+
+//        console.log(svgCirCleArr)
+        for (i = 0; i < svgCirCleArr.length; i++) {
+            eval(
+                    'setTimeout(function(){' +
+                    'svgCirCleArr[' + i + '].draw();' +
+                    '},' + i + '*500)'
+            )
+        }
+
+    })
+</script>
+</body>
+</html>
+
