@@ -20,7 +20,7 @@
         }
 
         path, line, polyline {
-            stroke: #ededed;
+            stroke: #e6e6e6;
             stroke-width: 1px;
             fill: transparent;
         }
@@ -32,39 +32,40 @@
 
         #imgDiv {
             position: absolute;
-            left: -36px;
-            top: -36px;
+            left: -23px;
+            top: -23px;
             opacity: 0;
         }
 
         #imgDiv img {
-            width: 270px;
+            width: 154px;
         }
 
         #Con {
             /*border: 1px solid #000;*/
             position: absolute;
-            width: 190px;
-            height: 190px;
+            width: 110px;
+            height: 110px;
             top: 50%;
             left: 50%;
-            -webkit-transform: translateX(-50%) translateY(-200px);
-            -moz-transform: translateX(-50%) translateY(-200px);
-            -ms-transform: translateX(-50%) translateY(-200px);
-            transform: translateX(-50%) translateY(-200px);
+            -webkit-transform: translateX(-50%) translateY(-120px);
+            -moz-transform: translateX(-50%) translateY(-120px);
+            -ms-transform: translateX(-50%) translateY(-120px);
+            transform: translateX(-50%) translateY(-120px);
         }
 
         #jimi {
             position: absolute;
-            width: 200px;
-            font-size: 45px;
+            text-align: center;
+            width: 100%;
+            font-size: 20px;
             top: 50%;
             left: 50%;
             -webkit-transform: translateX(-50%) translateY(50px);
             -moz-transform: translateX(-50%) translateY(50px);
             -ms-transform: translateX(-50%) translateY(50px);
             transform: translateX(-50%) translateY(50px);
-            display: none;
+            opacity: 0;
             color: #525252;
         }
     </style>
@@ -80,7 +81,7 @@
 <script src="jquery-1.8.2.min.js"></script>
 <script>
     $(function () {
-		console.log(new Date().getTime());
+		var startTime=(new Date().getTime());
         function svgCircle(container, x, y, elength, index, callback) {
             this.C = this.container = container;
             this.x = x;//left
@@ -131,7 +132,7 @@
         }
 
 
-        var B = 30;
+        var B = 18;
         var gen3 = Math.sqrt(3);
         var cirCenterArr = [ //六个圆心的坐标
             [0, -B],
@@ -147,16 +148,17 @@
             var callback = (i == 5) //等于最后一个就加回调 否则不加
                     ? function () {
                 $('#svgCon').animate({opacity: 0});
-                $('#jimi').show().css({top:'100%'}).animate({top:'50%'},1200,'swing');
-                $('#imgDiv').css({'z-index': 2}).animate({opacity: 1}, 1200, 'swing', function () {
+                $('#jimi').css({opacity:0,top:'60%'}).animate({opacity:1,top:'50%'},1000,'swing');
+                $('#imgDiv').css({'z-index': 2}).animate({opacity: 0.9}, 1000, 'swing', function () {
                     $('#svgCon').empty(); //这里只是图片出来的回调 不要加其他代码
-				    console.log(new Date().getTime());
+                    var endTime=(new Date().getTime());
+                    console.log((endTime-startTime)/1000+'秒');
                 });
             }
                     : function () {
             };
 
-            svgCirCleArr.push(new svgCircle($('#svgCon')[0], cirCenterArr[i][0], cirCenterArr[i][1], 33, i, callback))
+            svgCirCleArr.push(new svgCircle($('#svgCon')[0], cirCenterArr[i][0], cirCenterArr[i][1], 18, i, callback))
         }
 
 //        console.log(svgCirCleArr)
