@@ -1,0 +1,4 @@
+  function GetRandom(begin, end) {
+                    return Math.floor(Math.random() * (end - begin)) + begin;
+                }
+				左闭右开  右边取不到

@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no"/>
+
+    <title>弹幕插件</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            text-decoration: none;
+            list-style: none;
+
+            /**/
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+            -webkit-text-size-adjust: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        #cullet {
+            background-color: rgba(0, 0, 0, 0.5);
+            position: fixed;
+            width: 200%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            /*z-index: 1;*/
+        }
+
+        /*.test {*/
+        /*background-color: blue;*/
+        /*height: 30px;*/
+        /*border: 1px solid #000;*/
+        /*margin-top: 15px;*/
+        /*}*/
+
+        .comment {
+            position: absolute;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+<div id="cullet">
+</div>
+
+<script src='js/jquery-1.8.3.min.js'></script>
+<script>
+    $(function () {
+        var winH = $(window).height();
+        var winW = $(window).width();
+
+
+        function CommentCell(container, txt, top, id, speed) {
+            this.C = this.container = container;
+            this.txt = txt;
+            this.top = top;
+            this.id = 'cell' + id;
+            this.speed = speed || 1;
+
+
+            this.JM = this.jqMap = {};
+            this.init();
+        }
+
+        CommentCell.prototype = {
+            init: function () {
+                this.initConfig();
+                this.createDom();
+                this.initCSS();
+                this.bindEvent();
+            },
+            initConfig: function () {
+
+            },
+            createDom: function () {
+                var that = this;
+                $(this.C).append('<div class="comment" id=' + that.id + '>' + that.txt + '</div>');
+
+                this.JM.cell = $(this.C).find('#' + that.id);
+            },
+            initCSS: function () {
+                var that = this;
+                this.JM.cell.css({left: winW});
+                this.JM.cell.css({top: that.top});
+            },
+            bindEvent: function () {
+                var that = this;
+            },
+            move: function () {
+                var that = this;
+                var cellLeft = parseInt(that.JM.cell.css('left'));
+                this.JM.cell.css({left: (cellLeft - 1)});
+            },
+            die: function () {
+                var that = this;
+                //删除分两步 一个是数组里删除自己 另一个是 删除dom节点
+            }
+        }
+
+        function CommentCellManage(container) {
+            this.container = container;
+            this.commentArr = [];
+            this.lineArr = [];
+
+            this.cellH = 30;
+            this.cellPaddingTop = 15;
+            this.winH = $(window).height();
+            this.lineNumber = Math.floor(winH / (this.cellH + this.cellPaddingTop));
+            //this.top = (lineIndex * (this.cellH + this.cellPaddingTop)) + this.cellPaddingTop; //生成的div的 css的top值
+
+            this.cellIndex = 0;
+        }
+
+        CommentCellManage.prototype = {
+            push: function (commentCell) {
+                this.commentArr.push(commentCell);
+                this.cellIndex++;
+            },
+            move: function () {
+                var that = this;
+                for (i = 0; i < that.commentArr.length; i++) {
+                    that.commentArr[i].move();
+                }
+            },
+            refresh: function () {
+
+            },
+            getTop: function (lineIndex) {
+                return (lineIndex * (this.cellH + this.cellPaddingTop) + this.cellPaddingTop);
+            }
+
+        }
+
+
+        var ccm = new CommentCellManage($('#cullet')[0]);
+
+
+        setInterval(function () {
+            var lineNum=GetRandom(0, 10);
+            var cc = new CommentCell($('#cullet')[0], '弹幕' + new Date().getTime(),ccm.getTop(lineNum), new Date().getTime(), 1);
+            ccm.push(cc);
+
+        }, 200)
+
+
+        setInterval(function () {
+            ccm.move();
+        }, 10)
+
+
+        function GetRandom(begin, end) {
+            return Math.floor(Math.random() * (end - begin)) + begin;
+        }
+
+
+    })
+</script>
+</body>
+</html>
