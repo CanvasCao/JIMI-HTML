@@ -1,5 +1,5 @@
 /*!
- * slotMachine, a JavaScriptPlugIn v1.0.0
+ * slotMachine, a JavaScriptPlugIn v1.0.0 special For Zhuma
  * http://www.jimi.la/
  *
  * Copyright 2016, CaoYuhao
@@ -12,7 +12,7 @@
 (function (w, d, $, undefined) {
     function SlotMachine(container, data) {
         this.C = this.container = container;//先假设这里容器 psa 宽高都是100%等于屏幕
-        this.D = this.data = data; //传进来的是data.data 所以D是个数组
+        this.D = this.data = data;
         this.config = {
             winH: $(window).height(),
             winW: $(window).width(),
@@ -48,24 +48,23 @@
 
 
             var str = '';
-            for (i = 1; i <= 3; i++) {
-                str += '<div class="item"><img src="img/' + i + '.jpg" alt=""/></div>';
+            for (i = 0; i < this.data.win1Pics.length; i++) {
+                str += '<div class="item"><img src="img/' + this.data.win1Pics[i] + '"  alt=" "/></div>';
             }
-            $(this.C).find('.win').eq(0).html(str);
-
+            $(this.C).find('.win').eq(0).html(str).append('<div class="specialItem"><img src="img/' + this.data.specialPics + '"  alt=" "/></div>')
 
 
             var str = '';
-            for (i = 4; i <= 6; i++) {
-                str += '<div class="item"><img src="img/' + i + '.jpg" alt=""/></div>';
+            for (i = 0; i < this.data.win2Pics.length; i++) {
+                str += '<div class="item"><img src="img/' + this.data.win2Pics[i] + '"  alt=" "/></div>';
             }
-            $(this.C).find('.win').eq(1).html(str);
+            $(this.C).find('.win').eq(1).html(str).append('<div class="specialItem"><img src="img/' + this.data.specialPics + '"  alt=" "/></div>');
 
 
         },
         initConfig: function () {
             //修正比例 以iphone6为基准
-            this.config.RATE = this.config.winW /375;
+            this.config.RATE = this.config.winW / 375;
             this.config.len = $(this.C).find('.win').eq(0).find('.item').length;
         },
         initCSS: function () {
@@ -108,17 +107,17 @@
             })
 
             $(this.C).find('.win').eq(0).css({
-                left: '6%'
+                left: '10%'
             })
 
             $(this.C).find('.win').eq(1).css({
-                right: '6%'
+                right: '10%'
             })
 
 
             var $win = $(this.C).find('.win');
             var itemEdge = parseFloat($win.css('width'))
-            $(this.C).find('.item').css({
+            $(this.C).find('.item ,.specialItem').css({
                 position: 'absolute',
                 height: itemEdge, //90的原因只是因为他父容器宽高是90
                 width: itemEdge,
@@ -148,11 +147,12 @@
 
         initRATE: function () {
             if ($.fn.jimiFixedRate) {
-                var standardWidth=1000;
+                var standardWidth = 1000;
                 $('.machine').jimiFixedRate(standardWidth);
                 $('.board').jimiFixedRate(standardWidth);
                 $('.win').jimiFixedRate(standardWidth);
                 $('.win .item').jimiFixedRate(standardWidth);
+                $('.win .specialItem').jimiFixedRate(standardWidth);
                 $('.btn').jimiFixedRate(standardWidth);
 
             } else {
@@ -173,6 +173,7 @@
             $(this.C).find('.btn').click(function () {
                 if (!that.config.ifRunning) { //如果是不正在跑 那就跑  否则让他正在跑 并且正在停
                     that.config.duration = 300;
+                    $(that.C).find('.btn').html('停 止');
                     that.config.timer = setTimeout(MoveOnce, that.config.duration);
                     that.config.ifRunning = !that.config.ifRunning;
                 }
@@ -196,18 +197,31 @@
                     $(e).find('.item').eq(indexAdd1).css({
                         top: '100%',
                         'z-index': 1
-                    }).animate({top: 0}, that.config.duration, 'linear', function () {
-                    });
+                    }).animate({top: 0}, that.config.duration, 'linear');
                 })
 
                 that.config.index = (that.config.index + 1) >= that.config.len ? 0 : (that.config.index + 1);//验收下标
 
+                //如果方辉已经在正中间 让他上去
+                if($(that.C).find('.specialItem').css('top')=='0px'&&!that.config.ifStopping){
+                    $(that.C).find('.specialItem').animate({top: '-100%'}, that.config.duration, 'linear');
+                }
+
                 if (that.config.ifStopping) { //正在停止的情况下dur++ 否则dur--
+
+                    if (that.config.stopCount == 1) {//最后一下方辉上来
+                        $(that.C).find('.specialItem').css({
+                            top: '100%',
+                            'z-index': 1
+                        }).animate({top: 0}, that.config.duration, 'linear');
+                    }
 
                     if (that.config.stopCount == 0) {
                         clearInterval(that.config.timer);
                         that.config.ifRunning = !that.config.ifRunning;
                         that.config.ifStopping = false;
+                        $(that.C).find('.btn').html('启 动');
+                        alert('太刺激了，你未来的老公是方辉');
                         return;
                     }
                     that.config.timer = setTimeout(MoveOnce, that.config.duration);

@@ -1,0 +1,8 @@
+
+        input, button, select, textarea {
+            outline: 0 none;
+            border: 0px;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+        }

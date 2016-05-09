@@ -58,7 +58,7 @@
             position: absolute;
             text-align: center;
             width: 100%;
-            font-size: 20px;
+            font-size: 16px;
             top: 50%;
             left: 50%;
             -webkit-transform: translateX(-50%) translateY(50px);
@@ -76,7 +76,7 @@
     <div id='imgDiv'><img src="logoBig.jpg" alt=""/></div>
     <div id='svgCon'></div>
 </div>
-<div id='jimi'>JIMI 肌秘</div>
+<div id='jimi'>用 科 学 重 新 定 义 美 丽</div>
 <script src="walkway.min.js"></script>
 <script src="jquery-1.8.2.min.js"></script>
 <script>
@@ -123,7 +123,7 @@
 //                console.log($(this.C).find('#' + that.pathId))
                 that.svgObj = new Walkway({
                     selector: '#' + that.pathId,
-                    duration: 2500,
+                    duration: 2000,
                     easing: 'easeInOut'
                 }).draw(that.callback);
 
@@ -148,8 +148,8 @@
             var callback = (i == 5) //等于最后一个就加回调 否则不加
                     ? function () {
                 $('#svgCon').animate({opacity: 0});
-                $('#jimi').css({opacity:0,top:'60%'}).animate({opacity:1,top:'50%'},1000,'swing');
-                $('#imgDiv').css({'z-index': 2}).animate({opacity: 0.9}, 1000, 'swing', function () {
+                $('#jimi').css({opacity:0}).animate({opacity:1},600,'swing');
+                $('#imgDiv').css({'z-index': 2}).animate({opacity: 0.9}, 600, 'swing', function () {
                     $('#svgCon').empty(); //这里只是图片出来的回调 不要加其他代码
                     var endTime=(new Date().getTime());
                     console.log((endTime-startTime)/1000+'秒');
@@ -166,7 +166,7 @@
             eval(
                     'setTimeout(function(){' +
                     'svgCirCleArr[' + i + '].draw();' +
-                    '},' + i + '*500)'
+                    '},' + i + '*400)'
             )
         }
 
