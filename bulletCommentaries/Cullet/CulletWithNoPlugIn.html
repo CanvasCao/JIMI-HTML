@@ -110,7 +110,7 @@
                     'padding': '3px 10px',
                     'border-radius': '30px',
                     'background-color':that.backgroundColor,
-                    opacity: '0.5',
+                    opacity: '0.8',
                 })
 
                 this.JM.$cell.find('.commentImg').css({
@@ -238,7 +238,7 @@
 
                 //原json
                 var json = {
-                    txt: new Date().getTime(),
+                    txt:'弹幕 '+new Date().getTime(),
                     id: new Date().getTime(),
                     lineNum: 1,
                     top: GetTop(1),
@@ -362,7 +362,7 @@
                     'box-sizing': 'border-box',
                     padding: '5px',
                     'background-color': '#4b85fd',
-                    opacity: '0.6',
+//                    opacity: '0.6',
                     'font-size': '16px',
                 })
 
@@ -386,6 +386,8 @@
 
                 $(this.C).find('.txtCon input').css({
                     'background-color': '#bcc3d0',
+                    'background-color': '#e6efff',
+
                     color: 'gray',
                     height: '30px',
                     'margin-left': '15px',
@@ -430,9 +432,8 @@
                     var txt= $('.txtCon input').val();
                     ccm.push({
                         txt:txt,
-                        backgroundColor:'pink'});
+                        backgroundColor:'lightblue'});
 
-                    ccm.changeSpeed(1);
                 })
 
             }
@@ -444,7 +445,7 @@
         //循环加载弹幕
         setInterval(function () {
             ccm.push();
-        }, 1000)
+        }, 1200)
 
         ccm.start();
 
