@@ -10,7 +10,7 @@
 ;
 (function (w, d,$, undefined) {
     function CAOOOOOO(container, data) {
-        this.container = container;
+        this.C = this.container = (typeof container == 'string') ? $(container) : container;
         this.data = data;
         this.config = {};
         this.init();
