@@ -1,18 +1,16 @@
 /*!
- * cullet Cao+Bullet, a JavaScriptPlugIn v1.0.1
+ * cullet Cao+Bullet, a JavaScriptPlugIn v1.0.2
  * http://www.jimi.la/
  *
  * Copyright 2016, CaoYuhao
  * All rights reserved.
- * Date: 2016-5-10 09:47:53
+ * Date: 2016-5-11 20:03:01
  */
 
 /*!
- 1.0.1
- changeSpeed方法接受字符串
- 加入字符数量限制25个字符
- .comment 增加一个容器 弹幕消失的时候其实消失的是这个容器
- cell和manger灵魂绑定
+ 1.0.2
+ 实际开发版本
+ ccm 接受phpurl
  */
 
 ;
@@ -142,9 +140,10 @@
     };
 
     //管理类与dom无关 容器只能加这里 写在弹幕类里有延迟
-    function CommentCellManage(container) {
+    function CommentCellManage(container, json) {
         this.C = this.container = (typeof container == 'string') ? $(container) : container;
-        this.commentArr = [];//维护的弹幕列表 还是要不能只用dom树维护节点
+        this.json = json;
+        this.commentArr = [];//维护的弹幕dom的列表 不能只用dom树维护节点
         this.commentArrLimit = 50;
 
         this.winH = $(window).height();
@@ -161,6 +160,8 @@
         }
         ;
 
+        this.serverCommentArr = [];//ajax加载的弹幕
+        this.serverCommentIndex = 0;
 
         this.speedHash = {
             slow: 1.1,
@@ -171,7 +172,7 @@
 
         this.moveFPS = 60;
         this.moveTimer = null;
-        this.pushFPS = 2;
+        this.pushFPS = 3;
         this.pushTimer = null;
         this.init();
 
@@ -199,7 +200,6 @@
         },
         bindEvent: function () {
             var that = this;
-
         },
         push: function (newJson) {
             var that = this;
@@ -284,7 +284,10 @@
                 }, 1000 / that.moveFPS);
 
                 that.pushTimer = setInterval(function () {
-                    that.push();
+
+                    that.push(that.serverCommentArr[that.serverCommentIndex]);
+                    that.serverCommentIndex = (that.serverCommentIndex + 1) >= that.serverCommentArr.length ? 0 : (that.serverCommentIndex + 1);
+
                 }, 1000 / that.pushFPS);
             }
             ;
@@ -308,6 +311,34 @@
                     that.commentArr[i].speed = that.speedHash[that.speedKey];
                 }
             }
+        },
+
+        load: function (search) {
+            var that = this;
+
+            if (!window.location.search) {
+                //window.location = window.location + '?pid=56837c60efb80c6225ead657,56829da0efb80c4e26c3e3a2';
+                window.location = window.location + '?pid=56837c60efb80c6225ead657';
+            }
+
+            $.ajax({
+                type: "get",
+                url: 'http://n1.jimi.la/apps_T1/culletSelect.php' + window.location.search,
+//                url: 'package.json',
+                dataType: "jsonp",
+                jsonp: "callback",//传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)
+                jsonpCallback: "jsonpcallback",
+                success: function (data) {
+                    console.log(JSON.stringify(data));
+                    that.serverCommentArr = data.data;
+
+                    that.start(); //加载完成以后开始播放
+                },
+                error: function (err) {
+                    console.log('LOAD ERROR!')
+                    console.log(err);
+                }
+            });
         }
     };
 

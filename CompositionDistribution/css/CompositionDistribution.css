@@ -11,6 +11,12 @@
     user-select: none;
 }
 
+
+body {
+    padding: 0px 15px;
+    box-sizing: border-box;
+}
+
 /*头部有产品图片和文字*/
 .header {
     height: 200px;
@@ -52,7 +58,7 @@
 /*左侧成分 加 二选一控件*/
 .compositionsContainer {
     box-sizing: border-box;
-    padding: 10px 15px;
+    padding: 10px 0px;
     background-color: #f7f7f7;
     height: 60px;
 }

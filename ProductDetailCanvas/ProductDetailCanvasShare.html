@@ -20,6 +20,8 @@
         }
 
         body {
+            box-sizing: border-box;
+            padding: 0 15px;
             margin-bottom: 150px;
         }
 
@@ -36,7 +38,6 @@
             line-height: 35px;
             border-radius: 35px;
             background-color: #3881e0;
-            /*padding: 3px 10px;*/
             box-sizing: border-box;
             padding: 0 20px;
             color: white;
@@ -46,7 +47,7 @@
         .top {
             text-align: center;
             box-sizing: border-box;
-            padding: 10px;
+            padding:10px 0px;
         }
 
         .top img {
@@ -66,7 +67,6 @@
             /*border: 1px solid #000;*/
             border-bottom: 3px solid #f4f4f4;
             border-top: 10px solid #f4f4f4;
-
         }
 
         .navBar img {
@@ -80,7 +80,7 @@
 
         #params {
             box-sizing: border-box;
-            padding: 10px 20px;
+            padding: 10px 0px;
         }
 
         #params .row {
@@ -224,7 +224,7 @@
             $rowR.eq(3).html(data.brand);
 
             //中间蜂巢的数据
-            var pdc = new Honeycomb($('#honeyComb')[0], data);
+            var hc = new Honeycomb($('#honeyComb')[0], data);
 
             //中间canvas的数据
             var pdc = new ProductDetailCanvas($('#productDetailCanvas')[0], data, false);

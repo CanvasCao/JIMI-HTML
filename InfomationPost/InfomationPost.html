@@ -10,6 +10,8 @@
             padding: 0;
             margin: 0;
             list-style: none;
+            text-decoration: none;
+
         }
 
         body {
@@ -17,58 +19,128 @@
             box-sizing: border-box;
         }
 
-        img {
-            display: block;
-            margin: 0 auto;
-        }
+
     </style>
 </head>
 <body>
 <div id='con'></div>
 
 <script src='js/jquery-1.8.2.min.js'></script>
+<script src='js/productDetailCanvas-1.0.0.js'></script>
+<script src='js/echartsBasic&Graph.min.js'></script>
+<script src='js/alternateBtn-1.0.0.js'></script>
+<script src='js/spa-middleComponent-1.0.2.js'></script>
+<script src='js/spa-header.js'></script>
+<script src='js/spa-compositionContainer.js'></script>
+<script src='js/spa-alertCon.js'></script>
 <script>
     $(function () {
         if (!window.location.search) {
-            window.location = window.location + '?rid=109';
+            window.location = window.location + '?rid=413';
         }
 
-//        109是虚线图
+        //109是虚线图
         //168
         //54
         //alert(2)
         var w = $(window).width()
+        var paddingW = 15;
         $.ajax({
             type: "get",
             url: 'http://n1.jimi.la/apps_V3/informationPost.php' + window.location.search,
 //                url: 'package.json',
 //                data: {pids: '56c6ae75efb80c9b2541cd66,56c6ae4fefb80c9b2541cc39', 'cate': 70},
             dataType: "jsonp",
-            jsonp: "callback",//传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)
+            jsonp: "callback",
             jsonpCallback: "jsonpcallback",
             success: function (data) {
-                console.log(JSON.stringify(data));
-//                    $('body').html(data.content.replace(/"/g,'&quot').replace(/'/g,'&quot').replace(/</g,'&lt').replace(/>/g,'&gt'))
-                $('#con').html(data.content);
-                $('img').each(function (i, e) {
+//                console.log(JSON.stringify(data));
+
+                var $con = $('#con');
+                $con.html(data.content); //jsonp 返给我的全部是html
+                $con.find('img').css({ //把所有图片转块 左右居中
+                    display: 'block',
+                    margin: '0 auto',
+                });
+                $con.find('img').each(function (i, e) {
 //                    alert(parseInt($(e).css('width')))
-                    if (parseInt($(e).css('width')) > (w - 30)) {
+
+                    //遍历图片 如果宽度大于屏幕宽-30  则强行等比例宽等于屏宽
+                    if (parseInt($(e).css('width')) > (w - paddingW * 2)) {
                         var imgW = parseInt($(e).css('width'));
                         var imgH = parseInt($(e).css('height'));
                         var RATE = imgH / imgW; //宽高比
-                        $(e).attr({width: (w - 30), height: (w - 30) * RATE})
-                        $(e).css({width: (w - 30), height: (w - 30) * RATE})
+                        $(e).attr({width: (w - paddingW * 2), height: (w - paddingW * 2) * RATE});
+                        $(e).css({width: (w - paddingW * 2), height: (w - paddingW * 2) * RATE}); //为什么还写css 我忘记了
                     }
-                    if (parseInt($(e).css('width')) == 0) {
-                        $(e).attr({width: (w - 30)});
+
+                    else if (parseInt($(e).css('width')) == 0) {
+                        $(e).attr({width: (w - paddingW * 2)});
                     }
                 })
-                $('iframe').css({width: (w - 30), height: (w - 30) * 9 / 16})//padding*2
-                //alert($('img').width());
-                //alert(w);
+
+                //视频强行16比9
+                $con.find('iframe').css({width: (w - paddingW * 2), height: (w - paddingW * 2) * 9 / 16});
+
+
+                //强行插入canvas 资讯标签专用info-
+                var $jimiYunYing = $con.find('.jimi-Yunying'); //jq对象
+
+
+                (function ajaxComplete(index) {
+                    if (index == $jimiYunYing.length) {
+                        console.log('下标溢出');
+                        return;
+                    }
+                    var jqObj = $jimiYunYing.eq(index)
+                    var pid = jqObj.attr('data-pid');
+                    $.ajax({
+                        type: "get",
+                        url: 'http://n1.jimi.la/apps_T1/formual_safe.php?pid=' + pid,
+                        dataType: "jsonp",
+                        jsonp: "callback",
+                        jsonpCallback: "jsonpcallback",
+                        async: true,
+                        cache: false,
+                        timeout: 5000,
+                        success: function (data) {
+                            console.log(JSON.stringify(data))
+                            jqObj.html('');
+
+                            var header = new Header(jqObj[0], data);
+                            var cc = new CompositionContainer(jqObj[0], data);
+                            var component = new MiddleComponent(jqObj[0], data);
+                            var alertCon = new AlertCon(jqObj[0], data);
+                            var pdc = new ProductDetailCanvas(jqObj[0], data, false);
+
+
+                            //控件 Init......................................................
+                            var alBtnData = {showTxt: ['按类型', '按安全']};
+                            var alternateBtn = new AlternateBtn(jqObj.find('.alBtn')[0], alBtnData);
+
+
+                            //控件与控件的关联 点击按钮 类型和成分的切换 控件的事件只能写在所有元素加载完成
+                            jqObj.find('.alBtn').find('li').click(function () {
+                                var index = $(this).index();
+                                jqObj.find('.compositions').find('div').eq(index).show().siblings().hide();
+                                jqObj.find('.middleComponent').children('div').eq(index).show().siblings().hide();
+                            });
+
+                            ajaxComplete(index + 1);
+                        },
+                        error: function (err) {
+                            console.log('YUNYING ERROR!');
+                            console.log(err);
+
+                            ajaxComplete(index + 1);
+
+                        }
+                    });
+                })(0);
+
             },
             error: function (err) {
-                console.log('ERROR!');
+                console.log('ARTICLE ERROR!');
                 console.log(err);
             }
         });
@@ -76,4 +148,4 @@
     })
 </script>
 </body>
-</html
+</html>

@@ -125,6 +125,7 @@
                 position: 'relative',
                 padding: '2px 0',
             })
+
             $(this.C).find('.ulCon li span').css({
                 float: 'left'
             })
@@ -142,8 +143,6 @@
         bindEvent: function () {
             var that = this;
             var data = this.data;
-
-
             //初始化数据 echartJson 和canvas宽高
             var RATE = 420 / 420;
 

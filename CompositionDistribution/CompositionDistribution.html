@@ -4,75 +4,48 @@
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no"/>
-    <title>Document</title>
-    <link rel="stylesheet" href="css/CompositionDistribution.css"/>
+    <title>成分分布</title>
     <style type="text/css">
+        * {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            text-decoration: none;
+            font-family: '微软雅黑';
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        body {
+            padding: 0px 15px;
+            box-sizing: border-box;
+        }
     </style>
 </head>
 <body>
-<div class="header">
-    <div class='imgCon'></div>
-    <div class='pname'></div>
-</div>
-<!--类型和安全的成分  一个二选一按钮-->
-<div class='compositionsContainer'>
-    <div class='compositions'>
-        <div>
-            <ul>
-                <li data='功效型成分'>
-                    <span class='point' style='background-color:#fba41a'></span>
-                    <span style='color:#fba41a'>功效型成分</span>
-                </li>
-                <li data='剂型需求'>
-                    <span class='point' style='background-color:#949494'></span>
-                    <span style='color:#949494'>剂型需求</span>
-                </li>
-                <li data='保湿型成分'>
-                    <span class='point' style='background-color:#3982e1'></span>
-                    <span style='color:#3982e1'>保湿型成分</span>
-                </li>
-                <li data='防晒型成分'>
-                    <span class='point' style='background-color:#23ad39'></span>
-                    <span style='color:#23ad39'>防晒型成分</span>
-                </li>
-            </ul>
-        </div>
-        <div style='display: none; margin-top: 10px'>
-            <ul>
-                <li data='慎用成分'>
-                    <span class='point' style='background-color:#e5004f'></span>
-                    <span style='color:#e5004f'>慎用成分</span>
-                </li>
-                <li data='正常成分'>
-                    <span class='point' style='background-color:#949494'></span>
-                    <span style='color:#949494'>正常成分</span>
-                </li>
-            </ul>
-        </div>
-    </div>
-    <div id="alBtn"></div>
-</div>
+
+
 
 <!--中间是成分表-->
-<div class='middleComponent'>
-</div>
+<div class='spa'></div>
 
-<div class='alertCon'>
-    <div class="alert">
-        <div class="title1"></div>
-        <div class="title2"></div>
-        <div class="close">关闭</div>
-    </div>
-</div>
+
+
 
 <script src='js/jquery-1.8.3.min.js'></script>
 <script src='js/alternateBtn-1.0.0.js'></script>
-<script src='js/middleComponent-1.0.2.js'></script>
+<script src='js/spa-middleComponent-1.0.2.js'></script>
+<script src='js/spa-header.js'></script>
+<script src='js/spa-compositionContainer.js'></script>
+<script src='js/spa-alertCon.js'></script>
 <script>
     $(function () {
         //得到请求地址的URL
         if (!window.location.search) {
-            window.location = window.location + '?pid=56c6aea3efb80c9b2541ced4';
+            window.location = window.location + '?pid=5682a03defb80c4e26c48c39';
         }
 
         //妮维雅润肤霜 5682a105efb80c4e26c4bf5b
@@ -81,21 +54,9 @@
 //        56829a0fefb80c4e26c2f894 没数据的
 
 
-        //控件 Init......................................................
-        var alBtnData = {showTxt: ['按类型', '按安全']};
-        var alternateBtn = new AlternateBtn($('#alBtn')[0], alBtnData);
-
-        //jq对象
-        $altBtn = $('#alBtn');
-        $compositions = $('.compositions'); //成分两大类型
-        $middleComponent = $('.middleComponent');//所有成分
-        $imgCon = $('.imgCon');
-        $pname = $('.pname');
-        $alertCon = $('.alertCon')
+        $spa = $('.spa');
 //        console.log('http://n1.jimi.la/apps_V3/formual_safe.php' + window.location.search)
 
-
-        //中间的控件要jsonp
         $.ajax({
             type: "get",
             url: 'http://n1.jimi.la/apps_V3/formual_safe.php' + window.location.search,
@@ -105,26 +66,23 @@
             jsonpCallback: "jsonpcallback",
             success: function (data) {
                 console.log(JSON.stringify(data))
-                var component = new MiddleComponent($middleComponent[0], data);
+                var header = new Header($spa[0], data);
+                var cc = new CompositionContainer($spa[0], data);
+                var component = new MiddleComponent($spa[0], data);
+                var alertCon= new AlertCon($spa[0], data);
 
-                //更新头部图片和文字
-                var englishName = data.englishName;
-                var chineseName = data.chineseName;
-                var imgUrl = data.imgUrl || 'img/a.png';
-//                $imgCon.find('img').attr('src', imgUrl);
-                $imgCon.css('background','url('+imgUrl+') no-repeat 50% 50%').css('background-size','contain');
-//                alert($imgCon.css('backgroundImage'))
+                //控件 Init......................................................
+                var alBtnData = {showTxt: ['按类型', '按安全']};
+                var alternateBtn = new AlternateBtn($spa.find('.alBtn')[0], alBtnData);
 
-                $pname.html(englishName + '<br>' + chineseName);
-
-
-                //bind events................................................
-                //控件与控件的关联 点击按钮 类型和成分的切换
-                $altBtn.find('li').click(function () {
-                    var index = $(this).index()
-                    $compositions.find('div').eq(index).show().siblings().hide();
-                    $middleComponent.children('div').eq(index).show().siblings().hide();
+                //控件与控件的关联 点击按钮 类型和成分的切换 控件的事件只能写在所有元素加载完成
+                $spa.find('.alBtn').find('li').click(function () {
+                    var index = $(this).index();
+                    $spa.find('.compositions').find('div').eq(index).show().siblings().hide();
+                    $spa.find('.middleComponent').children('div').eq(index).show().siblings().hide();
                 })
+
+
             },
             error: function (err) {
                 console.log('ERROR!');
@@ -132,31 +90,7 @@
             }
         });
 
-        //events.....................................................
-        var alertJson = {
-            '保湿型成分': '提供皮肤保湿、锁水功效的成分',
-            '功效型成分': '在皮肤或头发上起生理功效（如美白、修复、抗氧化等）的成分',
-            '防晒型成分': '有效阻挡紫外线，为皮肤提供屏障，起防护作用的成分',
-            '剂型需求': '改善产品质地质感，维持产品稳定的成分（如溶剂成分、防腐剂成分等）',
-            '慎用成分': '该成分有一定刺激性，敏感肌肤谨慎选择',
-            '正常成分': '正常情况下对皮肤没有安全风险的成分',
-        }
 
-        //默认touch触发屏幕滚动  禁止
-//        $alertCon[0].addEventListener('touchmove', function (e) {
-//            e.preventDefault();
-//        }, false)
-
-
-        $compositions.find('li').click(function () {
-            var data = $(this).attr('data')
-            $alertCon.find('.title1').html(data);
-            $alertCon.find('.title2').html(alertJson[data]);
-            $alertCon.fadeIn('fast');
-        })
-        $alertCon.find('.close').click(function () {
-            $alertCon.fadeOut('fast')
-        })
     })
 </script>
 </body>

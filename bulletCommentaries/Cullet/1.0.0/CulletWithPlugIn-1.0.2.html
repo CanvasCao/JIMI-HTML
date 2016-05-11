@@ -58,36 +58,15 @@
 
 <script src='js/jquery-1.8.3.min.js'></script>
 <script src='js/underscore.js'></script>
-<script src='js/cullet-1.0.1.js'></script>
+<script src='js/cullet-1.0.2.js'></script>
 <script>
     $(function () {
 
-//        var ccm = new CommentCellManage('#cullet', null); //ccm.push已经和cc灵魂绑定了 所以不用再实例化 cc
-////        window.ccm = ccm; //控制台测试
-//        var inputBox = new InputBox('#cullet', null, ccm);
-//        //循环加载弹幕 测试版 加载弹幕写在插件里面
-////        setInterval(function () {
-////            ccm.push();
-////        }, 1200)
-//
-//        ccm.start();
+        var ccm = new CommentCellManage('#cullet', {serverUrl: 'http://n1.jimi.la/apps_T1/culletSelect.php'});
 
-        $.ajax({
-            type: "get",
-            url: 'http://n1.jimi.la/apps_T1/culletSelect.php?pid=56837c60efb80c6225ead657,56829da0efb80c4e26c3e3a2',
-//                url: 'package.json',
-            dataType: "jsonp",
-            jsonp: "callback",//传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)
-            jsonpCallback: "jsonpcallback",
-            success: function (data) {
-                console.log(JSON.stringify(data));
-            },
-            error: function (err) {
-                console.log('ERROR!')
-                console.log(err);
-            }
-        });
+        var inputBox = new InputBox('#cullet', null, ccm);
 
+        ccm.load();
 
 
     })

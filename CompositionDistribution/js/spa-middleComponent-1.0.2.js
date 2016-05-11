@@ -32,8 +32,9 @@
         createDom: function () {
             var componentsWithIdArr = this.data.component;//二维数组 [0]是name [1]是id
 
-
-            $(this.C).html('<div class="typeCom"></div><div class="safeCom"></div>');
+            //拼加组件
+            $(this.C).append("<div class='middleComponent'></div>");
+            $(this.C).find('.middleComponent').html('<div class="typeCom"></div><div class="safeCom"></div>');
 
             var str = '';
             if (componentsWithIdArr) {
@@ -61,14 +62,14 @@
             $(this.C).find('.typeCom,.safeCom').html(str);
 
             //第一个显示 第二个隐藏
-            $(this.C).find('.typeCom').show().siblings().hide();
+            $(this.C).find('.typeCom').show();
+            $(this.C).find('.safeCom').hide();
         },
         initCSS: function () {
             var that = this;
 
-            $(this.C).css({
-                //'line-height': '30px',
-                padding: '10px',
+            $(this.C).find('.middleComponent').css({
+                padding: '10px 0px',
                 'background-color': that.config.backgroundColor,
                 'padding-bottom': '80px',
                 'text-align': 'center',
