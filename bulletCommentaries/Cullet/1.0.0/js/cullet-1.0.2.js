@@ -313,17 +313,13 @@
             }
         },
 
-        load: function (search) {
+        load: function (search) { //传入php问号后面的查询参数
             var that = this;
 
-            if (!window.location.search) {
-                //window.location = window.location + '?pid=56837c60efb80c6225ead657,56829da0efb80c4e26c3e3a2';
-                window.location = window.location + '?pid=56837c60efb80c6225ead657';
-            }
 
             $.ajax({
                 type: "get",
-                url: 'http://n1.jimi.la/apps_T1/culletSelect.php' + window.location.search,
+                url: 'http://n1.jimi.la/apps_T1/culletSelect.php' + search,
 //                url: 'package.json',
                 dataType: "jsonp",
                 jsonp: "callback",//传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)

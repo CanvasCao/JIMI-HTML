@@ -61,12 +61,17 @@
 <script src='js/cullet-1.0.2.js'></script>
 <script>
     $(function () {
+        if (!window.location.search) {
+            //window.location = window.location + '?pid=56837c60efb80c6225ead657,56829da0efb80c4e26c3e3a2';
+            window.location = window.location + '?pid=56837c60efb80c6225ead657';
+        }
+
 
         var ccm = new CommentCellManage('#cullet', {serverUrl: 'http://n1.jimi.la/apps_T1/culletSelect.php'});
 
         var inputBox = new InputBox('#cullet', null, ccm);
 
-        ccm.load();
+        ccm.load(window.location.search); //加载弹幕
 
 
     })
