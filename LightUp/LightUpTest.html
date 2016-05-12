@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no"/>
+
+    <title></title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            text-decoration: none;
+            list-style: none;
+
+            /**/
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+            -webkit-text-size-adjust: none;
+
+            /*-webkit-user-select: none;*/
+            /*-ms-user-select: none;*/
+            /*user-select: none;*/
+        }
+
+        html {
+
+        }
+
+        body {
+            height: 1000px;
+
+        }
+
+        p {
+            border: 1px solid red;
+        }
+
+        p span {
+            border: 1px solid black;
+            display: inline;
+            padding: 2px;
+            font-size: 20px;
+            word-break: break-all;
+            margin-bottom: 5px;
+        }
+
+        p {
+            border: 1px solid red;
+
+            /*pointer-events:none;*/
+
+        }
+
+        .light {
+            height: 50px;
+            width: 50px;
+            position: fixed;
+            right: 10px;
+            bottom: 10px;
+            /*left: 10px;*/
+            /*top:10px;*/
+            border: 1px solid green;
+            transform: translate3d(0px, 0px, 0px);
+            pointer-events: none;
+
+        }
+    </style>
+</head>
+<body>
+
+<div>
+    <p id='ps'>
+        <span>recgnvoirtv1111111111111111111111111111111111111111111111111111111111111111111111111111111111。</span>
+        <span>recgnvoirtv2222222222222222222222222222222222222222222222222。</span>
+        <span>recgnvoirtv33333333333333333333333333333。</span>
+    </p>
+
+
+</div>
+
+<div class='light'>灯泡</div>
+
+<script src='js/jquery-1.8.3.min.js'></script>
+<!--<script src='js/zepto.1.1.6.js'></script>-->
+<script>
+
+
+    $(function () {
+
+        var $light = $('.light');
+        var ifDragging = false;
+        var mouseDown = {x: 0, y: 0};
+
+        window.addEventListener('touchstart', function (e) {
+//            e.preventDefault();
+            var touch = e.touches[0];
+            mouseDown.x = touch.clientX;
+            mouseDown.y = touch.clientY;
+            ifDragging = true;
+            console.log('touchstart');
+        },false)
+
+
+        window.addEventListener('touchmove', function (e) {
+            e.preventDefault();
+
+            if (ifDragging) {
+                var touch = e.touches[0];
+                var dx = touch.clientX - mouseDown.x;
+                var dy = touch.clientY - mouseDown.y;
+                $light.css({
+                    transition: 'transform 0s ease',
+                    transform: 'translate3d(' + dx + 'px,' + dy + 'px,0px)',
+                })
+
+
+                var ele = document.elementFromPoint(touch.clientX, touch.clientY);
+                // console.log(ele);
+                var ps = document.getElementById('ps');
+                //jQuery.contains(document.documentElement, document.body); // true
+
+                if ($.contains( ele,ps)||(ele==ps)) {
+                    return;
+                } else {
+                    $(ele).css({background: 'red'}).siblings().css({background: 'white'})
+                }
+
+            }
+        }, false)
+
+
+        window.addEventListener('touchend', function (e) {
+//            e.preventDefault();
+//            console.log(e)
+            console.log('touchend');
+            $light.css({
+                transition: 'transform 0.5s ease',
+                transform: 'translate3d(0px,0px,0px)',
+
+            })
+            ifDragging = false;
+        }, false)
+
+
+    })
+</script>
+</body>
+</html>
