@@ -26,7 +26,7 @@
                 a = +d,
                 c = +new Date,
                 b = d.getMonth() + 1,
-                36e5 > c - a ? Math.floor((c - a) / 6e4) + "·ÖÖÓÇ°": 864e5 > c - a ? Math.floor((c - a) / 36e5) + "Ğ¡Ê±Ç°": 31104e6 > c - a ? b + "ÔÂ" + d.getDate() + "ÈÕ": d.getFullYear() + "-" + b + "-" + d.getDate()
+                36e5 > c - a ? Math.floor((c - a) / 6e4) + "åˆ†é’Ÿå‰": 864e5 > c - a ? Math.floor((c - a) / 36e5) + "å°æ—¶å‰": 31104e6 > c - a ? b + "æœˆ" + d.getDate() + "æ—¥": d.getFullYear() + "-" + b + "-" + d.getDate()
         },
         h = function(a) {
             return a.slice(0, 10)
@@ -94,14 +94,14 @@
                         e += '<li class="clearfix">\n  <span class="avatar" style="background-image: url(' + d.timg + ');"></span>\n  <span class="light-btn" data-id="' + d.pi + '">' + d.v + '</span>\n  <div class="content">\n    <div class="name ellipsis">' + (d.n || d.nick || d.f) + '</div>\n    <div class="time">' + h(d.t) + '</div>\n    <div class="text">' + d.b + "</div>\n  </div>\n</li>"
                     }
                 }),
-                e.trim() || (e = '<li style="text-align: center; padding-bottom: .32rem">ÔİÊ±Ã»ÓĞÆÀÂÛ</li>'),
+                e.trim() || (e = '<li style="text-align: center; padding-bottom: .32rem">æš‚æ—¶æ²¡æœ‰è¯„è®º</li>'),
                     c(e)
             })
         },
         l = function(a, b, c, d) {
             var e, f, g, h, i, j, k, l, m;
             if ("" !== a.textContent.trim() || a.classList.contains("native-img")) return f = a.querySelector(".count"),
-                f ? (g = +f.dataset.light, e = +f.dataset.comments, (b || 0 === b) && (g += b), (c || 0 === c) && (e += c), m = "" + g + "µãÁÁ", e && (m += " / " + e + "ÆÀÂÛ"), f.dataset.light = g, f.dataset.comments = e, "0µãÁÁ" === m.replace(/\s/g, "") ? f.style.display = "none": "t" === a.className || "t js-native native-img" === a.className ? f.style.display = "none": d || (f.style.display = "block"), f.textContent = m) : (i = document.createElement("span"), h = +document.documentElement.dataset.width, j = a.offsetLeft, k = a.offsetWidth, j + 100 > h && (i.style.left = "" + ((h + k) / 2 - j - 100) + "px"), i.className = "count", i.dataset.light = b || 0, i.dataset.comments = c || 0, l = "" + (b || 0) + "µãÁÁ", c > 0 && (l += " / " + (c || 0) + "ÆÀÂÛ"), i.textContent = l, d && (i.style.display = "none"), a.appendChild(i)),
+                f ? (g = +f.dataset.light, e = +f.dataset.comments, (b || 0 === b) && (g += b), (c || 0 === c) && (e += c), m = "" + g + "ç‚¹äº®", e && (m += " / " + e + "è¯„è®º"), f.dataset.light = g, f.dataset.comments = e, "0ç‚¹äº®" === m.replace(/\s/g, "") ? f.style.display = "none": "t" === a.className || "t js-native native-img" === a.className ? f.style.display = "none": d || (f.style.display = "block"), f.textContent = m) : (i = document.createElement("span"), h = +document.documentElement.dataset.width, j = a.offsetLeft, k = a.offsetWidth, j + 100 > h && (i.style.left = "" + ((h + k) / 2 - j - 100) + "px"), i.className = "count", i.dataset.light = b || 0, i.dataset.comments = c || 0, l = "" + (b || 0) + "ç‚¹äº®", c > 0 && (l += " / " + (c || 0) + "è¯„è®º"), i.textContent = l, d && (i.style.display = "none"), a.appendChild(i)),
                 i
         },
         function() {
@@ -136,7 +136,7 @@
                                 f = c.match(/<p[^>]*>.*?<\/p>/gi),
                                 f = f[e[0]] || f[0],
                                 f.replace(/[<p>|<\/p>]/g, "").trim(),
-                                h = f.match(/(.*?)[£¿¡££¡]/g) || [f],
+                                h = f.match(/(.*?)[ï¼Ÿã€‚ï¼]/g) || [f],
                                 g = h[e[1]] || h[0],
                                 document.title = b.title,
                                 function() {
@@ -165,7 +165,7 @@
                         a = decodeURIComponent(n.imgsrc),
                         i(n.position, n.pi || null,
                             function(b) {
-                                window.setShareData("·ÖÏíÍ¼Æ¬", "ÁÁµã×ÔÑ°", a),
+                                window.setShareData("åˆ†äº«å›¾ç‰‡", "äº®ç‚¹è‡ªå¯»", a),
                                     document.querySelector(".m-content").classList.add("hasbanner"),
                                     document.querySelector(".m-content").innerHTML = '<div class="m-title"><img src="' + a + '"></div>\n<ul class="m-comments">\n  ' + b + "    \n</ul>",
                                     document.body.classList.add("visible")
@@ -180,7 +180,7 @@
                                 var d;
                                 return d = "",
                                 3 > c && (d = '<div class="top-index">Top ' + (c + 1) + "</div>"),
-                                    b += "<li>\n  " + d + '\n  <a href="back.html?docid=' + a.docid + '">\n    <div class="title">' + a.title + '</div>\n    <div class="share-count">' + a.shareCount + "ÈË·ÖÏí</div>\n  </a>\n</li>"
+                                    b += "<li>\n  " + d + '\n  <a href="back.html?docid=' + a.docid + '">\n    <div class="title">' + a.title + '</div>\n    <div class="share-count">' + a.shareCount + "äººåˆ†äº«</div>\n  </a>\n</li>"
                             }), document.querySelector(".m-list ul").innerHTML = b, document.querySelector(".m-list>.title").textContent = a.topicname.slice(5), b) : void(document.querySelector(".m-list").style.display = "none")
                     },
                         h = function(a) {
@@ -245,21 +245,21 @@
                                 }) : (i(c.reportlist), h(c.reportlist)),
                                 document.querySelector(".source-name").innerHTML = "<div>" + c.source || "<i></i></div>",
                                 r = "",
-                            c.sourceinfo && (r = '<div class="title">\n  <img src="' + ((null != (u = c.sourceinfo) ? u.icon: void 0) || "") + '" />\n  <div>\n    <div>' + ((null != (v = c.sourceinfo) ? v.name: void 0) || "") + '</div>\n    <div class="time">' + g((null != (w = c.sourceinfo) ? w.createtime: void 0) || Date.now()) + "</div>\n  </div>\n</div>", c.sourceinfo.wechatId && (r += "<div class='wechat'><span>Î¢ĞÅ</span> " + c.sourceinfo.wechatId + "</div>"), c.sourceinfo.weiboId && (r += "<div class='weibo'><span>Î¢²©ÕÊºÅ</span> " + c.sourceinfo.weiboId + "</div>"), c.sourceinfo.websiteUrl && (r += "<div class='website'><span>ÍøÕ¾Á´½Ó</span> " + c.sourceinfo.websiteUrl + "</div>")),
+                            c.sourceinfo && (r = '<div class="title">\n  <img src="' + ((null != (u = c.sourceinfo) ? u.icon: void 0) || "") + '" />\n  <div>\n    <div>' + ((null != (v = c.sourceinfo) ? v.name: void 0) || "") + '</div>\n    <div class="time">' + g((null != (w = c.sourceinfo) ? w.createtime: void 0) || Date.now()) + "</div>\n  </div>\n</div>", c.sourceinfo.wechatId && (r += "<div class='wechat'><span>å¾®ä¿¡</span> " + c.sourceinfo.wechatId + "</div>"), c.sourceinfo.weiboId && (r += "<div class='weibo'><span>å¾®åšå¸å·</span> " + c.sourceinfo.weiboId + "</div>"), c.sourceinfo.websiteUrl && (r += "<div class='website'><span>ç½‘ç«™é“¾æ¥</span> " + c.sourceinfo.websiteUrl + "</div>")),
                                 document.querySelector(".m-source").innerHTML = r,
                                 n = k().search,
-                                n.avatar || n.name ? (o = decodeURIComponent(n.name), o.length > 7 && (o = o.slice(0, 6) + "..."), s = "" + o + " ¾õµÃÕâÆªÎÄÕÂºÜÔŞ£¬·ÖÏí¸øÄã", q = ["Î¢Ğ¦µØ", "ÎÂºÍµØ", "Àä¿áµØ", "Æ½¾²µØ", "ÑÏËàµØ", "»úÖÇµØ", "¼¤¶¯µØ", "µ­µ­µØ", "ßìÑÊµØ", "¿Í¹ÛµØ", "Ç×ÇĞµØ", "»îÆÃµØ", "¿º·ÜµØ", "Õ¨ÁÑµØ", "ÇáËÉµØ", "¸ßĞËµØ", "¸ßÀäµØ", "Éñ²É·ÉÑïµØ", "¼á¶¨²»ÒÆµØ", "Ò»±¾Õı¾­µØ", "ÈôÎŞÆäÊÂµØ"], n.text && (s = "¡¸" + decodeURIComponent(n.text) + "¡¹ ¡ª¡ª " + o + q[Math.floor(19 * Math.random())] + "ÆÀÂÛµÀ"), document.querySelector(".m-user").innerHTML = '<img src="' + decodeURIComponent(n.avatar) + '"/>\n<span>' + s + "</span>") : document.querySelector(".m-user").style.display = "none",
+                                n.avatar || n.name ? (o = decodeURIComponent(n.name), o.length > 7 && (o = o.slice(0, 6) + "..."), s = "" + o + " è§‰å¾—è¿™ç¯‡æ–‡ç« å¾ˆèµï¼Œåˆ†äº«ç»™ä½ ", q = ["å¾®ç¬‘åœ°", "æ¸©å’Œåœ°", "å†·é…·åœ°", "å¹³é™åœ°", "ä¸¥è‚ƒåœ°", "æœºæ™ºåœ°", "æ¿€åŠ¨åœ°", "æ·¡æ·¡åœ°", "å“½å’½åœ°", "å®¢è§‚åœ°", "äº²åˆ‡åœ°", "æ´»æ³¼åœ°", "äº¢å¥‹åœ°", "ç‚¸è£‚åœ°", "è½»æ¾åœ°", "é«˜å…´åœ°", "é«˜å†·åœ°", "ç¥é‡‡é£æ‰¬åœ°", "åšå®šä¸ç§»åœ°", "ä¸€æœ¬æ­£ç»åœ°", "è‹¥æ— å…¶äº‹åœ°"], n.text && (s = "ã€Œ" + decodeURIComponent(n.text) + "ã€ â€”â€” " + o + q[Math.floor(19 * Math.random())] + "è¯„è®ºé“"), document.querySelector(".m-user").innerHTML = '<img src="' + decodeURIComponent(n.avatar) + '"/>\n<span>' + s + "</span>") : document.querySelector(".m-user").style.display = "none",
                                 c.body = c.body.replace(/<p>(\s*)/g, "<p>"),
                                 c.body = c.body.replace(/<p[^>]*>/gi,
                                     function(a) {
                                         return a.slice(0, a.length - 1) + ' class="t-p"><span class="t">'
                                     }),
                                 c.body = c.body.replace(/<\/p>/g, "</p></span>"),
-                                c.body = c.body.replace(/[¡££¡£¿]/g,
+                                c.body = c.body.replace(/[ã€‚ï¼ï¼Ÿ]/g,
                                     function(a, b) {
                                         return "" + a + "</span><span class='t'>"
                                     }),
-                                c.body = c.body.replace(/[£¬¡£¡¢£º£¿£¡£»£©¡·]/g,
+                                c.body = c.body.replace(/[ï¼Œã€‚ã€ï¼šï¼Ÿï¼ï¼›ï¼‰ã€‹]/g,
                                     function(a, b) {
                                         return "<em>" + a + "</em>"
                                     }),
@@ -343,7 +343,7 @@
                                             e && (e.classList.add("self"), c = e.querySelector(".count"), c ? c.style.display = "block": l(e, 1))
                                         }) : void 0
                                 } (),
-                            c.topicinfo && (document.querySelector(".m-topic").style.cssText = "background-image: url('" + (null != (y = c.topicinfo) ? y.cover: void 0) + "')", document.querySelector(".m-topic").innerHTML = '<div>\n  <div class="title">' + (null != (z = c.topicinfo) ? z.tname: void 0) + '</div>\n  <a class="link" href="./list.html?tid=' + (null != (A = c.topicinfo) ? A.tid: void 0) + '">µã»÷½øÈë</a>\n</div>'),
+                            c.topicinfo && (document.querySelector(".m-topic").style.cssText = "background-image: url('" + (null != (y = c.topicinfo) ? y.cover: void 0) + "')", document.querySelector(".m-topic").innerHTML = '<div>\n  <div class="title">' + (null != (z = c.topicinfo) ? z.tname: void 0) + '</div>\n  <a class="link" href="./list.html?tid=' + (null != (A = c.topicinfo) ? A.tid: void 0) + '">ç‚¹å‡»è¿›å…¥</a>\n</div>'),
                                 j = "",
                             c.attitudes.length > 0 && (m = c.attitudes.reduce(function(a, b) {
                                 return {
@@ -409,7 +409,7 @@
                 },
                 b = function(a, b) {
                     var c, d, e, f, g, h, i, k;
-                    a.target.classList.contains("t") && 0 === a.target.querySelectorAll(".tip").length && (n(), g = document.createElement("span"), g.className = "tip", i = a.target.offsetLeft, k = a.target.offsetTop, h = a.target.offsetHeight, f = document.body.scrollTop, e = document.documentElement.clientHeight - .89 * o, c = "left: " + -(i - 1.8 * o) + "px;", c += "top: 50%; margin-top: -0.6rem;", g.style.cssText = c, d = "<span class='b light'>µãÁÁ</span><span class='b comment'>ÆÀÂÛ</span>", ("self" === b || a.target.classList.contains("self")) && (d = "<span class='b comment'>ÆÀÂÛ</span><span class='b unlight'>³·Ïú</span>"), g.innerHTML = d, a.target.appendChild(g), setTimeout(function() {
+                    a.target.classList.contains("t") && 0 === a.target.querySelectorAll(".tip").length && (n(), g = document.createElement("span"), g.className = "tip", i = a.target.offsetLeft, k = a.target.offsetTop, h = a.target.offsetHeight, f = document.body.scrollTop, e = document.documentElement.clientHeight - .89 * o, c = "left: " + -(i - 1.8 * o) + "px;", c += "top: 50%; margin-top: -0.6rem;", g.style.cssText = c, d = "<span class='b light'>ç‚¹äº®</span><span class='b comment'>è¯„è®º</span>", ("self" === b || a.target.classList.contains("self")) && (d = "<span class='b comment'>è¯„è®º</span><span class='b unlight'>æ’¤é”€</span>"), g.innerHTML = d, a.target.appendChild(g), setTimeout(function() {
                             return g.classList.add("in")
                         },
                         100), j = a.target, a.target.classList.remove("hover"), a.target.classList.add("active"))
@@ -578,7 +578,7 @@
                         g = function(b) {
                             i(b, null,
                                 function(b) {
-                                    "" === b && (b = '<li style="text-align: center; padding-bottom: .32rem">ÔİÊ±Ã»ÓĞÆÀÂÛ</li>'),
+                                    "" === b && (b = '<li style="text-align: center; padding-bottom: .32rem">æš‚æ—¶æ²¡æœ‰è¯„è®º</li>'),
                                         a.innerHTML = b,
                                         a.style.display = "block",
                                         f.style.display = "block",
@@ -591,7 +591,7 @@
                             function(a) {
                                 var b, c, d, f;
                                 b = a.target.classList,
-                                (b.contains("b") || b.contains("count")) && (f = null != j ? j.textContent.slice(0, -6) : void 0, d = a.target.parentElement.classList.contains("t") ? a.target.parentElement: j, c = e(d), n(), b.contains("light") ? h(d, c) : b.contains("share") ? console.log("·ÖÏí") : b.contains("comment") ? (g(c), console.log("ÆÀÂÛ")) : b.contains("unlight") ? q(d, c) : b.contains("count") && g(c))
+                                (b.contains("b") || b.contains("count")) && (f = null != j ? j.textContent.slice(0, -6) : void 0, d = a.target.parentElement.classList.contains("t") ? a.target.parentElement: j, c = e(d), n(), b.contains("light") ? h(d, c) : b.contains("share") ? console.log("åˆ†äº«") : b.contains("comment") ? (g(c), console.log("è¯„è®º")) : b.contains("unlight") ? q(d, c) : b.contains("count") && g(c))
                             },
                             !1),
                         c.addEventListener("click",

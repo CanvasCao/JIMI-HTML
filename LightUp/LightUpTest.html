@@ -12,14 +12,13 @@
             margin: 0;
             text-decoration: none;
             list-style: none;
-
+            font-family: '微软雅黑';
             /**/
             -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
             -webkit-text-size-adjust: none;
-
-            /*-webkit-user-select: none;*/
-            /*-ms-user-select: none;*/
-            /*user-select: none;*/
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
         }
 
         html {
@@ -28,121 +27,158 @@
 
         body {
             height: 1000px;
+            box-sizing: border-box;
+            padding: 0px 35px;
+
 
         }
 
         p {
-            border: 1px solid red;
+            /*border: 1px solid red;*/
+
+            text-align: justify;
         }
 
-        p span {
-            border: 1px solid black;
+        p .span {
+            /*border: 1px solid black;*/
             display: inline;
-            padding: 2px;
-            font-size: 20px;
+            box-sizing: border-box;
+            padding: 6px 0;
+            font-size: 25px;
+            line-height: 45px;
             word-break: break-all;
-            margin-bottom: 5px;
-        }
 
-        p {
-            border: 1px solid red;
-
-            /*pointer-events:none;*/
-
+            /*border: 1px solid #000;*/
+            color: #5d5d5d;
+            transition: all 0.2s ease-in-out;
         }
 
         .light {
-            height: 50px;
-            width: 50px;
+            height: 80px;
+            width: 80px;
             position: fixed;
-            right: 10px;
-            bottom: 10px;
-            /*left: 10px;*/
-            /*top:10px;*/
-            border: 1px solid green;
+            right: 20px;
+            bottom: 20px;
+            background: url("img/logo.jpg");
+            background-size: cover;
+            border-radius: 50%;
             transform: translate3d(0px, 0px, 0px);
-            pointer-events: none;
+            opacity: 0.7;
+            box-shadow: 0 2px 4px 1px rgba(0,0,0,0.2);
+            /*pointer-events: none;*/
+            /*移动时才加*/
 
         }
     </style>
 </head>
 <body>
 
-<div>
-    <p id='ps'>
-        <span>recgnvoirtv1111111111111111111111111111111111111111111111111111111111111111111111111111111111。</span>
-        <span>recgnvoirtv2222222222222222222222222222222222222222222222222。</span>
-        <span>recgnvoirtv33333333333333333333333333333。</span>
-    </p>
+<div class='txtContainer'></div>
+<div class='light'></div>
 
-
-</div>
-
-<div class='light'>灯泡</div>
 
 <script src='js/jquery-1.8.3.min.js'></script>
-<!--<script src='js/zepto.1.1.6.js'></script>-->
 <script>
-
-
     $(function () {
-
         var $light = $('.light');
         var ifDragging = false;
         var mouseDown = {x: 0, y: 0};
+        var mouseCurrent = {x: 0, y: 0};
+        var timer = null;
 
-        window.addEventListener('touchstart', function (e) {
+        $('.light')[0].addEventListener('touchstart', function (e) {
 //            e.preventDefault();
             var touch = e.touches[0];
             mouseDown.x = touch.clientX;
             mouseDown.y = touch.clientY;
             ifDragging = true;
-            console.log('touchstart');
-        },false)
+//            console.log('touchstart');
+            $light.css({
+                'box-shadow': '0 0px 0px 10px rgba(255,255,255,0.8)',
+            });
 
+        }, false)
 
         window.addEventListener('touchmove', function (e) {
-            e.preventDefault();
 
             if (ifDragging) {
+                e.preventDefault();
+
                 var touch = e.touches[0];
-                var dx = touch.clientX - mouseDown.x;
-                var dy = touch.clientY - mouseDown.y;
+                mouseCurrent.x = touch.clientX;
+                mouseCurrent.y = touch.clientY;
                 $light.css({
-                    transition: 'transform 0s ease',
-                    transform: 'translate3d(' + dx + 'px,' + dy + 'px,0px)',
+                    transition: 'all 0s ease',
+                    transform: 'translate3d(' + (mouseCurrent.x - mouseDown.x) + 'px,' + (mouseCurrent.y - mouseDown.y) + 'px,0px)',
+                    'pointer-events': 'none'
                 })
 
-
-                var ele = document.elementFromPoint(touch.clientX, touch.clientY);
-                // console.log(ele);
-                var ps = document.getElementById('ps');
-                //jQuery.contains(document.documentElement, document.body); // true
-
-                if ($.contains( ele,ps)||(ele==ps)) {
-                    return;
-                } else {
-                    $(ele).css({background: 'red'}).siblings().css({background: 'white'})
-                }
+                clearTimeout(timer);
+                delete(timer);
+                timer = setTimeout(function () {
+                    LightUp();
+                }, 400);
 
             }
         }, false)
 
-
         window.addEventListener('touchend', function (e) {
-//            e.preventDefault();
-//            console.log(e)
-            console.log('touchend');
-            $light.css({
-                transition: 'transform 0.5s ease',
-                transform: 'translate3d(0px,0px,0px)',
+            e.preventDefault();
 
-            })
-            ifDragging = false;
+            if (ifDragging) {
+                clearTimeout(timer);
+                delete(timer);
+                LightUp();
+                $light.css({
+                    transition: 'all 0.8s ease-in-out',
+                    transform: 'translate3d(0px,0px,0px)',
+                    'pointer-events': 'auto',
+                    'box-shadow': ' 0 2px 4px 1px rgba(0,0,0,0.2)',
+
+                })
+                ifDragging = false;
+            }
+
+
         }, false)
 
+        function LightUp() {
+            var ele = document.elementFromPoint(mouseCurrent.x, mouseCurrent.y);
+            if ($(ele).hasClass('span')) {
+                $('.span').css({background: 'white'});
+                $(ele).css({background: '#f8e9c5'})
+            }
+        }
 
+        $.ajax({
+            type: "get",
+//            url: 'http://n1.jimi.la/apps_V2/cp/formual_safe.php?pid=56c6ae75efb80c9b2541cd67',
+            url: 'r.json',
+            dataType: "jsonp",
+            jsonp: "callback",
+            jsonpCallback: "jsonpcallback",
+            success: function (data) {
+                console.log(JSON.stringify(data));
+
+                var text = data.text;
+                var pattern = /[^。?？！]*[。?？！]{1}/ig;
+                var arr = text.match(pattern);
+                console.log(arr)
+                $txtContainer = $('.txtContainer');
+                $txtContainer.append('<p></p>');
+                var str = '';
+                for (var i = 0; i < arr.length; i++) {
+                    str += '<span class="span">' + arr[i] + '</span>';
+                }
+                $txtContainer.find('p').html(str);
+            },
+            error: function (err) {
+                console.log('ERROR!')
+                console.log(err);
+            }
+        });
     })
+
 </script>
 </body>
 </html>
