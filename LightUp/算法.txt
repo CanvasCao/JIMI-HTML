@@ -4,4 +4,6 @@
 
    url: "http://l.m.163.com/light/article/bright/addNum.html",
 
+
+
    源码用到大量h5新API 只有GECKO 和 WEBKIT内核 支持
