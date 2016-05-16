@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no"/>
+
+    <title></title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            text-decoration: none;
+            list-style: none;
+            font-family: '微软雅黑';
+            /**/
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+            -webkit-text-size-adjust: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        body {
+            /*height: 1000px;*/
+            box-sizing: border-box;
+            padding: 25px 25px;
+        }
+
+        .paragraph {
+            /*border: 1px solid red;*/
+            text-align: justify;
+            margin-bottom: 25px;
+            position: relative;
+            vertical-align: middle;
+
+        }
+
+        .paragraph .span {
+            /*border: 1px solid black;*/
+            display: inline;
+            box-sizing: border-box;
+            padding: 0px 0;
+            font-size: 18px;
+            line-height: 28px;
+            letter-spacing: 2px;
+            word-break: break-all;
+            color: #5d5d5d;
+            transition: all 0.2s ease-in-out;
+            /*position: relative;*/
+        }
+
+        .light {
+            height: 50px;
+            width: 50px;
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            background: url("img/logo.jpg");
+            background-size: cover;
+            border-radius: 50%;
+            transform: translate3d(0px, 0px, 0px);
+            opacity: 0.9;
+            box-shadow: 0 2px 4px 1px rgba(0, 0, 0, 0.2);
+            /*pointer-events: none;*/
+            /*移动时才加*/
+
+        }
+
+        img {
+            /*display: block;*/
+
+            /*去掉底部白边*/
+            vertical-align: top;
+        }
+
+        .imgBorder::after {
+            content: "";
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            right: 5px;
+            bottom: 5px;
+            pointer-events: none;
+            box-sizing: border-box;
+            border: 1px solid #2cd2f4;
+        }
+    </style>
+</head>
+<body>
+
+<div class='txtContainer'></div>
+<div class='light'></div>
+
+
+<script src='js/jquery-1.8.3.min.js'></script>
+<script>
+    $(function () {
+        var winH = $(window).height();
+        var winW = $(window).width();
+        var bodyPadding = 25;
+
+        var $light = $('.light');
+        var ifDragging = false;
+        var mouseDown = {x: 0, y: 0};
+        var mouseCurrent = {x: 0, y: 0};
+        var timer = null;
+
+        $('.light')[0].addEventListener('touchstart', function (e) {
+//            e.preventDefault();
+            var touch = e.touches[0];
+            mouseDown.x = touch.clientX;
+            mouseDown.y = touch.clientY;
+            ifDragging = true;
+            $light.css({
+                'box-shadow': '0 0px 0px 5px rgba(255,255,255,0.8)',
+            });
+
+        }, false)
+
+        window.addEventListener('touchmove', function (e) {
+            if (ifDragging) {
+                e.preventDefault();
+                var touch = e.touches[0];
+                mouseCurrent.x = touch.clientX;
+                mouseCurrent.y = touch.clientY;
+                $light.css({
+                    transition: 'all 0s ease',
+                    transform: 'translate3d(' + (mouseCurrent.x - mouseDown.x) + 'px,' + (mouseCurrent.y - mouseDown.y) + 'px,0px)',
+                    'pointer-events': 'none'
+                })
+
+                clearTimeout(timer);
+                delete(timer);
+                timer = setTimeout(function () {
+                    LightUp();
+                }, 300);
+
+            }
+        }, false)
+
+        window.addEventListener('touchend', function (e) {
+            e.preventDefault();
+
+            if (ifDragging) {
+                clearTimeout(timer);
+                delete(timer);
+                $light.css({
+                    transition: 'all 0.8s ease-in-out',
+                    transform: 'translate3d(0px,0px,0px)',
+                    'pointer-events': 'auto',
+                    'box-shadow': ' 0 2px 4px 1px rgba(0,0,0,0.2)',
+
+                })
+                ifDragging = false;
+            }
+
+
+        }, false)
+
+        function LightUp() {
+            var ele = document.elementFromPoint(mouseCurrent.x, mouseCurrent.y);
+            if ($(ele).hasClass('span')) { //当前文件可以被点亮 开始排它法则
+
+                $('.txtContainer .span').css({background: 'white'}) //.removeClass('imgBorder');
+                $('.txtContainer .paragraph').removeClass('imgBorder');
+
+
+                if ($(ele).hasClass('spanImg')) {
+                    $(ele).parent().addClass('imgBorder');//一个元素的伪类相当于 这个元素的子类
+                }
+                else {
+                    $(ele).css({background: '#BFE6FF'});//#f8e9c5
+                }
+
+
+                var paraId = $(ele).parent().index();
+                var senId = $(ele).index();
+                console.log('第' + (paraId + 1) + '段' + '第' + (senId + 1) + '句');
+            }
+
+
+        }
+
+        $.ajax({
+            type: "get",
+//            url: 'http://n1.jimi.la/apps_V2/cp/formual_safe.php?pid=56c6ae75efb80c9b2541cd67',
+            url: 'r.json',
+            dataType: "jsonp",
+            jsonp: "callback",
+            jsonpCallback: "jsonpcallback",
+            success: function (data) {
+//              console.log(JSON.stringify(data));
+
+
+                //绑定所有数据
+                var text = data.text;
+                $txtContainer = $('.txtContainer');
+                $txtContainer.html(text);
+
+                $txtContainer.children().each(function (i, e) {
+
+                    $(e).addClass('paragraph');
+                    var imgLen = $(e).find('img').length; //判断是否有图片
+                    var brLen = $(e).find('br').length; //判断是否有图片
+
+                    if (imgLen > 0) {
+                        $(e).find('img').each(function (i, e) {
+                            $(e).css({width: (winW - 2 * bodyPadding)}).addClass('span').addClass('spanImg').addClass('imgBorder'); //图片额外增加spanImg
+                        })
+                        return;  //return依然会遍历所有元素
+                    }
+
+                    if (brLen > 0) {
+                        $(e).remove();  //remove自身循环依然是正确的
+                        return;
+                    }
+
+                    if ($(e).html() == '') { //空标签删除自己
+                        $(e).remove();  //remove自身循环依然是正确的
+                        return;
+                    }
+
+
+                    var html = $(e).html();
+                    var lastChar = html.substr(html.length - 1, 1);
+                    var arr = ['。', '！', '!', '？', '?']; //。?？！!
+                    if ($.inArray(lastChar, arr) == -1) { // 没有句号 默认是整段
+                        var str = '<span class="span">' + html + '</span>';
+                        $(e).html(str);
+//                      return;
+                    }
+                    else {
+                        var pattern = /[^。?？！!]*[。?？！!]{1}/ig;
+                        var htmlArr = html.match(pattern);
+
+                        var str = '';
+                        for (var i = 0; i < htmlArr.length; i++) {
+                            str += '<span class="span">' + htmlArr[i] + '</span>';
+                        }
+                        $(e).html(str);
+                    }
+
+                })
+
+
+            },
+            error: function (err) {
+                console.log('ERROR!')
+                console.log(err);
+            }
+        });
+    })
+
+
+</script>
+</body>
+</html>

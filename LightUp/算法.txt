@@ -6,4 +6,4 @@
 
 
 
-   Դ���õ�����h5��API ֻ��GECKO �� WEBKIT�ں� ֧��
+   源码用到大量h5新API 只有GECKO 和 WEBKIT内核 支持

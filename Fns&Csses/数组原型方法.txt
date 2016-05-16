@@ -1,0 +1,15 @@
+ Array.prototype.difference = function (other) {
+                var res = [];
+                for (var i = 0; i < this.length; i++) {
+                    var flag = true;
+                    for (var j = 0; j < other.length; j++) {
+                        if (this[i] == other[j]) {
+                            flag = false;
+                        }
+                    }
+                    if (flag) {
+                        res.push(this[i]);
+                    }
+                }
+                return res;
+            };

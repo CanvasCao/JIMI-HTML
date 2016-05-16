@@ -21,21 +21,14 @@
             user-select: none;
         }
 
-        html {
-
-        }
-
         body {
             height: 1000px;
             box-sizing: border-box;
-            padding: 0px 35px;
-
-
+            padding: 0px 25px;
         }
 
         p {
             /*border: 1px solid red;*/
-
             text-align: justify;
         }
 
@@ -44,18 +37,17 @@
             display: inline;
             box-sizing: border-box;
             padding: 6px 0;
-            font-size: 25px;
-            line-height: 45px;
-            word-break: break-all;
+            font-size: 18px;
+            line-height: 40px;
+            word-break: normal;
 
-            /*border: 1px solid #000;*/
             color: #5d5d5d;
             transition: all 0.2s ease-in-out;
         }
 
         .light {
-            height: 80px;
-            width: 80px;
+            height: 50px;
+            width: 50px;
             position: fixed;
             right: 20px;
             bottom: 20px;
@@ -63,7 +55,7 @@
             background-size: cover;
             border-radius: 50%;
             transform: translate3d(0px, 0px, 0px);
-            opacity: 0.7;
+            opacity: 0.9;
             box-shadow: 0 2px 4px 1px rgba(0,0,0,0.2);
             /*pointer-events: none;*/
             /*移动时才加*/
@@ -92,7 +84,6 @@
             mouseDown.x = touch.clientX;
             mouseDown.y = touch.clientY;
             ifDragging = true;
-//            console.log('touchstart');
             $light.css({
                 'box-shadow': '0 0px 0px 10px rgba(255,255,255,0.8)',
             });
@@ -100,10 +91,8 @@
         }, false)
 
         window.addEventListener('touchmove', function (e) {
-
             if (ifDragging) {
                 e.preventDefault();
-
                 var touch = e.touches[0];
                 mouseCurrent.x = touch.clientX;
                 mouseCurrent.y = touch.clientY;
@@ -117,7 +106,7 @@
                 delete(timer);
                 timer = setTimeout(function () {
                     LightUp();
-                }, 400);
+                }, 300);
 
             }
         }, false)
@@ -128,7 +117,6 @@
             if (ifDragging) {
                 clearTimeout(timer);
                 delete(timer);
-                LightUp();
                 $light.css({
                     transition: 'all 0.8s ease-in-out',
                     transform: 'translate3d(0px,0px,0px)',
@@ -147,13 +135,14 @@
             if ($(ele).hasClass('span')) {
                 $('.span').css({background: 'white'});
                 $(ele).css({background: '#f8e9c5'})
+                $(ele).css({background: '#BFE6FF'})
             }
         }
 
         $.ajax({
             type: "get",
 //            url: 'http://n1.jimi.la/apps_V2/cp/formual_safe.php?pid=56c6ae75efb80c9b2541cd67',
-            url: 'r.json',
+            url: 'r2.json',
             dataType: "jsonp",
             jsonp: "callback",
             jsonpCallback: "jsonpcallback",

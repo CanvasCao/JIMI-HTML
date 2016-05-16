@@ -10,7 +10,7 @@
         * {
             padding: 0;
             margin: 0;
-            word-break: break-all;
+            word-break: normal;
             text-align: center;
             box-sizing: border-box;
             -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
@@ -19,42 +19,32 @@
             -ms-user-select: none;
             user-select: none;
             font-size: 12px;
-
         }
 
         body, html {
             height: 100%;
         }
 
-        table {
-        }
-
         td {
-            /*height: 200px;*/
-            /*width: 200px;*/
             background-color: white;
             padding: 10px;
             box-sizing: border-box;
+
+            /*这里的50居然是最小高度的意思 惊了*/
             height: 50px;
             border-left: 1px solid #d2d2d2;
-            border-top: 1px solid #d2d2d2;
-            /*cursor: none;*/
+            border-bottom: 1px solid #d2d2d2;
 
             /*啊哟我操 只是因为方辉要在里面加a标签*/
             position: relative;
+
         }
 
         #realdiv {
-            /*height: 100%;*/
-            /*width: 100%;*/
             overflow: auto;
             /*box-sizing: border-box;*/
             /*padding-top: 200px;*/
             /*border: 3px solid red;*/
-        }
-
-        #real td {
-            /*border: 1px solid red;*/
         }
 
         #fakeLdiv {
@@ -83,7 +73,6 @@
             top: 0;
             left: 0;
             opacity: 0;
-            /*display: none;*/
             /*background-color: green;*/
             z-index: 999;
 
@@ -100,7 +89,7 @@
             opacity: 0;
             /*display: none;*/
             z-index: 1000;
-            vertical-align: center;
+            /*vertical-align: center;*/
         }
 
         #fixLT td {
@@ -165,7 +154,7 @@
 <script>
     $(function () {
         if (!window.location.search) {
-            window.location = window.location + '?pids=56f4d16cefb80c57428b6400,56f4d3e3efb80c57428b67cd,56f4d0d0efb80c57428b630a&cate=3';
+            window.location = window.location + '?pids=56f57b91efb80c57428c767f,56f57b9cefb80c57428c7688&cate=54';
 //            window.location = window.location + '?pids=56f57a7defb80c57428c74f6,56f56b2befb80c57428c654f&cate=6';
         }
 
@@ -173,22 +162,38 @@
 //        ?pids=56f4d16cefb80c57428b6400,56f4d3e3efb80c57428b67cd,56f4d0d0efb80c57428b630a&cate=3
 //变窄bug ?pids=56f57b91efb80c57428c767f,56f57b9cefb80c57428c7688&cate=54
 
-        //init ScreenRelatedParas...............................................................................
+        //initParas
         var srcH = $(window).height();
         var srcW = $(window).width();
 
         var leftW = srcW * 0.24;
         var mainW = srcW * 0.38; //(100-24)/2
 
-        //createDom............................................................................................
+        //createDom..........................................................................
         $('#con').append('<div id="realdiv"></div>');
-        $('#con').append('<div id="fakeLdiv"></div>');
-        $('#con').append('<div id="fakeTdiv"></div>');
-        $('#con').append('<table id="fixLT" border="0" cellspacing="0" cellpadding="0"></table>');
         $('#realdiv').html('<table id="real" border="0" cellspacing="0" cellpadding="0"></table>');
+
+        $('#con').append('<div id="fakeLdiv"></div>');
         $('#fakeLdiv').html('<table id="fakeL" border="0" cellspacing="0" cellpadding="0"></table>');
+
+        $('#con').append('<div id="fakeTdiv"></div>');
         $('#fakeTdiv').html('<table id="fakeT" border="0" cellspacing="0" cellpadding="0"></table>');
+
+        $('#con').append('<table id="fixLT" border="0" cellspacing="0" cellpadding="0"></table>');
         $('#fixLT').html(' <tr><td>' + '<div class="hideSame">隐藏相同</div>' + '</td></tr>')
+
+
+        //jQueryMap...........................................................................
+        var JM={};
+        JM.$con=$('#con');
+        JM.$realdiv=$('#realdiv');
+        JM.$real=$('#real');
+        JM.$fakeLdiv=$('#fakeLdiv');
+        JM.$fakeL=$('#fakeL');
+        JM.$fakeTdiv=$('#fakeTdiv');
+        JM.$fakeT=$('#fakeT');
+        JM.$fixLT=$('#fixLT');
+        JM.$hideSame=$('.hideSame');
 
 
         $.ajax({
@@ -211,31 +216,31 @@
                 //bindEvent........................................................................
                 //mainData..........................................................................
                 //第一行是header参数
-                $('#real').append('<tr></tr>');
-                $('#real').find('tr').eq(0).append('<td></td>') //第一行第一格是空
+                JM.$real.append('<tr></tr>');
+                JM.$real.find('tr').eq(0).append('<td></td>') //第一行第一格是空
                 for (i = 0; i < headerArr.length; i++) {
                     var url = headerArr[i]['pic'] || 'img/logo.jpg';
-                    $('#real').find('tr').eq(0).append('<td>' + '<img src=' + url + ' />' + headerArr[i]['title'] + '</td>');
+                    JM.$real.find('tr').eq(0).append('<td>' + '<img src=' + url + ' />' + headerArr[i]['title'] + '</td>');
                 }
 
                 //第二行是基本参数
-                $('#real').append('<tr></tr>')
+                JM.$real.append('<tr></tr>')
                 for (i = 0; i < headerArr.length; i++) {
-                    $('#real').find('tr').eq(1).append('<td>' + 'line2' + '</td>');
+                    JM.$real.find('tr').eq(1).append('<td>' + 'line2' + '</td>');
                 }
 
                 //第三行开始正常绑定
                 for (i = 0; i < mainArr.length; i++) {
                     var row = mainArr[i];
-                    $('#real').append('<tr></tr>');
+                    JM.$real.append('<tr></tr>');
 
                     for (j = 0; j < row.length; j++) {
                         var cellData = mainArr[i][j] || '-'
-                        $('#real').find('tr').eq(i + 2).append('<td>' + cellData + '</td>'); //find('tr').eq(i + 2) 一定要+2
+                        JM.$real.find('tr').eq(i + 2).append('<td>' + cellData + '</td>'); //find('tr').eq(i + 2) 一定要+2
                     }
                 }
                 $('#realdiv').css({height: srcH, width: srcW});//容器
-                $('#real').css({width: totalColLen});//real必须设宽 不然table不管多宽自动宽度100%
+                JM.$real.css({width: totalColLen});//real必须设宽 不然table不管多宽自动宽度100%
 
 
                 //mainData需要一个数组判断重复项........................................................................
@@ -433,10 +438,10 @@
 
                 //绑定方辉的a标签.............................................................
                 //第一行第二格开始添加a标签并且绑定事件 需要跳转
-                $('#real').find('tr').eq(0).find('td:gt(0)').each(function (i, e) {
+                JM.$real.find('tr').eq(0).find('td:gt(0)').each(function (i, e) {
                     $(e).append('<a></a>');
                 })
-                $('#real').find('a').css({
+                JM.$real.find('a').css({
                     'position': 'absolute',
                     'width': '100%',
                     'height': '100%',
