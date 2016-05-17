@@ -1,0 +1,5 @@
+  img {
+            /*display: block;*/
+            /*È¥µôµ×²¿°×±ß*/
+            vertical-align: top;
+        }
