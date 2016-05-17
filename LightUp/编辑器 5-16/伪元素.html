@@ -1,82 +1,31 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
+<!doctype html>
+<html lang="en">
+<head>
     <meta charset="UTF-8">
-    <title></title>
-    <style>
-
-        .test{
+    <title>Document</title>
+    <style type="text/css">
+        img{
+            position: relative;
             display: block;
         }
-        .test::before{
-            content:'我是' attr(class) "的::before伪元素,当前字号为" attr(data-font) 'px' ;
-            width: 100%;
-            word-break:break-all;
-            display: block;
-            border:2px solid #ABC;
-            font-size:16px;
-            margin-bottom:10px;
-            white-space:pre;
-        }
-        .test-red::before{/*改变伪元素内文字颜色的class*/
-            color:red;
-        }
-        .change-color{
-            display: block;
-            width: 150px;
-            height: 50px;
-            line-height: 50px;
-            text-align:center;
-            background: #EEE;
-            cursor:pointer;
-            -webkit-user-select:none;
-        }
 
+        img::after{
+            content: "";
+            position: absolute;
+            display: block;
 
+            top: 5px;
+            left: 5px;
+            right: 5px;
+            bottom: 5px;
+            pointer-events: none;
+            box-sizing: border-box;
+            border: 1px solid black;
+        }
     </style>
 </head>
 <body>
 
-<div class="test" data-font='16'></div>
-<input type="range" id='change-font' />
-<div class="change-color">改变文字颜色</div>
-
-
-<script>
-
-    console.log(window.location.href);
-    var btnFontSize=document.querySelector('input');
-    var btnColor=document.querySelector('.change-color');
-    var currentPseudo=document.querySelector('.test');
-    var stylesheets=document.styleSheets;
-    var sheet;
-    if(stylesheets){
-        sheet=stylesheets[stylesheets.length-1];
-        // console.log(sheet);
-        // console.log('sheet.cssRulesLength='+sheet.cssRules.length);
-    }else{
-        var style=document.createElement('style');
-        document.head.appendChild(style);
-    }
-    btnColor.addEventListener('click',function(){
-        //粗略实现的改变颜色，未做切换。
-        currentPseudo.classList.add('test-red');
-    });
-    var currentFontSize=window.getComputedStyle(currentPseudo,'::before').getPropertyValue('font-size');//获取当前伪元素字体大小。
-    var cssRulesLength=(sheet.cssRules.length);//不‘-1’是因为这样才是在最后一位，否则加入的样式会变成倒数第二
-    console.log('cssrule='+cssRulesLength+'currentFont='+currentFontSize);
-    sheet.insertRule('.test::before{font-size:'+currentFontSize+'}',cssRulesLength);//在最后一个style标签的最后位置添加当前字体大小样式。这么做是为了后面删除添加上去的cssRule，否则最后css表会变得巨大无比
-    btnFontSize.addEventListener('input',function(){
-//拖动滑块改变文字大小
-        var changeFontSize=btnFontSize.value;
-        currentPseudo.setAttribute('data-font',changeFontSize);
-        var index=sheet.cssRules.length-1;
-        console.log('index='+index);
-        sheet.deleteRule(index);//删除最后一行样式（这里是前面添加的字体大小样式，不直接删除是为了防止误删除影响其他属性
-        sheet.insertRule('.test::before{font-size:'+changeFontSize+'px}',index);
-        // sheet.insertRule('.test::before{font-size:16px}',index);
-    });
-
-</script>
+<img src="img/logo.jpg" alt=""/>
 </body>
 </html>

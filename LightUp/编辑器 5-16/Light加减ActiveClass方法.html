@@ -24,6 +24,8 @@
         img {
             /*display: block;*/
             /*去掉底部白边*/
+            position: relative;
+            display: block;
             vertical-align: top;
         }
 
@@ -42,7 +44,17 @@
 
         }
 
-
+        .paragraph.active::after {
+            content: "";
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            right: 5px;
+            bottom: 5px;
+            pointer-events: none;
+            box-sizing: border-box;
+            border: 1px solid #2cd2f4;
+        }
 
         .sentence {
             /*border: 1px solid black;*/
@@ -55,13 +67,13 @@
             word-break: break-all;
             color: #5d5d5d;
             transition: all 0.2s ease-in-out;
+            background: white;
             /*position: relative;*/
         }
 
-        .sentence.active{
+        .sentence.active {
             background: #BFE6FF;
         }
-
 
         .light {
             height: 50px;
@@ -80,18 +92,7 @@
 
         }
 
-        .imgBorder::after {
-            content: "";
-            position: absolute;
-            top: 5px;
-            left: 5px;
-            right: 5px;
-            bottom: 5px;
-            pointer-events: none;
-            box-sizing: border-box;
-            border: 1px solid #2cd2f4;
 
-        }
     </style>
 </head>
 <body>
@@ -102,6 +103,27 @@
 
 <script src='js/jquery-1.8.3.min.js'></script>
 <script>
+    String.prototype.AppendSpansByPeriod = function () {
+        var lastChar = this.substr(this.length - 1, 1);
+        var arr = ['。', '！', '!', '？', '?']; //。?？！!
+        if ($.inArray(lastChar, arr) == -1) { // 没有句号 默认是整段
+            var str = '<span class="sentence">' + this + '</span>';
+            return str;
+        }
+        else {
+            var pattern = /[^。?？！!]*[。?？！!]{1}/ig;
+            var htmlArr = this.match(pattern);
+
+            var str = '';
+            for (var i = 0; i < htmlArr.length; i++) {
+                str += '<span class="sentence">' + htmlArr[i] + '</span>';
+            }
+            return str;
+
+        }
+    }
+
+
     $(function () {
         var winH = $(window).height();
         var winW = $(window).width();
@@ -165,19 +187,22 @@
 
         }, false)
 
+        $txtContainer = $('.txtContainer');
         function LightUp() {
             var ele = document.elementFromPoint(mouseCurrent.x, mouseCurrent.y);
-            if ($(ele).hasClass('sentence') || $(ele).hasClass('sentenceImg')) { //当前文件可以被点亮 开始排它法则
 
-                $('.txtContainer .sentence').css({background: 'white'}) //.removeClass('imgBorder');
-                $('.txtContainer .paragraph').removeClass('imgBorder');
+            if ($(ele).hasClass('active') || $(ele).parent().hasClass('active')) {
+                return; //已经选中
+            }
+            else if ($(ele).hasClass('sentence')) { //当前文件可以被点亮 开始排它法则
+                $txtContainer.find('.paragraph,.sentence').removeClass('active');
 
 
                 if ($(ele).hasClass('sentenceImg')) {
-                    $(ele).parent().addClass('imgBorder');//一个元素的伪类相当于 这个元素的子类
+                    $(ele).parent().addClass('active');//一个元素的伪类相当于 这个元素的子类
                 }
                 else {
-                    $(ele).css({background: '#BFE6FF'});//#f8e9c5
+                    $(ele).addClass('active');//#f8e9c5
                 }
 
 
@@ -212,9 +237,9 @@
                     var brLen = $(e).find('br').length; //判断是否有图片
 
 
-                    if (imgLen > 0) { //一个oara里最多放一张图
+                    if (imgLen > 0) { //一个oara里最多放一张图 imgBorder
                         $(e).find('img').each(function (i, e) {
-                            $(e).css({width: (winW - 2 * bodyPadding)}).addClass('sentenceImg'); //图片额外增加spanImg
+                            $(e).css({width: (winW - 2 * bodyPadding)}).addClass('sentence').addClass('sentenceImg') //图片额外增加spanImg
                         })
                         return;  //return依然会遍历所有元素
                     }
@@ -224,31 +249,14 @@
                         return;
                     }
 
-                    if ($(e).html() == '') { //空标签删除自己
+                    if ($(e).html().trim() == '') { //空标签删除自己
                         $(e).remove();  //remove自身父节点循环依然是正确的
                         return;
                     }
 
 
-                    var html = $(e).html();
-                    var lastChar = html.substr(html.length - 1, 1);
-                    var arr = ['。', '！', '!', '？', '?']; //。?？！!
-                    if ($.inArray(lastChar, arr) == -1) { // 没有句号 默认是整段
-                        var str = '<span class="sentence">' + html + '</span>';
-                        $(e).html(str);
-//                      return;
-                    }
-                    else {
-                        var pattern = /[^。?？！!]*[。?？！!]{1}/ig;
-                        var htmlArr = html.match(pattern);
-
-                        var str = '';
-                        for (var i = 0; i < htmlArr.length; i++) {
-                            str += '<span class="sentence">' + htmlArr[i] + '</span>';
-                        }
-                        $(e).html(str);
-                    }
-
+                    var html = $(e).html().AppendSpansByPeriod();
+                    $(e).html(html);
                 })
 
 
