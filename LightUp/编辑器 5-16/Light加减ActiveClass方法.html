@@ -21,79 +21,14 @@
             user-select: none;
         }
 
-        img {
-            /*display: block;*/
-            /*去掉底部白边*/
-            position: relative;
-            display: block;
-            vertical-align: top;
-        }
-
         body {
             /*height: 1000px;*/
             box-sizing: border-box;
             padding: 25px 25px;
         }
 
-        .paragraph {
-            /*border: 1px solid red;*/
-            text-align: justify;
-            margin-bottom: 25px;
-            position: relative;
-            vertical-align: middle;
-
-        }
-
-        .paragraph.active::after {
-            content: "";
-            position: absolute;
-            top: 5px;
-            left: 5px;
-            right: 5px;
-            bottom: 5px;
-            pointer-events: none;
-            box-sizing: border-box;
-            border: 1px solid #2cd2f4;
-        }
-
-        .sentence {
-            /*border: 1px solid black;*/
-            display: inline;
-            box-sizing: border-box;
-            padding: 0px 0;
-            font-size: 18px;
-            line-height: 28px;
-            letter-spacing: 2px;
-            word-break: break-all;
-            color: #5d5d5d;
-            transition: all 0.2s ease-in-out;
-            background: white;
-            /*position: relative;*/
-        }
-
-        .sentence.active {
-            background: #BFE6FF;
-        }
-
-        .light {
-            height: 50px;
-            width: 50px;
-            position: fixed;
-            right: 20px;
-            bottom: 20px;
-            background: url("img/logo.jpg");
-            background-size: cover;
-            border-radius: 50%;
-            transform: translate3d(0px, 0px, 0px);
-            opacity: 0.9;
-            box-shadow: 0 2px 4px 1px rgba(0, 0, 0, 0.2);
-            /*pointer-events: none;*/
-            /*移动时才加*/
-
-        }
-
-
     </style>
+    <link rel="stylesheet" href="css/lightUp.css"/>
 </head>
 <body>
 
@@ -102,28 +37,10 @@
 
 
 <script src='js/jquery-1.8.3.min.js'></script>
+
+<!--这里保存了扩展的原型方法-->
+<script src='js/jimi-prototype.js'></script>
 <script>
-    String.prototype.AppendSpansByPeriod = function () {
-        var lastChar = this.substr(this.length - 1, 1);
-        var arr = ['。', '！', '!', '？', '?']; //。?？！!
-        if ($.inArray(lastChar, arr) == -1) { // 没有句号 默认是整段
-            var str = '<span class="sentence">' + this + '</span>';
-            return str;
-        }
-        else {
-            var pattern = /[^。?？！!]*[。?？！!]{1}/ig;
-            var htmlArr = this.match(pattern);
-
-            var str = '';
-            for (var i = 0; i < htmlArr.length; i++) {
-                str += '<span class="sentence">' + htmlArr[i] + '</span>';
-            }
-            return str;
-
-        }
-    }
-
-
     $(function () {
         var winH = $(window).height();
         var winW = $(window).width();
@@ -255,7 +172,7 @@
                     }
 
 
-                    var html = $(e).html().AppendSpansByPeriod();
+                    var html = $(e).html().AppendSpansByPeriod(); //句子增加span已经添加在原型方法里
                     $(e).html(html);
                 })
 

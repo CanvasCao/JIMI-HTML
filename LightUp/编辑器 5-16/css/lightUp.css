@@ -1,0 +1,65 @@
+img {
+    /*display: block;*/
+    /*去掉底部白边*/
+    position: relative;
+    display: block;
+    vertical-align: top;
+}
+
+.paragraph {
+    /*border: 1px solid red;*/
+    text-align: justify;
+    margin-bottom: 25px;
+    position: relative;
+    vertical-align: middle;
+
+}
+
+.paragraph.active::after {
+    content: "";
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    right: 5px;
+    bottom: 5px;
+    pointer-events: none;
+    box-sizing: border-box;
+    border: 1px solid #2cd2f4;
+}
+
+.sentence {
+    /*border: 1px solid black;*/
+    display: inline;
+    box-sizing: border-box;
+    padding: 0px 0;
+    font-size: 18px;
+    line-height: 28px;
+    letter-spacing: 2px;
+    word-break: break-all;
+    color: #5d5d5d;
+    transition: all 0.2s ease-in-out;
+    background: white;
+    /*position: relative;*/
+}
+
+.sentence.active {
+    background: #BFE6FF;
+}
+
+.light {
+    height: 50px;
+    width: 50px;
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    background: url("../img/logo.jpg");
+    background-size: cover;
+    border-radius: 50%;
+    transform: translate3d(0px, 0px, 0px);
+    opacity: 0.9;
+    box-shadow: 0 2px 4px 1px rgba(0, 0, 0, 0.2);
+    /*pointer-events: none;*/
+    /*移动时才加*/
+
+}
+
