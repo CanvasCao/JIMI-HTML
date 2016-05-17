@@ -34,8 +34,8 @@
       <file leaf-file-name="Light加减ActiveClass方法.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/编辑器 5-16/Light加减ActiveClass方法.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5457227">
-              <caret line="174" column="86" selection-start-line="174" selection-start-column="86" selection-end-line="174" selection-end-column="86" />
+            <state vertical-scroll-proportion="0.6224189">
+              <caret line="123" column="56" selection-start-line="123" selection-start-column="56" selection-end-line="123" selection-end-column="56" />
               <folding />
             </state>
           </provider>
@@ -67,7 +67,7 @@
         <entry file="file://$PROJECT_DIR$/编辑器 5-16/r.json">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="-1.1538461">
-              <caret line="2" column="613" selection-start-line="2" selection-start-column="613" selection-end-line="2" selection-end-column="613" />
+              <caret line="2" column="692" selection-start-line="2" selection-start-column="692" selection-end-line="2" selection-end-column="692" />
               <folding />
             </state>
           </provider>
@@ -118,8 +118,8 @@
         <option value="$PROJECT_DIR$/编辑器 5-16/伪元素.html" />
         <option value="$PROJECT_DIR$/编辑器 5-16/css/lightUp.html" />
         <option value="$PROJECT_DIR$/编辑器 5-16/css/lightUp.css" />
-        <option value="$PROJECT_DIR$/编辑器 5-16/r.json" />
         <option value="$PROJECT_DIR$/编辑器 5-16/js/jimi-prototype.js" />
+        <option value="$PROJECT_DIR$/编辑器 5-16/r.json" />
         <option value="$PROJECT_DIR$/编辑器 5-16/Light加减ActiveClass方法.html" />
       </list>
     </option>
@@ -375,7 +375,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18380463" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -545,18 +545,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/编辑器 5-16/css/lightUp.css">
+    <entry file="file://$PROJECT_DIR$/编辑器 5-16/r.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="54" column="24" selection-start-line="54" selection-start-column="24" selection-end-line="54" selection-end-column="24" />
+        <state vertical-scroll-proportion="-1.1538461">
+          <caret line="2" column="692" selection-start-line="2" selection-start-column="692" selection-end-line="2" selection-end-column="692" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/编辑器 5-16/r.json">
+    <entry file="file://$PROJECT_DIR$/编辑器 5-16/css/lightUp.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.1538461">
-          <caret line="2" column="613" selection-start-line="2" selection-start-column="613" selection-end-line="2" selection-end-column="613" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="54" column="24" selection-start-line="54" selection-start-column="24" selection-end-line="54" selection-end-column="24" />
           <folding />
         </state>
       </provider>
@@ -573,8 +573,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/编辑器 5-16/Light加减ActiveClass方法.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5457227">
-          <caret line="174" column="86" selection-start-line="174" selection-start-column="86" selection-end-line="174" selection-end-column="86" />
+        <state vertical-scroll-proportion="0.6224189">
+          <caret line="123" column="56" selection-start-line="123" selection-start-column="56" selection-end-line="123" selection-end-column="56" />
           <folding />
         </state>
       </provider>

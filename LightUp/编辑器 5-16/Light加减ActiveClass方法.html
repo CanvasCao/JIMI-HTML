@@ -52,15 +52,31 @@
         var mouseCurrent = {x: 0, y: 0};
         var timer = null;
 
+        var lightState = {
+            touchStart: {
+                'box-shadow': '0 0px 0px 5px rgba(255,255,255,0.8)',
+            },
+            touchMove: {
+                transition: 'all 0s ease',
+//                transform: 'translate3d(' + (mouseCurrent.x - mouseDown.x) + 'px,' + (mouseCurrent.y - mouseDown.y) + 'px,0px)',
+                'pointer-events': 'none'
+            },
+            touchEnd: {
+                transition: 'all 0.8s ease-in-out',
+                transform: 'translate3d(0px,0px,0px)',
+                'pointer-events': 'auto',
+                'box-shadow': ' 0 2px 4px 1px rgba(0,0,0,0.2)',
+
+            }
+        }
+
         $('.light')[0].addEventListener('touchstart', function (e) {
 //            e.preventDefault();
             var touch = e.touches[0];
             mouseDown.x = touch.clientX;
             mouseDown.y = touch.clientY;
             ifDragging = true;
-            $light.css({
-                'box-shadow': '0 0px 0px 5px rgba(255,255,255,0.8)',
-            });
+            $light.css(lightState.touchStart);
 
         }, false)
 
@@ -70,11 +86,9 @@
                 var touch = e.touches[0];
                 mouseCurrent.x = touch.clientX;
                 mouseCurrent.y = touch.clientY;
-                $light.css({
-                    transition: 'all 0s ease',
-                    transform: 'translate3d(' + (mouseCurrent.x - mouseDown.x) + 'px,' + (mouseCurrent.y - mouseDown.y) + 'px,0px)',
-                    'pointer-events': 'none'
-                })
+                lightState.touchMove.transform = 'translate3d(' + (mouseCurrent.x - mouseDown.x) + 'px,' + (mouseCurrent.y - mouseDown.y) + 'px,0px)';
+                $light.css(lightState.touchMove);
+
 
                 clearTimeout(timer);
                 delete(timer);
@@ -91,17 +105,9 @@
             if (ifDragging) {
                 clearTimeout(timer);
                 delete(timer);
-                $light.css({
-                    transition: 'all 0.8s ease-in-out',
-                    transform: 'translate3d(0px,0px,0px)',
-                    'pointer-events': 'auto',
-                    'box-shadow': ' 0 2px 4px 1px rgba(0,0,0,0.2)',
-
-                })
+                $light.css(lightState.touchEnd);
                 ifDragging = false;
             }
-
-
         }, false)
 
         $txtContainer = $('.txtContainer');
@@ -115,7 +121,7 @@
                 $txtContainer.find('.paragraph,.sentence').removeClass('active');
 
 
-                if ($(ele).hasClass('sentenceImg')) {
+                if ($(ele).hasClass('sentenceImg')) { //判断当前是类图片还是文字
                     $(ele).parent().addClass('active');//一个元素的伪类相当于 这个元素的子类
                 }
                 else {
