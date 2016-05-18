@@ -5,37 +5,14 @@
     <meta name="viewport"
           content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no"/>
     <title>Document</title>
-    <style type="text/css">
-        * {
-            padding: 0;
-            margin: 0;
-            list-style: none;
-            text-decoration: none;
-            font-family: '微软雅黑';
-
-            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-            -webkit-text-size-adjust: none;
-            -webkit-touch-callout: none;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-
-        }
-
-        body {
-            padding: 10px 15px;
-            box-sizing: border-box;
-        }
-
-
-    </style>
+    <style type="text/css"></style>
+    <link rel="stylesheet" href="css/jimiUI.css"/>
 </head>
 <body>
 <div id='con'></div>
-
 <script src='js/jquery-1.8.3.min.js'></script>
 <script src='js/productDetailCanvas-1.0.0.js'></script>
+<script src='js/navBar-1.0.0.js'></script>
 <script src='js/echartsBasic&Graph.min.js'></script>
 <script src='js/alternateBtn-1.0.0.js'></script>
 <script src='js/spa-middleComponent-1.0.2.js'></script>
@@ -45,13 +22,13 @@
 <script>
     $(function () {
         if (!window.location.search) {
-            window.location = window.location + '?rid=413';
+            window.location = window.location + '?rid=468';
         }
 
+        //413
         //109是虚线图
         //168
         //54
-        //alert(2)
         var w = $(window).width()
         var paddingW = 15;
         $.ajax({
@@ -101,7 +78,7 @@
                         console.log('下标溢出');
                         return;
                     }
-                    var jqObj = $jimiYunYing.eq(index)
+                    var jqObj = $jimiYunYing.eq(index);
                     var pid = jqObj.attr('data-pid');
                     $.ajax({
                         type: "get",
@@ -116,24 +93,11 @@
                             console.log(JSON.stringify(data))
                             jqObj.html('');
 
+
                             var header = new Header(jqObj[0], data);
-                            var cc = new CompositionContainer(jqObj[0], data);
-                            var component = new MiddleComponent(jqObj[0], data);
-//                            var alertCon = new AlertCon(jqObj[0], data);
+                            var navBar = new NavBar(jqObj[0], data);
                             var pdc = new ProductDetailCanvas(jqObj[0], data, false);
 
-
-                            //控件 Init......................................................
-                            var alBtnData = {showTxt: ['按类型', '按安全']};
-                            var alternateBtn = new AlternateBtn(jqObj.find('.alBtn')[0], alBtnData);
-
-
-                            //控件与控件的关联 点击按钮 类型和成分的切换 控件的事件只能写在所有元素加载完成
-                            jqObj.find('.alBtn').find('li').click(function () {
-                                var index = $(this).index();
-                                jqObj.find('.compositions').find('div').eq(index).show().siblings().hide();
-                                jqObj.find('.middleComponent').children('div').eq(index).show().siblings().hide();
-                            });
 
                             ajaxComplete(index + 1);
                         },

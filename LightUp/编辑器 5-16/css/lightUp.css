@@ -1,6 +1,6 @@
 img {
     /*display: block;*/
-    /*È¥µôµ×²¿°×±ß*/
+    /*å»æ‰åº•éƒ¨ç™½è¾¹*/
     /*position: relative;*/
     display: block;
     vertical-align: top;
@@ -94,7 +94,7 @@ img {
     box-shadow: 0 2px 4px 1px rgba(0, 0, 0, 0.2);
     z-index: 1000;
     /*pointer-events: none;*/
-    /*ÒÆ¶¯Ê±²Å¼Ó*/
+    /*ç§»åŠ¨æ—¶æ‰åŠ */
 
 }
 

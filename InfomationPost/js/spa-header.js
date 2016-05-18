@@ -30,7 +30,7 @@
             //更新头部图片和文字
             var englishName = this.data.englishName;
             var chineseName = this.data.chineseName;
-            var imgUrl = this.data.imgUrl || 'img/a.png';
+            var imgUrl = this.data.imgUrl || 'img/default.png';
 //                $imgCon.find('img').attr('src', imgUrl);
             $(this.C).find('.imgCon').css('background', 'url(' + imgUrl + ') no-repeat 50% 50%').css('background-size', 'contain');
             $(this.C).find('.pname').html(englishName + '<br>' + chineseName);

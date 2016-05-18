@@ -1,0 +1,144 @@
+* {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    text-decoration: none;
+    font-family: '微软雅黑';
+
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-text-size-adjust: none;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+}
+
+body {
+    padding: 10px 15px;
+    box-sizing: border-box;
+}
+
+p {
+    position: relative;
+}
+
+/*canvas边框*/
+.jimi-Yunying {
+    border: 1px dashed #4192ff;
+    padding: 10px;
+    background-color: white;
+
+}
+
+.jimi-Yunying::before {
+    z-index: -1;
+    position: absolute;
+    content: "";
+    bottom: -5px;
+    left: 5px;
+    width: 50%;
+    top: 80%;
+    max-width: 300px;
+    background: #4192ff;
+
+    filter: blur(3px);
+    -webkit-filter: blur(4px);
+    filter: blur(4px);
+    transform: rotate(-3deg);
+    opacity: 0;
+
+}
+
+.jimi-Yunying::after {
+    z-index: -1;
+    position: absolute;
+    content: "";
+    bottom: -5px;
+    right: 5px;
+    width: 50%;
+    top: 80%;
+    max-width: 300px;
+    background: #4192ff;
+    filter: blur(4px);
+    -webkit-filter: blur(4px);
+    transform: rotate(3deg);
+    opacity: 0;
+
+}
+
+/*dashedCornerShadow 第一款样式*/
+.dashedCornerShadow {
+    /*border: 1px solid red;*/
+    text-align: justify;
+    margin-bottom: 25px;
+    position: relative;
+    vertical-align: middle;
+    border: 1px dashed #4192ff;
+    padding: 10px;
+    background-color: white;
+    font-size: 18px;
+    line-height: 32px;
+    color: #262626;
+    text-indent: 2em;
+
+}
+
+.dashedCornerShadow::before {
+    z-index: -1;
+    position: absolute;
+    content: "";
+    bottom: -5px;
+    left: 5px;
+    width: 50%;
+    top: 80%;
+    max-width: 300px;
+    background: #4192ff;
+    filter: blur(3px);
+    -webkit-filter: blur(4px);
+    filter: blur(4px);
+    transform: rotate(-3deg);
+    opacity: 0.4;
+}
+
+.dashedCornerShadow::after {
+    z-index: -1;
+    position: absolute;
+    content: "";
+    bottom: -5px;
+    right: 5px;
+    width: 50%;
+    top: 80%;
+    max-width: 300px;
+    background: #4192ff;
+    filter: blur(4px);
+    -webkit-filter: blur(4px);
+    transform: rotate(3deg);
+    opacity: 0.4;
+
+}
+
+.borderNormal {
+    border: 1px solid #262626;
+    background-color: white;
+    font-size: 18px;
+    line-height: 32px;
+    color: #262626;
+    text-indent: 2em;
+    padding: 10px;
+
+}
+
+.textCenter {
+    text-align: center;
+    text-indent: 0em;
+}
+
+.textJustify {
+    text-align: justify;
+}
+
+.strong {
+    font-weight: bold;
+}
