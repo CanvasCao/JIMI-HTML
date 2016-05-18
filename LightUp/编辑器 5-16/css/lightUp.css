@@ -1,7 +1,7 @@
 img {
     /*display: block;*/
     /*去掉底部白边*/
-    position: relative;
+    /*position: relative;*/
     display: block;
     vertical-align: top;
 }
@@ -12,16 +12,50 @@ img {
     margin-bottom: 25px;
     position: relative;
     vertical-align: middle;
-
+    border: 1px dashed #000;
+    background-color: white;
+    padding: 5px;
 }
 
-.paragraph.active::after {
+.paragraph::before {
+    z-index: -1;
+    position: absolute;
+    content: "";
+    bottom: 15px;
+    left: 10px;
+    width: 50%;
+    top: 80%;
+    max-width: 300px;
+    background: #777;
+    box-shadow: 0 16px 8px rgba(0,0,0,0.7);
+    transform: rotate(-3deg);
+}
+
+.paragraph::after {
+    z-index: -1;
+    position: absolute;
+    content: "";
+    bottom: 15px;
+    right: 10px;
+    width: 50%;
+    top: 80%;
+    max-width: 300px;
+    background: #777;
+    box-shadow: 0 16px 8px rgba(0,0,0,0.7);
+    transform: rotate(3deg);
+}
+
+.paragraphWeb {
+    position: relative;
+}
+
+.paragraphWeb.active::after, .paragraph.active::after {
     content: "";
     position: absolute;
-    top: 5px;
-    left: 5px;
-    right: 5px;
-    bottom: 5px;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
     pointer-events: none;
     box-sizing: border-box;
     border: 1px solid #2cd2f4;
@@ -58,8 +92,25 @@ img {
     transform: translate3d(0px, 0px, 0px);
     opacity: 0.9;
     box-shadow: 0 2px 4px 1px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
     /*pointer-events: none;*/
     /*移动时才加*/
 
 }
 
+.mask {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    opacity: 0;
+}
+
+.tip {
+    height: 100px;
+    width: 100%;
+    /*border: 1px solid #000;*/
+    position: absolute;
+}

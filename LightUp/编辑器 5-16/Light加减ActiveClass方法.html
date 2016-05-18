@@ -24,7 +24,7 @@
         body {
             /*height: 1000px;*/
             box-sizing: border-box;
-            padding: 25px 25px;
+            padding: 15px;
         }
 
     </style>
@@ -34,17 +34,24 @@
 
 <div class='txtContainer'></div>
 <div class='light'></div>
-
-
+<!--<div class='mask'></div>-->
+<div class='tip'></div>
 <script src='js/jquery-1.8.3.min.js'></script>
 
 <!--这里保存了扩展的原型方法-->
 <script src='js/jimi-prototype.js'></script>
+<script src='js/spa/productDetailCanvas-1.0.0.js'></script>
+<script src='js/spa/echartsBasic&Graph.min.js'></script>
+<script src='js/spa/alternateBtn-1.0.0.js'></script>
+<script src='js/spa/spa-alertCon.js'></script>
+<script src='js/spa/spa-compositionContainer.js'></script>
+<script src='js/spa/spa-header.js'></script>
+<script src='js/spa/spa-middleComponent-1.0.2.js'></script>
 <script>
     $(function () {
         var winH = $(window).height();
         var winW = $(window).width();
-        var bodyPadding = 25;
+        var bodyPadding = 20;
 
         var $light = $('.light');
         var ifDragging = false;
@@ -100,7 +107,7 @@
         }, false)
 
         window.addEventListener('touchend', function (e) {
-            e.preventDefault();
+//            e.preventDefault();
 
             if (ifDragging) {
                 clearTimeout(timer);
@@ -114,28 +121,38 @@
         function LightUp() {
             var ele = document.elementFromPoint(mouseCurrent.x, mouseCurrent.y);
 
-            if ($(ele).hasClass('active') || $(ele).parent().hasClass('active')) {
+            if ($(ele).hasClass('active') || $(ele).parent('.paragraph').hasClass('active') || $(ele).closest('.paragraphWeb').hasClass('active')) {
+                console.log(1)
                 return; //已经选中
             }
-            else if ($(ele).hasClass('sentence')) { //当前文件可以被点亮 开始排它法则
-                $txtContainer.find('.paragraph,.sentence').removeClass('active');
 
-
-                if ($(ele).hasClass('sentenceImg')) { //判断当前是类图片还是文字
-                    $(ele).parent().addClass('active');//一个元素的伪类相当于 这个元素的子类
-                }
-                else {
-                    $(ele).addClass('active');//#f8e9c5
-                }
-
-
-                var paraId = $(ele).parent().index();
-                var senId = $(ele).index();
-                console.log('第' + (paraId + 1) + '段' + '第' + (senId + 1) + '句');
+            var ifLightUpSucceed = false;
+            if ($(ele).hasClass('sentence')) { //判断当前是类图片还是文字
+                RemoveClass();
+                $(ele).addClass('active');//#f8e9c5
+                ifLightUpSucceed = true;
+            }
+            else if ($(ele).hasClass('sentenceImg')) {
+                RemoveClass();
+                $(ele).parent('.paragraph').addClass('active');//一个元素的伪类相当于 这个元素的子类
+                ifLightUpSucceed = true;
+            } else if ($(ele).closest('.paragraphWeb').length) {
+                RemoveClass();
+                $(ele).closest('.paragraphWeb').addClass('active');
+                ifLightUpSucceed = true;
             }
 
 
-        }
+            function RemoveClass() {
+                $txtContainer.find('.paragraph,.paragraphWeb,.sentence').removeClass('active'); //removeAll
+            }
+
+            //index（）这里问题会很严重！！！
+//                var paraId = $(ele).closest('.paragraph').index();
+//                var senId = $(ele).closest('.sentence').index();
+//                console.log('第' + (paraId + 1) + '段' + '第' + (senId + 1) + '句');
+
+        };
 
         $.ajax({
             type: "get",
@@ -153,16 +170,23 @@
                 $txtContainer = $('.txtContainer');
                 $txtContainer.html(text);
 
+                //这一步增加类名................................................................................
                 $txtContainer.children().each(function (i, e) {
+
+                    if ($(e).hasClass('jimi-Yunying')) { //内部元素还没ajax 注意！jimi-Yunying只是一个容器
+                        $(e).addClass('paragraphWeb')//他不是paragraph段落 而是一个web段落
+                        return;
+                    }
+
 
                     $(e).addClass('paragraph');
                     var imgLen = $(e).find('img').length; //判断是否有图片
                     var brLen = $(e).find('br').length; //判断是否有图片
 
 
-                    if (imgLen > 0) { //一个oara里最多放一张图 imgBorder
+                    if (imgLen > 0) { //一个para里最多放一张图 imgBorder
                         $(e).find('img').each(function (i, e) {
-                            $(e).css({width: (winW - 2 * bodyPadding)}).addClass('sentence').addClass('sentenceImg') //图片额外增加spanImg
+                            $(e).css({width: (winW - 2 * bodyPadding)}).addClass('sentenceImg');//类图片类名叫做sentenceImg
                         })
                         return;  //return依然会遍历所有元素
                     }
@@ -178,20 +202,85 @@
                     }
 
 
+                    //漏到最后的暂时认为他就是纯文本
                     var html = $(e).html().AppendSpansByPeriod(); //句子增加span已经添加在原型方法里
                     $(e).html(html);
-                })
+                });
+
+
+                //这一步Ajax 递归绑定肌秘yunying的数据................................................................................
+                var $jimiYunYing = $('.jimi-Yunying'); //jq对象
+
+                (function ajaxComplete(index) {
+                    if (index == $jimiYunYing.length) {
+                        console.log('下标溢出');
+                        return;
+                    }
+                    var jqObj = $jimiYunYing.eq(index)
+                    var pid = jqObj.attr('data-pid');
+                    $.ajax({
+                        type: "get",
+                        url: 'http://n1.jimi.la/apps_T1/formual_safe.php?pid=' + pid,
+                        dataType: "jsonp",
+                        jsonp: "callback",
+                        jsonpCallback: "jsonpcallback",
+                        async: true,
+                        cache: false,
+                        timeout: 5000,
+                        success: function (data) {
+//                          console.log(JSON.stringify(data));
+                            jqObj.html('');
+
+                            var header = new Header(jqObj[0], data);
+                            var cc = new CompositionContainer(jqObj[0], data);
+                            var component = new MiddleComponent(jqObj[0], data);
+//                            var alertCon = new AlertCon(jqObj[0], data);
+                            var pdc = new ProductDetailCanvas(jqObj[0], data, false);
+
+
+                            //控件 Init......................................................
+                            var alBtnData = {showTxt: ['按类型', '按安全']};
+                            var alternateBtn = new AlternateBtn(jqObj.find('.alBtn')[0], alBtnData);
+
+
+                            //控件与控件的关联 点击按钮 类型和成分的切换 控件的事件只能写在所有元素加载完成
+                            jqObj.find('.alBtn').find('li').click(function () {
+                                var index = $(this).index();
+                                jqObj.find('.compositions').find('div').eq(index).show().siblings().hide();
+                                jqObj.find('.middleComponent').children('div').eq(index).show().siblings().hide();
+                            });
+
+
+                            ajaxComplete(index + 1);
+                        },
+                        error: function (err) {
+                            console.log('YUNYING ERROR!');
+                            console.log(err);
+
+                            ajaxComplete(index + 1);
+
+                        }
+                    });
+                })(0);
 
 
             },
             error: function (err) {
-                console.log('ERROR!')
+                console.log('ERROR!');
                 console.log(err);
             }
         });
     })
 
 
+</script>
+<script>
+    $(function () {
+        var winH = $(window).height();
+        var winW = $(window).width();
+        var bodyPadding = 20;
+        $('.tip').css({width: (winW - 2 * bodyPadding)})
+    })
 </script>
 </body>
 </html>
