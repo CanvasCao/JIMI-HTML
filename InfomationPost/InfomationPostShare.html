@@ -86,14 +86,16 @@
 </div>
 
 <script src='js/jquery-1.8.3.min.js'></script>
-<script src='js/productDetailCanvas-1.0.0.js'></script>
-<script src='js/navBar-1.0.0.js'></script>
+<script src='js/spa/productDetailCanvas-1.0.0.js'></script>
+<script src='js/spa/navBar-1.0.0.js'></script>
 <script src='js/echartsBasic&Graph.min.js'></script>
-<script src='js/alternateBtn-1.0.0.js'></script>
-<script src='js/spa-middleComponent-1.0.2.js'></script>
-<script src='js/spa-header.js'></script>
-<script src='js/spa-compositionContainer.js'></script>
-<script src='js/spa-alertCon.js'></script>
+<script src='js/spa/alternateBtn-1.0.0.js'></script>
+<script src='js/spa/spa-middleComponent-1.0.2.js'></script>
+<script src='js/spa/spa-header.js'></script>
+<script src='js/spa/spa-compositionContainer.js'></script>
+<script src='js/spa/spa-alertCon.js'></script>
+<script src='js/labelAdapter/labelAdapter.js'></script>
+
 <script>
     $(function () {
         if (!window.location.search) {
@@ -153,30 +155,8 @@
                 //绑定中间数据........................................................................................
                 var $con = $('#con');
                 $con.html(data.content); //jsonp 返给我的全部是html
-                $con.find('img').css({ //把所有图片转块 左右居中
-                    display: 'block',
-                    margin: '0 auto',
-                });
-                $con.find('img').each(function (i, e) {
 
-                    //遍历图片 如果宽度大于屏幕宽-30  则强行等比例宽等于屏宽
-                    if (parseInt($(e).css('width')) > (w - paddingW * 2)) {
-                        var imgW = parseInt($(e).css('width'));
-                        var imgH = parseInt($(e).css('height'));
-                        var RATE = imgH / imgW; //宽高比
-                        $(e).attr({width: (w - paddingW * 2), height: (w - paddingW * 2) * RATE});
-                        $(e).css({width: (w - paddingW * 2), height: (w - paddingW * 2) * RATE}); //为什么还写css 我忘记了
-                    }
-
-                    else if (parseInt($(e).css('width')) == 0) {
-                        $(e).attr({width: (w - paddingW * 2)});
-                    }
-                })
-
-                //视频强行16比9
-                $con.find('iframe').css({width: (w - paddingW * 2), height: (w - paddingW * 2) * 9 / 16});
-
-
+                labelAdapter($con);//适配标签
                 //......................................................................................................
                 //强行插入canvas 资讯标签专用info-
                 var $jimiYunYing = $con.find('.jimi-Yunying'); //jq对象

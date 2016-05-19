@@ -13,39 +13,36 @@
     -ms-user-select: none;
     user-select: none;
 
+    /*全局的字体*/
+    font-size: 17px;
+    line-height: 32px;
+    color: #262626;
 }
 
 body {
-    padding: 10px 15px;
+    padding: 15px 15px;
     box-sizing: border-box;
 }
 
+/*默认样式*/
 p {
-    /*position: relative;*/
-}
-
-/*canvas边框*/
-.jimi-Yunying {
-    border: 1px dashed #4192ff;
     padding: 10px;
-    background-color: white;
+    border: 1px dashed #888;
+    margin-bottom: 20px;
+    text-align: justify;
+
 
 }
 
-/*dashedCornerShadow 第一款样式*/
+/*dashedCornerShadow 第一款测试样式*/
 .dashedCornerShadow {
     /*border: 1px solid red;*/
     text-align: justify;
     margin-bottom: 25px;
     position: relative;
     vertical-align: middle;
-    border: 1px dashed #595959;
-    padding: 10px;
+    border: 1px dashed #888;
     background-color: white;
-    font-size: 17px;
-    line-height: 32px;
-    color: #262626;
-
 }
 
 .dashedCornerShadow::before {
@@ -58,7 +55,6 @@ p {
     top: 80%;
     max-width: 300px;
     background: #595959;
-    filter: blur(3px);
     -webkit-filter: blur(4px);
     filter: blur(4px);
     transform: rotate(-3deg);
@@ -80,15 +76,6 @@ p {
 
 }
 
-.borderNormal {
-    border: 1px solid #262626;
-    background-color: white;
-    font-size: 17px;
-    line-height: 32px;
-    color: #262626;
-    padding: 10px;
-
-}
 
 .textCenter {
     text-align: center;
@@ -101,4 +88,11 @@ p {
 
 .strong {
     font-weight: bold;
+}
+
+/*canvas边框*/
+/*因为 p标签里面没有继承*/
+.jimi-Yunying div, .jimi-Yunying span {
+    font-size: 14px;
+    line-height: 21px;
 }

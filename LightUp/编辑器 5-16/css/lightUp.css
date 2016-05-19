@@ -65,7 +65,7 @@ img {
     /*border: 1px solid black;*/
     display: inline;
     box-sizing: border-box;
-    padding: 0px 0;
+    padding: 4px 0;
     font-size: 18px;
     line-height: 28px;
     letter-spacing: 2px;
@@ -91,7 +91,7 @@ img {
     border-radius: 50%;
     transform: translate3d(0px, 0px, 0px);
     opacity: 0.9;
-    box-shadow: 0 2px 4px 1px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 4px 1px rgba(0, 0, 0, 0.8);
     z-index: 1000;
     /*pointer-events: none;*/
     /*移动时才加*/
