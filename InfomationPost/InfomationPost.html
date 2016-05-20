@@ -51,7 +51,6 @@
 
                 labelAdapter($con);//适配标签
 
-
                 //强行插入canvas 资讯标签专用info-
                 var $jimiYunYing = $con.find('.jimi-Yunying'); //jq对象
 
@@ -72,20 +71,15 @@
 //                            console.log(JSON.stringify(data))
                             jqObj.html('');
 
-
                             var header = new Header(jqObj[0], data);
                             var navBar = new NavBar(jqObj[0], data);
                             var pdc = new ProductDetailCanvas(jqObj[0], data, false);
-
-
                             ajaxComplete(index + 1);
                         },
                         error: function (err) {
                             console.log('YUNYING ERROR!');
                             console.log(err);
-
                             ajaxComplete(index + 1);
-
                         }
                     });
                 })(0);

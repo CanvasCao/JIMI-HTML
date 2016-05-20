@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no"/>
+
+    <title></title>
+    <style type="text/css">
+        * {
+            padding: 0;
+            margin: 0;
+            text-decoration: none;
+            list-style: none;
+            font-family: '微软雅黑';
+            /**/
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+            -webkit-text-size-adjust: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        body {
+            /*height: 1000px;*/
+            box-sizing: border-box;
+            padding: 15px;
+        }
+
+    </style>
+</head>
+<body>
+<button id='btn'> CLICK!!!</button>
+
+<script src='js/jquery-1.8.3.min.js'></script>
+<script src='js/lightUpMask-1.0.1.js'></script>
+<script>
+    $(function () {
+        var lum = new LightUpMask(null, {
+            hideCallback: function () {
+            }
+        });
+        $('#btn').click(function () {
+            $.ajax({
+                type: "get",
+//                url: 'http://n1.jimi.la/apps_T1/getLightUp.php',
+                url: 'content.json',
+                data: {},
+                dataType: "jsonp",
+                jsonp: "callback",
+                jsonpCallback: "jsonpcallback",
+                success: function (data) {
+                    console.log(JSON.stringify(data));
+                    var data = data.data;
+
+                    lum.show(data);
+                },
+                error: function (err) {
+                    console.log('ERROR!');
+                    console.log(err);
+                }
+            });
+        })
+    })
+</script>
+</body>
+</html>

@@ -1,3 +1,23 @@
+* {
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    list-style: none;
+    font-family: '微软雅黑';
+    /**/
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-text-size-adjust: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+body {
+    /*height: 1000px;*/
+    box-sizing: border-box;
+    padding: 15px;
+}
+
 img {
     /*display: block;*/
     /*去掉底部白边*/
@@ -9,53 +29,39 @@ img {
 .paragraph {
     /*border: 1px solid red;*/
     text-align: justify;
-    margin-bottom: 25px;
-    position: relative;
-    vertical-align: middle;
     border: 1px dashed #000;
-    background-color: white;
-    padding: 5px;
+    padding: 10px;
+    /*全局的字体*/
+    font-size: 17px;
+    line-height: 32px;
+    color: #262626;
 }
 
-.paragraph::before {
-    z-index: -1;
-    position: absolute;
-    content: "";
-    bottom: 15px;
-    left: 10px;
-    width: 50%;
-    top: 80%;
-    max-width: 300px;
-    background: #777;
-    box-shadow: 0 16px 8px rgba(0,0,0,0.7);
-    transform: rotate(-3deg);
-}
-
-.paragraph::after {
-    z-index: -1;
-    position: absolute;
-    content: "";
-    bottom: 15px;
-    right: 10px;
-    width: 50%;
-    top: 80%;
-    max-width: 300px;
-    background: #777;
-    box-shadow: 0 16px 8px rgba(0,0,0,0.7);
-    transform: rotate(3deg);
+.paragraphImg {
+    border: 1px dashed #000;
 }
 
 .paragraphWeb {
-    position: relative;
+    padding: 10px;
+    border: 1px dashed #000;
 }
 
-.paragraphWeb.active::after, .paragraph.active::after {
+.paragraph, .paragraphImg, .paragraphWeb {
+    position: relative;
+    vertical-align: middle;
+    background-color: white;
+    margin-bottom: 25px;
+    overflow: hidden;
+
+}
+
+.paragraphWeb.active::after, .paragraphImg.active::after {
     content: "";
     position: absolute;
-    top: 0px;
-    left: 0px;
-    right: 0px;
-    bottom: 0px;
+    top: 5px;
+    left: 5px;
+    right: 5px;
+    bottom: 5px;
     pointer-events: none;
     box-sizing: border-box;
     border: 1px solid #2cd2f4;
@@ -96,21 +102,4 @@ img {
     /*pointer-events: none;*/
     /*移动时才加*/
 
-}
-
-.mask {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    left: 0;
-    top: 0;
-    background-color: rgba(0, 0, 0, 0.6);
-    opacity: 0;
-}
-
-.tip {
-    height: 100px;
-    width: 100%;
-    /*border: 1px solid #000;*/
-    position: absolute;
 }
