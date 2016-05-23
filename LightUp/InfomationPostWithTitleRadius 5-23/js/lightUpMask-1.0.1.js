@@ -72,7 +72,7 @@
                 that.hide();
             })
             this.JM.mask.find('.maskSectionCon').click(function (e) {
-                e.stopPropagation(); //因为 冒泡的情况下点了mask会消失
+                e.stopPropagation()
             })
 
 
@@ -85,7 +85,7 @@
 
         show: function (data) {
             var that = this;
-            this.ifShow = true;//showTag
+            this.ifShow = true;
 
 
             var contentArr = [];
@@ -93,6 +93,7 @@
                 contentArr.push(data[i].content);
             }
 
+            //Object.prototype.toString.call(contentArr) == '[object Array]'
             if (contentArr.length > 0) {
                 var str = '';
                 for (i = 0; i < contentArr.length; i++) {
@@ -106,8 +107,6 @@
 
             this.JM.mask.find('.maskSectionCon').append('<div class="maskSection"><input type="text" style="height:60px"/><button>发送</button></div>')
 
-
-            //bindCSS
             this.JM.mask.find('.maskSection').css({
                 width: '100%',
                 'background-color': 'white',
@@ -116,24 +115,22 @@
                 'height': 40,
             })
 
-
-            //real show
             setTimeout(function () {
-                that.JM.mask.fadeIn('normal', 'swing', that.data.showCallback);
+                that.JM.mask.fadeIn('normal', 'swing',that.data.showCallback);
                 that.JM.mask.find('.maskSectionCon')
                     .css({opacity: 0, bottom: -300})
                     .animate({opacity: 1, bottom: 0}, 'normal', 'swing');
 
-                $('.light').animate({opacity: 0}, 'fast', 'swing');
+                $('.light').animate({opacity:0},'fast','swing');
             }, 800)
         },
 
         hide: function () {
-            var that = this;
+            var that=this;
             this.ifShow = false;
             this.JM.mask.fadeOut('normal', 'swing', that.data.hideCallback);
             this.JM.mask.find('.maskSectionCon').animate({opacity: 0, bottom: -300}, 'normal', 'swing');
-            $('.light').animate({opacity: 1}, 'fast', 'swing');
+            $('.light').animate({opacity:1},'fast','swing');
         }
     }
 

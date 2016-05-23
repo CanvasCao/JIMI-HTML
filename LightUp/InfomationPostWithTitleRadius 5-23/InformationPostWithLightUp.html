@@ -5,12 +5,128 @@
     <meta name="viewport"
           content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no"/>
     <title>资讯</title>
-    <style></style>
+    <style>
+
+        #con {
+            position: fixed;
+            overflow: scroll;
+            /*宽高是屏幕宽高 位置固定*/
+        }
+
+        #scroll {
+            height: 1000px;
+        }
+
+        .title {
+            border-bottom-left-radius: 100% 30%;
+            border-bottom-right-radius: 100% 30%;
+            height: 400px;
+            overflow: hidden;
+
+            /*border: 1px solid #000;*/
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .title::after {
+            position: absolute;
+            content: "";
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+
+        .titleImg {
+            position: absolute;
+            display: block;
+            left: 50%;
+            transform: translateX(-50%);
+
+        }
+
+        .titleText {
+            position: absolute;
+            width: 80%;
+            bottom: 100px;
+            padding-left: 20px;
+            box-sizing: border-box;
+            color: white;
+            z-index: 2;
+        }
+
+        .titleTextTop {
+            font-size: 20px;
+            line-height: 30px;
+            font-weight: bold;
+            text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.4);
+            margin-bottom: 10px;
+        }
+
+        .titleTextRead {
+            display: inline-block;
+            position: relative;
+            margin-left: 30px;
+            margin-right: 30px;
+        }
+
+        .titleTextRead::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -30px;
+            width: 20px;
+            height: 20px;
+            background: url("img/eye.png") no-repeat;
+            background-size: cover;
+        }
+
+
+        .titleTextStar {
+            display: inline-block;
+            position: relative;
+            margin-left: 30px;
+        }
+
+        .titleTextStar::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -30px;
+            width: 20px;
+            height: 20px;
+            background: url("img/star.png") no-repeat;
+            background-size: cover;
+        }
+
+        .txtContainer {
+            padding: 0 15px;
+            box-sizing: border-box;
+        }
+    </style>
     <link rel="stylesheet" href="css/lightUp.css"/>
 </head>
 <body>
-<div class='txtContainer'></div>
-<div class='light'></div>
+<div id='con'>
+
+    <div id='scroll'>
+        <div class='title'>
+            <img src="img/logo.jpg" alt="" class='titleImg'/>
+
+            <div class='titleText'>
+                <div class='titleTextTop'></div>
+                <div class='titleTextBottom'>
+                    <div class='titleTextRead'></div>
+                    <div class='titleTextStar'></div>
+                </div>
+            </div>
+        </div>
+        <div class='txtContainer'></div>
+    </div>
+
+
+    <div class='light'></div>
+
+</div>
 <script src='js/jquery-1.8.3.min.js'></script>
 
 <!--这里保存了扩展的原型方法-->
@@ -28,8 +144,9 @@
 <script>
     $(function () {
                 if (!window.location.search) {
-                    window.location = window.location + '?rid=469';
+                    window.location = window.location + '?rid=466';
                 }
+
 
                 //jqObj
                 $txtContainer = $('.txtContainer');
@@ -37,10 +154,10 @@
 
                 //mask对象
                 var lum = new LightUpMask($('body'), {
-                    hideCallback: function(){
+                    hideCallback: function () {
                         RemoveClass();
                     },
-                    showCallback:function(){
+                    showCallback: function () {
 
                     }
                 });
@@ -48,7 +165,7 @@
                 //点亮标签相关 全局变量
                 var $light = $('.light');
                 var ifDragging = false;
-                var ifMoved=false;
+                var ifMoved = false;
                 var mouseDown = {x: 0, y: 0};
                 var mouseCurrent = {x: 0, y: 0};
                 var timer = null; //setTimeOut的定时器
@@ -94,14 +211,14 @@
 
                     if (ifDragging) {
                         e.preventDefault();
-                        ifMoved=true;
+                        ifMoved = true;//标记移动
                         var touch = e.touches[0];
                         mouseCurrent.x = touch.clientX;
                         mouseCurrent.y = touch.clientY;
                         lightState.touchMove.transform = 'translate3d(' + (mouseCurrent.x - mouseDown.x) + 'px,' + (mouseCurrent.y - mouseDown.y) + 'px,0px)';
                         $light.css(lightState.touchMove);
 
-
+                        //杀死定时器 打开定时器
                         clearTimeout(timer);
                         delete(timer);
                         timer = setTimeout(function () {
@@ -113,40 +230,17 @@
 
                 window.addEventListener('touchend', function (e) {
                     //e.preventDefault();
-                    if (ifDragging&&ifMoved) {
+                    if (ifDragging && ifMoved) {
                         clearTimeout(timer);
                         delete(timer);
 
                         var lightUpSucceed = LightUp();
-
                         if (lightUpSucceed) {
                             var getContentAjaxParas = GetGetContentAjaxParas();
                             getContentAjax(getContentAjaxParas);
-                            function getContentAjax() {
-                                $.ajax({
-                                    type: "post",
-                                    url: 'http://n1.jimi.la/apps_T1/getLightUp.php',
-//                                    url: 'content.json',
-                                    data: getContentAjaxParas,
-                                    dataType: "jsonp",
-                                    jsonp: "callback",
-                                    jsonpCallback: "jsonpcallback",
-                                    success: function (data) {
-                                        console.log(JSON.stringify(data));
-                                        var data = data.data;
-
-                                        lum.show(data);
-
-                                    },
-                                    error: function (err) {
-                                        console.log('ERROR!');
-                                        console.log(err);
-                                    }
-                                });
-                            }
                         }
                         ifDragging = false;
-                        ifMoved=false;
+                        ifMoved = false;
                     }
                     $light.css(lightState.touchEnd);
                 }, false)
@@ -182,6 +276,7 @@
                     return false;
                 };
 
+                //得到ajax的参数 返回getContentAjaxParas
                 function GetGetContentAjaxParas() {
                     var ele = document.elementFromPoint(mouseCurrent.x, mouseCurrent.y);
                     var getContentAjaxParas = {};
@@ -219,11 +314,37 @@
                     }
                 }
 
+                //删除类名
                 function RemoveClass() {
                     $txtContainer.find('.paragraphImg,.paragraphWeb,.sentence').removeClass('active'); //removeAll
                 }
 
-                //ajax只是为了绑定数据
+                //数据库执行select的Ajax
+                function getContentAjax(getContentAjaxParas) {
+                    $.ajax({
+                        type: "post",
+                        url: 'http://n1.jimi.la/apps_T1/getLightUp.php',
+//                                    url: 'content.json',
+                        data: getContentAjaxParas,
+                        dataType: "jsonp",
+                        jsonp: "callback",
+                        jsonpCallback: "jsonpcallback",
+                        success: function (data) {
+                            console.log(JSON.stringify(data));
+                            var data = data.data;
+
+                            lum.show(data);
+
+                        },
+                        error: function (err) {
+                            console.log('ERROR!');
+                            console.log(err);
+                        }
+                    });
+                }
+
+
+                //这里的ajax只是为了绑定数据
                 $.ajax({
                     type: "get",
                     url: 'http://n1.jimi.la/apps_T1/informationPost.php' + window.location.search,
@@ -234,7 +355,13 @@
                     success: function (data) {
                         console.log(JSON.stringify(data));
 
-                        //绑定所有数据
+                        //title
+                        $('.titleImg').attr('src', data.titleImgUrl);
+                        $('.titleTextTop').html(data.title);
+                        $('.titleTextRead').html(data.read);
+                        $('.titleTextStar').html(data.star||1);
+
+                        //txtContainer容器 绑定数据
                         var text = data.content;
                         $txtContainer = $('.txtContainer');
                         $txtContainer.html(text);
@@ -288,6 +415,39 @@
             }
     )
 
+
+</script>
+
+<script>
+    //titleImg init...............................................................
+    var winH = $(window).height();
+    var winW = $(window).width();
+    $('#con').css({width: winW, height: winH})
+    $('#con').scrollTop(100);
+
+    var initHeight = 400;
+    $('.title').css({height: initHeight});
+    $('.titleImg').css({height: initHeight});
+    $('#con').scroll(function () {
+        var scrollTop = $(this).scrollTop();
+        if (scrollTop >= 100 && scrollTop <= 200) {
+            //y=-30/100x+60
+            //100 30
+            //200  0
+            var a = (-30 / 100 * scrollTop + 60);
+            $('.title').css({
+                'border-bottom-left-radius': '100% ' + a + '%',
+                'border-bottom-right-radius': '100% ' + a + '%',
+            })
+
+        }
+        else if (scrollTop <= 100) {
+            $('.titleImg').css({
+                height: ((100 - scrollTop) + 400)
+            })
+        }
+
+    })
 
 </script>
 </body>

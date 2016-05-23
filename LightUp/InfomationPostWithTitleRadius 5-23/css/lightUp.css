@@ -1,0 +1,146 @@
+* {
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    list-style: none;
+    font-family: '微软雅黑';
+    /**/
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-text-size-adjust: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+body {
+    /*height: 1000px;*/
+    box-sizing: border-box;
+}
+
+img {
+    /*display: block;*/
+    /*去掉底部白边*/
+    /*position: relative;*/
+    display: block;
+    vertical-align: top;
+}
+
+a {
+    color: rgb(4, 124, 255);
+}
+
+.paragraph {
+    /*border: 1px solid red;*/
+    text-align: justify;
+    padding: 10px;
+    /*全局的字体*/
+    font-size: 17px;
+    line-height: 31px;
+    color: #262626;
+}
+
+.paragraphImg {
+    border: 1px dashed #000;
+}
+
+.paragraphWeb {
+    padding: 10px;
+    border: 1px dashed #000;
+}
+
+.paragraph, .paragraphImg, .paragraphWeb {
+    position: relative;
+    vertical-align: middle;
+    background-color: white;
+    margin-bottom: 40px;
+
+}
+
+.paragraphWeb.active::after, .paragraphImg.active::after {
+    content: "";
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    right: 5px;
+    bottom: 5px;
+    pointer-events: none;
+    box-sizing: border-box;
+    border: 1px solid #2cd2f4;
+}
+
+.sentence {
+    /*border: 1px solid black;*/
+    display: inline;
+    box-sizing: border-box;
+    padding: 4px 0;
+    font-size: 18px;
+    line-height: 28px;
+    letter-spacing: 2px;
+    word-break: break-all;
+    color: #5d5d5d;
+    transition: all 0.2s ease-in-out;
+    background: white;
+    /*position: relative;*/
+}
+
+.sentence.active {
+    background: #BFE6FF;
+}
+
+/*dashedCornerShadow 第一款测试样式*/
+.dashedCornerShadow {
+    border: 1px dashed #888;
+    background-color: white;
+}
+
+.dashedCornerShadow::before {
+    z-index: -1;
+    position: absolute;
+    content: "";
+    bottom: -5px;
+    left: 5px;
+    width: 50%;
+    top: 80%;
+    max-width: 300px;
+    background: #595959;
+    -webkit-filter: blur(4px);
+    filter: blur(4px);
+    transform: rotate(-3deg);
+}
+
+.dashedCornerShadow::after {
+    z-index: -1;
+    position: absolute;
+    content: "";
+    bottom: -5px;
+    right: 5px;
+    width: 50%;
+    top: 80%;
+    max-width: 300px;
+    background: #595959;
+    filter: blur(4px);
+    -webkit-filter: blur(4px);
+    transform: rotate(3deg);
+}
+
+/*第二款*/
+.borderNormal {
+    border: 1px dashed #000;
+}
+
+.light {
+    height: 50px;
+    width: 50px;
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    background: url("../img/logo.jpg");
+    background-size: cover;
+    border-radius: 50%;
+    transform: translate3d(0px, 0px, 0px);
+    opacity: 0.9;
+    box-shadow: 0 2px 4px 1px rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+    /*pointer-events: none;*/
+    /*移动时才加*/
+}

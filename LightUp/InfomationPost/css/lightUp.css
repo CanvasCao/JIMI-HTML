@@ -26,14 +26,17 @@ img {
     vertical-align: top;
 }
 
+a {
+    color: rgb(4, 124, 255);
+}
+
 .paragraph {
     /*border: 1px solid red;*/
     text-align: justify;
-    border: 1px dashed #000;
     padding: 10px;
     /*全局的字体*/
     font-size: 17px;
-    line-height: 32px;
+    line-height: 31px;
     color: #262626;
 }
 
@@ -50,8 +53,7 @@ img {
     position: relative;
     vertical-align: middle;
     background-color: white;
-    margin-bottom: 25px;
-    overflow: hidden;
+    margin-bottom: 40px;
 
 }
 
@@ -86,6 +88,47 @@ img {
     background: #BFE6FF;
 }
 
+/*dashedCornerShadow 第一款测试样式*/
+.dashedCornerShadow {
+    border: 1px dashed #888;
+    background-color: white;
+}
+
+.dashedCornerShadow::before {
+    z-index: -1;
+    position: absolute;
+    content: "";
+    bottom: -5px;
+    left: 5px;
+    width: 50%;
+    top: 80%;
+    max-width: 300px;
+    background: #595959;
+    -webkit-filter: blur(4px);
+    filter: blur(4px);
+    transform: rotate(-3deg);
+}
+
+.dashedCornerShadow::after {
+    z-index: -1;
+    position: absolute;
+    content: "";
+    bottom: -5px;
+    right: 5px;
+    width: 50%;
+    top: 80%;
+    max-width: 300px;
+    background: #595959;
+    filter: blur(4px);
+    -webkit-filter: blur(4px);
+    transform: rotate(3deg);
+}
+
+/*第二款*/
+.borderNormal {
+    border: 1px dashed #000;
+}
+
 .light {
     height: 50px;
     width: 50px;
@@ -101,5 +144,4 @@ img {
     z-index: 1000;
     /*pointer-events: none;*/
     /*移动时才加*/
-
 }
