@@ -7,9 +7,10 @@
 function labelAdapter($con) {//传进一个jq对象 是个容器 会对容器内部的所有标签进行适配
     var winW = $(window).width();
     var winH = $(window).height();
-    var bodyPaddingW = parseInt($('body').css('padding-left'));
+    var bodyPaddingW = parseInt($('.txtContainer').css('padding-left'));
     var pPaddingW = parseInt($('p').css('padding-left'));
-
+    console.log(bodyPaddingW);
+    console.log(pPaddingW);
 
     //图片适配
     $con.find('img').css({ //把所有图片转块 左右居中
@@ -21,7 +22,7 @@ function labelAdapter($con) {//传进一个jq对象 是个容器 会对容器内
         var RATE = imgW / imgH;
         console.log(imgW + " " + imgH)
         console.log(RATE);
-        var imgFixedW = (winW - bodyPaddingW * 2 - pPaddingW * 2);
+        var imgFixedW = (winW - bodyPaddingW * 2 - pPaddingW * 2)-2;
 
 
         if (imgW > imgFixedW) {
@@ -75,7 +76,7 @@ function labelAdapter($con) {//传进一个jq对象 是个容器 会对容器内
         }
         else {//认为是真正的文本标签
             if ($(e).children().eq(0).is('br')) {
-                console.log(innerHtml);
+                //console.log(innerHtml);
             }
             $(e).addClass('paragraph');
             //漏到最后的暂时认为他就是纯文本

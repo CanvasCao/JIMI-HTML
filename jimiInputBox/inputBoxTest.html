@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no"/>
+    <title>Document</title>
+
+    <style type="text/css">
+        * {
+            padding: 0;
+            margin: 0;
+            text-decoration: none;
+            list-style: none;
+            font-family: '微软雅黑';
+            /**/
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+            -webkit-text-size-adjust: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        body {
+            /*height: 1000px;*/
+            box-sizing: border-box;
+            /*padding: 15px;*/
+        }
+
+        input, button, select, textarea {
+            outline: 0 none;
+            border: 0px;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+        }
+    </style>
+</head>
+<body>
+<div class='jimiInputBox'></div>
+<script src='jquery-1.8.3.min.js'></script>
+<script src='jimiInputBox-2.0.0.js'></script>
+<script>
+    $(function(){
+        var jimiInputBox=new JimiInputBox($('.jimiInputBox')[0],null);
+    })
+</script>
+</body>
+</html>

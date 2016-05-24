@@ -7,9 +7,11 @@
     /**/
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     -webkit-text-size-adjust: none;
-    -webkit-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+    /*-webkit-user-select: none;*/
+    /*-ms-user-select: none;*/
+    /*user-select: none;*/
+
+    -webkit-overflow-scrolling : touch;
 }
 
 body {
@@ -103,9 +105,13 @@ a {
     top: 80%;
     max-width: 300px;
     background: #595959;
-    -webkit-filter: blur(4px);
     filter: blur(4px);
+    -webkit-filter: blur(4px);
+    -ms-filter: blur(4px);
     transform: rotate(-3deg);
+    -webkit-transform: rotate(-3deg);
+    -moz-transform:  rotate(-3deg);
+    -ms-transform: rotate(-3deg);
 }
 
 .dashedCornerShadow::after {
@@ -120,12 +126,24 @@ a {
     background: #595959;
     filter: blur(4px);
     -webkit-filter: blur(4px);
+    -ms-filter: blur(4px);
     transform: rotate(3deg);
+    -webkit-transform: rotate(3deg);
+    -moz-transform:  rotate(3deg);
+    -ms-transform: rotate(3deg);
 }
 
 /*第二款*/
 .borderNormal {
     border: 1px dashed #000;
+}
+
+.textCenter {
+    text-align: center;
+}
+
+.strong{
+    font-weight: bold;
 }
 
 .light {

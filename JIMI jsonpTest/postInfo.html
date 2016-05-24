@@ -7,21 +7,26 @@
     <script>
         $(document).ready(function () {
             if (!window.location.search) {
-                window.location = window.location + '?rid=109';
+                window.location = window.location + '?a=1';
             }
 
             $.ajax({
-                type: "get",
-                url: 'http://n1.jimi.la/apps_V3/informationPost.php' + window.location.search,
+                type: "post",
+                url: 'http://n1.jimi.la/apps_T1/postLightUp.phpppp' + window.location.search,
 //                url: 'package.json',
-//                data: {pids: '56c6ae75efb80c9b2541cd66,56c6ae4fefb80c9b2541cc39', 'cate': 70},
+                data: {type : 1,
+                    paragraph: 0,
+                    sentence: 0,
+                    content: '我是一条插入数据',
+                    uid: 10450,
+                    doc_id: 469,
+                },
                 dataType: "jsonp",
                 jsonp: "callback",//传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)
                 jsonpCallback: "jsonpcallback",
                 success: function (data) {
                     console.log(JSON.stringify(data));
 //                    $('body').html(data.content.replace(/"/g,'&quot').replace(/'/g,'&quot').replace(/</g,'&lt').replace(/>/g,'&gt'))
-                    $('body').html(data.content)
                 },
                 error: function (err) {
                     console.log('ERROR!')

@@ -100,6 +100,7 @@
     $(function () {
         var winH = $(window).height();
         var winW = $(window).width();
+        var ifTouching=false;
         $('#con').css({width: winW, height: winH})
         $('#con').scrollTop(100);
 
@@ -127,13 +128,6 @@
 
         })
 
-
-//        window.addEventListener('touchend', function () {
-//            var scrollTop = $('#con').scrollTop();
-//            if (scrollTop <= 100) {
-//                $('#con').animate({scrollTop: 100})
-//            }
-//        }, false)
     })
 </script>
 </body>
