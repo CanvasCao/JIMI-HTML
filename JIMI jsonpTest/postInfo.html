@@ -12,14 +12,12 @@
 
             $.ajax({
                 type: "post",
-                url: 'http://n1.jimi.la/apps_T1/postLightUp.phpppp' + window.location.search,
+                url: 'http://n1.jimi.la/apps_T1/culletInsert.php' + window.location.search,
 //                url: 'package.json',
-                data: {type : 1,
-                    paragraph: 0,
-                    sentence: 0,
-                    content: '我是一条插入数据',
-                    uid: 10450,
-                    doc_id: 469,
+                data: {
+                    pid: '56829da0efb80c4e26c3e3a2',
+                    uid: '10002',
+                    comment: '我是方辉辉辉辉辉辉辉辉辉辉辉辉',
                 },
                 dataType: "jsonp",
                 jsonp: "callback",//传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)

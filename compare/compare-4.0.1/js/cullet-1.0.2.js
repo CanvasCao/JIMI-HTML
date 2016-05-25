@@ -336,8 +336,7 @@
         load: function (pid) { //传入php问号后面的查询参数
             var that = this;
             if (pid == that.pid) {
-                that.start(); //加载完成以后开始播放
-
+                that.start();
                 return; //加载过了
             }
 
@@ -351,8 +350,8 @@
                 success: function (data) {
                     console.log(JSON.stringify(data));
                     that.pid = pid;
-                    that.commentArr = [];
-                    $('.commentCon').html('');
+                    that.commentArr = []; //清除列表维护
+                    $('.commentCon').html('');//清除Dom维护
                     that.serverCommentArr = data.data;
                     that.start(); //加载完成以后开始播放
                 },
@@ -486,6 +485,29 @@
                 that.ccm.push({
                     txt: txt,
                     backgroundColor: 'lightblue'
+                });
+
+
+                $.ajax({
+                    type: "post",
+                    url: 'http://n1.jimi.la/apps_T1/culletInsert.php',
+//                url: 'package.json',
+                    data: {
+                        pid: that.ccm.pid,
+                        uid: '10002',
+                        comment: txt,
+                    },
+                    dataType: "jsonp",
+                    jsonp: "callback",//传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)
+                    jsonpCallback: "jsonpcallback",
+                    success: function (data) {
+                        console.log(JSON.stringify(data));
+//                    $('body').html(data.content.replace(/"/g,'&quot').replace(/'/g,'&quot').replace(/</g,'&lt').replace(/>/g,'&gt'))
+                    },
+                    error: function (err) {
+                        console.log('ERROR!')
+                        console.log(err);
+                    }
                 });
 
             });
