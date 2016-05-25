@@ -29,22 +29,23 @@
             background-color: white;
             padding: 10px;
             box-sizing: border-box;
-
+            color: #666;
             /*这里的50居然是最小高度的意思 惊了*/
             height: 50px;
             border-left: 1px solid #d2d2d2;
-            border-bottom: 1px solid #d2d2d2;
+            border-top: 1px solid #d2d2d2;
 
             /*啊哟我操 只是因为方辉要在里面加a标签*/
             position: relative;
 
         }
 
+        #con {
+            position: relative;
+        }
+
         #realdiv {
             overflow: auto;
-            /*box-sizing: border-box;*/
-            /*padding-top: 200px;*/
-            /*border: 3px solid red;*/
         }
 
         #fakeLdiv {
@@ -113,14 +114,19 @@
         }
 
         .hideSame {
-            border: 1px solid #3982e1;
-            color: #3982e1;
-            border-radius: 5px;
-            line-height: 28px;
-        }
-
-        #con {
-            position: relative;
+            background-color:#3982e1;
+            color: rgba(255,255,255,0.8);
+            border-radius: 50%;
+            box-sizing: border-box;
+            padding:8px 10px;
+            font-family: '微软雅黑';
+            font-size: 12px;
+            line-height: 16px;
+            width:48px;
+            height: 48px;
+            word-break: break-all;
+            margin: 0 auto;
+            box-shadow: 0px 4px 8px rgba(57,130,225,0.8);
         }
 
         /*基本参数那一行*/
@@ -131,16 +137,25 @@
             width: 100%;
             z-index: 1005;
             background-color: #efefef;
+            color: #666;
+
             /*box-sizing: border-box;*/
             /*border: 10px solid red;*/
             /*高度是第二行的高度*/
             /*top是第一行的高度*/
+        }
+
+
+        #cullet{
+
         }
     </style>
 </head>
 <body>
 <div id='con'>
     <div id='line2'>
+        <!--高度是第二行的高度-->
+        <!--top是第一行的高度-->
         <div id='line2col1'>基本参数</div>
         <div id='line2col2'>√ 有&nbsp ×无&nbsp - 无数据</div>
     </div>
@@ -149,18 +164,19 @@
 <div id='rocket'>
     <img src="img/backTop.png" width="40" height="40" alt=""/>
 </div>
+<div id='cullet'></div>
 <script src="js/jquery-1.8.3.min.js"></script>
 <script src="js/underscore.js"></script>
 <script>
     $(function () {
         if (!window.location.search) {
-            window.location = window.location + '?pids=56f57b91efb80c57428c767f,56f57b9cefb80c57428c7688&cate=54';
+            window.location = window.location + '?pids=56f4d16cefb80c57428b6400,56f4d3e3efb80c57428b67cd,56f4d0d0efb80c57428b630a&cate=3';
 //            window.location = window.location + '?pids=56f57a7defb80c57428c74f6,56f56b2befb80c57428c654f&cate=6';
         }
 
 //        ?pids=56f57a7defb80c57428c74f6,56f56b2befb80c57428c654f&cate=6
 //        ?pids=56f4d16cefb80c57428b6400,56f4d3e3efb80c57428b67cd,56f4d0d0efb80c57428b630a&cate=3
-//变窄bug ?pids=56f57b91efb80c57428c767f,56f57b9cefb80c57428c7688&cate=54
+//        变窄bug ?pids=56f57b91efb80c57428c767f,56f57b9cefb80c57428c7688&cate=54
 
         //initParas
         var srcH = $(window).height();
@@ -184,16 +200,16 @@
 
 
         //jQueryMap...........................................................................
-        var JM=jqueryMap={};
-        JM.$con=$('#con');
-        JM.$realdiv=$('#realdiv');
-        JM.$real=$('#real');
-        JM.$fakeLdiv=$('#fakeLdiv');
-        JM.$fakeL=$('#fakeL');
-        JM.$fakeTdiv=$('#fakeTdiv');
-        JM.$fakeT=$('#fakeT');
-        JM.$fixLT=$('#fixLT');
-        JM.$hideSame=$('.hideSame');
+        var JM = jqueryMap = {};
+        JM.$con = $('#con');
+        JM.$realdiv = $('#realdiv');
+        JM.$real = $('#real');
+        JM.$fakeLdiv = $('#fakeLdiv');
+        JM.$fakeL = $('#fakeL');
+        JM.$fakeTdiv = $('#fakeTdiv');
+        JM.$fakeT = $('#fakeT');
+        JM.$fixLT = $('#fixLT');
+        JM.$hideSame = $('.hideSame');
 
 
         $.ajax({

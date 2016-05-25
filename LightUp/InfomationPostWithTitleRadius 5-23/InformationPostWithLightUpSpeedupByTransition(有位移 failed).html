@@ -12,16 +12,20 @@
             -webkit-appearance: none;
             -moz-appearance: none;
             appearance: none;
+
+            -webkit-user-select: text;
+            -ms-user-select: text;
+            user-select: text;
         }
 
         body, html {
-            height: 100%;
+
         }
 
         #con {
             /*position: absolute 会取消border-bottom-right-radius*/
             position: fixed;
-            overflow: auto;
+            overflow: hidden;
             top: 0;
             left: 0;
             /*宽高是屏幕宽高 位置固定*/
@@ -29,12 +33,13 @@
 
         #scroll {
             height: 1000px;
+
         }
 
         .title {
             /*border-bottom-left-radius: ;*/
-            border-bottom-right-radius: 100% 20%;
-            border-bottom-left-radius: 100% 20%;
+            /*border-bottom-right-radius: 100% 20%;*/
+            /*border-bottom-left-radius: 100% 20%;*/
             box-sizing: border-box;
             /*border-radius: 50%;*/
 
@@ -242,11 +247,14 @@
                     //light不能拖动
                     if (lum.ifShow) {
                         e.preventDefault();
+                        e.stopPropagation();
                         return;
                     }
 
                     if (ifDragging) {
                         e.preventDefault();
+                        e.stopPropagation();
+
                         ifMoved = true;//标记移动
                         var touch = e.touches[0];
                         mouseCurrent.x = touch.clientX;
@@ -267,6 +275,8 @@
                 window.addEventListener('touchend', function (e) {
                     //e.preventDefault();
                     if (ifDragging && ifMoved) {
+                        e.preventDefault();
+
                         clearTimeout(timer);
                         delete(timer);
 
@@ -470,44 +480,114 @@
                         console.log(err);
                     }
                 });
+
+                //titleImg init.................................................................................................................................................
+                var winH = $(window).height();
+                var winW = $(window).width();
+
+                //jqObj................................................................
+                $con = $('#con');
+                $scroll=$('#scroll');
+                $title = $('.title');
+                $titleImg = $('.titleImg');
+
+
+//                var ifConScroll = false;
+                var curScroll = -100;
+                var startScroll=0;
+                var dScroll=0;
+                var lastTwoScroll = [0,0];
+                $con.css({width: winW, height: winH}) // /*宽高是屏幕宽高 位置固定*/
+                $scroll.css('transform', "translateY("+curScroll+"px)"); //这个版本scroll在移动
+
+
+
+
+                var initImgHeight = 400;
+                $title.css({height: initImgHeight});
+                $titleImg.css({height: initImgHeight});
+
+
+
+
+                window.addEventListener("touchstart", function (e) {
+        //e.preventDefault();
+//                    ifConScroll = true;
+                    var touch = e.touches[0];
+                    startScroll = touch.pageY;
+                    dScroll=0;
+//                    lastTwoScroll = [0,0];
+                    $scroll.css('transition', "none");
+                }, false);
+                window.addEventListener("touchmove", function (e) {
+
+                    if (ifDragging) { //灯泡在拖动直接return;
+                        return;
+                    }
+                    //e.preventDefault();
+
+                    var touch = e.touches[0];
+                    dScroll = touch.pageY - startScroll;
+//                    console.log(dScroll)
+                    $scroll.css('transform', "translateY("+(curScroll+dScroll)+"px)"); //这个版本scroll在移动
+
+
+                    //refreshLastTwoPoint
+                    lastTwoScroll.shift();
+                    lastTwoScroll.push(touch.pageY);
+
+                    var fncurScroll=(curScroll+dScroll);
+                    fncurScroll=   (fncurScroll <= -100) ? -100 : fncurScroll;
+                    fncurScroll=  (fncurScroll >= 100) ? 100 : fncurScroll;
+
+                    fixTitleImg(fncurScroll);
+
+
+                }, false);
+                window.addEventListener("touchend", function (e) {
+        //e.preventDefault();
+//                    ifConScroll = false;
+                    curScroll += dScroll;
+
+                    //多走最后两点路程的10倍路程
+                    curScroll += (lastTwoScroll[1] - lastTwoScroll[0]) * 5;
+
+                    console.log(curScroll);
+                    //验收
+                    if(curScroll >=-100){//
+                        curScroll = -100;
+                    }
+
+                    var fncurScroll=curScroll;
+                    fncurScroll=   (fncurScroll <= -100) ? -100 : fncurScroll;
+                    fncurScroll=  (fncurScroll >= 100) ? 100 : fncurScroll;
+                    fixTitleImg(fncurScroll);
+
+
+
+                    //非线性衰减（canvas学习）
+                    var t = Math.sqrt(Math.abs(lastTwoScroll[1] - lastTwoScroll[0])) / 10;
+
+
+                    $scroll.css('transition','all ' + t + 's cubic-bezier(0.1, 0.85, 0.25, 1) 0s');
+                    $scroll.css('transform','translateY(' + curScroll + 'px)')
+
+                }, false);
+
+                function fixTitleImg(curScrollTop) {
+                    console.log(curScrollTop)
+//                    console.log(aaa)
+//                    -100  500
+//                    100 400
+                    $titleImg.css({
+                        height: (1/2*curScrollTop + 450)
+                    })
+                }
+
+
             }
     )
 
-
-</script>
-
-<script>
-    //titleImg init...............................................................
-    var winH = $(window).height();
-    var winW = $(window).width();
-    //    alert(winH); //568
-    $('#con').css({width: winW, height: winH})
-    $('#con').scrollTop(100);
-
-    var initHeight = 400;
-    $('.title').css({height: initHeight});
-    $('.titleImg').css({height: initHeight});
-    $('#con').scroll(function () {
-        var scrollTop = $(this).scrollTop();
-//        console.log(scrollTop);
-        if (scrollTop >= 100 && scrollTop <= 200) {
-            //y=-20/100x+200
-            //100 20
-            //200  0
-            var a = (-20 / 100 * scrollTop + 40);
-//            console.log( $('.title').css('border-bottom-left-radius'))
-            $('.title').css({
-                'border-bottom-left-radius': '100% ' + a + '%',
-                'border-bottom-right-radius': '100% ' + a + '%',
-            })
-        }
-        else if (scrollTop <= 100 && scrollTop >= 0) {
-            $('.titleImg').css({
-                height: ((100 - scrollTop) + 400)
-            })
-        }
-
-    })
 
 </script>
 </body>

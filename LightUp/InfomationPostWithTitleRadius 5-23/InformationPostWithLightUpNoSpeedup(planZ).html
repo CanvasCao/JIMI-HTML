@@ -12,6 +12,10 @@
             -webkit-appearance: none;
             -moz-appearance: none;
             appearance: none;
+
+            -webkit-user-select: text;
+            -ms-user-select: text;
+            user-select: text;
         }
 
         body, html {
@@ -21,7 +25,7 @@
         #con {
             /*position: absolute 会取消border-bottom-right-radius*/
             position: fixed;
-            overflow: auto;
+            overflow: hidden;
             top: 0;
             left: 0;
             /*宽高是屏幕宽高 位置固定*/
@@ -29,6 +33,7 @@
 
         #scroll {
             height: 1000px;
+
         }
 
         .title {
@@ -242,11 +247,14 @@
                     //light不能拖动
                     if (lum.ifShow) {
                         e.preventDefault();
+                        e.stopPropagation();
                         return;
                     }
 
                     if (ifDragging) {
                         e.preventDefault();
+                        e.stopPropagation();
+
                         ifMoved = true;//标记移动
                         var touch = e.touches[0];
                         mouseCurrent.x = touch.clientX;
@@ -267,6 +275,8 @@
                 window.addEventListener('touchend', function (e) {
                     //e.preventDefault();
                     if (ifDragging && ifMoved) {
+                        e.preventDefault();
+
                         clearTimeout(timer);
                         delete(timer);
 
@@ -470,44 +480,98 @@
                         console.log(err);
                     }
                 });
+
+                //titleImg init.................................................................................................................................................
+                var winH = $(window).height();
+                var winW = $(window).width();
+                //    alert(winH); //568
+                $('#con').css({width: winW, height: winH}) // /*宽高是屏幕宽高 位置固定*/
+                $('#con').scrollTop(100);
+
+
+                $con = $('#con');
+                $title = $('.title');
+                $titleImg = $('.titleImg');
+
+                var initImgHeight = 400;
+                $title.css({height: initImgHeight});
+                $titleImg.css({height: initImgHeight});
+
+
+                var ifConScroll = false;
+                var conScroll = 100;
+                var conScrollMousedownDy = 0;
+                var conScrollCurDy = 0;
+                var conScrollDy = 0;
+                window.addEventListener("touchstart", function (e) {
+//        e.preventDefault();
+                    ifConScroll = true;
+                    var touch = e.touches[0];
+                    conScrollMousedownDy = touch.clientY;
+                }, false);
+                window.addEventListener("touchmove", function (e) {
+
+                    if (ifDragging) { //灯泡在拖动直接return;
+                        return;
+                    }
+                    var touch = e.touches[0];
+                    conScrollCurDy = touch.clientY;
+                    conScrollDy = conScrollCurDy - conScrollMousedownDy;
+                    $con.scrollTop(conScroll - conScrollDy);
+
+
+                    var curScrollTop = $con.scrollTop();
+                    fixTitleImg(curScrollTop);
+
+
+                }, false);
+                window.addEventListener("touchend", function (e) {
+//        e.preventDefault();
+                    ifConScroll = false;
+                    conScroll = $con.scrollTop();
+                }, false);
+
+                function fixTitleImg(curScrollTop) {
+                    if (curScrollTop >= 100 && curScrollTop <= 200) {
+                        //y=-20/100x+200
+                        //100 20
+                        //200  0
+                        var a = (-20 / 100 * curScrollTop + 40);
+                        //            console.log( $('.title').css('border-bottom-left-radius'))
+                        $title.css({
+                            'border-bottom-left-radius': '100% ' + a + '%',
+                            'border-bottom-right-radius': '100% ' + a + '%',
+                        })
+                    }
+                    else if (curScrollTop <= 100 && curScrollTop >= 0) {
+                        $titleImg.css({
+                            height: ((100 - curScrollTop) + 400)
+                        })
+                    }
+                    else if (curScrollTop < 0) {
+                        $title.css({
+                            'border-bottom-left-radius': '100% 20%',
+                            'border-bottom-right-radius': '100% 20%',
+                        })
+                        $titleImg.css({
+                            height: (500),
+                        })
+                    }
+                    else if (curScrollTop > 200) {
+                        $title.css({
+                            'border-bottom-left-radius': '100% 0%',
+                            'border-bottom-right-radius': '100% 0%',
+                        })
+                        $titleImg.css({
+                            height: (400),
+                        })
+                    }
+                }
+
+
             }
     )
 
-
-</script>
-
-<script>
-    //titleImg init...............................................................
-    var winH = $(window).height();
-    var winW = $(window).width();
-    //    alert(winH); //568
-    $('#con').css({width: winW, height: winH})
-    $('#con').scrollTop(100);
-
-    var initHeight = 400;
-    $('.title').css({height: initHeight});
-    $('.titleImg').css({height: initHeight});
-    $('#con').scroll(function () {
-        var scrollTop = $(this).scrollTop();
-//        console.log(scrollTop);
-        if (scrollTop >= 100 && scrollTop <= 200) {
-            //y=-20/100x+200
-            //100 20
-            //200  0
-            var a = (-20 / 100 * scrollTop + 40);
-//            console.log( $('.title').css('border-bottom-left-radius'))
-            $('.title').css({
-                'border-bottom-left-radius': '100% ' + a + '%',
-                'border-bottom-right-radius': '100% ' + a + '%',
-            })
-        }
-        else if (scrollTop <= 100 && scrollTop >= 0) {
-            $('.titleImg').css({
-                height: ((100 - scrollTop) + 400)
-            })
-        }
-
-    })
 
 </script>
 </body>

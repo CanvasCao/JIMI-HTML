@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no"/>
+    <title>资讯</title>
+    <style type="text/css">
+        .download {
+            height: 35px;
+            /*border: 1px solid #000;*/
+            margin: 10px 0;
+        }
+
+        .downloadBtn {
+            float: right;
+            height: 35px;
+            /*border: 1px solid #000;*/
+            line-height: 35px;
+            border-radius: 35px;
+            background-color: #3881e0;
+            box-sizing: border-box;
+            padding: 0 20px;
+            color: white;
+            margin-right: 10px;
+        }
+
+        .title {
+            text-align: center;
+            font-size: 18px;
+            box-sizing: border-box;
+            padding: 10px 30px;
+        }
+
+        .read {
+            text-align: center;
+            height: 30px;
+        }
+
+        .read img {
+            display: inline-block;
+            height: 16px;
+        }
+
+        .read span {
+            display: inline-block;
+            font-size: 16px;
+            margin: 0px 15px 0px 4px;
+            color: #9f9f9f;
+        }
+
+        .footer {
+            padding: 10px 0px;
+            font-size: 14px;
+            border-top: 1px solid #9f9f9f;
+            color: #9f9f9f;
+        }
+
+        .footer span {
+            margin-left: 10px;
+            color: #018cff;
+        }
+    </style>
+    <link rel="stylesheet" href="css/jimiUI.css"/>
+</head>
+<body>
+<!--title-->
+
+<div class="download">
+    <div class='downloadBtn'>下载肌秘APP</div>
+</div>
+<div class='top'>
+    <div class='imgCon'>
+        <img src="" alt="" class='titleImg'/>
+    </div>
+    <div class='title'></div>
+    <div class='read'>
+        <img src="img/eye.png" alt=""/> <span></span>
+        <img src="img/star.png" alt=""/> <span></span>
+    </div>
+</div>
+<div id='con'></div>
+<div class='footer'>
+    <div>文章来自<span></span></div>
+    <div></div>
+</div>
+
+<script src='js/jquery-1.8.3.min.js'></script>
+<script src='js/spa/productDetailCanvas-1.0.0.js'></script>
+<script src='js/spa/navBar-1.0.0.js'></script>
+<script src='js/echartsBasic&Graph.min.js'></script>
+<script src='js/spa/alternateBtn-1.0.0.js'></script>
+<script src='js/spa/spa-middleComponent-1.0.2.js'></script>
+<script src='js/spa/spa-header.js'></script>
+<script src='js/spa/spa-compositionContainer.js'></script>
+<script src='js/spa/spa-alertCon.js'></script>
+<script src='js/labelAdapter/labelAdapter.js'></script>
+
+<script>
+    $(function () {
+        if (!window.location.search) {
+            window.location = window.location + '?rid=413';
+        }
+
+
+        //给按钮不同的链接
+        var ua = navigator.userAgent;
+        if (ua.charAt('iphone') != -1 && ua.charAt('Mac') != -1) {//说明不是IPHONE
+            $('.downloadBtn').click(function () {
+                window.location.href = 'http://a.app.qq.com/o/simple.jsp?pkgname=com.jimi.skinsecret#opened';
+            })
+        }
+        else {
+            $('.downloadBtn').click(function () {
+                window.location.href = 'https://itunes.apple.com/us/app/id1074206874';
+            })
+        }
+
+        //109是虚线图
+        //168
+        //54
+        var w = $(window).width()
+        var paddingW = 15;
+        $.ajax({
+            type: "get",
+            url: 'http://n1.jimi.la/apps_T1/informationPost.php' + window.location.search,
+//            url: 'package.json',
+            dataType: "jsonp",
+            jsonp: "callback",
+            jsonpCallback: "jsonpcallback",
+            success: function (data) {
+                console.log(JSON.stringify(data));
+
+                //绑定头部.............................................................
+                var title = data.title || "";
+                var titleImgUrl = data.titleImgUrl;
+
+                var read = data.read || 1;
+                var like = data.like || 1;
+
+
+                $('.title').html(title);
+                $('.titleImg').attr('src', titleImgUrl).css('width', $(window).width() - 30)
+                $('.read span').eq(0).html(read);
+                $('.read span').eq(1).html(like);
+
+
+                //绑定底部..............................................................
+                var articleSource = data.articleSource || "jimilab";
+                var atricleDateString = data.atricleDateString || new Date().toLocaleDateString();
+                $('.footer span').eq(0).html(articleSource);
+                $('.footer div').eq(1).html(atricleDateString);
+
+
+                //绑定中间数据........................................................................................
+                var $con = $('#con');
+                $con.html(data.content); //jsonp 返给我的全部是html
+
+                labelAdapter($con);//适配标签
+                //......................................................................................................
+                //强行插入canvas 资讯标签专用info-
+                var $jimiYunYing = $con.find('.jimi-Yunying'); //jq对象
+                //ajax递归
+                (function ajaxComplete(index) {
+                    if (index == $jimiYunYing.length) {
+                        console.log('下标溢出');
+                        return;
+                    }
+                    var jqObj = $jimiYunYing.eq(index)
+                    var pid = jqObj.attr('data-pid');
+                    $.ajax({
+                        type: "get",
+                        url: 'http://n1.jimi.la/apps_T1/formual_safe.php?pid=' + pid,
+                        dataType: "jsonp",
+                        jsonp: "callback",
+                        jsonpCallback: "jsonpcallback",
+                        async: true,
+                        cache: false,
+                        timeout: 5000,
+                        success: function (data) {
+//                             console.log(JSON.stringify(data))
+                            jqObj.html('');
+
+                            var header=new Header(jqObj[0],data);
+                            var navBar=new NavBar(jqObj[0],data);
+
+                            var pdc = new ProductDetailCanvas(jqObj[0], data, false);
+
+
+                            ajaxComplete(index + 1);
+                        },
+                        error: function (err) {
+                            console.log('YUNYING ERROR!');
+                            console.log(err);
+
+                            ajaxComplete(index + 1);
+
+                        }
+                    });
+                })(0);
+                //......................................................................................................
+
+            },
+            error: function (err) {
+                console.log('ARTICLE ERROR!');
+                console.log(err);
+            }
+        });
+
+    })
+</script>
+</body>
+</html>

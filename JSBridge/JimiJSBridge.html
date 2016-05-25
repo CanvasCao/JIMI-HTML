@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+<head>
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <style type='text/css'>
+
+        * {
+            padding: 0;
+            margin: 0;
+            word-break: normal;
+            text-align: center;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+            -webkit-text-size-adjust: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            font-size: 12px;
+        }
+
+        body{
+            height: 667px;
+        }
+        #con{
+            height: 667px;
+        }
+        #scroll{
+            height: 4000px;
+        }
+        #div{
+            position: absolute;
+            top:167px;
+            right:10px;
+            border: 1px solid #000;
+            height: 100px;
+            width: 100px;
+
+        }
+    </style>
+</head>
+<body>
+<div id='con'>
+<div id='scroll'></div>
+</div>
+<div id='div'></div>    
+
+<script>
+    window.onerror = function (err) {
+        log('window.onerror: ' + err)
+    }
+    var div = document.getElementById('div');
+
+    function setupWebViewJavascriptBridge(callback) {
+        if (window.WebViewJavascriptBridge) {
+            return callback(WebViewJavascriptBridge);
+        }
+        if (window.WVJBCallbacks) {
+            return window.WVJBCallbacks.push(callback);
+        }
+        window.WVJBCallbacks = [callback];
+        var WVJBIframe = document.createElement('iframe');
+        WVJBIframe.style.display = 'none';
+        WVJBIframe.src = 'wvjbscheme://__BRIDGE_LOADED__';
+        document.documentElement.appendChild(WVJBIframe);
+        setTimeout(function () {
+            document.documentElement.removeChild(WVJBIframe)
+        }, 0)
+    }
+
+    setupWebViewJavascriptBridge(function (bridge) {
+        
+        bridge.registerHandler('testJavascriptHandler', function (data, responseCallback) {
+            var dy=data.CRDetailRecommendDY;
+            div.style.top=(167+dy)+'px';
+            var responseData = {'CaoYuhao Says': 'Right back Bitch!!!'}
+            responseCallback(responseData)
+        })
+
+    })
+</script>
+
+</body>
+</html>
