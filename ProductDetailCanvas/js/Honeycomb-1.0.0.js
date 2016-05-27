@@ -11,7 +11,7 @@
 (function (w, d, $, undefined) {
     function Honeycomb(container, data) {
         this.C = this.container = (typeof container == 'string') ? $(container) : container;//主页自己写容器
-        this.data=data;
+        this.data = data;
         this.config = {
             dX: -20,
             dY: 40,
@@ -49,11 +49,9 @@
 
         },
         createDom: function () {
-            $(this.C).html('<div class="honeyCon"></div>') ; //这个honeyCon提供por
+            $(this.C).html('<div class="honeyCon"></div>'); //这个honeyCon提供por
 
 
-            //console.log(this.C);
-            //console.log(this.data.feature.length);
             if (this.data.feature.length == 0) { //没有标签就杀死父元素
                 $(this.C).find('.honeyCon').hide().parent().hide();
                 return;
@@ -91,7 +89,8 @@
                 'word-break': 'break-all',
                 display: 'table',
                 color: '#3881e0',
-                display: 'table'
+                display: 'table',
+                opacity: 0.1
 
             })
 
@@ -105,16 +104,23 @@
         bindEvent: function () {
             var that = this;
 
-
+            //重设位置
             $(this.C).find('.honeyComb').each(function (i, e) {
                 var json = that.config.honeyArr[i];
                 if (json) {
                     $(e).css({left: (json.left + that.config.dX), top: (json.top + that.config.dY)});
                 }
                 else {
-                    $(e).hide();
+                    $(e).hide();//蜂巢超过数量就消失
                 }
             })
+
+            for (i = 0; i < $(this.C).find('.honeyComb').length; i++) {
+                setTimeout(function(){
+                    $(this.C).find('.honeyComb').eq(i).animate({opacity:1});
+                },i*10)
+            }
+
         }
     }
     w.Honeycomb = Honeycomb;

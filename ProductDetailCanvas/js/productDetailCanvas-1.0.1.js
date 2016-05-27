@@ -88,24 +88,13 @@
             $(this.C).find('.barSafe').css({
                 backgroundColor: '#d2d2d2',
                 float: 'left',
-                'text-align': 'right',
-                height: '24px',
-                color: '#d13052',
-                'padding-right': '10px',
-                'box-sizing': 'border-box',
-                'line-height': '24px'
+                height: '12px',
 
             })
             $(this.C).find('.barSense ').css({
                 'background-color': '#d13052',
-                color: '#d2d2d2',
                 float: 'right',
-                'text-align': 'left',
-                height: '24px',
-                'padding-left': '10px',
-                'box-sizing': 'border-box',
-                'line-height': '24px'
-
+                height: '12px',
             })
 
 
@@ -121,10 +110,10 @@
 
             $(this.C).find('.ulCon li').css({
                 float: 'right',
-                width: '30%',
                 'font-size': '12px',
                 position: 'relative',
                 padding: '2px 0',
+                'margin-left':20
             })
             $(this.C).find('.ulCon li span').css({
                 float: 'left'
@@ -307,13 +296,8 @@
                 $(that.C).find('.barSafe').css({width: normalPct * 100 + '%'});
 
 
-                if (normalLen > sensLen) {
-                    //说明安全的多 多的一边显示少的数量
-                    $(that.C).find('.barSafe').html(sensLen + '/' + compLen);
-                }
-                else {
-                    $(that.C).find('.barSense').html(normalLen + '/' + compLen);
-                }
+                $(that.C).find('.ulCon span').eq(3).html('正常成分('+normalLen+')');
+                $(that.C).find('.ulCon span').eq(1).html('慎用成分('+sensLen+')');
 
 
                 //canvas下面本来是隐藏的
