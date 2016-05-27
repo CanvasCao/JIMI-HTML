@@ -12,21 +12,16 @@
     function JimiInputBox(container, data) {
         this.C = this.container = (typeof container == 'string') ? $(container) : container;//主页自己写容器
         this.data = data;
+        this.ccm = data.ccm;
         this.config = {
             winW: $(window).width(),
             winH: $(window).height(),
         };
         this.JM = this.jqueryMap = {};
+
         this.hasFocused = false;
         this.btnDisable = false;
 
-
-        this.type = 1;
-        this.paragraph = 0;
-        this.sentence = 0;
-        this.content = '这是一条评论';
-        this.uid = 10450;
-        this.rid = 469;
 
         this.init();
     }
@@ -43,39 +38,73 @@
         },
         createDom: function () {
             var that = this;
-            $(this.C).html('<div class="jimiInputBoxImg"></div><div class="jimiInputBoxText"></div>');
 
-            $(this.C).find('.jimiInputBoxImg').html('<img src="img/logo.jpg" alt=""/></div>')
+
+            //上面是表情
+            $(this.C).html('<div class="jimiInputBoxExpression"></div><div class="jimiInputBoxImgAndText"></div>');
+            $(this.C).find('.jimiInputBoxImgAndText').html('<div class="jimiInputBoxImg"></div><div class="jimiInputBoxText"></div>')
+            $(this.C).find('.jimiInputBoxImg').html('<img src="img/expression/1.png" data-index="1"/></div>')
             $(this.C).find('.jimiInputBoxText').html(' <input type="text" maxlength="40" value="随便说点什么"/>' +
-                '<div class="jimiInputBoxSubmit">微评</div>');
+                '<div class="jimiInputBoxSubmit">吐槽</div>');
 
 
+            //加表情
+            var imgNum=5;
+            var str = '';
+            for (i = 1; i <= imgNum; i++) {
+                str += '<div class="imgDiv"><img src="img/expression/'+i+'.png" data-index='+i+'  /></div>'
+            }
+            $(this.C).find('.jimiInputBoxExpression').html(str);
+
+            $(this.C).find('.imgDiv').css({
+                'text-align':'center',
+                display:'inline-block',
+                width:($(window).width()-10)/imgNum});
         },
         initCSS: function () {
             var that = this;
 
 
-            $(this.C).css({
-                position: 'relative',
-                height: '50px',
-                'box-sizing': 'border-box',
-                padding: '10px 10px 5px 40px',
+            $(this.C).css({ //这个盒子在屏幕底部定位
+                position: 'absolute',
+                height: '40px',
+                width: that.config.winW,
+                bottom: 0,
                 'background-color': 'white',
                 'font-size': '16px',
+                'z-index': 2
             })
+
+            $(this.C).find('.jimiInputBoxExpression').css({
+                position: 'absolute',
+                bottom: 0,
+                padding: 5,
+                width: that.config.winW,
+                height: '40px',
+                'box-sizing': 'border-box',
+                display: 'none'
+            })
+
+            $(this.C).find('.jimiInputBoxImgAndText').css({
+                position: 'absolute',
+                width: that.config.winW,
+                bottom: 0,
+                padding: '5px 10px 5px 40px',
+                'box-sizing': 'border-box',
+            })
+
             $(this.C).find('.jimiInputBoxImg').css({
                 position: 'absolute',
-                top: '5px',
                 left: '0',
                 width: '40px',
                 height: '40px',
                 /*border: 1px solid #000;*/
                 'box-sizing': 'border-box',
-                padding: '5px',
+                padding: '0 5px',
             })
 
 
-            $(this.C).find('.jimiInputBoxImg img').css({
+            $(this.C).find('img').css({
                 width: '30px',
                 'border-radius': '50%',
             })
@@ -94,7 +123,7 @@
                 'background-color': '#eee',
                 color: 'gray',
                 height: '30px',
-				    width:2/3*that.config.winW,
+                width: 2 / 3 * that.config.winW,
                 'margin-left': '15px',
             })
 
@@ -129,9 +158,6 @@
 
             //发送按钮的事件
             $(this.C).find('.jimiInputBoxSubmit').click(function () {
-
-
-                console.log(that.btnDisable)
                 var txt = $(that.C).find('input').val();
                 if (txt == '' || that.hasFocused == false) {
                     return;
@@ -150,11 +176,16 @@
 
                         //ajax
                         var txt = $(that.C).find('input').val();
-                        insertContentAjax(txt);
+                        that.ccm.push({
+                            txt: txt,
+                            expression: that.expression,
+                            uid: searchJson.uid,
+                            expression:$(that.C).find('.jimiInputBoxImg img').attr('data-index'),
+                            ifCurrent: true,
+                        })
 
                         //clearInput
                         $(that.C).find('input').val("");
-
 
                     }
 
@@ -163,6 +194,20 @@
                 //发送以后清空
 
             });
+
+
+            $(this.C).find('.jimiInputBoxImg').click(function () {
+                $(that.C).find('.jimiInputBoxExpression').fadeIn();
+                $(that.C).find('.jimiInputBoxImgAndText').fadeOut();
+            });
+
+            $(this.C).find('.jimiInputBoxExpression img').click(function(){
+                var index=$(this).attr('data-index');
+                $(that.C).find('.jimiInputBoxImg img').attr('src','img/expression/'+index+'.png').attr('data-index',index);
+                $(that.C).find('.jimiInputBoxExpression').fadeOut();
+                $(that.C).find('.jimiInputBoxImgAndText').fadeIn();
+            })
+                //,.jimiInputBoxExpression
         },
 
         fresh: function () {

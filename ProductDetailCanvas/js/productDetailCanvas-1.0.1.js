@@ -1,16 +1,17 @@
 /*!
- * productDetailCanvas, a JavaScriptPlugIn v1.0.0
+ * productDetailCanvas, a JavaScriptPlugIn v1.0.1
  * http://www.jimi.la/
  *
  * Copyright 2016, CaoYuhao
  * All rights reserved.
- * Date: 2016-4-21 10:49:49
+ * Date: 2016-5-27 13:37:55
  */
 
+//横条不显示数量 移动到下面的文字里了
 ;
 (function (w, d, $, undefined) {
     function ProductDetailCanvas(container, data, ifBtn) {
-        this.C = this.container = container;
+        this.C = this.container = (typeof container == 'string') ? $(container) : container;//主页自己写容器
         this.data = data;
         this.ifBtn = ifBtn; //下面是不是要加补全成分的按钮 扩展性有点差
         this.config = {};

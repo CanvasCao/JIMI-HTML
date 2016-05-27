@@ -10,7 +10,7 @@
 ;
 (function (w, d, $, undefined) {
     function Honeycomb(container, data) {
-        this.C = this.container = container;
+        this.C = this.container = (typeof container == 'string') ? $(container) : container;//主页自己写容器
         this.data=data;
         this.config = {
             dX: -20,

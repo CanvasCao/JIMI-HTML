@@ -12,7 +12,7 @@
             margin: 0;
             text-decoration: none;
             list-style: none;
-
+            font-family: '微软雅黑';
             /**/
             -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
             -webkit-text-size-adjust: none;
@@ -51,20 +51,35 @@
 </head>
 <body>
 
-<div id="cullet"></div>
+<div id="cullet">
+    <div class='jimiInputBox'></div>
+</div>
+
 <div class='bg'><img src="img/bg.jpg" alt=""/></div>
 
 
 <script src='js/jquery-1.8.3.min.js'></script>
 <script src='js/underscore.js'></script>
-<script src='js/cullet-1.0.2.js'></script>
+<script src='js/cullet-1.0.3.js'></script>
+<script src='js/jimiInputBox-2.0.0.js'></script>
 <script>
     $(function () {
         if (!window.location.search) {
             //window.location = window.location + '?pid=56837c60efb80c6225ead657,56829da0efb80c4e26c3e3a2';
-            window.location = window.location + '?pid=56837c60efb80c6225ead657';
+            window.location = window.location + '?pid=56837c60efb80c6225ead657&uid=10002';
         }
 
+        String.prototype.searchToJson = function () {
+            var search = window.location.search.replace('?', "");
+            var kvArr = search.split('&');
+            var finalJson = {}
+            for (i = 0; i < kvArr.length; i++) {
+                var kvSplit = kvArr[i].split('=');
+                finalJson[kvSplit[0].toLowerCase()] = kvSplit[1]
+            }
+            return finalJson;
+        }
+        window.searchJson = searchJson = (window.location.search.searchToJson());
 
         var ccm = new CommentCellManage('#cullet',
                 {
@@ -72,17 +87,18 @@
                 }
         );
 
-        var inputBox = new InputBox('#cullet', null, ccm);
-
-        //that.ccm.push({
-        //    txt: txt,
-        //    backgroundColor: 'lightblue'
-        //});//按钮点击以后的事件
+        var jimiInputBox = new JimiInputBox('.jimiInputBox',
+                {
+                    ccm: ccm
+                });
 
         var pid = '56837c60efb80c6225ead657';
         ccm.load(pid); //加载弹幕
 
+        $('#cullet')[0].addEventListener('touchmove', function (e) {
+            e.preventDefault();
 
+        }, false)
     })
 </script>
 </body>

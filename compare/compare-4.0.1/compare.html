@@ -11,7 +11,6 @@
             padding: 0;
             margin: 0;
             word-break: normal;
-            text-align: center;
             box-sizing: border-box;
             -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
             -webkit-text-size-adjust: none;
@@ -34,6 +33,7 @@
         }
 
         td {
+            text-align: center;
             background-color: white;
             padding: 10px;
             box-sizing: border-box;
@@ -146,7 +146,7 @@
             z-index: 1005;
             background-color: #efefef;
             color: #666;
-
+            text-align: center;
             /*box-sizing: border-box;*/
             /*border: 10px solid red;*/
             /*高度是第二行的高度*/
@@ -161,18 +161,9 @@
             top: 0;
             left: 0;
             z-index: 2000;
-
+            display: none;
         }
 
-        #culletBtn {
-            position: fixed;
-            top: 40px;
-            left: 0;
-            width: 40px;
-            height: 40px;
-            border: 1px solid #000;
-            z-index: 2000;
-        }
     </style>
 </head>
 <body>
@@ -188,17 +179,19 @@
 <div id='rocket'>
     <img src="img/backTop.png" width="40" height="40" alt=""/>
 </div>
-<div id='cullet'></div>
-<div id='culletBtn'>
-    显示
+<div id="cullet">
+    <div class='jimiInputBox'></div>
+</div>
+
 </div>
 <script src="js/jquery-1.8.3.min.js"></script>
 <script src="js/underscore.js"></script>
-<script src='js/cullet-1.0.2.js'></script>
+<script src='js/cullet-1.0.3.js'></script>
+<script src='js/jimiInputBox-2.0.0.js'></script>
 <script>
     $(function () {
         if (!window.location.search) {
-            window.location = window.location + '?pids=56f4d16cefb80c57428b6400,56f4d3e3efb80c57428b67cd,56f4d0d0efb80c57428b630a&cate=3';
+            window.location = window.location + '?pids=56829da0efb80c4e26c3e3a2,56837c60efb80c6225ead657,56f4d0d0efb80c57428b630a&cate=3&uid=10002';
 //            window.location = window.location + '?pids=56f57a7defb80c57428c74f6,56f56b2befb80c57428c654f&cate=6';
         }
 
@@ -218,7 +211,8 @@
             return finalJson;
         }
 
-        window.finalJson=finalJson = window.location.search.searchToJson();
+        window.searchJson = searchJson = window.location.search.searchToJson();
+        var pidArr = searchJson.pids.split(',')
 
 
         //initParas
@@ -284,18 +278,24 @@
 
                 //第二行是基本参数
                 JM.$real.append('<tr></tr>')
-                for (i = 0; i < headerArr.length; i++) {
+                for (i = 0; i < headerArr.length+1; i++) {
                     JM.$real.find('tr').eq(1).append('<td>' + 'line2' + '</td>');
                 }
 
-                //第三行开始正常绑定
+                ////第三行弹幕
+                JM.$real.append('<tr></tr>')
+                for (i = 0; i < headerArr.length+1; i++) {//+1是因为第一行一定要少一行
+                    JM.$real.find('tr').eq(2).append('<td data-pid=' + pidArr[i-1] + ' >' + '打开弹幕' + '</td>');//i-1 为了第一格是undefined
+                }
+
+                //第四行开始正常绑定
                 for (i = 0; i < mainArr.length; i++) {
                     var row = mainArr[i];
                     JM.$real.append('<tr></tr>');
 
                     for (j = 0; j < row.length; j++) {
                         var cellData = mainArr[i][j] || '-'
-                        JM.$real.find('tr').eq(i + 2).append('<td>' + cellData + '</td>'); //find('tr').eq(i + 2) 一定要+2
+                        JM.$real.find('tr').eq(i + 3).append('<td>' + cellData + '</td>'); //find('tr').eq(i + 2) 一定要+2
                     }
                 }
                 $('#realdiv').css({height: srcH, width: srcW});//容器
@@ -328,9 +328,14 @@
                 $('#fakeL').append('<tr></tr>');
                 $('#fakeL').find('tr').eq(1).append('<td data="unclicked">' + 'line2' + '</td>');
 
+                //fakeL第三行是'line3'以后会盖掉
+                $('#fakeL').append('<tr></tr>');
+                $('#fakeL').find('tr').eq(2).append('<td data="unclicked">' + '用户弹幕' + '</td>');
+
+
                 for (i = 0; i < mainArr.length; i++) {
                     $('#fakeL').append('<tr></tr>');
-                    $('#fakeL').find('tr').eq(i + 2).append('<td data="unclicked">' + mainArr[i][0] + '</td>');
+                    $('#fakeL').find('tr').eq(i + 3).append('<td data="unclicked">' + mainArr[i][0] + '</td>');
                 }
                 $('#fakeLdiv').css({height: srcH, width: leftW});//fakeLdiv是个容器 宽度20% 高度必须是屏幕高
 
@@ -420,18 +425,17 @@
 
                 $fakeLdivTd.click(function () {
                     var index = $(this).parent().index()
-                    if (index == 0 || index == 1) {
-                        return;
+                    if (index>=3) {
+                        ChangeShadow(index);
                     }
-                    ChangeShadow(index);
+
                 })
 
                 $realdiv.find('td').click(function () {
                     var index = $(this).parent().index()
-                    if (index == 0) {
-                        return;
+                    if (index>=3) {
+                        ChangeShadow(index);
                     }
-                    ChangeShadow(index);
                 })
 
 
@@ -452,7 +456,7 @@
                         $fakeLdivTd.eq(index).css({
                             'box-shadow': 'inset -10px 0px 10px rgba(0, 0, 0, 0.1)',
                             'backgroundColor': 'white',
-                            'color': 'black'
+                            'color': '#666',
                         });
                         $fakeLdivTd.eq(index).attr('data', 'unclicked');
                         $realdiv.find('tr').eq(index).find('td').css({
@@ -527,6 +531,39 @@
                     $(e).attr('href', headerArr[i]['pid']); //这里的pid不是pid 而是一个jimi协议头的base64 url
 //                    console.log(headerArr[i]['pid'])
                 })
+
+
+
+
+
+
+
+
+                //弹幕..................................................
+                var ccm = new CommentCellManage('#cullet',
+                        {
+                            serverUrl: 'http://n1.jimi.la/apps_T1/culletSelect.php'
+                        }
+                );
+
+                var jimiInputBox = new JimiInputBox('.jimiInputBox',
+                        {
+                            ccm: ccm
+                        });
+
+                //        var pid = '56837c60efb80c6225ead657';
+                //        ccm.load(pid); //加载弹幕
+
+                $('#cullet')[0].addEventListener('touchmove', function (e) {
+                    e.preventDefault();
+
+                }, false)
+
+
+                $('#real').find('tr').eq(2).find('td').click(function(){
+                    var pid=($(this).attr('data-pid'));
+                    ccm.load(pid);
+                })
             },
             error: function (err) {
                 console.log('ERROR!')
@@ -536,14 +573,18 @@
     })
 </script>
 <script>
-    var ccm = new CommentCellManage('#cullet', {serverUrl: 'http://n1.jimi.la/apps_T1/culletSelect.php'});
 
-    var inputBox = new InputBox('#cullet', null, ccm);
-    $('#culletBtn').click(function () {
-//        var pid = '56837c60efb80c6225ead657';
-        var pid = '56829da0efb80c4e26c3e3a2';
-        ccm.load(pid); //加载弹幕
-    })
+$(function(){
+
+
+
+//            .find('td').click(function () {
+//        alert(1)
+//        console.log($(this).attr('data-pid'));
+//    })
+})
+
+
 </script>
 </body>
 </html>
