@@ -116,9 +116,12 @@
             })
 
             for (i = 0; i < $(this.C).find('.honeyComb').length; i++) {
-                setTimeout(function(){
-                    $(this.C).find('.honeyComb').eq(i).animate({opacity:1});
-                },i*10)
+               eval(
+                   'setTimeout(function(){'+
+                       '$(that.C).find(".honeyComb").eq(i).animate({opacity:1},"normal","swing");'+
+                   '},i*1000)'
+               )
+
             }
 
         }

@@ -37,8 +37,8 @@
       <file leaf-file-name="Honeycomb-1.0.0.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/Honeycomb-1.0.0.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.85335195">
-              <caret line="120" column="22" selection-start-line="120" selection-start-column="22" selection-end-line="120" selection-end-column="22" />
+            <state vertical-scroll-proportion="0.7905028">
+              <caret line="120" column="94" selection-start-line="120" selection-start-column="94" selection-end-line="120" selection-end-column="94" />
               <folding />
             </state>
           </provider>
@@ -217,7 +217,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../InfomationPost(new is in the LightUp)" />
     <property name="WebServerToolWindowFactoryState" value="true" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
     <property name="FullScreen" value="false" />
@@ -291,8 +291,8 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1612" height="876" extended-state="1" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1612" height="876" extended-state="0" />
+    <editor active="false" />
     <layout>
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.126933" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24935567" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -724,8 +724,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/Honeycomb-1.0.0.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.85335195">
-          <caret line="120" column="22" selection-start-line="120" selection-start-column="22" selection-end-line="120" selection-end-column="22" />
+        <state vertical-scroll-proportion="0.7905028">
+          <caret line="120" column="94" selection-start-line="120" selection-start-column="94" selection-end-line="120" selection-end-column="94" />
           <folding />
         </state>
       </provider>
