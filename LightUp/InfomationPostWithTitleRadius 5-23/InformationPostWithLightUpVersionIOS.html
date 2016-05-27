@@ -14,17 +14,6 @@
             appearance: none;
         }
 
-        body, html {
-        }
-
-        #con {
-            /*position: absolute 会取消border-bottom-right-radius*/
-            position: fixed;
-            overflow: auto;
-            top: 0;
-            left: 0;
-            /*宽高是屏幕宽高 位置固定*/
-        }
 
 
         .txtContainer {
@@ -55,8 +44,8 @@
 <script src='js/spa/spa-middleComponent-1.0.2.js'></script>
 <script src='js/spa/navBar-1.0.0.js'></script>
 <script src='js/labelAdapter/labelAdapter.js'></script>
-<script src='js/lightUpMask-1.0.1.js'></script>
-<script src='js/jimiInputBox-2.0.0.js'></script>
+<!--<script src='js/lightUpMask-1.0.1.js'></script>-->
+<!--<script src='js/jimiInputBox-2.0.0.js'></script>-->
 <script>
     $(function () {
                 if (!window.location.search) {
@@ -64,7 +53,17 @@
                 }
 
 
-                //searchJson
+                //JS bridge..........................................................................................
+                var winH = $(window).height();
+                var winW = $(window).width();
+
+                //jqObj
+                $txtContainer = $('.txtContainer');
+                var $light = $('.light');
+                $light.css({top:1/3*winH});
+
+
+                //searchJson.................................................................................
                 var searchJson = (window.location.search.searchToJson());
                 var ifUid = searchJson.uid ? true : false;
 
@@ -77,24 +76,22 @@
                 };
 
 
-                //jqObj
-                $txtContainer = $('.txtContainer');
-                var $light = $('.light');
+
 
                 //mask对象
-                var lum = new LightUpMask($('.lightUpMask')[0], {
-                    ifUid: ifUid,
-                    hideCallback: function () {
-                        RemoveClass();
-                        $light.css({display: 'block'}).animate({opacity: 1}, 'fast', 'swing', function () {
-                        });
-                    },
-                    showCallback: function () {
-                        $light.animate({opacity: 0}, 'fast', 'swing', function () {
-                            $light.css({display: 'none'});
-                        });
-                    }
-                });
+//                var lum = new LightUpMask($('.lightUpMask')[0], {
+//                    ifUid: ifUid,
+//                    hideCallback: function () {
+//                        RemoveClass();
+//                        $light.css({display: 'block'}).animate({opacity: 1}, 'fast', 'swing', function () {
+//                        });
+//                    },
+//                    showCallback: function () {
+//                        $light.animate({opacity: 0}, 'fast', 'swing', function () {
+//                            $light.css({display: 'none'});
+//                        });
+//                    }
+//                });
 
                 //点亮标签相关 全局变量
                 var ifDragging = false;
@@ -122,10 +119,10 @@
 //            e.preventDefault();
 
                     //light不能拖动
-                    if (lum.ifShow) {
-                        e.preventDefault();
-                        return;
-                    }
+//                    if (lum.ifShow) {
+//                        e.preventDefault();
+//                        return;
+//                    }
 
                     var touch = e.touches[0];
                     mouseDown.x = touch.clientX;
@@ -137,10 +134,10 @@
 
                 window.addEventListener('touchmove', function (e) {
                     //light不能拖动
-                    if (lum.ifShow) {
-                        e.preventDefault();
-                        return;
-                    }
+//                    if (lum.ifShow) {
+//                        e.preventDefault();
+//                        return;
+//                    }
 
                     if (ifDragging) {
                         e.preventDefault();
@@ -161,25 +158,26 @@
                     }
                 }, false)
 
-                window.addEventListener('touchend', function (e) {
-                    //e.preventDefault();
-                    if (ifDragging && ifMoved) {
-                        clearTimeout(timer);
-                        delete(timer);
-
-                        var lightUpSucceed = LightUp();
-                        if (lightUpSucceed) {
-
-
-                            getContentAjaxParas = GetGetContentAjaxParas();
-                            console.log(getContentAjaxParas)
-                            getContentAjax(getContentAjaxParas);
-                        }
-                        ifDragging = false;
-                        ifMoved = false;
-                    }
-                    $light.css(lightState.touchEnd);
-                }, false)
+//                window.addEventListener('touchend', function (e) {
+//                    //e.preventDefault();
+//                    if (ifDragging && ifMoved) {
+//                        clearTimeout(timer);
+//                        delete(timer);
+//
+//                        var lightUpSucceed = LightUp();
+//                        if (lightUpSucceed) {
+//
+//                            getContentAjaxParas = GetGetContentAjaxParas();
+//
+////                            console.log(getContentAjaxParas);
+//
+////                            getContentAjax(getContentAjaxParas);
+//                        }
+//                        ifDragging = false;
+//                        ifMoved = false;
+//                    }
+//                    $light.css(lightState.touchEnd);
+//                }, false)
 
 
                 //UI层点亮函数 返回布尔是否点亮成功
@@ -247,54 +245,54 @@
                 }
 
                 //数据库执行select的Ajax
-                function getContentAjax(getContentAjaxParas) {
-                    $.ajax({
-                        type: "post",
-                        url: 'http://n1.jimi.la/apps_T1/getLightUp.php',
-//                                    url: 'content.json',
-                        data: getContentAjaxParas,
-                        dataType: "jsonp",
-                        jsonp: "callback",
-                        jsonpCallback: "jsonpcallback",
-                        cache: true,
-                        success: function (data) {
-                            console.log(JSON.stringify(data));
-                            var data = data.data;
-
-                            lum.show(data);
-
-                        },
-                        error: function (err) {
-                            console.log('ERROR!');
-                            console.log(err);
-                        }
-                    });
-                }
+//                function getContentAjax(getContentAjaxParas) {
+//                    $.ajax({
+//                        type: "post",
+//                        url: 'http://n1.jimi.la/apps_T1/getLightUp.php',
+////                                    url: 'content.json',
+//                        data: getContentAjaxParas,
+//                        dataType: "jsonp",
+//                        jsonp: "callback",
+//                        jsonpCallback: "jsonpcallback",
+//                        cache: true,
+//                        success: function (data) {
+//                            console.log(JSON.stringify(data));
+//                            var data = data.data;
+//
+////                            lum.show(data);
+//
+//                        },
+//                        error: function (err) {
+//                            console.log('ERROR!');
+//                            console.log(err);
+//                        }
+//                    });
+//                }
 
 
                 //数据库执行insert的Ajax
-                function insertContentAjax(content) {
-                    getContentAjaxParas.content = content;
-                    $.ajax({
-                        type: "post",
-                        url: 'http://n1.jimi.la/apps_T1/postLightUp.php',
-//                                    url: 'content.json',
-                        data: getContentAjaxParas,
-                        dataType: "jsonp",
-                        jsonp: "callback",
-                        jsonpCallback: "jsonpcallback",
-                        cache: true,
-                        success: function (data) {
-                            console.log(JSON.stringify(data));
-                            //var data = data.data;
-
-                        },
-                        error: function (err) {
-                            console.log('ERROR!');
-                            console.log(err);
-                        }
-                    });
-                }
+//                function insertContentAjax(content) {
+//                    getContentAjaxParas.content = content;
+//                    $.ajax({
+//                        type: "post",
+//                        url: 'http://n1.jimi.la/apps_T1/postLightUp.php',
+////                                    url: 'content.json',
+//                        data: getContentAjaxParas,
+//                        dataType: "jsonp",
+//                        jsonp: "callback",
+//                        jsonpCallback: "jsonpcallback",
+//                        cache: true,
+//                        success: function (data) {
+//                            console.log(JSON.stringify(data));
+//                            //var data = data.data;
+//
+//                        },
+//                        error: function (err) {
+//                            console.log('ERROR!');
+//                            console.log(err);
+//                        }
+//                    });
+//                }
 
                 //向顶层暴露方法
                 window.insertContentAjax = insertContentAjax;
@@ -367,51 +365,73 @@
                         console.log(err);
                     }
                 });
+
+
+
+
+                //JS bridge............................................................................
+                function setupWebViewJavascriptBridge(callback) {
+                    if (window.WebViewJavascriptBridge) {
+                        return callback(WebViewJavascriptBridge);
+                    }
+                    if (window.WVJBCallbacks) {
+                        return window.WVJBCallbacks.push(callback);
+                    }
+                    window.WVJBCallbacks = [callback];
+                    var WVJBIframe = document.createElement('iframe');
+                    WVJBIframe.style.display = 'none';
+                    WVJBIframe.src = 'wvjbscheme://__BRIDGE_LOADED__';
+                    document.documentElement.appendChild(WVJBIframe);
+                    setTimeout(function () {
+                        document.documentElement.removeChild(WVJBIframe)
+                    }, 0)
+                }
+
+                setupWebViewJavascriptBridge(function (bridge) {
+
+                    bridge.registerHandler('testJavascriptHandler', function (data, responseCallback) {
+                        var dy = data.CRDetailRecommendDY;
+                        $light.animate({top:(1/3*winH + dy)},'fast','swing');
+                        var responseData = {'CaoYuhao Says': 'Right back Bitch!!!'}
+                        responseCallback(responseData)
+                    })
+
+
+
+
+                    window.addEventListener('touchend', function (e) {
+                        //e.preventDefault();
+                        if (ifDragging && ifMoved) {
+                            clearTimeout(timer);
+                            delete(timer);
+
+                            var lightUpSucceed = LightUp();
+                            if (lightUpSucceed) {
+
+                                getContentAjaxParas = GetGetContentAjaxParas();
+
+
+                                bridge.callHandler('testObjcCallback', getContentAjaxParas, function(response) {
+//                                   //
+                                })
+//                            console.log(getContentAjaxParas);
+
+//
+                            }
+                            ifDragging = false;
+                            ifMoved = false;
+                        }
+                        $light.css(lightState.touchEnd);
+                    }, false)
+                })
+
+
             }
     )
 
 
 </script>
 
-<script>
-
-    var winH = $(window).height();
-    var winW = $(window).width();
-    //    alert(winH); //568
-    $('#con').css({width: winW, height: winH})
-    $light=$('.light');
-    $light.css({top:1/3*winH});
-
-
-    //JS bridge............................................................................
-    function setupWebViewJavascriptBridge(callback) {
-        if (window.WebViewJavascriptBridge) {
-            return callback(WebViewJavascriptBridge);
-        }
-        if (window.WVJBCallbacks) {
-            return window.WVJBCallbacks.push(callback);
-        }
-        window.WVJBCallbacks = [callback];
-        var WVJBIframe = document.createElement('iframe');
-        WVJBIframe.style.display = 'none';
-        WVJBIframe.src = 'wvjbscheme://__BRIDGE_LOADED__';
-        document.documentElement.appendChild(WVJBIframe);
-        setTimeout(function () {
-            document.documentElement.removeChild(WVJBIframe)
-        }, 0)
-    }
-
-    setupWebViewJavascriptBridge(function (bridge) {
-
-        bridge.registerHandler('testJavascriptHandler', function (data, responseCallback) {
-            var dy = data.CRDetailRecommendDY;
-            $light.animate({top:(1/3*winH + dy)},'fast','swing');
-            var responseData = {'CaoYuhao Says': 'Right back Bitch!!!'}
-            responseCallback(responseData)
-        })
-
-    })
-</script>
 
 </body>
 </html>

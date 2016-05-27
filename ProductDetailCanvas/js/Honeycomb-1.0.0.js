@@ -90,7 +90,7 @@
                 display: 'table',
                 color: '#3881e0',
                 display: 'table',
-                opacity: 0.1
+                opacity: 0
 
             })
 
@@ -118,8 +118,8 @@
             for (i = 0; i < $(this.C).find('.honeyComb').length; i++) {
                eval(
                    'setTimeout(function(){'+
-                       '$(that.C).find(".honeyComb").eq(i).animate({opacity:1},"normal","swing");'+
-                   '},i*1000)'
+                       '$(that.C).find(".honeyComb").eq('+i+').animate({opacity:1},"normal","swing");'+
+                   '},'+i+'*500)'
                )
 
             }
