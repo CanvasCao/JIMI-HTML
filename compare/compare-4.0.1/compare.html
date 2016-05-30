@@ -54,6 +54,7 @@
 
         #realdiv {
             overflow: auto;
+
         }
 
         #fakeLdiv {
@@ -122,19 +123,10 @@
         }
 
         .hideSame {
-            background-color: #3982e1;
-            color: rgba(255, 255, 255, 0.8);
-            border-radius: 50%;
-            box-sizing: border-box;
-            padding: 8px 10px;
-            font-family: '微软雅黑';
-            font-size: 12px;
-            line-height: 16px;
-            width: 48px;
-            height: 48px;
-            word-break: break-all;
-            margin: 0 auto;
-            box-shadow: 0px 4px 8px rgba(57, 130, 225, 0.8);
+            border: 1px solid #3982e1;
+            color: #3982e1;
+            border-radius: 5px;
+            line-height: 28px;
         }
 
         /*基本参数那一行*/
@@ -153,12 +145,23 @@
             /*top是第一行的高度*/
         }
 
+
+
+        /*弹幕那一行的div的样式*/
+        .openCullet{
+            border: 1px solid #3982e1;
+            border-radius: 20px;
+            box-sizing: border-box;
+            padding:6px 15px;
+            color:#3982e1;
+        }
+
         #cullet {
             /*background-color: rgba(0, 0, 0, 0.25);*/
             position: fixed;
-            width: 200%;
-            height: 100%;
-            top: 0;
+            width: 250%;
+            height: 50%;
+            bottom: 0;
             left: 0;
             z-index: 2000;
             display: none;
@@ -191,8 +194,9 @@
 <script>
     $(function () {
         if (!window.location.search) {
-            window.location = window.location + '?pids=56829da0efb80c4e26c3e3a2,56837c60efb80c6225ead657,56f4d0d0efb80c57428b630a&cate=3&uid=10002';
-//            window.location = window.location + '?pids=56f57a7defb80c57428c74f6,56f56b2befb80c57428c654f&cate=6';
+//            window.location = window.location + '?pids=56829da0efb80c4e26c3e3a2,56837c60efb80c6225ead657,56f4d0d0efb80c57428b630a&cate=3&uid=10002';
+            window.location = window.location + '?pids=56829ca4efb80c4e26c3a28b,56829f6defb80c4e26c457f6&cate=59&uid=10002';
+
         }
 
 //        ?pids=56f57a7defb80c57428c74f6,56f56b2befb80c57428c654f&cate=6
@@ -278,14 +282,14 @@
 
                 //第二行是基本参数
                 JM.$real.append('<tr></tr>')
-                for (i = 0; i < headerArr.length+1; i++) {
+                for (i = 0; i < headerArr.length + 1; i++) {
                     JM.$real.find('tr').eq(1).append('<td>' + 'line2' + '</td>');
                 }
 
                 ////第三行弹幕
                 JM.$real.append('<tr></tr>')
-                for (i = 0; i < headerArr.length+1; i++) {//+1是因为第一行一定要少一行
-                    JM.$real.find('tr').eq(2).append('<td data-pid=' + pidArr[i-1] + ' >' + '打开弹幕' + '</td>');//i-1 为了第一格是undefined
+                for (i = 0; i < headerArr.length + 1; i++) {//+1是因为第一行一定要少一行
+                    JM.$real.find('tr').eq(2).append('<td data-pid=' + pidArr[i - 1] + ' >' + '<span class="openCullet">打开弹幕</span>' + '</td>');//i-1 为了第一格是undefined
                 }
 
                 //第四行开始正常绑定
@@ -304,7 +308,7 @@
 
                 //mainData需要一个数组判断重复项........................................................................
                 var repeatLineArr = [];
-                for (i = 2; i < $('#real tr').length; i++) {//从第三行开始遍历 因为前两行不是数据
+                for (i = 3; i < $('#real tr').length; i++) {//从第三行开始遍历 因为前两行不是数据
                     var $tds = $('#real tr').eq(i).find('td:gt(0)');//不要第一列
                     var allDataArr = [];
                     $tds.each(function (index, ele) {
@@ -425,7 +429,7 @@
 
                 $fakeLdivTd.click(function () {
                     var index = $(this).parent().index()
-                    if (index>=3) {
+                    if (index >= 3) {
                         ChangeShadow(index);
                     }
 
@@ -433,7 +437,7 @@
 
                 $realdiv.find('td').click(function () {
                     var index = $(this).parent().index()
-                    if (index>=3) {
+                    if (index >= 3) {
                         ChangeShadow(index);
                     }
                 })
@@ -533,13 +537,7 @@
                 })
 
 
-
-
-
-
-
-
-                //弹幕..................................................
+                //弹幕.......................................................................................
                 var ccm = new CommentCellManage('#cullet',
                         {
                             serverUrl: 'http://n1.jimi.la/apps_T1/culletSelect.php'
@@ -556,13 +554,21 @@
 
                 $('#cullet')[0].addEventListener('touchmove', function (e) {
                     e.preventDefault();
-
                 }, false)
 
 
-                $('#real').find('tr').eq(2).find('td').click(function(){
-                    var pid=($(this).attr('data-pid'));
+                //根据产品加载弹幕.........................................................................................
+                $('#real').find('tr').eq(2).find('td').click(function () {
+                    var pid = ($(this).attr('data-pid'));
                     ccm.load(pid);
+
+                    //'#realdiv,#fakeLdiv加paddingBottom是为了把表格拖到弹幕上方
+                    $('#realdiv,#fakeLdiv').css({'padding-bottom': $(window).height()/2});
+                })
+
+                //'padding-bottom':0
+                $('.commentClose').click(function(){
+                    $('#realdiv,#fakeLdiv').css({'padding-bottom':0});
                 })
             },
             error: function (err) {
@@ -573,16 +579,6 @@
     })
 </script>
 <script>
-
-$(function(){
-
-
-
-//            .find('td').click(function () {
-//        alert(1)
-//        console.log($(this).attr('data-pid'));
-//    })
-})
 
 
 </script>

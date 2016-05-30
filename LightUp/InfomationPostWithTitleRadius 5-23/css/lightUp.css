@@ -82,11 +82,23 @@ a {
     color: #5d5d5d;
     transition: all 0.2s ease-in-out;
     background: white;
-    /*position: relative;*/
+    position: relative;
 }
 
 .sentence.active {
     background: #BFE6FF;
+}
+
+
+.count{
+    top:-12px;
+    left:-9px;
+    font-size: 12px;
+    position: absolute;
+    display: none;
+    color:#2cd2f4;
+    letter-spacing: 1px;
+    width:100px;
 }
 
 /*dashedCornerShadow 第一款测试样式*/

@@ -71,11 +71,9 @@
                 var getContentAjaxParas = {
                     perPage: 3,
                     curPage: 1,//当前页数1 永远先请求第一页
-                    doc_id: searchJson.rid,
+                    rid: searchJson.rid,
                     uid: searchJson.uid,
                 };
-
-
 
 
                 //mask对象
@@ -295,7 +293,7 @@
 //                }
 
                 //向顶层暴露方法
-                window.insertContentAjax = insertContentAjax;
+                //window.insertContentAjax = insertContentAjax;
 
 
                 //这里的ajax只是为了绑定数据

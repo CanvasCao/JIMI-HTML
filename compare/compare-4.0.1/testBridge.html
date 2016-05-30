@@ -2,13 +2,27 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+
     <title></title>
 </head>
 <body>
+<div id="div">安卓传递过来的值</div>
+<button>CLICK！！！ 点击给安卓传值</button>
+
 <script>
-    if (window.WVJBCallbacks) {
-        console.log(window.WVJBCallbacks);
+    function getjsonData() {
+        var result = news.bbb();
+        var div = document.getElementById('div');
+        div.innerHTML = result;
     }
+
+    var btn = document.getElementsByTagName('button')[0];
+    btn.onclick=function(){
+
+    }
+
 
 </script>
 </body>

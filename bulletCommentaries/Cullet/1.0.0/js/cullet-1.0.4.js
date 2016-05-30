@@ -201,7 +201,7 @@
 
         this.lineResArr = [];//保存了所有行的数组 一开始是空
         this.lineResArrFixed = [];//保存了所有行的数组 不能动
-        for (i = 1; i < this.lineNumber - 1; i++) { //第一行和最后两行不能有弹幕
+        for (i = 1; i < this.lineNumber - 1; i++) { //第一行和最后一行不能有弹幕
             this.lineResArr.push(i);
             this.lineResArrFixed.push(i);
         }

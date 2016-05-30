@@ -174,8 +174,7 @@
                         }, 2000)
 
 
-
-                        //ajax
+                        //ajax...............................................................
                         var txt = $(that.C).find('input').val();
                         var expression=$(that.C).find('.jimiInputBoxImg img').attr('data-index');
                         that.ccm.push({
@@ -192,7 +191,7 @@
                             url: 'http://n1.jimi.la/apps_T1/culletInsert.php',
 //                url: 'package.json',
                             data: {
-                                pid: that.ccm.pid,
+                                pid: searchJson.pid,
                                 uid: searchJson.uid,
                                 comment: txt,
                                 expression:expression,

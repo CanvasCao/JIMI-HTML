@@ -163,7 +163,7 @@
 <script>
     $(function () {
                 if (!window.location.search) {
-                    window.location = window.location + '?rid=466&uid=10450';
+                    window.location = window.location + '?rid=466&uid=10450&jsonpcallback=1';
                 }
 
 
@@ -175,10 +175,14 @@
                 var getContentAjaxParas = {
                     perPage: 3,
                     curPage: 1,//当前页数1 永远先请求第一页
-                    doc_id: searchJson.rid,
+                    rid: searchJson.rid,
                     uid: searchJson.uid,
+                    jsonpcallback: searchJson.jsonpcallback,
                 };
 
+                //light的clientXY所在的dom元素的位置和类型
+                var ele = null;
+                var eleType = 0;
 
                 //jqObj
                 $txtContainer = $('.txtContainer');
@@ -220,6 +224,7 @@
                         'box-shadow': '0 2px 4px 1px rgba(0, 0, 0, 0.8)',
                     }
                 }
+
 
                 $('.light')[0].addEventListener('touchstart', function (e) {
 //            e.preventDefault();
@@ -272,8 +277,6 @@
 
                         var lightUpSucceed = LightUp();
                         if (lightUpSucceed) {
-
-
                             getContentAjaxParas = GetGetContentAjaxParas();
                             console.log(getContentAjaxParas)
                             getContentAjax(getContentAjaxParas);
@@ -287,7 +290,7 @@
 
                 //UI层点亮函数 返回布尔是否点亮成功
                 function LightUp() {
-                    var ele = document.elementFromPoint(mouseCurrent.x, mouseCurrent.y);
+                    ele = document.elementFromPoint(mouseCurrent.x, mouseCurrent.y);
 
                     //文字 图片 离散图
                     if ($(ele).hasClass('active') || $(ele).parent('.paragraphImg').hasClass('active') || $(ele).closest('.paragraphWeb').hasClass('active')) {
@@ -297,16 +300,19 @@
 
 
                     if ($(ele).hasClass('sentence')) { //判断当前是类图片还是文字
+                        eleType = 1;
                         RemoveClass();
                         $(ele).addClass('active');//#f8e9c5
                         return true;
                     }
                     else if ($(ele).hasClass('sentenceImg')) {
+                        eleType = 2;
                         RemoveClass();
                         $(ele).parent('.paragraphImg').addClass('active');//一个元素的伪类相当于 这个元素的子类
                         return true;
 
                     } else if ($(ele).closest('.paragraphWeb').length) {
+                        eleType = 3;
                         RemoveClass();
                         $(ele).closest('.paragraphWeb').addClass('active');
                         return true;
@@ -317,28 +323,25 @@
 
                 //得到ajax的参数 返回getContentAjaxParas
                 function GetGetContentAjaxParas() {
-                    var ele = document.elementFromPoint(mouseCurrent.x, mouseCurrent.y);
-
-                    if ($(ele).hasClass('sentence')) { //判断当前是类图片还是文字
+                    if (eleType == 1) { //判断当前是类图片还是文字
                         var paragraph = $(ele).parent().index('.paragraph');
                         var sentence = $(ele).index('.sentence');
-                        getContentAjaxParas.type = 1;
+                        getContentAjaxParas.type = eleType;
                         getContentAjaxParas.paragraph = paragraph;
                         getContentAjaxParas.sentence = sentence;
 
                         return getContentAjaxParas;
                     }
-                    else if ($(ele).hasClass('sentenceImg')) {
-
+                    else if (eleType == 2) {
                         var paragraph = $(ele).parent().index('.paragraphImg');
-                        getContentAjaxParas.type = 2;
+                        getContentAjaxParas.type = eleType;
                         getContentAjaxParas.paragraph = paragraph;
-                        return getContentAjaxParas;
 
+                        return getContentAjaxParas;
                     }
-                    else if ($(ele).closest('.paragraphWeb').length) {
+                    else if (eleType == 3) {
                         var paragraph = $(ele).closest('.paragraphWeb').index('.paragraphWeb');
-                        getContentAjaxParas.type = 3;
+                        getContentAjaxParas.type = eleType;
                         getContentAjaxParas.paragraph = paragraph;
                         return getContentAjaxParas;
                     }
@@ -362,9 +365,23 @@
                         cache: true,
                         success: function (data) {
                             console.log(JSON.stringify(data));
-                            var data = data.data;
 
-                            lum.show(data);
+                            showCount();
+                            lum.show(data.data);
+
+
+                            function showCount() {
+                                //if (data.totalRecords) { //0吐槽的时候就会不显示
+                                if (eleType == 1) {
+                                    $(ele).find('.count').html(data.totalRecords + '吐槽').fadeIn();//显示吐槽数量
+                                } else if (eleType == 2) {
+                                    $(ele).parent('.paragraphImg').find('.count').html(data.totalRecords + '吐槽').fadeIn();//显示吐槽数量
+                                } else if (eleType == 3) {
+                                    $(ele).closest('.paragraphWeb').find('.count').html(data.totalRecords + '吐槽').fadeIn();//显示吐槽数量
+                                }
+
+//                            }
+                            }
 
                         },
                         error: function (err) {
@@ -452,6 +469,7 @@
                                     var navBar = new NavBar(jqObj[0], data);
                                     var pdc = new ProductDetailCanvas(jqObj[0], data, false);
 
+                                    jqObj.append('<span class="count"></span>');//count标签
 
                                     ajaxComplete(index + 1);
                                 },

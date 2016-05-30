@@ -17,8 +17,8 @@
     //弹幕CommentCell与dom有关 因为dom是他的表现层
     function CommentCell(container, json) {
         this.C = this.container = (typeof container == 'string') ? $(container) : container;
-        this.json=json;
-        this.txt = json.txt;
+        this.json = json;
+        this.txt = (json.txt.length > 15) ? json.txt.substr(0, 15) + '..' : json.txt;
         this.top = json.top; //出身位置一定是top随机 left 100%（就是屏幕右端）
         this.id = json.id;
         this.speed = json.speed;
@@ -43,7 +43,7 @@
             this.bindEvent();
         },
         initConfig: function () {
-            this.config.ifUser=(this.json.uid==searchJson.uid)?true:false; //这不是后台传的 我需要自己判断
+            this.config.ifUser = (this.json.uid == searchJson.uid) ? true : false; //这不是后台传的 我需要自己判断
         },
         createDom: function () {
             var that = this;
@@ -52,6 +52,7 @@
             $(this.C).find('.commentCon').append('<div class="comment" id=cell' + that.id + '>' +
                 '<div class="commentImg">' + '<img src="img/expression/' + that.expression + '.png" />' + '</div>' +
                 '<div class="commentTxt">' + that.txt + '</div>' +
+                '<div class="commentLike">赞</div>' +
                 '</div>');
 
             //setJqMap
@@ -93,6 +94,15 @@
                 'font-size': '18px'
             });
 
+            this.JM.$cell.find('.commentLike').css({
+                'position': 'absolute',
+                'top': -15,
+                left: '50%',
+                color: 'white',
+                'font-size': '16px',
+                'opacity': 0
+            })
+
 
             //用户发送的css要稍微变一下
             if (that.config.ifUser) {
@@ -116,7 +126,7 @@
             }
 
             //当前一条显示红色
-            if(that.json.ifCurrent){
+            if (that.json.ifCurrent) {
                 that.JM.$cell.css({
                     'border': '5px solid blue',
                     //'background-color': 'lightblue',
@@ -127,6 +137,11 @@
         },
         bindEvent: function () {
             var that = this;
+            this.JM.$cell.click(function () {
+                $(this).css({backgroundColor: 'blue'})
+                $(this).find('.commentLike').css({'top': 0}).animate({'top': -15, 'opacity': 1});
+
+            })
 
         },
         move: function () {
@@ -177,15 +192,16 @@
         this.commentArr = [];//维护的弹幕dom的列表 不能只用dom树维护节点
         this.commentArrLimit = 20;
 
-        this.winH = $(window).height();
+        this.ccmH = $(this.C).height();
         this.winW = $(window).width();
         this.cellH = 30;
         this.cellPaddingTop = 15;
 
-        this.lineNumber = Math.floor(this.winH / (this.cellH + this.cellPaddingTop)); //弹幕应该有的行数
+        this.lineNumber = Math.floor(this.ccmH / (this.cellH + this.cellPaddingTop)); //弹幕应该有的行数
+
         this.lineResArr = [];//保存了所有行的数组 一开始是空
         this.lineResArrFixed = [];//保存了所有行的数组 不能动
-        for (i = 1; i < this.lineNumber - 2; i++) { //第一行和最后两行不能有弹幕
+        for (i = 1; i < this.lineNumber - 1; i++) { //第一行和最后两行不能有弹幕
             this.lineResArr.push(i);
             this.lineResArrFixed.push(i);
         }
@@ -203,12 +219,12 @@
 
         this.moveFPS = 60;
         this.moveTimer = null;
-        this.pushFPS = 3;
+        this.pushFPS = 2;
         this.pushTimer = null;
 
 
         this.pid = '';
-        this.pname='';
+        this.pname = '';
         this.init();
 
     };
@@ -235,19 +251,19 @@
             $(this.C).find('.commentPname').css({
                 position: 'absolute',
                 height: 40,
-                width: $(window).width()*0.8,
+                width: $(window).width() * 0.8,
                 left: 0,
                 top: 0,
                 'font-size': '16px',
                 'line-height': '40px',
                 color: 'white',
-                'padding-left':20
+                'padding-left': 20
             });
 
             $(this.C).find('.commentClose').css({
                 position: 'absolute',
                 top: 0,
-                left:$(window).width()-40,
+                left: $(window).width() - 40,
                 color: 'white',
                 'font-size': 40,
                 'line-height': '40px',
@@ -266,6 +282,11 @@
         push: function (newJson) {
             var that = this;
 
+
+            if (!newJson) {//没有弹幕参数 不要push了 本来会push假弹幕
+                return;
+            }
+
             function GetRandom(begin, end) {
                 return Math.floor(Math.random() * (end - begin)) + begin;
             };
@@ -275,11 +296,11 @@
             };
 
             function GetLineNum() {
-                var res = that.lineResArr[GetRandom(0, that.lineResArr.length)];
-//                    var res = that.lineResArr[0];
+                //var res = that.lineResArr[GetRandom(0, that.lineResArr.length)];
+                var res = that.lineResArr[0];
                 that.lineResArr = _.without(that.lineResArr, res);
                 if (that.lineResArr.length == 0) {
-                    for (i = 1; i < that.lineNumber - 2; i++) {
+                    for (i = 1; i < that.lineNumber - 1; i++) {
                         that.lineResArr.push(i);
                     }
                 }
@@ -290,7 +311,6 @@
                 console.log('Too Many Comments');
                 return;
             }
-            ;
 
 
             //原json
@@ -301,7 +321,7 @@
                 top: GetTop(1),
                 expression: 1,
                 speed: that.speedHash[that.speedKey],
-                uid:0,
+                uid: 0,
                 ccm: that,
             };
 
@@ -394,7 +414,7 @@
                 success: function (data) {
                     console.log(JSON.stringify(data));
                     that.pid = pid;//记录一下 没什么用
-                    that.pname=data.pname;//记录一下 产品id和名字 没什么用
+                    that.pname = data.pname;//记录一下 产品id和名字 没什么用
                     that.clear();
                     that.changePname(data.pname);
                     that.serverCommentArr = data.data;
@@ -411,7 +431,7 @@
             that.commentArr = [];
             $('.commentCon').html('');
         },
-        changePname:function(pname){
+        changePname: function (pname) {
             $('.commentPname').html(pname);
         }
     };
