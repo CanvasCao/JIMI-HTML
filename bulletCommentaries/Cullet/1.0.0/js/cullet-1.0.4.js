@@ -18,6 +18,7 @@
     function CommentCell(container, json) {
         this.C = this.container = (typeof container == 'string') ? $(container) : container;
         this.json = json;
+
         this.txt = (json.txt.length > 15) ? json.txt.substr(0, 15) + '..' : json.txt;
         this.top = json.top; //出身位置一定是top随机 left 100%（就是屏幕右端）
         this.id = json.id;
@@ -29,6 +30,7 @@
         this.ccm = json.ccm;
         //console.log(this.ccm);
 
+        this.occupied = true;
         this.winH = $(window).height();
         this.winW = $(window).width();
         this.JM = this.jqueryMap = {};
@@ -149,7 +151,22 @@
             var cellLeft = this.cssCell('left');
             this.cssCell('left', (cellLeft - that.speed));
 
+            //一开始一定占据屏幕右侧 一旦开始不占据屏幕右侧就让occupied=false
+            if (that.occupied) {
+                //console.log('left   '+that.cssCell('left'));
+                //console.log('width   '+that.cssCell('width'));
 
+                if (that.occupied) {
+                    var cellLeft = that.cssCell('left');
+                    var cellWidth = that.cssCell('width');
+                    if (cellLeft + cellWidth < $(window).width()) {
+                        that.occupied = false;
+                    }
+
+                }
+            }
+
+            //如果移动出屏幕就杀死自己
             if (this.cssCell('left') <= (-this.cssCell('width'))) {
                 that.die();
             }
@@ -162,7 +179,7 @@
             //删除分两步 一个是ccm数组里删除自己 另一个是 删除dom节点
 
             that.jqueryMap.$cell.remove(); //维护dom
-            that.ccm.commentArr = _.without(that.ccm.commentArr, that); //维护数组
+            that.ccm.commentArr = _.without(that.ccm.commentArr, that); //维护ccm数组
             //that.showLength();
         },
         cssCell: function (property, value) {
@@ -200,12 +217,10 @@
         this.lineNumber = Math.floor(this.ccmH / (this.cellH + this.cellPaddingTop)); //弹幕应该有的行数
 
         this.lineResArr = [];//保存了所有行的数组 一开始是空
-        this.lineResArrFixed = [];//保存了所有行的数组 不能动
-        for (i = 1; i < this.lineNumber - 1; i++) { //第一行和最后一行不能有弹幕
+        for (i = 1; i < this.lineNumber - 1; i++) { //第一行和最后两行不能有弹幕
             this.lineResArr.push(i);
-            this.lineResArrFixed.push(i);
         }
-        ;
+
 
         this.serverCommentArr = [];//ajax加载的弹幕
         this.serverCommentIndex = 0;
@@ -282,21 +297,17 @@
         push: function (newJson) {
             var that = this;
 
-
+            console.log(that.commentArr);
             if (!newJson) {//没有弹幕参数 不要push了 本来会push假弹幕
                 return;
             }
-
-            function GetRandom(begin, end) {
-                return Math.floor(Math.random() * (end - begin)) + begin;
-            };
+            
 
             function GetTop(lineIndex) { //静态方法 根据行号返回top值
                 return (lineIndex * (that.cellH + that.cellPaddingTop) + that.cellPaddingTop);
             };
 
             function GetLineNum() {
-                //var res = that.lineResArr[GetRandom(0, that.lineResArr.length)];
                 var res = that.lineResArr[0];
                 that.lineResArr = _.without(that.lineResArr, res);
                 if (that.lineResArr.length == 0) {
