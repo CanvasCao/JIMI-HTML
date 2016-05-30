@@ -14,8 +14,6 @@
             appearance: none;
         }
 
-
-
         .txtContainer {
             padding: 0 15px;
             box-sizing: border-box;
@@ -53,10 +51,12 @@
                 }
 
 
+                var winH = $(window).height();
+                var winW = $(window).width();
+
                 //searchJson.................................................................................
                 var searchJson = (window.location.search.searchToJson());
                 var ifUid = searchJson.uid ? true : false;
-
 
 
                 //insert和get共享的paras
@@ -73,14 +73,10 @@
                 var eleType = 0;
 
 
-
                 //jqObj
                 $txtContainer = $('.txtContainer');
                 var $light = $('.light');
-                $light.css({top:1/3*winH});
-
-
-
+                $light.css({top: 1 / 3 * winH});
 
 
                 //mask对象
@@ -373,8 +369,6 @@
                 });
 
 
-
-
                 //JS bridge............................................................................
                 function setupWebViewJavascriptBridge(callback) {
                     if (window.WebViewJavascriptBridge) {
@@ -396,13 +390,28 @@
                 setupWebViewJavascriptBridge(function (bridge) {
 
                     bridge.registerHandler('testJavascriptHandler', function (data, responseCallback) {
-                        var dy = data.CRDetailRecommendDY;
-                        $light.animate({top:(1/3*winH + dy)},'fast','swing');
+                        if (data.CRDetailRecommendDY) {
+                            var dy = data.CRDetailRecommendDY
+                            $light.animate({top: (1 / 3 * winH + dy)}, 'fast', 'swing');
+                        }
+                        else if (data.removeClass) {
+                            if (data.removeClass) {
+                                RemoveClass();
+                            }
+                        }
+                        else if (data) {
+                                if (data.type == 1) {
+                                    $('.paragraph').index(data.paragraph).find('.sentence').index(data.sentence).find('.count').html(data.totalRecords + '吐槽').fadeIn();//显示吐槽数量
+                                } else if (data.type  == 2) {
+                                    $('.paragraphImg').index(data.paragraph).find('.count').html(data.totalRecords + '吐槽').fadeIn();
+                                } else if (data.type  == 3) {
+                                    $('.paragraphWeb').index(data.paragraph).find('.count').html(data.totalRecords + '吐槽').fadeIn();//显示吐槽数量  paragraphWeb
+                                }
+
+                        }
                         var responseData = {'CaoYuhao Says': 'Right back Bitch!!!'}
                         responseCallback(responseData)
                     })
-
-
 
 
                     window.addEventListener('touchend', function (e) {
@@ -417,7 +426,7 @@
                                 getContentAjaxParas = GetGetContentAjaxParas();
 
 
-                                bridge.callHandler('testObjcCallback', getContentAjaxParas, function(response) {
+                                bridge.callHandler('testObjcCallback', getContentAjaxParas, function (response) {
 //                                   //
                                 })
 //                            console.log(getContentAjaxParas);
