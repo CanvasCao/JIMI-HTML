@@ -20,6 +20,7 @@
         this.json = json;
 
         this.txt = (json.txt.length > 15) ? json.txt.substr(0, 15) + '..' : json.txt;
+        this.lineNum=json.lineNum;
         this.top = json.top; //出身位置一定是top随机 left 100%（就是屏幕右端）
         this.id = json.id;
         this.speed = json.speed;
@@ -159,7 +160,7 @@
                 if (that.occupied) {
                     var cellLeft = that.cssCell('left');
                     var cellWidth = that.cssCell('width');
-                    if (cellLeft + cellWidth < $(window).width()) {
+                    if (cellLeft + cellWidth+20 < $(window).width()) {
                         that.occupied = false;
                     }
 
@@ -234,7 +235,7 @@
 
         this.moveFPS = 60;
         this.moveTimer = null;
-        this.pushFPS = 2;
+        this.pushFPS = 3;
         this.pushTimer = null;
 
 
@@ -297,25 +298,36 @@
         push: function (newJson) {
             var that = this;
 
-            console.log(that.commentArr);
+
             if (!newJson) {//没有弹幕参数 不要push了 本来会push假弹幕
                 return;
             }
-            
+
+            function GetRandom(begin, end) {
+                return Math.floor(Math.random() * (end - begin)) + begin;
+            };
 
             function GetTop(lineIndex) { //静态方法 根据行号返回top值
                 return (lineIndex * (that.cellH + that.cellPaddingTop) + that.cellPaddingTop);
             };
 
             function GetLineNum() {
-                var res = that.lineResArr[0];
-                that.lineResArr = _.without(that.lineResArr, res);
-                if (that.lineResArr.length == 0) {
-                    for (i = 1; i < that.lineNumber - 1; i++) {
-                        that.lineResArr.push(i);
+                that.lineResArr=[];
+                for (i = 1; i < that.lineNumber - 1; i++) { //第一行和最后两行不能有弹幕
+                    that.lineResArr.push(i);
+                }
+                for (i = 0; i < that.commentArr.length; i++) {
+                    if (that.commentArr[i].occupied) {
+                        that.lineResArr = _.without(that.lineResArr,that.commentArr[i].lineNum);
                     }
                 }
-                return res;
+                //lineResArr里面存了哪几行可以插弹幕
+                if(that.lineResArr.length){
+                    return that.lineResArr[GetRandom(0,that.lineResArr.length)]
+                }
+                else{
+                    return null;
+                }
             };
 
             if (this.commentArr.length >= this.commentArrLimit) {
@@ -343,7 +355,10 @@
             ;
 
             //给json赋值 决定弹幕出现的行数
-            var lineNum = GetLineNum(); //随机行数
+            var lineNum =GetLineNum(); //随机行数
+            if(!lineNum){
+                return;
+            }
             var top = GetTop(lineNum);
             json.lineNum = lineNum;
             json.top = top;

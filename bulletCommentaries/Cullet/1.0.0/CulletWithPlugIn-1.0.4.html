@@ -66,7 +66,7 @@
     $(function () {
         if (!window.location.search) {
             //window.location = window.location + '?pid=56837c60efb80c6225ead657,56829da0efb80c4e26c3e3a2';
-            window.location = window.location + '?pid=56837c60efb80c6225ead657&uid=10002';
+            window.location = window.location + '?pid=56829f6defb80c4e26c457f6&uid=10002';
         }
 
         String.prototype.searchToJson = function () {
@@ -92,7 +92,7 @@
                     ccm: ccm
                 });
 
-        var pid = '56837c60efb80c6225ead657';
+        var pid =searchJson.pid;
         ccm.load(pid); //加载弹幕
 
         $('#cullet')[0].addEventListener('touchmove', function (e) {
