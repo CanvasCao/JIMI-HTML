@@ -21,11 +21,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="InformationPostWithLightUp.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="InformationPostWithLightUp.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/InfomationPostWithTitleRadius 5-23/InformationPostWithLightUp.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-14.653846">
-              <caret line="383" column="29" selection-start-line="372" selection-start-column="24" selection-end-line="383" selection-end-column="29" />
+            <state vertical-scroll-proportion="0.2647059">
+              <caret line="395" column="53" selection-start-line="395" selection-start-column="53" selection-end-line="395" selection-end-column="53" />
               <folding>
                 <element signature="e#9327#10589#0" expanded="false" />
                 <element signature="e#10692#11845#0" expanded="false" />
@@ -34,13 +34,13 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="InformationPostWithLightUpVersionIOS.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="InformationPostWithLightUpVersionIOS.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/InfomationPostWithTitleRadius 5-23/InformationPostWithLightUpVersionIOS.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6882353">
-              <caret line="407" column="52" selection-start-line="407" selection-start-column="52" selection-end-line="407" selection-end-column="52" />
+            <state vertical-scroll-proportion="-9.5">
+              <caret line="79" column="28" selection-start-line="79" selection-start-column="28" selection-end-line="79" selection-end-column="28" />
               <folding>
-                <element signature="e#6592#7854#0" expanded="false" />
+                <element signature="e#6621#7883#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -219,6 +219,8 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -293,12 +295,10 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../compare/compare-4.0.1" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../JIMI.LA.INDEX" />
     <property name="WebServerToolWindowFactoryState" value="true" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
     <property name="DefaultHtmlFileTemplate" value="Html5" />
@@ -378,10 +378,10 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.026349615" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2962725" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.30012855" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="版本控制" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="调试" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -820,23 +820,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/InfomationPostWithTitleRadius 5-23/InformationPostWithLightUp.html">
+    <entry file="file://$PROJECT_DIR$/InfomationPostWithTitleRadius 5-23/InformationPostWithLightUpVersionIOS.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-14.653846">
-          <caret line="383" column="29" selection-start-line="372" selection-start-column="24" selection-end-line="383" selection-end-column="29" />
+        <state vertical-scroll-proportion="-9.5">
+          <caret line="79" column="28" selection-start-line="79" selection-start-column="28" selection-end-line="79" selection-end-column="28" />
           <folding>
-            <element signature="e#9327#10589#0" expanded="false" />
-            <element signature="e#10692#11845#0" expanded="false" />
+            <element signature="e#6621#7883#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/InfomationPostWithTitleRadius 5-23/InformationPostWithLightUpVersionIOS.html">
+    <entry file="file://$PROJECT_DIR$/InfomationPostWithTitleRadius 5-23/InformationPostWithLightUp.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6882353">
-          <caret line="407" column="52" selection-start-line="407" selection-start-column="52" selection-end-line="407" selection-end-column="52" />
+        <state vertical-scroll-proportion="0.2647059">
+          <caret line="395" column="53" selection-start-line="395" selection-start-column="53" selection-end-line="395" selection-end-column="53" />
           <folding>
-            <element signature="e#6592#7854#0" expanded="false" />
+            <element signature="e#9327#10589#0" expanded="false" />
+            <element signature="e#10692#11845#0" expanded="false" />
           </folding>
         </state>
       </provider>
