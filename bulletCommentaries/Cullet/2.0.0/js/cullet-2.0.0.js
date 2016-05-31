@@ -1,17 +1,21 @@
 /*!
- * cullet Cao+Bullet, a JavaScriptPlugIn v1.0.3
+ * cullet Cao+Bullet, a JavaScriptPlugIn v2.0.0
  * http://www.jimi.la/
  *
  * Copyright 2016, CaoYuhao
  * All rights reserved.
- * Date: 2016-5-26 10:32:21
+ * Date: 2016-5-31 14:45:10
  */
 
 /*!
- 1.0.5 更新弹幕样式
+ 2.0.0
+ 更新背景颜色
+ 更新弹幕样式
  点赞样式
  点赞存数据库
  取消本人弹幕在右侧设定
+
+ **基础算法重写 弹幕消失不再清楚内存 只是停止移动等待下次队列启动
  */
 
 ;
@@ -22,23 +26,34 @@
         this.C = this.container = (typeof container == 'string') ? $(container) : container;
         this.json = json;
 
+        this.txt = json.txt || Math.random();
         this.txt = (json.txt.length > 15) ? json.txt.substr(0, 15) + '..' : json.txt;
-        this.lineNum=json.lineNum;
-        this.top = json.top; //出身位置一定是top随机 left 100%（就是屏幕右端）
-        this.id = json.id;
-        this.speed = json.speed;
-        this.expression = json.expression;
-        this.config = {
-            ifUser: false
-        };
-        this.ccm = json.ccm;
-        //console.log(this.ccm);
+        this.lineNum = json.lineNum || 1;//不能不给
+        this.top = json.top || 1; //出身位置一定是top随机 left 100%（就是屏幕右端）
+        this.id = json.id || parseInt(Math.random() * 100000);//这个版本可能没用了
 
-        this.occupied = true;
+        this.speed = json.speed || 2.1;
+        this.expression = json.expression || 1;
+        this.ccm = json.ccm;//不能不给
+
+
+        this.occupied = true; //是否占据屏幕右侧
+        this.liked = false; //是否点赞了 ajax后应该是后台返
+        this.moving = false;//是否需要移动
+
         this.winH = $(window).height();
         this.winW = $(window).width();
         this.JM = this.jqueryMap = {};
+
+
+        this.uid = json.uid;//这个版本没用了
+        this.config = {//这个版本没用了
+            ifUser: false
+        };
+
+
         this.init();
+
     };
 
     CommentCell.prototype = {
@@ -49,28 +64,28 @@
             this.bindEvent();
         },
         initConfig: function () {
-            this.config.ifUser = (this.json.uid == searchJson.uid) ? true : false; //这不是后台传的 我需要自己判断
+            //这不是后台传的 我需要自己判断 这个版本不需要知道是否是自己的弹幕
+            //this.config.ifUser = (this.json.uid == searchJson.uid) ? true : false;
         },
         createDom: function () {
             var that = this;
 
-            //我给每一个cell一个id值 cell+时间戳
+            //我给每一个cell一个id值 cell+时间戳 这个版本应该用不到
             $(this.C).find('.commentCon').append('<div class="comment" id=cell' + that.id + '>' +
                 '<div class="commentImg">' + '<img src="img/expression/' + that.expression + '.png" />' + '</div>' +
                 '<div class="commentTxt">' + that.txt + '</div>' +
-                '<div class="commentLike">赞</div>' +
+                '<div class="commentLike"><img src="img/like.png" width="30"/></div>' +
                 '</div>');
 
             //setJqMap
             this.JM.$cell = $(this.C).find('#cell' + that.id);
-
         },
         initCSS: function () {
             var that = this;
 
 
             //设置当前弹幕本身的css
-            this.JM.$cell.css({left: that.winW});
+            this.JM.$cell.css({left: 2*that.winW});
             this.JM.$cell.css({top: that.top});
 
             this.JM.$cell.css({
@@ -85,10 +100,12 @@
                 opacity: 1,
             });
 
+
             this.JM.$cell.find('.commentImg').css({
                 'position': 'absolute',
                 'border-radius': '50%',
                 top: -5,
+                left: -15,
                 //'margin-top': '2px',
             }).find('img').css({
                 width: '40px',
@@ -103,88 +120,81 @@
             this.JM.$cell.find('.commentLike').css({
                 'position': 'absolute',
                 'top': -15,
-                left: '50%',
+                left: '35%',
                 color: 'white',
                 'font-size': '16px',
                 'opacity': 0
             })
 
 
-            //用户发送的css要稍微变一下
+            //that.config.ifUser保存了当前的弹幕是否是用户发送的 现在没有了
             if (that.config.ifUser) {
-                that.JM.$cell.css({
-                    'border': '1px solid blue',
-                    //'background-color': 'lightblue',
-                    'z-index': 2
-                });
-                that.JM.$cell.find('.commentImg').css({
-                    right: -15,
-                    //left: 'none',
-                    //'margin-top': '2px',
-                })
-                that.JM.$cell.find('.commentTxt').css({
-                    //color: 'black',
-                });
-            } else {
-                that.JM.$cell.find('.commentImg').css({
-                    left: -15,
-                })
             }
-
-            //当前一条显示红色
+            //that.json.ifCurrent 保存了当前弹幕是否是在当前inputbox发送的 现在也没有了
             if (that.json.ifCurrent) {
-                that.JM.$cell.css({
-                    'border': '5px solid blue',
-                    //'background-color': 'lightblue',
-                    'z-index': 2
-                });
             }
 
         },
         bindEvent: function () {
             var that = this;
             this.JM.$cell.click(function () {
-                $(this).css({backgroundColor: 'blue'})
-                $(this).find('.commentLike').css({'top': 0}).animate({'top': -15, 'opacity': 1});
+                if (that.liked) {
+                    that.liked = false;
+                    $(this).css({backgroundColor: 'transparent'});
+                    $(this).find('.commentLike').css({'opacity': 0});
 
+                } else {
+                    that.liked = true;
+                    $(this).css({backgroundColor: '#3881e0'});
+                    $(this).find('.commentLike').css({'top': 0}).animate({'top': -15, 'opacity': 1});
+
+                }
             })
 
         },
         move: function () {
             var that = this;
-            var cellLeft = this.cssCell('left');
+
+            if (!that.moving) {
+                return;
+            }
+
+            var cellLeft = that.cssCell('left');
+            var cellWidth = that.cssCell('width');
+
             this.cssCell('left', (cellLeft - that.speed));
 
             //一开始一定占据屏幕右侧 一旦开始不占据屏幕右侧就让occupied=false
+
             if (that.occupied) {
-                //console.log('left   '+that.cssCell('left'));
-                //console.log('width   '+that.cssCell('width'));
-
-                if (that.occupied) {
-                    var cellLeft = that.cssCell('left');
-                    var cellWidth = that.cssCell('width');
-                    if (cellLeft + cellWidth+20 < $(window).width()) {
-                        that.occupied = false;
-                    }
-
+                if (cellLeft + cellWidth + 20 < $(window).width()) {
+                    that.occupied = false;
                 }
+
             }
 
-            //如果移动出屏幕就杀死自己
+
+            //如果移动出屏幕就停止
             if (this.cssCell('left') <= (-this.cssCell('width'))) {
-                that.die();
+                that.stop();
             }
             ;
-
-
         },
-        die: function () {
+        ready: function (json) {
             var that = this;
-            //删除分两步 一个是ccm数组里删除自己 另一个是 删除dom节点
+            var lineNum = json.lineNum;
+            var top = json.top;
 
-            that.jqueryMap.$cell.remove(); //维护dom
-            that.ccm.commentArr = _.without(that.ccm.commentArr, that); //维护ccm数组
-            //that.showLength();
+            that.moving = true;
+            that.occupied = true;
+            var cellLeft = this.cssCell('left');
+            this.cssCell('left', that.winW);
+            this.cssCell('top', top);
+            this.lineNum = lineNum;
+        },
+        stop: function () {
+            var that = this;
+            that.moving = false;
         },
         cssCell: function (property, value) {
             if (!value) {
@@ -210,10 +220,8 @@
     function CommentCellManage(container, json) {
         this.C = this.container = (typeof container == 'string') ? $(container) : container;
         this.json = json;
-        this.commentArr = [];//维护的弹幕dom的列表 不能只用dom树维护节点
-        this.commentArrLimit = 20;
 
-        this.ccmH = $(this.C).height();
+        this.ccmH = $(this.C).height();//可能是半屏
         this.winW = $(window).width();
         this.cellH = 30;
         this.cellPaddingTop = 15;
@@ -221,26 +229,24 @@
         this.lineNumber = Math.floor(this.ccmH / (this.cellH + this.cellPaddingTop)); //弹幕应该有的行数
 
         this.lineResArr = [];//保存了所有行的数组 一开始是空
-        for (i = 1; i < this.lineNumber - 1; i++) { //第一行和最后两行不能有弹幕
-            this.lineResArr.push(i);
-        }
 
 
-        this.serverCommentArr = [];//ajax加载的弹幕
-        this.serverCommentIndex = 0;
+        this.serverCommentArr = [];//ajax加载的弹幕 现在他来维护弹幕
+        this.serverCommentIndex = 0;//加载到索引值
+        this.commentCellArr = [];//ajax加载以后赋值 只赋值一次
 
         this.speedHash = {
             slow: 1.1,
             normal: 2.1,
             fast: 3.1,
+            superfast: 4.1,
         };
         this.speedKey = 'normal';
 
         this.moveFPS = 60;
         this.moveTimer = null;
-        this.pushFPS = 3;
-        this.pushTimer = null;
-
+        this.pushFPS = 1;
+        this.pushTimer = null; //push严格来说是 make commentCell ready 的意思了
 
         this.pid = '';
         this.pname = '';
@@ -263,7 +269,7 @@
                 left: 0,
                 top: 0,
                 'box-sizing': 'border-box',
-                'background-color': 'rgba(0,0,0,0.8)',
+                'background-color': 'rgba(49, 73, 104,0.8)',
                 opacity: 1,
             });
 
@@ -298,13 +304,9 @@
             })
 
         },
-        push: function (newJson) {
+        push: function () { //push是makeReady的意思了
             var that = this;
 
-
-            if (!newJson) {//没有弹幕参数 不要push了 本来会push假弹幕
-                return;
-            }
 
             function GetRandom(begin, end) {
                 return Math.floor(Math.random() * (end - begin)) + begin;
@@ -315,65 +317,47 @@
             };
 
             function GetLineNum() {
-                that.lineResArr=[];
+                that.lineResArr = [];
                 for (i = 1; i < that.lineNumber - 1; i++) { //第一行和最后两行不能有弹幕
                     that.lineResArr.push(i);
                 }
-                for (i = 0; i < that.commentArr.length; i++) {
-                    if (that.commentArr[i].occupied) {
-                        that.lineResArr = _.without(that.lineResArr,that.commentArr[i].lineNum);
+                for (i = 0; i < that.commentCellArr.length; i++) {
+                    if (that.commentCellArr[i].occupied) {
+                        that.lineResArr = _.without(that.lineResArr, that.commentCellArr[i].lineNum);
                     }
                 }
                 //lineResArr里面存了哪几行可以插弹幕
-                if(that.lineResArr.length){
-                    return that.lineResArr[GetRandom(0,that.lineResArr.length)]
+                if (that.lineResArr.length) {
+                    return that.lineResArr[GetRandom(0, that.lineResArr.length)]
                 }
-                else{
+                else {
                     return null;
                 }
             };
 
-            if (this.commentArr.length >= this.commentArrLimit) {
-                console.log('Too Many Comments');
-                return;
-            }
-
-
-            //原json
-            var json = {
-                txt: '弹幕 ' + new Date().getTime(),
-                id: new Date().getTime(),
-                lineNum: 1,
-                top: GetTop(1),
-                expression: 1,
-                speed: that.speedHash[that.speedKey],
-                uid: 0,
-                ccm: that,
-            };
-
-            //适配器
-            for (var k in newJson) {
-                json[k] = newJson[k];
-            }
-            ;
 
             //给json赋值 决定弹幕出现的行数
-            var lineNum =GetLineNum(); //随机行数
-            if(!lineNum){
+            var lineNum = GetLineNum(); //随机行数
+            if (!lineNum) {
                 return;
             }
             var top = GetTop(lineNum);
-            json.lineNum = lineNum;
-            json.top = top;
-            var cc = new CommentCell(that.C, json);
 
-            this.commentArr.push(cc);
+
+            if(that.commentCellArr[that.serverCommentIndex].moving){
+                return; //要出来的那条还在动
+            }
+            that.commentCellArr[that.serverCommentIndex].ready({
+                lineNum: lineNum,
+                top: top,
+            });
+            that.serverCommentIndex = (that.serverCommentIndex + 1) >= that.commentCellArr.length ? 0 : (that.serverCommentIndex + 1);
         },
         move: function () {
             var that = this;
-            for (i = 0; i < that.commentArr.length; i++) {
-                if (that.commentArr[i]) {
-                    that.commentArr[i].move();
+            for (i = 0; i < that.commentCellArr.length; i++) {
+                if (that.commentCellArr[i]) {
+                    that.commentCellArr[i].move();
                     //console.log(that.commentArr[i].speed)
                 }
                 ;
@@ -397,10 +381,7 @@
                 }, 1000 / that.moveFPS);
 
                 that.pushTimer = setInterval(function () {
-
-                    that.push(that.serverCommentArr[that.serverCommentIndex]);
-                    that.serverCommentIndex = (that.serverCommentIndex + 1) >= that.serverCommentArr.length ? 0 : (that.serverCommentIndex + 1);
-
+                    that.push();
                 }, 1000 / that.pushFPS);
             }
             ;
@@ -444,9 +425,14 @@
                     console.log(JSON.stringify(data));
                     that.pid = pid;//记录一下 没什么用
                     that.pname = data.pname;//记录一下 产品id和名字 没什么用
-                    that.clear();
+                    that.clear(); //清除arr列表和dom树
                     that.changePname(data.pname);
                     that.serverCommentArr = data.data;
+                    //for (i = 0; i < that.serverCommentArr.length; i++) {
+                    for (i = 0; i < 1; i++) {
+                        var serverJson = that.serverCommentArr[i];
+                        that.commentCellArr.push(new CommentCell(that.C, serverJson));
+                    }
                     that.start(); //加载完成以后开始播放
                 },
                 error: function (err) {
@@ -458,10 +444,11 @@
         clear: function () {
             var that = this;
             that.commentArr = [];
-            $('.commentCon').html('');
+            $(that.C).find('.commentCon').html('');
         },
         changePname: function (pname) {
-            $('.commentPname').html(pname);
+            var that = this;
+            $(that.C).find('.commentPname').html(pname);
         }
     };
 
