@@ -30,14 +30,14 @@
         this.txt = (json.txt.length > 20) ? json.txt.substr(0, 20) + '..' : json.txt;
         this.lineNum = json.lineNum || 1;//不能不给
         this.top = json.top || 1; //出身位置一定是top随机 left 100%（就是屏幕右端）
-        this.id = json.id || parseInt(Math.random() * 100000);//这个版本可能没用了
+        this.id=json.commentsPK; //数据库comments表的主键 作为id
 
         this.speed = json.speed || 2.1;
         this.expression = json.expression || 1;
         this.ccm = json.ccm;//不能不给
 
 
-        this.occupied = true; //是否占据屏幕右侧
+        this.occupied = false; //是否占据屏幕右侧
         this.liked = false; //是否点赞了 ajax后应该是后台返
         this.moving = false;//是否需要移动
 
@@ -142,12 +142,14 @@
                 if (that.liked) {
                     that.liked = false;
                     $(this).css({backgroundColor: 'transparent'});
-                    $(this).find('.commentLike').css({'opacity': 0});
+                    $(this).find('.commentLike').stop().animate({ 'opacity': 0},0);
                 } else {
                     that.liked = true;
                     $(this).css({backgroundColor: '#3881e0'});
                     $(this).find('.commentLike').css({'top': 0}).stop().animate({'top': -15, 'opacity': 1});
                 }
+
+                that.speed+=1;
             })
 
         },
@@ -162,7 +164,6 @@
             var cellWidth = that.cssCell('width');
 
             this.cssCell('left', (cellLeft - that.speed));
-
             //一开始一定占据屏幕右侧 一旦开始不占据屏幕右侧就让occupied=false
 
             if (that.occupied) {
@@ -186,10 +187,10 @@
 
             that.moving = true;
             that.occupied = true;
-            var cellLeft = this.cssCell('left');
             this.cssCell('left', that.winW);
             this.cssCell('top', top);
             this.lineNum = lineNum;
+            this.speed=json.speed;
         },
         stop: function () {
             var that = this;
@@ -349,8 +350,11 @@
             that.commentCellArr[that.serverCommentIndex].ready({
                 lineNum: lineNum,
                 top: top,
+                speed:that.speedHash['normal'],
             });
             that.serverCommentIndex = (that.serverCommentIndex + 1) >= that.commentCellArr.length ? 0 : (that.serverCommentIndex + 1);
+            //console.log(that.serverCommentIndex);
+
         },
         move: function () {
             var that = this;
@@ -399,9 +403,9 @@
 
             that.speedKey = that.speedHash.hasOwnProperty(speedKey) ? speedKey : 'normal';
             //旧的也改变速度
-            for (i = 0; i < that.commentArr.length; i++) {
-                if (that.commentArr[i]) {
-                    that.commentArr[i].speed = that.speedHash[that.speedKey];
+            for (i = 0; i < that.commentCellArr.length; i++) {
+                if (that.commentCellArr[i]) {
+                    that.commentCellArr[i].speed = that.speedHash[that.speedKey];
                 }
             }
         },
@@ -427,6 +431,7 @@
                 jsonpCallback: "jsonpcallback",
                 success: function (data) {
                     console.log(JSON.stringify(data));
+
                     that.pid = pid;//记录一下 没什么用
                     that.pname = data.pname;//记录一下 产品id和名字 没什么用
                     that.clear(); //清除arr列表和dom树
@@ -447,8 +452,11 @@
         },
         clear: function () {
             var that = this;
-            that.commentArr = [];
+            that.commentCellArr = [];
+            that.serverCommentArr=[];
             $(that.C).find('.commentCon').html('');
+            that.serverCommentIndex = 0;
+            that.pause();
         },
         changePname: function (pname) {
             var that = this;

@@ -14,9 +14,10 @@
             box-sizing: border-box;
             -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
             -webkit-text-size-adjust: none;
-            /*-webkit-user-select: none;*/
-            /*-ms-user-select: none;*/
-            /*user-select: none;*/
+
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
             font-size: 12px;
         }
 
@@ -26,6 +27,10 @@
             -webkit-appearance: none;
             -moz-appearance: none;
             appearance: none;
+
+            -webkit-user-select: text;
+            -ms-user-select: text;
+            user-select: text;
         }
 
         body, html {
@@ -188,7 +193,7 @@
 </div>
 <script src="js/jquery-1.8.3.min.js"></script>
 <script src="js/underscore.js"></script>
-<script src='js/cullet-1.0.4.js'></script>
+<script src='js/cullet-2.0.0.js'></script>
 <script src='js/jimiInputBox-2.0.0.js'></script>
 <script>
     $(function () {
@@ -550,9 +555,13 @@
                 //        var pid = '56837c60efb80c6225ead657';
                 //        ccm.load(pid); //加载弹幕
 
-                $('#cullet')[0].addEventListener('touchmove', function (e) {
-                    e.preventDefault();
+                $('#cullet')[0].addEventListener('touchstart', function (e) {
 
+                }, false)
+
+                $('#cullet')[0].addEventListener('touchmove', function (e) {
+//                    e.preventDefault();
+//                    e.stopPropagation();
                 }, false)
 
 
