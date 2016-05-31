@@ -27,7 +27,7 @@
         this.json = json;
 
         this.txt = json.txt || Math.random();
-        this.txt = (json.txt.length > 15) ? json.txt.substr(0, 15) + '..' : json.txt;
+        this.txt = (json.txt.length > 20) ? json.txt.substr(0, 20) + '..' : json.txt;
         this.lineNum = json.lineNum || 1;//不能不给
         this.top = json.top || 1; //出身位置一定是top随机 left 100%（就是屏幕右端）
         this.id = json.id || parseInt(Math.random() * 100000);//这个版本可能没用了
@@ -85,7 +85,7 @@
 
 
             //设置当前弹幕本身的css
-            this.JM.$cell.css({left: 2*that.winW});
+            this.JM.$cell.css({left: 2 * that.winW});
             this.JM.$cell.css({top: that.top});
 
             this.JM.$cell.css({
@@ -114,13 +114,14 @@
 
             this.JM.$cell.find('.commentTxt').css({
                 color: 'white',
-                'font-size': '18px'
+                'font-size': '16px'
             });
 
             this.JM.$cell.find('.commentLike').css({
                 'position': 'absolute',
                 'top': -15,
-                left: '35%',
+                left: '55%',
+                transform: 'translateX(-50%)',
                 color: 'white',
                 'font-size': '16px',
                 'opacity': 0
@@ -142,12 +143,10 @@
                     that.liked = false;
                     $(this).css({backgroundColor: 'transparent'});
                     $(this).find('.commentLike').css({'opacity': 0});
-
                 } else {
                     that.liked = true;
                     $(this).css({backgroundColor: '#3881e0'});
-                    $(this).find('.commentLike').css({'top': 0}).animate({'top': -15, 'opacity': 1});
-
+                    $(this).find('.commentLike').css({'top': 0}).stop().animate({'top': -15, 'opacity': 1});
                 }
             })
 
@@ -344,7 +343,7 @@
             var top = GetTop(lineNum);
 
 
-            if(that.commentCellArr[that.serverCommentIndex].moving){
+            if (that.commentCellArr[that.serverCommentIndex].moving) {
                 return; //要出来的那条还在动
             }
             that.commentCellArr[that.serverCommentIndex].ready({
@@ -407,6 +406,11 @@
             }
         },
 
+        //that.commentCellArr.push
+        add: function (json) {
+            var that = this;
+            that.commentCellArr.push(new CommentCell(that.C, json));
+        },
         load: function (pid) { //传入php问号后面的查询参数
             var that = this;
             if (pid == that.pid) {
@@ -428,8 +432,8 @@
                     that.clear(); //清除arr列表和dom树
                     that.changePname(data.pname);
                     that.serverCommentArr = data.data;
-                    //for (i = 0; i < that.serverCommentArr.length; i++) {
-                    for (i = 0; i < 1; i++) {
+                    for (i = 0; i < that.serverCommentArr.length; i++) {
+                        //for (i = 0; i < 1; i++) {
                         var serverJson = that.serverCommentArr[i];
                         that.commentCellArr.push(new CommentCell(that.C, serverJson));
                     }
