@@ -13,6 +13,7 @@
         this.C = this.container = (typeof container == 'string') ? $(container) : container;//主页自己写容器
         this.data = data;
         this.ccm = data.ccm;
+        this.$cullet=data.$cullet;
         this.config = {
             winW: $(window).width(),
             winH: $(window).height(),
@@ -174,16 +175,15 @@
                         }, 2000)
 
 
-                        //ajax...............................................................
+                        //ajax
                         var txt = $(that.C).find('input').val();
                         var expression=$(that.C).find('.jimiInputBoxImg img').attr('data-index');
-                        that.ccm.push({
+
+
+                        that.ccm.add({
                             txt: txt,
-                            expression: that.expression,
-                            uid: searchJson.uid,
-                            expression:expression,
-                            ifCurrent: true,
-                        })
+                            expression:expression
+                        });
 
 
                         $.ajax({
@@ -201,13 +201,13 @@
                             jsonpCallback: "jsonpcallback",
                             success: function (data) {
                                 console.log(JSON.stringify(data));
-//                    $('body').html(data.content.replace(/"/g,'&quot').replace(/'/g,'&quot').replace(/</g,'&lt').replace(/>/g,'&gt'))
                             },
                             error: function (err) {
                                 console.log('ERROR!')
                                 console.log(err);
                             }
                         });
+
 
 
                         //clearInput
@@ -222,6 +222,7 @@
             });
 
 
+            //表情 event................................................................................
             $(this.C).find('.jimiInputBoxImg').click(function () {
                 $(that.C).find('.jimiInputBoxExpression').fadeIn();
                 $(that.C).find('.jimiInputBoxImgAndText').fadeOut();
@@ -232,8 +233,10 @@
                 $(that.C).find('.jimiInputBoxImg img').attr('src','img/expression/'+index+'.png').attr('data-index',index);
                 $(that.C).find('.jimiInputBoxExpression').fadeOut();
                 $(that.C).find('.jimiInputBoxImgAndText').fadeIn();
-            })
-                //,.jimiInputBoxExpression
+            });
+
+
+            //配合IOS的键盘弹出
         },
 
         fresh: function () {

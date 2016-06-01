@@ -30,7 +30,7 @@
         this.txt = (json.txt.length > 20) ? json.txt.substr(0, 20) + '..' : json.txt;
         this.lineNum = json.lineNum || 1;//不能不给
         this.top = json.top || 1; //出身位置一定是top随机 left 100%（就是屏幕右端）
-        this.id=json.commentsPK; //数据库comments表的主键 作为id
+        this.id = json.commentsPK; //数据库comments表的主键 作为id
 
         this.speed = json.speed || 2.1;
         this.expression = json.expression || 1;
@@ -39,6 +39,7 @@
 
         this.occupied = false; //是否占据屏幕右侧
         this.liked = false; //是否点赞了 ajax后应该是后台返
+        this.ajaxSupported = false;//是否给服务器ajax 让点赞数++
         this.moving = false;//是否需要移动
 
         this.winH = $(window).height();
@@ -142,14 +143,39 @@
                 if (that.liked) {
                     that.liked = false;
                     $(this).css({backgroundColor: 'transparent'});
-                    $(this).find('.commentLike').stop().animate({ 'opacity': 0},0);
+                    $(this).find('.commentLike').stop().animate({'opacity': 0}, 0);
                 } else {
                     that.liked = true;
                     $(this).css({backgroundColor: '#3881e0'});
-                    $(this).find('.commentLike').css({'top': 0}).stop().animate({'top': -15, 'opacity': 1});
+                    $(this).find('.commentLike').css({'top': 0}).stop().animate({'top': -15, 'opacity': 1}, 100);
+
+                    //给服务器发ajax点赞
+                    if (!that.ajaxSupported) {
+                        that.ajaxSupported = true;
+
+                        $.ajax({
+                            type: "get",
+                            url: 'http://n1.jimi.la/apps_T1/culletSupport.php',
+                            data:{
+                                commentId:that.id
+                            },
+                            dataType: "jsonp",
+                            jsonp: "callback",//传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)
+                            jsonpCallback: "jsonpcallback",
+                            success: function (data) {
+                                console.log(JSON.stringify(data));
+                            },
+                            error: function (err) {
+                                console.log('LOAD ERROR!')
+                                console.log(err);
+                            }
+                        })
+                    }
                 }
 
-                that.speed+=1;
+
+                //加速
+                that.speed += 1;
             })
 
         },
@@ -190,7 +216,7 @@
             this.cssCell('left', that.winW);
             this.cssCell('top', top);
             this.lineNum = lineNum;
-            this.speed=json.speed;
+            this.speed = json.speed;
         },
         stop: function () {
             var that = this;
@@ -245,7 +271,7 @@
 
         this.moveFPS = 60;
         this.moveTimer = null;
-        this.pushFPS = 1;
+        this.pushFPS =2;
         this.pushTimer = null; //push严格来说是 make commentCell ready 的意思了
 
         this.pid = '';
@@ -350,7 +376,7 @@
             that.commentCellArr[that.serverCommentIndex].ready({
                 lineNum: lineNum,
                 top: top,
-                speed:that.speedHash['normal'],
+                speed: that.speedHash['normal'],
             });
             that.serverCommentIndex = (that.serverCommentIndex + 1) >= that.commentCellArr.length ? 0 : (that.serverCommentIndex + 1);
             //console.log(that.serverCommentIndex);
@@ -453,7 +479,7 @@
         clear: function () {
             var that = this;
             that.commentCellArr = [];
-            that.serverCommentArr=[];
+            that.serverCommentArr = [];
             $(that.C).find('.commentCon').html('');
             that.serverCommentIndex = 0;
             that.pause();

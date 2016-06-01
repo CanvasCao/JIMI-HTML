@@ -156,8 +156,8 @@
                         $.ajax({
                             type: "get",
                             url: 'http://n1.jimi.la/apps_T1/culletSupport.php',
-                            data:{
-                                commentId:that.id
+                            data: {
+                                commentId: that.id
                             },
                             dataType: "jsonp",
                             jsonp: "callback",//传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)
@@ -271,7 +271,7 @@
 
         this.moveFPS = 60;
         this.moveTimer = null;
-        this.pushFPS =2;
+        this.pushFPS = 2;
         this.pushTimer = null; //push严格来说是 make commentCell ready 的意思了
 
         this.pid = '';
@@ -405,24 +405,43 @@
                 console.log('Timer already exists');
                 return;
             } else {
-                that.moveTimer = setInterval(function () {
-                    that.move();
-                }, 1000 / that.moveFPS);
+                //that.moveTimer = setInterval(function () {
+                //    that.move();
+                //}, 1000 / that.moveFPS);
+                //
+                //that.pushTimer = setInterval(function () {
+                //    that.push();
+                //}, 1000 / that.pushFPS);
 
-                that.pushTimer = setInterval(function () {
+                window.requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
+                function aaa() {
+                    that.move();
+                    that.moveTimer = requestAnimationFrame(aaa);
+                }
+
+                aaa();
+
+                function bbb() {
                     that.push();
-                }, 1000 / that.pushFPS);
+                    setTimeout(function () {
+                        that.pushTimer = requestAnimationFrame(bbb);
+                    }, 1000 / that.pushFPS)
+                }
+
+                bbb();
+
             }
             ;
 
         },
         pause: function () {
             var that = this;
-            clearInterval(that.moveTimer);
-            delete(that.moveTimer); //原来moveTimer要delete
-
-            clearInterval(that.pushTimer);
+            window.cancelAnimationFrame = window.cancelAnimationFrame || window.mozCancelAnimationFrame;
+            cancelAnimationFrame(that.moveTimer);
+            delete(that.moveTimer);
+            cancelAnimationFrame(that.pushTimer);
             delete(that.pushTimer);
+
         },
         changeSpeed: function (speedKey) {
             var that = this;

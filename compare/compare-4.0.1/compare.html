@@ -149,16 +149,14 @@
             /*top是第一行的高度*/
         }
 
-
         /*弹幕那一行的div的样式*/
-        .openCullet{
+        .openCullet {
             border: 1px solid #3982e1;
             border-radius: 20px;
             box-sizing: border-box;
-            padding:6px 15px;
-            color:#3982e1;
+            padding: 6px 15px;
+            color: #3982e1;
         }
-
 
         #cullet {
             /*background-color: rgba(0, 0, 0, 0.25);*/
@@ -193,7 +191,7 @@
 </div>
 <script src="js/jquery-1.8.3.min.js"></script>
 <script src="js/underscore.js"></script>
-<script src='js/cullet-2.0.0.js'></script>
+<script src='js/cullet-3.0.0.js'></script>
 <script src='js/jimiInputBox-2.0.0.js'></script>
 <script>
     $(function () {
@@ -555,15 +553,10 @@
                 //        var pid = '56837c60efb80c6225ead657';
                 //        ccm.load(pid); //加载弹幕
 
-                $('#cullet')[0].addEventListener('touchstart', function (e) {
-
-                }, false)
-
                 $('#cullet')[0].addEventListener('touchmove', function (e) {
-//                    e.preventDefault();
+                    //e.preventDefault();
 //                    e.stopPropagation();
                 }, false)
-
 
 
                 //根据产品加载弹幕.........................................................................................
@@ -571,12 +564,12 @@
                     var pid = ($(this).attr('data-pid'));
                     ccm.load(pid);
                     //'#realdiv,#fakeLdiv加paddingBottom是为了把表格拖到弹幕上方
-                    $('#realdiv').css({'padding-bottom': $(window).height()/2});
-                    $('#fakeLdiv').css({'padding-bottom': $(window).height()/2});
+                    $('#realdiv').css({'padding-bottom': $(window).height() / 2});
+                    $('#fakeLdiv').css({'padding-bottom': $(window).height() / 2});
                 })
                 //'padding-bottom':0
-                $('.commentClose').click(function(){
-                    $('#realdiv,#fakeLdiv').css({'padding-bottom':0});
+                $('.commentClose').click(function () {
+                    $('#realdiv,#fakeLdiv').css({'padding-bottom': 0});
                 })
             },
             error: function (err) {

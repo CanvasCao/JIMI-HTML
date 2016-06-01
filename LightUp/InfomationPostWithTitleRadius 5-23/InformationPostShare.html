@@ -14,8 +14,32 @@
             appearance: none;
         }
 
-        body, html {
+        body {
             height: 100%;
+            opacity: 0;
+        }
+
+
+        .download {
+            position: absolute;
+            right:0px;
+            top:10px;
+            height: 35px;
+            /*border: 1px solid #000;*/
+
+        }
+
+        .downloadBtn {
+            float: right;
+            height: 35px;
+            /*border: 1px solid #000;*/
+            line-height: 35px;
+            border-radius: 35px;
+            background-color: #3881e0;
+            box-sizing: border-box;
+            padding: 0 20px;
+            color: white;
+            margin-right: 10px;
         }
 
         #con {
@@ -52,7 +76,8 @@
             content: "";
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.2);
+            background-color: rgba(0, 0, 0, 0);
+            pointer-events: none;
         }
 
         .titleImg {
@@ -99,6 +124,7 @@
             height: 20px;
             background: url("img/eye.png") no-repeat;
             background-size: cover;
+
         }
 
         .titleTextStar {
@@ -127,6 +153,7 @@
 </head>
 <body>
 <div id='con'>
+
     <div id='scroll'>
         <div class='title'>
             <img src="img/logo.jpg" alt="" class='titleImg'/>
@@ -137,6 +164,10 @@
                     <div class='titleTextRead'></div>
                     <div class='titleTextStar'></div>
                 </div>
+            </div>
+
+            <div class="download">
+                <div class='downloadBtn'>下载肌秘APP</div>
             </div>
         </div>
         <div class='txtContainer'></div>
@@ -163,7 +194,21 @@
 <script>
     $(function () {
                 if (!window.location.search) {
-                    window.location = window.location + '?rid=466&uid=10450&jsonpcallback=1';
+                    window.location = window.location + '?rid=466&jsonpcallback=1';
+                }
+
+
+                //给按钮不同的链接
+                var ua = navigator.userAgent;
+                if (ua.charAt('iphone') != -1 && ua.charAt('Mac') != -1) {//说明不是IPHONE
+                    $('.downloadBtn').click(function () {
+                        window.location.href = 'http://a.app.qq.com/o/simple.jsp?pkgname=com.jimi.skinsecret#opened';
+                    })
+                }
+                else {
+                    $('.downloadBtn').click(function () {
+                        window.location.href = 'https://itunes.apple.com/us/app/id1074206874';
+                    })
                 }
 
 
@@ -293,16 +338,16 @@
                     ele = document.elementFromPoint(mouseCurrent.x, mouseCurrent.y);
 
                     //文字 图片 离散图
-                    if ($(ele).closest('.sentence').hasClass('active') || $(ele).parent('.paragraphImg').hasClass('active') || $(ele).closest('.paragraphWeb').hasClass('active')) {
+                    if ($(ele).hasClass('active') || $(ele).parent('.paragraphImg').hasClass('active') || $(ele).closest('.paragraphWeb').hasClass('active')) {
                         console.log('已经选中');
                         return true; //
                     }
 
 
-                    if ($(ele).closest('.sentence').length) { //判断当前是类图片还是文字
+                    if ($(ele).hasClass('sentence')) { //判断当前是类图片还是文字
                         eleType = 1;
                         RemoveClass();
-                        $(ele).closest('.sentence').addClass('active');//#f8e9c5
+                        $(ele).addClass('active');//#f8e9c5
                         return true;
                     }
                     else if ($(ele).hasClass('sentenceImg')) {
@@ -324,8 +369,8 @@
                 //得到ajax的参数 返回getContentAjaxParas
                 function GetGetContentAjaxParas() {
                     if (eleType == 1) { //判断当前是类图片还是文字
-                        var paragraph = $(ele).closest('.paragraph').index('.paragraph');
-                        var sentence = $(ele).closest('.sentence').index('.sentence');
+                        var paragraph = $(ele).parent().index('.paragraph');
+                        var sentence = $(ele).index('.sentence');
                         getContentAjaxParas.type = eleType;
                         getContentAjaxParas.paragraph = paragraph;
                         getContentAjaxParas.sentence = sentence;
@@ -366,14 +411,17 @@
                         success: function (data) {
                             console.log(JSON.stringify(data));
 
-                            showCount();
+                            showCount();//左上角数量
                             lum.show(data.data);
 
 
                             function showCount() {
                                 //if (data.totalRecords) { //0吐槽的时候就会不显示
+                                if(data.totalRecords==0){
+                                    return;
+                                }
                                 if (eleType == 1) {
-                                    $(ele).closest('.paragraph').find('.count').html(data.totalRecords + '吐槽').fadeIn();//显示吐槽数量
+                                    $(ele).find('.count').html(data.totalRecords + '吐槽').fadeIn();//显示吐槽数量
                                 } else if (eleType == 2) {
                                     $(ele).parent('.paragraphImg').find('.count').html(data.totalRecords + '吐槽').fadeIn();//显示吐槽数量
                                 } else if (eleType == 3) {
@@ -430,6 +478,9 @@
                     jsonpCallback: "jsonpcallback",
                     success: function (data) {
                         console.log(JSON.stringify(data));
+
+                        $('body').animate({opacity: 1});
+
 
                         //title
                         $('.titleImg').attr('src', data.titleImgUrl);
@@ -500,7 +551,7 @@
     var winW = $(window).width();
     //    alert(winH); //568
     $('#con').css({width: winW, height: winH})
-    $('#con').scrollTop(100);
+    $('#con').scrollTop(0);
 
     var initHeight = 400;
     $('.title').css({height: initHeight});

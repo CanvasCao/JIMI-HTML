@@ -185,28 +185,28 @@
                         });
 
 
-//                        $.ajax({
-//                            type: "post",
-//                            url: 'http://n1.jimi.la/apps_T1/culletInsert.php',
-////                url: 'package.json',
-//                            data: {
-//                                pid: searchJson.pid,
-//                                uid: searchJson.uid,
-//                                comment: txt,
-//                                expression:expression,
-//                            },
-//                            dataType: "jsonp",
-//                            jsonp: "callback",//传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)
-//                            jsonpCallback: "jsonpcallback",
-//                            success: function (data) {
-//                                console.log(JSON.stringify(data));
-////                    $('body').html(data.content.replace(/"/g,'&quot').replace(/'/g,'&quot').replace(/</g,'&lt').replace(/>/g,'&gt'))
-//                            },
-//                            error: function (err) {
-//                                console.log('ERROR!')
-//                                console.log(err);
-//                            }
-//                        });
+//                     
+                        $.ajax({
+                            type: "post",
+                            url: 'http://n1.jimi.la/apps_T1/culletInsert.php',
+//                url: 'package.json',
+                            data: {
+                                pid: searchJson.pid,
+                                uid: searchJson.uid,
+                                comment: txt,
+                                expression:expression,
+                            },
+                            dataType: "jsonp",
+                            jsonp: "callback",//传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)
+                            jsonpCallback: "jsonpcallback",
+                            success: function (data) {
+                                console.log(JSON.stringify(data));
+                            },
+                            error: function (err) {
+                                console.log('ERROR!')
+                                console.log(err);
+                            }
+                        });
 
 
 
