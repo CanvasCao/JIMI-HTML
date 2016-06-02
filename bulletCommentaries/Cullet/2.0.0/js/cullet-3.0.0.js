@@ -340,15 +340,11 @@
                     that.lineResArr.push(i);
                 }
 
-                [].forEach.call(that.lineNumber,function(e,i,arr){
-                        
+                [].forEach.call(that.commentCellArr, function (e, i, arr) {
+                    if (e.occupied)
+                        that.lineResArr = _.without(that.lineResArr, e.lineNum);
                 });
 
-                for (i = 0; i < that.commentCellArr.length; i++) {
-                    if (that.commentCellArr[i].occupied) {
-                        that.lineResArr = _.without(that.lineResArr, that.commentCellArr[i].lineNum);
-                    }
-                }
                 //lineResArr里面存了哪几行可以插弹幕
                 if (that.lineResArr.length) {
                     return that.lineResArr[GetRandom(0, that.lineResArr.length)]
@@ -386,13 +382,9 @@
         },
         move: function () {//所有弹幕动一下
             var that = this;
-            for (i = 0; i < that.commentCellArr.length; i++) {
-                if (that.commentCellArr[i]) {
-                    that.commentCellArr[i].move();
-                }
-                ;
-            }
-            ;
+            [].forEach.call(that.commentCellArr, function (e, i, arr) {
+                if (e)e.move();
+            });
         },
 
 
@@ -447,7 +439,7 @@
             var that = this;
             window.cancelAnimationFrame = window.cancelAnimationFrame || window.mozCancelRequestAnimationFrame || window.webkitCancelRequestAnimationFrame || window.msCancelRequestAnimationFrame;
             cancelAnimationFrame(that.moveTimer);
-            delete(that.moveTimer);
+            delete(that.moveTimer);//删除定时器id
             cancelAnimationFrame(that.pushTimer);
             delete(that.pushTimer);
 
@@ -456,12 +448,10 @@
             var that = this;
 
             that.speedKey = that.speedHash.hasOwnProperty(speedKey) ? speedKey : 'normal';
-            //旧的也改变速度
 
             [].forEach.call(that.commentCellArr, function (e, i, arr) {
-                if (e) {
+                if (e)
                     e.speed = that.speedHash[that.speedKey];
-                }
             })
 
         },
@@ -469,7 +459,7 @@
         //that.commentCellArr.push
         add: function (json) {
             var that = this;
-            that.commentCellArr.push(new CommentCell(that.C, json));
+            that.commentCellArr.slice(that.commentIndex,0,new CommentCell(that.C, json));//在弹幕数组中间插入
         },
         load: function (pid) { //传入php问号后面的查询参数
             var that = this;
@@ -480,10 +470,10 @@
 
             $.ajax({
                 type: "get",
-                url: 'http://n1.jimi.la/apps_T1/culletSelect.php?pid=' + pid,
+                url: jimiHost+'/culletSelect.php?pid=' + pid,
                 //url: 'package.json',
                 dataType: "jsonp",
-                jsonp: "callback",//传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)
+                jsonp: "callback",
                 jsonpCallback: "jsonpcallback",
                 success: function (data) {
                     console.log(JSON.stringify(data));
@@ -493,11 +483,10 @@
                     that.clear(); //清除arr列表和dom树
                     that.changePname(data.pname);
                     that.serverCommentArr = data.data;
-                    for (i = 0; i < that.serverCommentArr.length; i++) {
-                        //for (i = 0; i < 1; i++) {
-                        var serverJson = that.serverCommentArr[i];
-                        that.commentCellArr.push(new CommentCell(that.C, serverJson));
-                    }
+                    [].forEach.call(that.serverCommentArr,function(e,i,arr){
+                        that.commentCellArr.push(new CommentCell(that.C, e))
+                    })
+
                     that.start(); //加载完成以后开始播放
                 },
                 error: function (err) {

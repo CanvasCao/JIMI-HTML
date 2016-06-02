@@ -188,7 +188,7 @@
 //                  
                         $.ajax({
                             type: "post",
-                            url: 'http://n1.jimi.la/apps_T1/culletInsert.php',
+                            url: jimiHost+'/culletInsert.php',
 //                url: 'package.json',
                             data: {
                                 pid: searchJson.pid,
