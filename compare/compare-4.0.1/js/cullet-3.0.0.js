@@ -31,7 +31,7 @@
         this.lineNum = json.lineNum || 1;//不能不给
         this.top = json.top || 1; //出身位置一定是top随机 left 100%（就是屏幕右端）
 
-        this.id = new Date().getTime();//时间戳
+        this.id=new Date().getTime();//时间戳
         this.commentsPK = json.commentsPK; //数据库comments表的主键 作为id
 
         this.speed = json.speed || 2.1;
@@ -136,7 +136,7 @@
             }
             //that.json.ifCurrent 保存了当前弹幕是否是在当前inputbox发送的 现在也没有了
             if (!that.commentsPK) {
-                this.JM.$cell.css({border: '5px solid #3881e0'})
+                this.JM.$cell.css({border:'5px solid #3881e0'})
             }
 
         },
@@ -197,7 +197,6 @@
             var cellWidth = that.cssCell('width');
 
             this.cssCell('left', (cellLeft - that.speed));
-          
             //一开始一定占据屏幕右侧 一旦开始不占据屏幕右侧就让occupied=false
 
             if (that.occupied) {
@@ -207,7 +206,7 @@
             }
 
             //如果移动出屏幕就停止
-            if (this.cssCell('left') < -cellWidth) {
+            if (this.cssCell('left') < (-this.cssCell('width'))) {
                 that.stop();
             }
             ;
@@ -262,7 +261,6 @@
             fast: 4,
             superfast: 5,
         };
-
         this.speedKey = 'normal';
 
         this.moveFPS = 80;
@@ -464,7 +462,7 @@
         //that.commentCellArr.push
         add: function (json) {
             var that = this;
-            that.commentCellArr.splice(that.commentIndex, 0, new CommentCell(that.C, json));//在弹幕数组中间插入
+            that.commentCellArr.splice(that.commentIndex,0,new CommentCell(that.C, json));//在弹幕数组中间插入
         },
         load: function (pid) { //传入php问号后面的查询参数
             var that = this;
@@ -475,7 +473,7 @@
 
             $.ajax({
                 type: "get",
-                url: jimiHost + '/culletSelect.php?pid=' + pid,
+                url: jimiHost+'/culletSelect.php?pid=' + pid,
                 //url: 'package.json',
                 dataType: "jsonp",
                 jsonp: "callback",
@@ -488,7 +486,7 @@
                     that.clear(); //清除arr列表和dom树
                     that.changePname(data.pname);
                     that.serverCommentArr = data.data;
-                    [].forEach.call(that.serverCommentArr, function (e, i, arr) {
+                    [].forEach.call(that.serverCommentArr,function(e,i,arr){
                         that.commentCellArr.push(new CommentCell(that.C, e))
                     })
 

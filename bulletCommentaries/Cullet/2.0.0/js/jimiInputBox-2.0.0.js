@@ -49,17 +49,18 @@
 
 
             //加表情
-            var imgNum=5;
+            var imgNum = 5;
             var str = '';
             for (i = 1; i <= imgNum; i++) {
-                str += '<div class="imgDiv"><img src="img/expression/'+i+'.png" data-index='+i+'  /></div>'
+                str += '<div class="imgDiv"><img src="img/expression/' + i + '.png" data-index=' + i + '  /></div>'
             }
             $(this.C).find('.jimiInputBoxExpression').html(str);
 
             $(this.C).find('.imgDiv').css({
-                'text-align':'center',
-                display:'inline-block',
-                width:($(window).width()-10)/imgNum});
+                'text-align': 'center',
+                display: 'inline-block',
+                width: ($(window).width() - 10) / imgNum
+            });
         },
         initCSS: function () {
             var that = this;
@@ -176,25 +177,25 @@
 
                         //ajax
                         var txt = $(that.C).find('input').val();
-                        var expression=$(that.C).find('.jimiInputBoxImg img').attr('data-index');
+                        var expression = $(that.C).find('.jimiInputBoxImg img').attr('data-index');
 
 
                         that.ccm.add({
                             txt: txt,
-                            expression:expression
+                            expression: expression
                         });
 
 
 //                  
                         $.ajax({
                             type: "post",
-                            url: jimiHost+'/culletInsert.php',
+                            url: jimiHost + '/culletInsert.php',
 //                url: 'package.json',
                             data: {
-                                pid: searchJson.pid,
+                                pid: that.ccm.pid,
                                 uid: searchJson.uid,
                                 comment: txt,
-                                expression:expression,
+                                expression: expression,
                             },
                             dataType: "jsonp",
                             jsonp: "callback",//传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)
@@ -207,7 +208,6 @@
                                 console.log(err);
                             }
                         });
-
 
 
                         //clearInput
@@ -227,13 +227,13 @@
                 $(that.C).find('.jimiInputBoxImgAndText').fadeOut();
             });
 
-            $(this.C).find('.jimiInputBoxExpression img').click(function(){
-                var index=$(this).attr('data-index');
-                $(that.C).find('.jimiInputBoxImg img').attr('src','img/expression/'+index+'.png').attr('data-index',index);
+            $(this.C).find('.jimiInputBoxExpression img').click(function () {
+                var index = $(this).attr('data-index');
+                $(that.C).find('.jimiInputBoxImg img').attr('src', 'img/expression/' + index + '.png').attr('data-index', index);
                 $(that.C).find('.jimiInputBoxExpression').fadeOut();
                 $(that.C).find('.jimiInputBoxImgAndText').fadeIn();
             })
-                //,.jimiInputBoxExpression
+            //,.jimiInputBoxExpression
         },
 
         fresh: function () {
