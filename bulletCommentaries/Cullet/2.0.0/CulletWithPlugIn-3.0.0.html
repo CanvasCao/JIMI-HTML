@@ -64,14 +64,17 @@
 
 <script src='js/jquery-1.8.3.min.js'></script>
 <script src='js/underscore.js'></script>
+<script src='js/jimiHost.js'></script>
 <script src='js/cullet-3.0.0.js'></script>
 <script src='js/jimiInputBox-2.0.0.js'></script>
 <script>
     $(function () {
         if (!window.location.search) {
             //window.location = window.location + '?pid=56837c60efb80c6225ead657,56829da0efb80c4e26c3e3a2';
-            window.location = window.location + '?pid=56829f6defb80c4e26c457f6&uid=10002';
+//            window.location = window.location + '?pid=56829f6defb80c4e26c457f6&uid=10002';
+            window.location = window.location + '?pid=56829f6defb80c4e26c457f4&uid=10002';
         }
+
 
         String.prototype.searchToJson = function () {
             var search = window.location.search.replace('?', "");
@@ -86,11 +89,13 @@
         window.searchJson = searchJson = (window.location.search.searchToJson());
 
         var ccm = new CommentCellManage('#cullet',
-                {serverUrl: 'http://n1.jimi.la/apps_T1/culletSelect.php'}
+                {
+                    serverUrl: jimiHost + '/culletSelect.php',
+                    closeable: true
+                }
         );
 
-        var jimiInputBox = new JimiInputBox('.jimiInputBox',
-                {ccm: ccm});
+        var jimiInputBox = new JimiInputBox('.jimiInputBox', {ccm: ccm});
 
         var pid = searchJson.pid;
         ccm.load(pid); //加载弹幕

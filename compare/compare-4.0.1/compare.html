@@ -196,14 +196,9 @@
 <script>
     $(function () {
         if (!window.location.search) {
-            window.location = window.location + '?pids=56829da0efb80c4e26c3e3a2,56837c60efb80c6225ead657,56f4d0d0efb80c57428b630a&cate=3&uid=10002';
-//            window.location = window.location + '?pids=56f57a7defb80c57428c74f6,56f56b2befb80c57428c654f&cate=6';
+//            window.location = window.location + '?pids=56829da0efb80c4e26c3e3a2,56837c60efb80c6225ead657,56f4d0d0efb80c57428b630a&cate=3&uid=10002';
+            window.location = window.location + '?pids=56f57a7defb80c57428c74f6,56f56b2befb80c57428c654f&cate=6&uid=10002';
         }
-
-//        ?pids=56f57a7defb80c57428c74f6,56f56b2befb80c57428c654f&cate=6
-//        ?pids=56f4d16cefb80c57428b6400,56f4d3e3efb80c57428b67cd,56f4d0d0efb80c57428b630a&cate=3
-//        变窄bug ?pids=56f57b91efb80c57428c767f,56f57b9cefb80c57428c7688&cate=54
-
 
         String.prototype.searchToJson = function () {
             var search = window.location.search.replace('?', "");

@@ -153,14 +153,18 @@
                     if (!that.ajaxSupported) {
                         that.ajaxSupported = true;
 
+
+                        if (!that.id) {//没有服务器主键说明不用ajax
+                            return;
+                        }
                         $.ajax({
                             type: "get",
-                            url: 'http://n1.jimi.la/apps_T1/culletSupport.php',
+                            url: jimiHost + '/culletSupport.php',
                             data: {
                                 commentId: that.id
                             },
                             dataType: "jsonp",
-                            jsonp: "callback",//传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)
+                            jsonp: "callback",
                             jsonpCallback: "jsonpcallback",
                             success: function (data) {
                                 console.log(JSON.stringify(data));
@@ -196,9 +200,7 @@
                 if (cellLeft + cellWidth + 20 < $(window).width()) {
                     that.occupied = false;
                 }
-
             }
-
 
             //如果移动出屏幕就停止
             if (this.cssCell('left') <= (-this.cssCell('width'))) {
@@ -208,14 +210,13 @@
         },
         ready: function (json) {
             var that = this;
-            var lineNum = json.lineNum;
             var top = json.top;
 
             that.moving = true;
             that.occupied = true;
             this.cssCell('left', that.winW);
             this.cssCell('top', top);
-            this.lineNum = lineNum;
+            this.lineNum = json.lineNum;
             this.speed = json.speed;
         },
         stop: function () {
@@ -224,28 +225,19 @@
         },
         cssCell: function (property, value) {
             if (!value) {
-                //return Math.floor(parseFloat(this.jqueryMap.$cell.css(property))); //Math.floor就不会出现弹幕偶然卡住的情况了
                 return (parseFloat(this.jqueryMap.$cell.css(property))); //Math.floor就不会出现弹幕偶然卡住的情况了
             }
             else {
                 this.jqueryMap.$cell.css(property, value);
             }
         },
-
-
-        //showLength: function () {
-        //    var that = this;
-        //    console.log("dom树  " + $('.comment').length);
-        //    console.log("ccm列表  " + that.ccm.commentArr.length);
-        //
-        //},
-
     };
 
     //管理类与dom无关 容器只能加这里 写在弹幕类里有延迟
     function CommentCellManage(container, json) {
         this.C = this.container = (typeof container == 'string') ? $(container) : container;
         this.json = json;
+        this.closeable = json.closeable || true;
 
         this.ccmH = $(this.C).height();//可能是半屏
         this.winW = $(window).width();
@@ -256,20 +248,19 @@
 
         this.lineResArr = [];//保存了所有行的数组 一开始是空
 
-
-        this.serverCommentArr = [];//ajax加载的弹幕 现在他来维护弹幕
-        this.serverCommentIndex = 0;//加载到索引值
-        this.commentCellArr = [];//ajax加载以后赋值 只赋值一次
+        this.serverCommentArr = [];//服务器的数据 json {"commentsPK":"708","uid":null,"txt":"好东东","expression":"2"},
+        this.commentIndex = 0;//索引值
+        this.commentCellArr = [];//commentCell对象
 
         this.speedHash = {
-            slow: 2.111,
-            normal: 3.111,
-            fast: 4.111,
-            superfast:5.111,
+            slow: 2.1,
+            normal: 3.1,
+            fast: 4.1,
+            superfast: 5.1,
         };
         this.speedKey = 'normal';
 
-        this.moveFPS =75;
+        this.moveFPS = 80;
         this.moveTimer = null;
         this.pushFPS = 2;
         this.pushTimer = null; //push严格来说是 make commentCell ready 的意思了
@@ -287,7 +278,8 @@
             this.bindEvent();
         },
         createDom: function () {
-            $(this.C).append("<div class='commentCon'></div><div class='commentPname'></div><div class='commentClose'>×</div>")
+            var closeStr = this.closeable ? "<div class='commentClose'>×</div>" : '';
+            $(this.C).append("<div class='commentCon'></div><div class='commentPname'></div>" + closeStr);
             $(this.C).find('.commentCon').css({
                 position: 'absolute',
                 height: '100%',
@@ -344,9 +336,14 @@
 
             function GetLineNum() {
                 that.lineResArr = [];
-                for (i = 1; i < that.lineNumber - 1; i++) { //第一行和最后两行不能有弹幕
+                for (i = 1; i < that.lineNumber - 1; i++) { //第一行和最后一行不能有弹幕
                     that.lineResArr.push(i);
                 }
+
+                [].forEach.call(that.lineNumber,function(e,i,arr){
+                        
+                });
+
                 for (i = 0; i < that.commentCellArr.length; i++) {
                     if (that.commentCellArr[i].occupied) {
                         that.lineResArr = _.without(that.lineResArr, that.commentCellArr[i].lineNum);
@@ -365,29 +362,33 @@
             //给json赋值 决定弹幕出现的行数
             var lineNum = GetLineNum(); //随机行数
             if (!lineNum) {
-                return;
+                return; //说明每一行都有弹幕了
             }
             var top = GetTop(lineNum);
 
-
-            if (that.commentCellArr[that.serverCommentIndex].moving) {
-                return; //要出来的那条还在动
+            if (that.commentCellArr.length == 0) {//没有弹幕也return
+                return;
             }
-            that.commentCellArr[that.serverCommentIndex].ready({
+
+            if (that.commentCellArr[that.commentIndex].moving) {//要出来的那条还在动
+                return;
+            }
+            that.commentCellArr[that.commentIndex].ready({
                 lineNum: lineNum,
                 top: top,
                 speed: that.speedHash['normal'],
             });
-            that.serverCommentIndex = (that.serverCommentIndex + 1) >= that.commentCellArr.length ? 0 : (that.serverCommentIndex + 1);
-            //console.log(that.serverCommentIndex);
+
+            //下标验收
+            that.commentIndex = (that.commentIndex + 1) >= that.commentCellArr.length ? 0 : (that.commentIndex + 1);
+            //console.log(that.commentIndex);
 
         },
-        move: function () {
+        move: function () {//所有弹幕动一下
             var that = this;
             for (i = 0; i < that.commentCellArr.length; i++) {
                 if (that.commentCellArr[i]) {
                     that.commentCellArr[i].move();
-                    //console.log(that.commentArr[i].speed)
                 }
                 ;
             }
@@ -395,7 +396,7 @@
         },
 
 
-        start: function () {
+        start: function () { //开启定时器
             //循环移动
             var that = this;
 
@@ -407,32 +408,33 @@
             } else {
                 window.requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
 
-                var moveStartTime=new Date().getTime();
-                function innerMove() {
-                    var curTime=new Date().getTime();
-                    var diff=curTime-moveStartTime;
+                var moveStartTime = new Date().getTime();
 
-                    if(diff>=1000/that.moveFPS){
+                function innerMove() {
+                    var curTime = new Date().getTime();
+                    var diff = curTime - moveStartTime;
+
+                    if (diff >= 1000 / that.moveFPS) {
                         moveStartTime = new Date().getTime();
                         that.move();
                     }
-                    that.moveTimer=requestAnimationFrame(innerMove);
+                    that.moveTimer = requestAnimationFrame(innerMove);
                 }
 
                 innerMove();
 
 
+                var pushStartTime = new Date().getTime();
 
-                var pushStartTime=new Date().getTime();
                 function innerPush() {
-                    var curTime=new Date().getTime();
-                    var diff=curTime-pushStartTime;
+                    var curTime = new Date().getTime();
+                    var diff = curTime - pushStartTime;
 
-                    if(diff>=1000/that.pushFPS){
+                    if (diff >= 1000 / that.pushFPS) {
                         pushStartTime = new Date().getTime();
                         that.push()
                     }
-                    that.pushTimer=requestAnimationFrame(innerPush);
+                    that.pushTimer = requestAnimationFrame(innerPush);
                 }
 
                 innerPush();
@@ -441,9 +443,9 @@
             ;
 
         },
-        pause: function () {
+        pause: function () {//关闭定时器
             var that = this;
-            window.cancelAnimationFrame = window.cancelAnimationFrame || window.mozCancelRequestAnimationFrame||window.webkitCancelRequestAnimationFrame||window.msCancelRequestAnimationFrame;
+            window.cancelAnimationFrame = window.cancelAnimationFrame || window.mozCancelRequestAnimationFrame || window.webkitCancelRequestAnimationFrame || window.msCancelRequestAnimationFrame;
             cancelAnimationFrame(that.moveTimer);
             delete(that.moveTimer);
             cancelAnimationFrame(that.pushTimer);
@@ -455,11 +457,13 @@
 
             that.speedKey = that.speedHash.hasOwnProperty(speedKey) ? speedKey : 'normal';
             //旧的也改变速度
-            for (i = 0; i < that.commentCellArr.length; i++) {
-                if (that.commentCellArr[i]) {
-                    that.commentCellArr[i].speed = that.speedHash[that.speedKey];
+
+            [].forEach.call(that.commentCellArr, function (e, i, arr) {
+                if (e) {
+                    e.speed = that.speedHash[that.speedKey];
                 }
-            }
+            })
+
         },
 
         //that.commentCellArr.push
@@ -477,7 +481,7 @@
             $.ajax({
                 type: "get",
                 url: 'http://n1.jimi.la/apps_T1/culletSelect.php?pid=' + pid,
-//                url: 'package.json',
+                //url: 'package.json',
                 dataType: "jsonp",
                 jsonp: "callback",//传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)
                 jsonpCallback: "jsonpcallback",
@@ -507,7 +511,7 @@
             that.commentCellArr = [];
             that.serverCommentArr = [];
             $(that.C).find('.commentCon').html('');
-            that.serverCommentIndex = 0;
+            that.commentIndex = 0;
             that.pause();
         },
         changePname: function (pname) {
