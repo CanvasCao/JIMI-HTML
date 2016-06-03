@@ -20,24 +20,22 @@ function labelAdapter($con) {//传进一个jq对象 是个容器 会对容器内
         var imgW = parseInt($(e).css('width'));
         var imgH = parseInt($(e).css('height'));
         var RATE = imgW / imgH;
-        console.log(imgW + " " + imgH)
-        console.log(RATE);
+        //console.log(imgW + " " + imgH)
+        //console.log(RATE);
         var imgFixedW = (winW - bodyPaddingW * 2 - pPaddingW * 2) - 2;
 
 
         if (imgW > imgFixedW) {
             $(e).attr({width: imgFixedW, height: imgFixedW / RATE});
             $(e).css({width: imgFixedW, height: imgFixedW / RATE});
-            console.log(imgFixedW + "  " + imgFixedW / RATE)
-            console.log('=================')
+
         }
 
         //else
         if (imgW == 0) {
             $(e).attr({width: imgFixedW});
             $(e).css({width: imgFixedW});
-            console.log(imgFixedW)
-            console.log('=================')
+
         }
 
     })

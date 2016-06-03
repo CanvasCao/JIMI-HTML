@@ -6,18 +6,6 @@
           content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no"/>
     <title>资讯</title>
     <style>
-        input, button, select, textarea {
-            outline: 0 none;
-            border: 0px;
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            appearance: none;
-        }
-
-        body, html {
-            height: 100%;
-        }
-
         #con {
             /*position: absolute 会取消border-bottom-right-radius*/
             position: fixed;
@@ -36,13 +24,9 @@
             border-bottom-right-radius: 100% 20%;
             border-bottom-left-radius: 100% 20%;
             box-sizing: border-box;
-            /*border-radius: 50%;*/
 
-            /*border: 10px solid #000;*/
             height: 400px;
             overflow: hidden;
-
-            /*border: 1px solid #000;*/
             margin-bottom: 50px;
             position: relative;
         }
@@ -61,8 +45,6 @@
             left: 50%;
             transform: translateX(-50%);
             -webkit-transform: translateX(-50%);
-            -moz-transform: translateX(-50%);
-            -ms-transform: translateX(-50%);
         }
 
         .titleText {
@@ -278,7 +260,7 @@
                         var lightUpSucceed = LightUp();
                         if (lightUpSucceed) {
                             getContentAjaxParas = GetGetContentAjaxParas();
-                            console.log(getContentAjaxParas)
+                            console.log(getContentAjaxParas);
                             getContentAjax(getContentAjaxParas);
                         }
                         ifDragging = false;
@@ -325,7 +307,8 @@
                 function GetGetContentAjaxParas() {
                     if (eleType == 1) { //判断当前是类图片还是文字
                         var paragraph = $(ele).closest('.paragraph').index('.paragraph');
-                        var sentence = $(ele).closest('.sentence').index('.sentence');
+                        var sentence = $(ele).closest('.sentence').index();
+
                         getContentAjaxParas.type = eleType;
                         getContentAjaxParas.paragraph = paragraph;
                         getContentAjaxParas.sentence = sentence;
@@ -373,7 +356,7 @@
                             function showCount() {
                                 //if (data.totalRecords) { //0吐槽的时候就会不显示
                                 if (eleType == 1) {
-                                    $(ele).closest('.paragraph').find('.count').html(data.totalRecords + '吐槽').fadeIn();//显示吐槽数量
+                                    $(ele).closest('.sentence').find('.count').html(data.totalRecords + '吐槽').fadeIn();//显示吐槽数量
                                 } else if (eleType == 2) {
                                     $(ele).parent('.paragraphImg').find('.count').html(data.totalRecords + '吐槽').fadeIn();//显示吐槽数量
                                 } else if (eleType == 3) {
@@ -430,6 +413,7 @@
                     jsonpCallback: "jsonpcallback",
                     success: function (data) {
                         console.log(JSON.stringify(data));
+                        $('body').animate({opacity: 1});
 
                         //title
                         $('.titleImg').attr('src', data.titleImgUrl);

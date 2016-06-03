@@ -14,8 +14,19 @@
     -webkit-overflow-scrolling : touch;
 }
 
+
+
+input, button, select, textarea {
+    outline: 0 none;
+    border: 0px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
 body {
     /*height: 1000px;*/
+    opacity: 0;
     box-sizing: border-box;
 }
 

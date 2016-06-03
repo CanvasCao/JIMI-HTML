@@ -13,7 +13,6 @@
         this.C = this.container = (typeof container == 'string') ? $(container) : container;//主页自己写容器
         this.data = data;
         this.ccm = data.ccm;
-        this.$cullet=data.$cullet;
         this.config = {
             winW: $(window).width(),
             winH: $(window).height(),
@@ -186,12 +185,13 @@
                         });
 
 
+//                  
                         $.ajax({
                             type: "post",
-                            url: 'http://n1.jimi.la/apps_T1/culletInsert.php',
+                            url: jimiHost+'/culletInsert.php',
 //                url: 'package.json',
                             data: {
-                                pid: searchJson.pid,
+                                pid: that.ccm.pid,
                                 uid: searchJson.uid,
                                 comment: txt,
                                 expression:expression,
@@ -222,7 +222,6 @@
             });
 
 
-            //表情 event................................................................................
             $(this.C).find('.jimiInputBoxImg').click(function () {
                 $(that.C).find('.jimiInputBoxExpression').fadeIn();
                 $(that.C).find('.jimiInputBoxImgAndText').fadeOut();
@@ -233,10 +232,8 @@
                 $(that.C).find('.jimiInputBoxImg img').attr('src','img/expression/'+index+'.png').attr('data-index',index);
                 $(that.C).find('.jimiInputBoxExpression').fadeOut();
                 $(that.C).find('.jimiInputBoxImgAndText').fadeIn();
-            });
-
-
-            //配合IOS的键盘弹出
+            })
+                //,.jimiInputBoxExpression
         },
 
         fresh: function () {

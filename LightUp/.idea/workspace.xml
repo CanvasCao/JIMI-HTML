@@ -24,23 +24,10 @@
       <file leaf-file-name="InformationPostWithLightUp.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/InfomationPostWithTitleRadius 5-23/InformationPostWithLightUp.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.2647059">
-              <caret line="395" column="53" selection-start-line="395" selection-start-column="53" selection-end-line="395" selection-end-column="53" />
+            <state vertical-scroll-proportion="0.62753624">
+              <caret line="391" column="51" selection-start-line="391" selection-start-column="51" selection-end-line="391" selection-end-column="51" />
               <folding>
-                <element signature="e#9327#10589#0" expanded="false" />
-                <element signature="e#10692#11845#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="InformationPostWithLightUpVersionIOS.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/InfomationPostWithTitleRadius 5-23/InformationPostWithLightUpVersionIOS.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-9.5">
-              <caret line="79" column="28" selection-start-line="79" selection-start-column="28" selection-end-line="79" selection-end-column="28" />
-              <folding>
-                <element signature="e#6621#7883#0" expanded="false" />
+                <element signature="e#14534#17611#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -50,49 +37,7 @@
         <entry file="file://$PROJECT_DIR$/InfomationPostWithTitleRadius 5-23/js/jimiInputBox-2.0.0.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="42" column="10" selection-start-line="42" selection-start-column="10" selection-end-line="42" selection-end-column="10" />
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="lightUp.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/InfomationPostWithTitleRadius 5-23/css/lightUp.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="54" column="27" selection-start-line="54" selection-start-column="27" selection-end-line="54" selection-end-column="27" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="labelAdapter.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/InfomationPostWithTitleRadius 5-23/js/labelAdapter/labelAdapter.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="57" column="76" selection-start-line="57" selection-start-column="76" selection-end-line="57" selection-end-column="76" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="jimi-prototype.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/InfomationPostWithTitleRadius 5-23/js/jimi-prototype.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="split.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/InfomationPostWithTitleRadius 5-23/split.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="4" column="19" selection-start-line="4" selection-start-column="19" selection-end-line="4" selection-end-column="19" />
+              <caret line="151" column="41" selection-start-line="151" selection-start-column="24" selection-end-line="151" selection-end-column="41" />
               <folding />
             </state>
           </provider>
@@ -158,11 +103,12 @@
         <option value="$PROJECT_DIR$/InfomationPost/js/labelAdapter/labelAdapter.js" />
         <option value="$PROJECT_DIR$/InfomationPost/InformationPostWithLightUp.html" />
         <option value="$PROJECT_DIR$/../../../radius.html" />
-        <option value="$PROJECT_DIR$/InfomationPostWithTitleRadius 5-23/css/lightUp.css" />
-        <option value="$PROJECT_DIR$/InfomationPostWithTitleRadius 5-23/InformationPostWithLightUp.html" />
         <option value="$PROJECT_DIR$/InfomationPostWithTitleRadius 5-23/js/jimi-prototype.js" />
         <option value="$PROJECT_DIR$/InfomationPostWithTitleRadius 5-23/split.html" />
+        <option value="$PROJECT_DIR$/InfomationPostWithTitleRadius 5-23/css/lightUp.css" />
         <option value="$PROJECT_DIR$/InfomationPostWithTitleRadius 5-23/js/labelAdapter/labelAdapter.js" />
+        <option value="$PROJECT_DIR$/InfomationPostWithTitleRadius 5-23/InformationPostWithLightUp.html" />
+        <option value="$PROJECT_DIR$/InfomationPostWithTitleRadius 5-23/InformationPostShare.html" />
         <option value="$PROJECT_DIR$/InfomationPostWithTitleRadius 5-23/InformationPostWithLightUpVersionIOS.html" />
       </list>
     </option>
@@ -219,8 +165,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -293,12 +237,32 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="LightUp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="LightUp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="InfomationPostWithTitleRadius 5-23" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="css" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../JIMI.LA.INDEX" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../bulletCommentaries/Cullet/4.0.0" />
     <property name="WebServerToolWindowFactoryState" value="true" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
     <property name="DefaultHtmlFileTemplate" value="Html5" />
@@ -312,11 +276,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Administrator\Desktop\JIMI HTML\JIMI-HTML\LightUp\InfomationPostWithTitleRadius 5-23\js" />
       <recent name="C:\Users\Administrator\Desktop\JIMI HTML\JIMI-HTML\LightUp\InfomationPostWithTitleRadius 5-23" />
       <recent name="C:\Users\Administrator\Desktop\JIMI HTML\JIMI-HTML\LightUp\LightUpMask\js" />
       <recent name="C:\Users\Administrator\Desktop\JIMI HTML\JIMI-HTML\LightUp\LightUpMask" />
       <recent name="C:\Users\Administrator\Desktop\JIMI HTML\JIMI-HTML\LightUp\编辑器 5-16" />
-      <recent name="C:\Users\Administrator\Desktop\JIMI HTML\JIMI-HTML\LightUp\编辑器 5-16\img" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Administrator\Desktop\JIMI HTML\JIMI-HTML\LightUp\编辑器 5-16" />
@@ -378,14 +342,14 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.026349615" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.30012855" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24100257" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="版本控制" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="调试" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.013422819" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.013422819" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -442,33 +406,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/InfomationPostWithTitleRadius 5-23/js/labelAdapter/labelAdapter.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="72" column="0" selection-start-line="72" selection-start-column="0" selection-end-line="72" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/InfomationPostWithTitleRadius 5-23/js/jimi-prototype.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="10" column="63" selection-start-line="10" selection-start-column="63" selection-end-line="10" selection-end-column="63" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/InfomationPostWithTitleRadius 5-23/InformationPostWithLightUp.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="279" column="64" selection-start-line="279" selection-start-column="64" selection-end-line="279" selection-end-column="64" />
-          <folding>
-            <element signature="e#9327#10589#0" expanded="false" />
-            <element signature="e#10692#11845#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/InfomationPostWithTitleRadius 5-23/css/lightUp.css">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -505,8 +442,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="511" column="9" selection-start-line="511" selection-start-column="9" selection-end-line="511" selection-end-column="9" />
           <folding>
-            <element signature="e#9327#10589#0" expanded="false" />
-            <element signature="e#10692#11845#0" expanded="false" />
+            <element signature="e#14534#17611#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -516,7 +452,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="28" column="23" selection-start-line="28" selection-start-column="23" selection-end-line="28" selection-end-column="23" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
+            <element signature="n#!!doc" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -555,8 +491,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="511" column="9" selection-start-line="511" selection-start-column="9" selection-end-line="511" selection-end-column="9" />
           <folding>
-            <element signature="e#9327#10589#0" expanded="false" />
-            <element signature="e#10692#11845#0" expanded="false" />
+            <element signature="e#14534#17611#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -566,7 +501,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
+            <element signature="n#!!doc" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -605,8 +540,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#9327#10589#0" expanded="false" />
-            <element signature="e#10692#11845#0" expanded="false" />
+            <element signature="e#14534#17611#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -778,27 +712,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/InfomationPostWithTitleRadius 5-23/js/jimiInputBox-2.0.0.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="42" column="10" selection-start-line="42" selection-start-column="10" selection-end-line="42" selection-end-column="10" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/InfomationPostWithTitleRadius 5-23/css/lightUp.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="54" column="27" selection-start-line="54" selection-start-column="27" selection-end-line="54" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/InfomationPostWithTitleRadius 5-23/split.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state vertical-scroll-proportion="0.0882353">
           <caret line="4" column="19" selection-start-line="4" selection-start-column="19" selection-end-line="4" selection-end-column="19" />
           <folding />
         </state>
@@ -806,8 +722,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/InfomationPostWithTitleRadius 5-23/js/jimi-prototype.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state vertical-scroll-proportion="0.10623229">
           <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/InfomationPostWithTitleRadius 5-23/r.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/InfomationPostWithTitleRadius 5-23/js/jimiHost.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="27" selection-start-line="0" selection-start-column="27" selection-end-line="0" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/InfomationPostWithTitleRadius 5-23/css/lightUp.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="171" column="0" selection-start-line="171" selection-start-column="0" selection-end-line="187" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -815,28 +755,41 @@
     <entry file="file://$PROJECT_DIR$/InfomationPostWithTitleRadius 5-23/js/labelAdapter/labelAdapter.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="57" column="76" selection-start-line="57" selection-start-column="76" selection-end-line="57" selection-end-column="76" />
+          <caret line="23" column="28" selection-start-line="22" selection-start-column="6" selection-end-line="23" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/InfomationPostWithTitleRadius 5-23/InformationPostShare.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.4615386">
+          <caret line="359" column="73" selection-start-line="359" selection-start-column="73" selection-end-line="359" selection-end-column="73" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/InfomationPostWithTitleRadius 5-23/InformationPostWithLightUpVersionIOS.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.5">
-          <caret line="79" column="28" selection-start-line="79" selection-start-column="28" selection-end-line="79" selection-end-column="28" />
-          <folding>
-            <element signature="e#6621#7883#0" expanded="false" />
-          </folding>
+        <state vertical-scroll-proportion="0.46666667">
+          <caret line="219" column="73" selection-start-line="219" selection-start-column="73" selection-end-line="219" selection-end-column="73" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/InfomationPostWithTitleRadius 5-23/js/jimiInputBox-2.0.0.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="151" column="41" selection-start-line="151" selection-start-column="24" selection-end-line="151" selection-end-column="41" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/InfomationPostWithTitleRadius 5-23/InformationPostWithLightUp.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2647059">
-          <caret line="395" column="53" selection-start-line="395" selection-start-column="53" selection-end-line="395" selection-end-column="53" />
+        <state vertical-scroll-proportion="0.62753624">
+          <caret line="391" column="51" selection-start-line="391" selection-start-column="51" selection-end-line="391" selection-end-column="51" />
           <folding>
-            <element signature="e#9327#10589#0" expanded="false" />
-            <element signature="e#10692#11845#0" expanded="false" />
+            <element signature="e#14534#17611#0" expanded="false" />
           </folding>
         </state>
       </provider>

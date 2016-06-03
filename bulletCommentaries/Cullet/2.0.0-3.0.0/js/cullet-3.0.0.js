@@ -197,6 +197,7 @@
             var cellWidth = that.cssCell('width');
 
             this.cssCell('left', (cellLeft - that.speed));
+
             //一开始一定占据屏幕右侧 一旦开始不占据屏幕右侧就让occupied=false
 
             if (that.occupied) {
@@ -206,7 +207,7 @@
             }
 
             //如果移动出屏幕就停止
-            if (this.cssCell('left') < (-this.cssCell('width'))) {
+            if (this.cssCell('left') < -cellWidth) {
                 that.stop();
             }
             ;
@@ -227,7 +228,7 @@
             that.moving = false;
         },
         cssCell: function (property, value) {
-            if (arguments.length == 1) {
+            if (arguments.length==1) {
                 return (parseFloat(this.jqueryMap.$cell.css(property))); //Math.floor就不会出现弹幕偶然卡住的情况了
             }
             else {
@@ -240,7 +241,7 @@
     function CommentCellManage(container, json) {
         this.C = this.container = (typeof container == 'string') ? $(container) : container;
         this.json = json;
-        this.closeable = json.closeable;
+        this.closeable = json.closeable || true;
 
         this.ccmH = $(this.C).height();//可能是半屏
         this.winW = $(window).width();
@@ -261,6 +262,7 @@
             fast: 4,
             superfast: 5,
         };
+
         this.speedKey = 'normal';
 
         this.moveFPS = 80;
@@ -488,9 +490,6 @@
                     that.serverCommentArr = data.data;
                     [].forEach.call(that.serverCommentArr, function (e, i, arr) {
                         that.commentCellArr.push(new CommentCell(that.C, e))
-                        //that.commentCellArr.push(new CommentCell(that.C, e))
-                        //that.commentCellArr.push(new CommentCell(that.C, e))
-                        //that.commentCellArr.push(new CommentCell(that.C, e))
                     })
 
                     that.start(); //加载完成以后开始播放

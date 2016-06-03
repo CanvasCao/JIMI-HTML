@@ -5,21 +5,21 @@
     <meta name="viewport"
           content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no"/>
     <title>资讯</title>
-    <style>
-        input, button, select, textarea {
-            outline: 0 none;
-            border: 0px;
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            appearance: none;
-        }
 
+    <link rel="stylesheet" href="css/lightUp.css"/>
+    <style>
+
+        body{
+            padding-top: 100px;
+        }
         .txtContainer {
             padding: 0 15px;
             box-sizing: border-box;
         }
+        .light{
+
+        }
     </style>
-    <link rel="stylesheet" href="css/lightUp.css"/>
 </head>
 <body>
 <!--<div id='con'>-->
@@ -76,9 +76,7 @@
                 //jqObj
                 $txtContainer = $('.txtContainer');
                 var $light = $('.light');
-                $light.css({top: 1 / 3 * winH});
-                alert(winH);
-
+                $light.css({top: 1 / 3 * winH-120});
 
                 //mask对象
 //                var lum = new LightUpMask($('.lightUpMask')[0], {
@@ -187,16 +185,16 @@
                     ele = document.elementFromPoint(mouseCurrent.x, mouseCurrent.y);
 
                     //文字 图片 离散图
-                    if ($(ele).hasClass('active') || $(ele).parent('.paragraphImg').hasClass('active') || $(ele).closest('.paragraphWeb').hasClass('active')) {
+                    if ($(ele).closest('.sentence').hasClass('active') || $(ele).parent('.paragraphImg').hasClass('active') || $(ele).closest('.paragraphWeb').hasClass('active')) {
                         console.log('已经选中');
                         return true; //
                     }
 
 
-                    if ($(ele).hasClass('sentence')) { //判断当前是类图片还是文字
+                    if ($(ele).closest('.sentence').length) { //判断当前是类图片还是文字
                         eleType = 1;
                         RemoveClass();
-                        $(ele).addClass('active');//#f8e9c5
+                        $(ele).closest('.sentence').addClass('active');//#f8e9c5
                         return true;
                     }
                     else if ($(ele).hasClass('sentenceImg')) {
@@ -218,8 +216,9 @@
                 //得到ajax的参数 返回getContentAjaxParas
                 function GetGetContentAjaxParas() {
                     if (eleType == 1) { //判断当前是类图片还是文字
-                        var paragraph = $(ele).parent().index('.paragraph');
-                        var sentence = $(ele).index('.sentence');
+                        var paragraph = $(ele).closest('.paragraph').index('.paragraph');
+                        var sentence = $(ele).closest('.sentence').index();
+
                         getContentAjaxParas.type = eleType;
                         getContentAjaxParas.paragraph = paragraph;
                         getContentAjaxParas.sentence = sentence;
@@ -310,6 +309,7 @@
                     jsonpCallback: "jsonpcallback",
                     success: function (data) {
                         console.log(JSON.stringify(data));
+                        $('body').animate({opacity: 1});
 
                         //title
                         $('.titleImg').attr('src', data.titleImgUrl);
@@ -393,7 +393,7 @@
                     bridge.registerHandler('testJavascriptHandler', function (data, responseCallback) {
                         if (data.CRDetailRecommendDY) {
                             var dy = data.CRDetailRecommendDY
-                            $light.animate({top: (1 / 3 * winH + dy)}, 'fast', 'swing');
+                            $light.animate({top: (1 / 3 * winH-120 + dy)}, 'fast', 'swing');
                         }
                         else if (data.removeClass) {
                             if (data.removeClass) {
@@ -401,13 +401,13 @@
                             }
                         }
                         else if (data) {
-                                if (data.type == 1) {
-                                    $('.paragraph').eq(data.paragraph).find('.sentence').eq(data.sentence).find('.count').html(data.totalRecords + '吐槽').fadeIn();//显示吐槽数量
-                                } else if (data.type  == 2) {
-                                    $('.paragraphImg').eq(data.paragraph).find('.count').html(data.totalRecords + '吐槽').fadeIn();
-                                } else if (data.type  == 3) {
-                                    $('.paragraphWeb').eq(data.paragraph).find('.count').html(data.totalRecords + '吐槽').fadeIn();//显示吐槽数量  paragraphWeb
-                                }
+                            if (data.type == 1) {
+                                $('.paragraph').eq(data.paragraph).find('.sentence').eq(data.sentence).find('.count').html(data.count + '吐槽').fadeIn();//显示吐槽数量
+                            } else if (data.type == 2) {
+                                $('.paragraphImg').eq(data.paragraph).find('.count').html(data.count + '吐槽').fadeIn();
+                            } else if (data.type == 3) {
+                                $('.paragraphWeb').eq(data.paragraph).find('.count').html(data.count + '吐槽').fadeIn();//显示吐槽数量  paragraphWeb
+                            }
 
                         }
                         var responseData = {'CaoYuhao Says': 'Right back Bitch!!!'}

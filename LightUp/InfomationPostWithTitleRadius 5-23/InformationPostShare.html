@@ -6,24 +6,11 @@
           content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no"/>
     <title>资讯</title>
     <style>
-        input, button, select, textarea {
-            outline: 0 none;
-            border: 0px;
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            appearance: none;
-        }
-
-        body {
-            height: 100%;
-            opacity: 0;
-        }
-
 
         .download {
             position: absolute;
-            right:0px;
-            top:10px;
+            right: 0px;
+            top: 10px;
             height: 35px;
             /*border: 1px solid #000;*/
 
@@ -338,16 +325,16 @@
                     ele = document.elementFromPoint(mouseCurrent.x, mouseCurrent.y);
 
                     //文字 图片 离散图
-                    if ($(ele).hasClass('active') || $(ele).parent('.paragraphImg').hasClass('active') || $(ele).closest('.paragraphWeb').hasClass('active')) {
+                    if ($(ele).closest('.sentence').hasClass('active') || $(ele).parent('.paragraphImg').hasClass('active') || $(ele).closest('.paragraphWeb').hasClass('active')) {
                         console.log('已经选中');
                         return true; //
                     }
 
 
-                    if ($(ele).hasClass('sentence')) { //判断当前是类图片还是文字
+                    if ($(ele).closest('.sentence').length) { //判断当前是类图片还是文字
                         eleType = 1;
                         RemoveClass();
-                        $(ele).addClass('active');//#f8e9c5
+                        $(ele).closest('.sentence').addClass('active');//#f8e9c5
                         return true;
                     }
                     else if ($(ele).hasClass('sentenceImg')) {
@@ -369,8 +356,9 @@
                 //得到ajax的参数 返回getContentAjaxParas
                 function GetGetContentAjaxParas() {
                     if (eleType == 1) { //判断当前是类图片还是文字
-                        var paragraph = $(ele).parent().index('.paragraph');
-                        var sentence = $(ele).index('.sentence');
+                        var paragraph = $(ele).closest('.paragraph').index('.paragraph');
+                        var sentence = $(ele).closest('.sentence').index();
+
                         getContentAjaxParas.type = eleType;
                         getContentAjaxParas.paragraph = paragraph;
                         getContentAjaxParas.sentence = sentence;
@@ -411,17 +399,14 @@
                         success: function (data) {
                             console.log(JSON.stringify(data));
 
-                            showCount();//左上角数量
+                            showCount();
                             lum.show(data.data);
 
 
                             function showCount() {
                                 //if (data.totalRecords) { //0吐槽的时候就会不显示
-                                if(data.totalRecords==0){
-                                    return;
-                                }
                                 if (eleType == 1) {
-                                    $(ele).find('.count').html(data.totalRecords + '吐槽').fadeIn();//显示吐槽数量
+                                    $(ele).closest('.sentence').find('.count').html(data.totalRecords + '吐槽').fadeIn();//显示吐槽数量
                                 } else if (eleType == 2) {
                                     $(ele).parent('.paragraphImg').find('.count').html(data.totalRecords + '吐槽').fadeIn();//显示吐槽数量
                                 } else if (eleType == 3) {
@@ -478,7 +463,6 @@
                     jsonpCallback: "jsonpcallback",
                     success: function (data) {
                         console.log(JSON.stringify(data));
-
                         $('body').animate({opacity: 1});
 
 
@@ -552,31 +536,31 @@
     //    alert(winH); //568
     $('#con').css({width: winW, height: winH})
     $('#con').scrollTop(0);
-
-    var initHeight = 400;
-    $('.title').css({height: initHeight});
-    $('.titleImg').css({height: initHeight});
-    $('#con').scroll(function () {
-        var scrollTop = $(this).scrollTop();
-//        console.log(scrollTop);
-        if (scrollTop >= 100 && scrollTop <= 200) {
-            //y=-20/100x+200
-            //100 20
-            //200  0
-            var a = (-20 / 100 * scrollTop + 40);
-//            console.log( $('.title').css('border-bottom-left-radius'))
-            $('.title').css({
-                'border-bottom-left-radius': '100% ' + a + '%',
-                'border-bottom-right-radius': '100% ' + a + '%',
-            })
-        }
-        else if (scrollTop <= 100 && scrollTop >= 0) {
-            $('.titleImg').css({
-                height: ((100 - scrollTop) + 400)
-            })
-        }
-
-    })
+    //
+    //    var initHeight = 400;
+    //    $('.title').css({height: initHeight});
+    //    $('.titleImg').css({height: initHeight});
+    //    $('#con').scroll(function () {
+    //        var scrollTop = $(this).scrollTop();
+    ////        console.log(scrollTop);
+    //        if (scrollTop >= 100 && scrollTop <= 200) {
+    //            //y=-20/100x+200
+    //            //100 20
+    //            //200  0
+    //            var a = (-20 / 100 * scrollTop + 40);
+    ////            console.log( $('.title').css('border-bottom-left-radius'))
+    //            $('.title').css({
+    //                'border-bottom-left-radius': '100% ' + a + '%',
+    //                'border-bottom-right-radius': '100% ' + a + '%',
+    //            })
+    //        }
+    //        else if (scrollTop <= 100 && scrollTop >= 0) {
+    //            $('.titleImg').css({
+    //                height: ((100 - scrollTop) + 400)
+    //            })
+    //        }
+    //
+    //    })
 
 </script>
 </body>

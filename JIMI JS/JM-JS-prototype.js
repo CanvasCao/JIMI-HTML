@@ -9,6 +9,10 @@
 
 ;
 (function (w, d,$, undefined) {
+	
+	'use strict';
+	
+	
     function CAOOOOOO(container, data) {
         this.C = this.container = (typeof container == 'string') ? $(container) : container;
         this.data = data;
