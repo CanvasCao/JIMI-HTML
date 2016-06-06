@@ -179,12 +179,15 @@
                         var txt = $(that.C).find('input').val();
                         var expression = $(that.C).find('.jimiInputBoxImg img').attr('data-index');
 
-
-                        that.ccm.add({
-                            txt: txt,
-                            expression: expression
-                        });
-
+                        var json = {
+                            "imgUrl": "img/logo.jpg",
+                            "commentsPK": -1,
+                            "uid": "10002",
+                            "userType": "0",
+                            "txt": txt,
+                            "expression": "1"
+                        };
+                        that.ccm.add(json);
 
 //                  
                         $.ajax({

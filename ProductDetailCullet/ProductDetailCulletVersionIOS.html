@@ -36,6 +36,7 @@
             -ms-user-select: text;
             user-select: text;
         }
+
         body {
             overflow: hidden;
         }
@@ -111,6 +112,56 @@
 
         var pid = searchJson.pid;
         ccm.load(pid); //加载弹幕
+
+
+        //JS bridge............................................................................
+        function setupWebViewJavascriptBridge(callback) {
+            if (window.WebViewJavascriptBridge) {
+                return callback(WebViewJavascriptBridge);
+            }
+            if (window.WVJBCallbacks) {
+                return window.WVJBCallbacks.push(callback);
+            }
+            window.WVJBCallbacks = [callback];
+            var WVJBIframe = document.createElement('iframe');
+            WVJBIframe.style.display = 'none';
+            WVJBIframe.src = 'wvjbscheme://__BRIDGE_LOADED__';
+            document.documentElement.appendChild(WVJBIframe);
+            setTimeout(function () {
+                document.documentElement.removeChild(WVJBIframe)
+            }, 0)
+        }
+
+        setupWebViewJavascriptBridge(function (bridge) {
+            //IOSToWeb.............................................................
+            bridge.registerHandler('testJavascriptHandler', function (data, responseCallback) {
+
+                if (data.ccmStart) {
+                    ccm.start();
+                }
+                else if (data.ccmPause) {
+                    ccm.pause();
+                }
+                else if (data.ccmAdd) {
+                    var json = data.ccmAdd;
+//                    {
+//                        "imgUrl": "img/logo.jpg",
+//                        "commentsPK": -1,
+//                        "uid": "10002",
+//                        "userType": "0",
+//                        "txt": txt,
+//                        "expression": "1"
+//                    };
+                    ccm.add(json);
+                }
+                var responseData = {'CaoYuhao Says': 'Right back Bitch!!!'}
+                responseCallback(responseData)
+            })
+
+
+            //webToIOS.............................................................
+            //dom.addEventListener();
+        })
 
     })
 </script>

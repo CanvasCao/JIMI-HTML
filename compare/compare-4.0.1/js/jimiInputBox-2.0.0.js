@@ -160,11 +160,14 @@
             $(this.C).find('.jimiInputBoxSubmit').click(function () {
                 var txt = $(that.C).find('input').val();
                 if (txt == '' || that.hasFocused == false) {
+                    alert(1)
                     return;
                 }
                 else {
 
                     if (this.btnDisable == true) {
+                        alert(1)
+
                         return;
                     }
                     else {
@@ -179,10 +182,15 @@
                         var expression=$(that.C).find('.jimiInputBoxImg img').attr('data-index');
 
 
-                        that.ccm.add({
-                            txt: txt,
-                            expression:expression
-                        });
+                        var json = {
+                            "imgUrl": "img/logo.jpg",
+                            "commentsPK": -1,
+                            "uid": "10002",
+                            "userType": "0",
+                            "txt": txt,
+                            "expression": "1"
+                        };
+                        that.ccm.add(json);
 
 
 //                  

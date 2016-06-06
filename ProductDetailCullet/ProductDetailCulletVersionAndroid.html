@@ -36,6 +36,7 @@
             -ms-user-select: text;
             user-select: text;
         }
+
         body {
             overflow: hidden;
         }
@@ -111,6 +112,38 @@
 
         var pid = searchJson.pid;
         ccm.load(pid); //加载弹幕
+
+
+        //JS bridge............................................................................
+
+        function funFromjs() {
+            var data = androidJsBridge.androidToWeb();
+            if (data.ccmStart) {
+                ccm.start();
+            }
+            else if (data.ccmPause) {
+                ccm.pause();
+            }
+            else if (data.ccmAdd) {
+                var json = data.ccmAdd;
+//                    {
+//                        "imgUrl": "img/logo.jpg",
+//                        "commentsPK": -1,
+//                        "uid": "10002",
+//                        "userType": "0",
+//                        "txt": txt,
+//                        "expression": "1"
+//                    };
+                ccm.add(json);
+            }
+        }
+
+
+        //webToIOS.............................................................
+//        dom.addEventListener('click', function () {
+//            androidJsBridge.webToAndroid("hghkkk");
+//        }, false);
+
 
     })
 </script>

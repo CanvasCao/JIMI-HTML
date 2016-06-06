@@ -1,0 +1,14 @@
+
+ function funFromjs(){  
+        
+   var result = androidJsBridge.androidToWeb();
+   var div = document.getElementById('div');
+        div.innerHTML = result;
+    }  
+
+
+    var btn = document.getElementsByTagName('button')[0];
+    btn.onclick=function(){
+      
+        androidJsBridge.webToAndroid("hghkkk");
+    }
