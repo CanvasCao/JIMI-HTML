@@ -179,8 +179,10 @@
 
 <script src='js/jquery-1.8.2.min.js'></script>
 <script src='js/echartsBasic&Graph.min.js'></script>
-<script src='js/productDetailCanvas-1.0.1.js'></script>
+<script src='js/productDetailCanvas-1.0.2.js'></script>
 <script src='js/Honeycomb-1.0.0.js'></script>
+<script src='js/jimiHost.js'></script>
+
 <script>
     if (!window.location.search) {
         window.location = window.location + '?pid=56829f09efb80c4e26c43eea';
@@ -192,7 +194,8 @@
 
     $.ajax({
         type: "get",
-        url: 'http://n1.jimi.la/apps_V3/formual_safe.php' + window.location.search,
+        url: jimiHost+'/formual_safe.php' + window.location.search,
+
 //            url: 'package.json',
         dataType: "jsonp",
         jsonp: "callback",

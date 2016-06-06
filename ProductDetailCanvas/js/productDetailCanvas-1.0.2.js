@@ -1,13 +1,13 @@
 /*!
- * productDetailCanvas, a JavaScriptPlugIn v1.0.1
+ * productDetailCanvas, a JavaScriptPlugIn v1.0.2
  * http://www.jimi.la/
  *
  * Copyright 2016, CaoYuhao
  * All rights reserved.
- * Date: 2016-5-27 13:37:55
+ * Date:2016-6-6 17:00:07
  */
 
-//横条不显示数量 移动到下面的文字里了
+//正常成分和慎用成分点击也能跳转到产品详情
 ;
 (function (w, d, $, undefined) {
     function ProductDetailCanvas(container, data, ifBtn) {
@@ -44,6 +44,7 @@
             };
         },
         createDom: function () {
+            var that=this;
             var str = "<div class='canvasBox'></div>" +
                 "<div class='nonCanvas'>" +
                 "<div style='height: 20px ;border-top: 1px solid #bdbdbd;'></div>" +
@@ -52,25 +53,27 @@
                 "<div class='barSense'></div>" +
                 "</div>" +
                 "<div class='number'></div>" +
-                "<div class='ulCon'>" +
-                "<ul>" +
-                "<li>" +
-                    "<a>"+
-                "<span class='point' style='background-color:#e5004f'></span>" +
-                "<span style='color:#e5004f'>慎用成分</span>" +
-                "</a>"+
-                "</li>" +
-                "<li>" +
-                "<a>"+
-                "<span class='point' style='background-color:#d2d2d2'></span>" +
-                "<span style='color:#d2d2d2'>正常成分</span>" +
-                "</a>"+
-                "</li>" +
-                "</ul>" +
+
+                    //.....................................................................
+                "<div class='formulaCon'>" +
+                "<div class='formulaTxtSec'>" +
+                "<span class='formulaPoint' style='background-color:#d2d2d2'></span>" +
+                "<span class='formulaTxt' style='color:#d2d2d2'>正常成分</span>" +
                 "</div>" +
+                "<div class='formulaTxtSec'>" +
+                "<span class='formulaPoint' style='background-color:#e5004f'></span>" +
+                "<span class='formulaTxt' style='color:#e5004f'>慎用成分</span>" +
+                "</div>" +
+                "</div>" +
+                    //.....................................................................
+
                 "</div>"
 
-            $(this.C).append(str)
+            $(this.C).append(str);
+
+            //给方辉加的a标签.................................................................
+            $(this.C).find('.formulaTxtSec').append('<a></a>');
+            $(this.C).find('.formulaTxtSec a').attr({'href':that.data.jimiUrl})
 
         },
         initCSS: function () {
@@ -95,7 +98,7 @@
                 height: '12px',
 
             })
-            $(this.C).find('.barSense ').css({
+            $(this.C).find('.barSense').css({
                 'background-color': '#d13052',
                 float: 'right',
                 height: '12px',
@@ -108,24 +111,28 @@
 
             })
 
-            $(this.C).find('.ulCon').css({
-                height: '40px',
-            })
-
-            $(this.C).find('.ulCon li').css({
+            $(this.C).find('.formulaCon').css({
+                display: 'inline-block',
                 float: 'right',
-                'font-size': '12px',
-                position: 'relative',
-                padding: '2px 0',
-                'margin-left':20
             })
 
-            $(this.C).find('.ulCon li span').css({
-                float: 'left'
+            $(this.C).find('.formulaTxtSec').css({
+                display: 'inline-block',
+                'margin-left': '20px',
+                'position': 'relative',
+
             })
+                .find('a').css({//给方辉的a标签
+                    'position': 'absolute',
+                    width: '100%',
+                    height: '100%',
+                    left:0,
+                    top:0,
+
+                })
 
 
-            $(this.C).find('.ulCon li .point').css({
+            $(this.C).find('.formulaPoint').css({
                 float: 'left',
                 width: '10px',
                 height: '10px',
@@ -299,8 +306,8 @@
                 $(that.C).find('.barSafe').css({width: normalPct * 100 + '%'});
 
 
-                $(that.C).find('.ulCon span').eq(3).html('正常成分('+normalLen+')');
-                $(that.C).find('.ulCon span').eq(1).html('慎用成分('+sensLen+')');
+                $(that.C).find('.formulaTxt').eq(0).html('正常成分(' + normalLen + ')');
+                $(that.C).find('.formulaTxt').eq(1).html('慎用成分(' + sensLen + ')');
 
 
                 //canvas下面本来是隐藏的
