@@ -1,7 +1,8 @@
 
  function funFromjs(){  
         
-   var result = androidJsBridge.androidToWeb();
+    var result = JSON.parse(androidJsBridge.androidToWeb());
+
    var div = document.getElementById('div');
         div.innerHTML = result;
     }  

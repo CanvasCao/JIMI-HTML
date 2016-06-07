@@ -41,6 +41,8 @@
 
         $(window).scroll(function () {
             var top=$(this).scrollTop();
+
+            //动态高-容器高
             if(top>=$('body').height()-$(window).height()){
                console.log('append')
                 $('body').append(
@@ -49,6 +51,24 @@
             }
 
         })
+
+
+//        bindWaterfallEvent: function () {
+//            var that = this;
+//            $(this.C).find('.maskSectionCon').scroll(function () {
+//                var top = $(this).scrollTop();
+//                var conH=$(that.C).find('.maskSectionCon').outerHeight();
+//                var scrollH=$(that.C).find('.maskSectionScroll').outerHeight();
+//                //console.log(top);
+//                //console.log($(that.C).find('.maskSectionCon').outerHeight());
+//                //console.log($(that.C).find('.maskSectionScroll').outerHeight());
+//
+//                if (top >= (scrollH-conH)) { //动态高-容器高
+//                    console.log("APPEND!")
+//                    $(that.C).find('.maskSectionScroll').append( "<div style='height: 100px;border-bottom: 10px solid black'></div>" )
+//                }
+//            })
+//        },
     })
 </script>
 </body>

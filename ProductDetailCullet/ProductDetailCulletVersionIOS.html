@@ -136,6 +136,7 @@
             //IOSToWeb.............................................................
             bridge.registerHandler('testJavascriptHandler', function (data, responseCallback) {
 
+                alert(JSON.stringify(data));
                 if (data.ccmStart) {
                     ccm.start();
                 }

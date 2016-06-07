@@ -1,16 +1,17 @@
 /*!
- * productDetailCanvas, a JavaScriptPlugIn v1.0.0
+ * productDetailCanvas, a JavaScriptPlugIn v1.0.2
  * http://www.jimi.la/
  *
  * Copyright 2016, CaoYuhao
  * All rights reserved.
- * Date: 2016-4-21 10:49:49
+ * Date:2016-6-6 17:00:07
  */
 
+//正常成分和慎用成分点击也能跳转到产品详情
 ;
 (function (w, d, $, undefined) {
     function ProductDetailCanvas(container, data, ifBtn) {
-        this.C = this.container = container;
+        this.C = this.container = (typeof container == 'string') ? $(container) : container;//主页自己写容器
         this.data = data;
         this.ifBtn = ifBtn; //下面是不是要加补全成分的按钮 扩展性有点差
         this.config = {};
@@ -43,6 +44,7 @@
             };
         },
         createDom: function () {
+            var that=this;
             var str = "<div class='canvasBox'></div>" +
                 "<div class='nonCanvas'>" +
                 "<div style='height: 20px ;border-top: 1px solid #bdbdbd;'></div>" +
@@ -51,22 +53,61 @@
                 "<div class='barSense'></div>" +
                 "</div>" +
                 "<div class='number'></div>" +
-                "<div class='ulCon'>" +
-                "<ul>" +
-                "<li>" +
-                "<span class='point' style='background-color:#e5004f'></span>" +
-                "<span style='color:#e5004f'>慎用成分</span>" +
-                "</li>" +
-                "<li>" +
-                "<span class='point' style='background-color:#d2d2d2'></span>" +
-                "<span style='color:#d2d2d2'>正常成分</span>" +
-                "</li>" +
-                "</ul>" +
+
+                    //.....................................................................
+                "<div class='formulaCon'>" +
+                "<div class='formulaTxtSec'>" +
+                "<span class='formulaPoint' style='background-color:#d2d2d2'></span>" +
+                "<span class='formulaTxt' style='color:#d2d2d2'>正常成分</span>" +
                 "</div>" +
+                "<div class='formulaTxtSec'>" +
+                "<span class='formulaPoint' style='background-color:#e5004f'></span>" +
+                "<span class='formulaTxt' style='color:#e5004f'>慎用成分</span>" +
+                "</div>" +
+                "</div>" +
+                    //.....................................................................
+
                 "</div>"
 
-            $(this.C).append(str)
+            $(this.C).append(str);
 
+            //给方辉加的a标签.................................................................
+            $(this.C).find('.formulaTxtSec').append('<a></a>');
+            $(this.C).find('.formulaTxtSec a').each(function(i,e){
+                var href=base64_encode('{"altBtnIndex":'+i +'}')
+                $(this).attr({'href':'jimi://'+href})
+            })
+
+
+            function base64_encode(str){
+                var c1, c2, c3;
+                var base64EncodeChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+                var i = 0, len= str.length, string = '';
+
+                while (i < len){
+                    c1 = str.charCodeAt(i++) & 0xff;
+                    if (i == len){
+                        string += base64EncodeChars.charAt(c1 >> 2);
+                        string += base64EncodeChars.charAt((c1 & 0x3) << 4);
+                        string += "==";
+                        break;
+                    }
+                    c2 = str.charCodeAt(i++);
+                    if (i == len){
+                        string += base64EncodeChars.charAt(c1 >> 2);
+                        string += base64EncodeChars.charAt(((c1 & 0x3) << 4) | ((c2 & 0xF0) >> 4));
+                        string += base64EncodeChars.charAt((c2 & 0xF) << 2);
+                        string += "=";
+                        break;
+                    }
+                    c3 = str.charCodeAt(i++);
+                    string += base64EncodeChars.charAt(c1 >> 2);
+                    string += base64EncodeChars.charAt(((c1 & 0x3) << 4) | ((c2 & 0xF0) >> 4));
+                    string += base64EncodeChars.charAt(((c2 & 0xF) << 2) | ((c3 & 0xC0) >> 6));
+                    string += base64EncodeChars.charAt(c3 & 0x3F)
+                }
+                return string
+            }
         },
         initCSS: function () {
             var that = this;
@@ -75,7 +116,8 @@
 
 
             $(this.C).find('.nonCanvas').css({
-                display: 'none'
+                display: 'none',
+                'padding-bottom':'40px',
             })
 
 
@@ -87,24 +129,13 @@
             $(this.C).find('.barSafe').css({
                 backgroundColor: '#d2d2d2',
                 float: 'left',
-                'text-align': 'right',
-                height: '24px',
-                color: '#d13052',
-                'padding-right': '10px',
-                'box-sizing': 'border-box',
-                'line-height': '24px'
+                height: '12px',
 
             })
-            $(this.C).find('.barSense ').css({
+            $(this.C).find('.barSense').css({
                 'background-color': '#d13052',
-                color: '#d2d2d2',
                 float: 'right',
-                'text-align': 'left',
-                height: '24px',
-                'padding-left': '10px',
-                'box-sizing': 'border-box',
-                'line-height': '24px'
-
+                height: '12px',
             })
 
 
@@ -114,24 +145,28 @@
 
             })
 
-            $(this.C).find('.ulCon').css({
-                height: '40px',
-            })
-
-            $(this.C).find('.ulCon li').css({
+            $(this.C).find('.formulaCon').css({
+                display: 'inline-block',
                 float: 'right',
-                width: '30%',
-                'font-size': '12px',
-                position: 'relative',
-                padding: '2px 0',
             })
 
-            $(this.C).find('.ulCon li span').css({
-                float: 'left'
+            $(this.C).find('.formulaTxtSec').css({
+                display: 'inline-block',
+                'margin-left': '20px',
+                'position': 'relative',
+
             })
+                .find('a').css({//给方辉的a标签
+                    'position': 'absolute',
+                    width: '100%',
+                    height: '100%',
+                    left:0,
+                    top:0,
+
+                })
 
 
-            $(this.C).find('.ulCon li .point').css({
+            $(this.C).find('.formulaPoint').css({
                 float: 'left',
                 width: '10px',
                 height: '10px',
@@ -143,9 +178,9 @@
         bindEvent: function () {
             var that = this;
             var data = this.data;
-            //初始化数据 echartJson 和canvas宽高
-            var RATE = 420 / 420;
 
+
+            //初始化数据 echartJson 和canvas宽高
             $canvas = $(this.C).find('.canvasBox');
             $canvas.css({height: 300, 'overflow': 'hidden'}); //不用设宽
 
@@ -305,13 +340,8 @@
                 $(that.C).find('.barSafe').css({width: normalPct * 100 + '%'});
 
 
-                if (normalLen > sensLen) {
-                    //说明安全的多 多的一边显示少的数量
-                    $(that.C).find('.barSafe').html(sensLen + '/' + compLen);
-                }
-                else {
-                    $(that.C).find('.barSense').html(normalLen + '/' + compLen);
-                }
+                $(that.C).find('.formulaTxt').eq(0).html('正常成分(' + normalLen + ')');
+                $(that.C).find('.formulaTxt').eq(1).html('慎用成分(' + sensLen + ')');
 
 
                 //canvas下面本来是隐藏的

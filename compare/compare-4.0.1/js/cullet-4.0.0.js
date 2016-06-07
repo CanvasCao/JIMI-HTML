@@ -297,10 +297,10 @@
 
         //弹幕速度属性
         this.speedHash = {
-            slow: 2,
-            normal: 3,
-            fast: 4,
-            superfast: 5,
+            slow: 1,
+            normal: 2,
+            fast: 3,
+            superfast: 4,
         };
         this.speedKey = 'normal';
 

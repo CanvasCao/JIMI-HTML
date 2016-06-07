@@ -42,39 +42,54 @@
 
 
 <script src='js/jquery-1.8.3.min.js'></script>
-<script src='js/lightUpMask-1.0.1.js'></script>
+<script src='js/lightUpMask-1.0.2.js'></script>
 <script src='js/jimiInputBox-2.0.0.js'></script>
 <script>
     $(function () {
+
+        if (!window.location.search) {
+            window.location = window.location + '?rid=466&uid=10450&jsonpcallback=1';
+        }
+
+        //searchJson
+        String.prototype.searchToJson = function () {
+            var search = window.location.search.replace('?', "");
+            var kvArr = search.split('&');
+            var finalJson = {}
+            for (i = 0; i < kvArr.length; i++) {
+                var kvSplit = kvArr[i].split('=');
+                finalJson[kvSplit[0].toLowerCase()] = kvSplit[1];
+            }
+            return finalJson;
+        }
+
+        window.searchJson = searchJson = window.location.search.searchToJson();
+
+
+        window.ajaxGetData = {
+            curPage: 1,
+            jsonpcallback: "1",
+            paragraph: 0,
+            perPage: 3,
+            rid: "466",
+            sentence: 0,
+            type: 1,
+            uid: "10450",
+        }
+
         var lum = new LightUpMask($('.lightUpMask')[0], {
             hideCallback: function () {
             },
             showCallback: function () {
-
-            }
+            },
+            ifUid: searchJson.uid ? true : false,
+            ajaxGetData:ajaxGetData,
         });
 
 
         $('#btn').click(function () {
-            $.ajax({
-                type: "get",
-//                url: 'http://n1.jimi.la/apps_T1/getLightUp.php',
-                url: 'content.json',
-                data: {},
-                dataType: "jsonp",
-                jsonp: "callback",
-                jsonpCallback: "jsonpcallback",
-                success: function (data) {
-                    console.log(JSON.stringify(data));
-                    var data = data.data;
-
-                    lum.show(data);
-                },
-                error: function (err) {
-                    console.log('ERROR!');
-                    console.log(err);
-                }
-            });
+            lum.show();
+            lum.ajaxGetContent();
         })
     })
 </script>

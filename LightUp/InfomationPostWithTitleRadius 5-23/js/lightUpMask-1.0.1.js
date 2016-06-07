@@ -42,7 +42,7 @@
 
             if(that.data.ifUid){
                 var jimiInputBox = new JimiInputBox($(that.C).find('.maskInputBox')[0], null);
-                this.jimiInputBox = jimiInputBox;
+                that.jimiInputBox = jimiInputBox;
             }
 
         },

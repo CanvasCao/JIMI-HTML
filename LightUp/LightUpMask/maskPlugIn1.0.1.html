@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no"/>
+
+    <title></title>
+    <style type="text/css">
+        * {
+            padding: 0;
+            margin: 0;
+            text-decoration: none;
+            list-style: none;
+            font-family: '微软雅黑';
+            /**/
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+            -webkit-text-size-adjust: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        body {
+            /*height: 1000px;*/
+            box-sizing: border-box;
+            padding: 15px;
+        }
+
+        input, button, select, textarea {
+            outline: 0 none;
+            border: 0px;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+        }
+    </style>
+</head>
+<body>
+<button id='btn'> CLICK!!!</button>
+<div class='lightUpMask'></div>
+
+
+<script src='js/jquery-1.8.3.min.js'></script>
+<script src='js/lightUpMask-1.0.1.js'></script>
+<script src='js/jimiInputBox-2.0.0.js'></script>
+<script>
+    $(function () {
+
+        if (!window.location.search) {
+            window.location = window.location + '?rid=466&uid=10450&jsonpcallback=1';
+        }
+
+        //searchJson
+        String.prototype.searchToJson = function () {
+            var search = window.location.search.replace('?', "");
+            var kvArr = search.split('&');
+            var finalJson = {}
+            for (i = 0; i < kvArr.length; i++) {
+                var kvSplit = kvArr[i].split('=');
+                finalJson[kvSplit[0].toLowerCase()] = kvSplit[1];
+            }
+            return finalJson;
+        }
+
+        window.searchJson = searchJson = window.location.search.searchToJson();
+
+
+        var lum = new LightUpMask($('.lightUpMask')[0], {
+            hideCallback: function () {
+            },
+            showCallback: function () {
+            },
+            ifUid: searchJson.uid ? true : false,
+        });
+
+
+        $('#btn').click(function () {
+            $.ajax({
+                type: "get",
+//                url: 'http://n1.jimi.la/apps_T1/getLightUp.php',
+                url: 'content.json',
+                data: {},
+                dataType: "jsonp",
+                jsonp: "callback",
+                jsonpCallback: "jsonpcallback",
+                success: function (data) {
+                    console.log(JSON.stringify(data));
+                    var data = data.data;
+
+                    lum.show(data);
+                },
+                error: function (err) {
+                    console.log('ERROR!');
+                    console.log(err);
+                }
+            });
+        })
+    })
+</script>
+</body>
+</html>
