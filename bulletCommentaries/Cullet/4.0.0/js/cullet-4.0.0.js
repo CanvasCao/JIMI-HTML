@@ -544,9 +544,9 @@
                     that.changePname(data.pname);
                     that.serverCommentArr = data.data;
 
-                    //setTimeout(function () {
+                    setTimeout(function () {
                     that.start(); //加载完成以后开始播放
-                    //}, 3000)
+                    }, 3000)
                 },
                 error: function (err) {
                     console.log('LOAD ERROR!')

@@ -12,22 +12,13 @@
     function JimiInputBox(container, data) {
         this.C = this.container = (typeof container == 'string') ? $(container) : container;//主页自己写容器
         this.data = data;
+        this.lum = data.lum;
         this.config = {
             winW: $(window).width(),
             winH: $(window).height(),
         };
         this.JM = this.jqueryMap = {};
         this.hasFocused = false;
-        this.btnDisable = false;
-
-
-        this.type = 1;
-        this.paragraph = 0;
-        this.sentence = 0;
-        this.content = '这是一条评论';
-        this.uid = 10450;
-        this.rid = 469;
-
         this.init();
     }
 
@@ -128,9 +119,6 @@
 
             //发送按钮的事件
             $(this.C).find('.jimiInputBoxSubmit').click(function () {
-
-
-                console.log(that.btnDisable)
                 var txt = $(that.C).find('input').val();
                 if (txt == '' || that.hasFocused == false) {
                     return;
@@ -147,13 +135,40 @@
                         }, 2000)
 
 
-                        //ajax
+                        //ajax Insert
                         var txt = $(that.C).find('input').val();
-                        insertContentAjax(txt);
+
+                        getContentAjaxParas.content=txt;
+                        $.ajax({
+                            type: "post",
+                            url: jimiHost+'/postLightUp.php',
+//                                    url: 'content.json',
+                            data: getContentAjaxParas,
+                            dataType: "jsonp",
+                            jsonp: "callback",
+                            jsonpCallback: "jsonpcallback",
+                            cache: true,
+                            success: function (data) {
+                                console.log(JSON.stringify(data));
+                                //var data = data.data;
+                                that.lum.prependContent({
+                                    userImgUrl: searchJson.uimg,
+                                    userName: searchJson.uname,
+                                    content: txt,
+                                })
+
+                                window.updateCount();
+
+                            },
+                            error: function (err) {
+                                console.log('ERROR!');
+                                console.log(err);
+                            }
+                        });
+
 
                         //clearInput
                         $(that.C).find('input').val("");
-
 
                     }
 
@@ -168,6 +183,7 @@
             var that = this;
             $(that.C).find('input').css({color: 'gray'}).val('随便说点什么');
             that.hasFocused = false;
+
         },
         btnDisabled: function () {
             var that = this;

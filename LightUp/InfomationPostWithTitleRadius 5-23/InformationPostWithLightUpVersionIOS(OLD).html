@@ -9,16 +9,14 @@
     <link rel="stylesheet" href="css/lightUp.css"/>
     <style>
 
-        body {
+        body{
             padding-top: 100px;
         }
-
         .txtContainer {
             padding: 0 15px;
             box-sizing: border-box;
         }
-
-        .light {
+        .light{
 
         }
     </style>
@@ -35,7 +33,7 @@
 
 <!--这里保存了扩展的原型方法-->
 <script src='js/jimi-prototype.js'></script>
-<script src='js/spa/productDetailCanvas-1.0.2.js'></script>
+<script src='js/spa/productDetailCanvas-1.0.0.js'></script>
 <script src='js/spa/echartsBasic&Graph.min.js'></script>
 <script src='js/spa/alternateBtn-1.0.0.js'></script>
 <script src='js/spa/spa-alertCon.js'></script>
@@ -44,30 +42,29 @@
 <script src='js/spa/spa-middleComponent-1.0.2.js'></script>
 <script src='js/spa/navBar-1.0.0.js'></script>
 <script src='js/labelAdapter/labelAdapter.js'></script>
-<script src='js/lightUpMask-1.0.2.js'></script>
-<script src='js/jimiInputBox-2.0.0.js'></script>
-<script src='js/jimiHost.js'></script>
-
+<!--<script src='js/lightUpMask-1.0.1.js'></script>-->
+<!--<script src='js/jimiInputBox-2.0.0.js'></script>-->
 <script>
     $(function () {
                 if (!window.location.search) {
-                    window.location = window.location + '?rid=466&uid=10450&uImg=http://7xo2me.com1.z0.glb.clouddn.com/images/17RTW5G74N2J.jpg&uName=方辉真帅&jsonpcallback=1';
+                    window.location = window.location + '?rid=466&uid=10002&token=57458c0fac1a4';
                 }
 
 
                 var winH = $(window).height();
                 var winW = $(window).width();
 
-                //searchJson
-                window.searchJson = window.location.search.searchToJson();
-                console.log(searchJson)
+                //searchJson.................................................................................
+                var searchJson = (window.location.search.searchToJson());
+                var ifUid = searchJson.uid ? true : false;
+
+
                 //insert和get共享的paras
-                window.getContentAjaxParas = {
+                var getContentAjaxParas = {
                     perPage: 3,
                     curPage: 1,//当前页数1 永远先请求第一页
                     rid: searchJson.rid,
                     uid: searchJson.uid,
-                    jsonpcallback: searchJson.jsonpcallback,
                 };
 
 
@@ -75,14 +72,15 @@
                 var ele = null;
                 var eleType = 0;
 
+
                 //jqObj
-                var $txtContainer = $('.txtContainer');
+                $txtContainer = $('.txtContainer');
                 var $light = $('.light');
-                $light.css({top: 1 / 3 * winH - 120});
+                $light.css({top: 1 / 3 * winH-120});
 
                 //mask对象
 //                var lum = new LightUpMask($('.lightUpMask')[0], {
-//                    ifUid: searchJson.uid ? true : false,
+//                    ifUid: ifUid,
 //                    hideCallback: function () {
 //                        RemoveClass();
 //                        $light.css({display: 'block'}).animate({opacity: 1}, 'fast', 'swing', function () {
@@ -92,8 +90,7 @@
 //                        $light.animate({opacity: 0}, 'fast', 'swing', function () {
 //                            $light.css({display: 'none'});
 //                        });
-//                    },
-//                    ajaxGetData: getContentAjaxParas,
+//                    }
 //                });
 
                 //点亮标签相关 全局变量
@@ -118,8 +115,10 @@
                     }
                 }
 
-
                 $('.light')[0].addEventListener('touchstart', function (e) {
+//            e.preventDefault();
+
+                    //light不能拖动
 //                    if (lum.ifShow) {
 //                        e.preventDefault();
 //                        return;
@@ -167,12 +166,12 @@
 //
 //                        var lightUpSucceed = LightUp();
 //                        if (lightUpSucceed) {
-//                            getContentAjaxParas = GetGetContentAjaxParas();
-//                            getContentAjaxParas.curPage = 1; //点亮成功一定是请求第一页
 //
-//                            lum.clear();
-//                            lum.show();
-//                            lum.ajaxGetContent();
+//                            getContentAjaxParas = GetGetContentAjaxParas();
+//
+////                            console.log(getContentAjaxParas);
+//
+////                            getContentAjax(getContentAjaxParas);
 //                        }
 //                        ifDragging = false;
 //                        ifMoved = false;
@@ -180,17 +179,6 @@
 //                    $light.css(lightState.touchEnd);
 //                }, false)
 
-                //删除类名
-                function RemoveClass() {
-                    $txtContainer.find('.paragraphImg,.paragraphWeb,.sentence').removeClass('active'); //removeAll
-                }
-
-                function AddClass($ele, className, className2) {
-                    $ele.addClass(className);
-                    if (className2) {
-                        $ele.addClass(className2);
-                    }
-                }
 
                 //UI层点亮函数 返回布尔是否点亮成功
                 function LightUp() {
@@ -203,22 +191,22 @@
                     }
 
 
-                    if ($(ele).closest('.sentence').length) { //判断当前是类是文字
+                    if ($(ele).closest('.sentence').length) { //判断当前是类图片还是文字
                         eleType = 1;
                         RemoveClass();
-                        AddClass($(ele).closest('.sentence'), 'active');
+                        $(ele).closest('.sentence').addClass('active');//#f8e9c5
                         return true;
                     }
                     else if ($(ele).hasClass('sentenceImg')) {
                         eleType = 2;
                         RemoveClass();
-                        AddClass($(ele).parent('.paragraphImg'), 'active');
+                        $(ele).parent('.paragraphImg').addClass('active');//一个元素的伪类相当于 这个元素的子类
                         return true;
 
                     } else if ($(ele).closest('.paragraphWeb').length) {
                         eleType = 3;
                         RemoveClass();
-                        AddClass($(ele).closest('.paragraphWeb'), 'active');
+                        $(ele).closest('.paragraphWeb').addClass('active');
                         return true;
                     }
 
@@ -229,17 +217,7 @@
                 function GetGetContentAjaxParas() {
                     if (eleType == 1) { //判断当前是类图片还是文字
                         var paragraph = $(ele).closest('.paragraph').index('.paragraph');
-                        var sentence;
-
-                        var $sentence = $(ele).closest('.sentence');
-                        var $parent = $(ele).closest('.sentence').parent();
-                        var $sens = $parent.find('.sentence');
-                        for (i = 0; i < $sens.length; i++) {
-                            if ($sentence[0] == $sens.eq(i)[0]) {
-                                sentence=i;
-                                break;
-                            }
-                        }
+                        var sentence = $(ele).closest('.sentence').index();
 
                         getContentAjaxParas.type = eleType;
                         getContentAjaxParas.paragraph = paragraph;
@@ -262,58 +240,16 @@
                     }
                 }
 
-
-                //数据库执行select的Ajax 在lightUpMask对象里
-                function selectContentAjax(getContentAjaxParas) {
-                }
-
-                //数据库执行insert的Ajax 在inputBox里
-                function insertContentAjax(content) {
+                //删除类名
+                function RemoveClass() {
+                    $txtContainer.find('.paragraphImg,.paragraphWeb,.sentence').removeClass('active'); //removeAll
                 }
 
 
-                //两种可能执行addCount方法 1初始化的时候 2从服务器拿到内容的时候
-                //显示数字 加init类名
-                function addCount(eleType, paragraph, sentence, count) {
-                    if (count == 0) { //0吐槽的时候就会不显示
-                        return;
-                    }
-
-                    var $ele = null;
-//                    count前面的元素加addClass init类名
-                    if (eleType == 1) {
-                        $ele = $('.paragraph').eq(paragraph).find('.sentence').eq(sentence);
-                    } else if (eleType == 2) {
-                        $ele = $('.paragraphImg').eq(paragraph);
-                    } else if (eleType == 3) {
-                        $ele = $('.paragraphWeb').eq(paragraph);
-                    }
-
-                    $ele.addClass('init').find('.count').html(count + '吐槽').fadeIn();//显示吐槽数量
-                }
-
-                function updateCount() {
-                    var $ele = null;
-                    var para = getContentAjaxParas;
-//                    count前面的元素加addClass init类名
-                    if (para.type == 1) {
-                        $ele = $('.paragraph').eq(para.paragraph).find('.sentence').eq(para.sentence);
-                    } else if (para.type == 2) {
-                        $ele = $('.paragraphImg').eq(para.paragraph);
-                    } else if (para.type == 3) {
-                        $ele = $('.paragraphWeb').eq(para.paragraph);
-                    }
-
-                    var count = parseInt($ele.find('.count').html());
-                    $ele.addClass('init').find('.count').html(count + 1 + '吐槽').fadeIn();//显示吐槽数量
-                }
-
-                window.updateCount = updateCount;
-
-                //这里的ajax只是为了绑定起始数据
+                //这里的ajax只是为了绑定数据
                 $.ajax({
                     type: "get",
-                    url: jimiHost + '/informationPost.php' + window.location.search,
+                    url: 'http://n1.jimi.la/apps_T1/informationPost.php' + window.location.search,
 //            url: 'r.json',
                     dataType: "jsonp",
                     jsonp: "callback",
@@ -325,7 +261,7 @@
                         //title
                         $('.titleImg').attr('src', data.titleImgUrl);
                         $('.titleTextTop').html(data.title);
-                        $('.titleTextRead').html(data.read || 1);
+                        $('.titleTextRead').html(data.read);
                         $('.titleTextStar').html(data.star || 1);
 
                         //txtContainer容器 绑定数据
@@ -339,17 +275,6 @@
 
                         (function ajaxComplete(index) {
                             if (index == $jimiYunYing.length) {
-
-                                //这里代表数据绑定完可以显示有点亮的数据
-                                initCss(data.lightUpData);
-                                function initCss(lightUpData) {
-//                                    console.log(JSON.stringify(lightUpData));
-                                    [].forEach.call(lightUpData, function (e, i, arr) {
-                                        addCount(e.type, e.paragraph, e.sentence, e.count);
-                                    })
-                                }
-
-
                                 console.log('下标溢出');
                                 return;
                             }
@@ -358,13 +283,14 @@
                             var pid = jqObj.attr('data-pid');
                             $.ajax({
                                 type: "get",
-                                url: jimiHost + '/formual_safe.php?pid=' + pid,
+                                url: 'http://n1.jimi.la/apps_T1/formual_safe.php?pid=' + pid,
                                 dataType: "jsonp",
                                 jsonp: "callback",
                                 jsonpCallback: "jsonpcallback",
                                 success: function (data) {
 //                                  console.log(JSON.stringify(data))
                                     jqObj.html('');
+
 
                                     var header = new Header(jqObj[0], data);
                                     var navBar = new NavBar(jqObj[0], data);
@@ -414,7 +340,7 @@
                     bridge.registerHandler('testJavascriptHandler', function (data, responseCallback) {
                         if (data.CRDetailRecommendDY) {
                             var dy = data.CRDetailRecommendDY
-                            $light.animate({top: (1 / 3 * winH - 120 + dy)}, 'fast', 'swing');
+                            $light.animate({top: (1 / 3 * winH-120 + dy)}, 'fast', 'swing');
                         }
                         else if (data.removeClass) {
                             if (data.removeClass) {
@@ -422,7 +348,14 @@
                             }
                         }
                         else if (data) {
-                            addCount(data.type, data.paragraph, data.sentence, data.count);
+                            if (data.type == 1) {
+                                $('.paragraph').eq(data.paragraph).find('.sentence').eq(data.sentence).find('.count').html(data.count + '吐槽').fadeIn();//显示吐槽数量
+                            } else if (data.type == 2) {
+                                $('.paragraphImg').eq(data.paragraph).find('.count').html(data.count + '吐槽').fadeIn();
+                            } else if (data.type == 3) {
+                                $('.paragraphWeb').eq(data.paragraph).find('.count').html(data.count + '吐槽').fadeIn();//显示吐槽数量  paragraphWeb
+                            }
+
                         }
                         var responseData = {'CaoYuhao Says': 'Right back Bitch!!!'}
                         responseCallback(responseData)
@@ -454,11 +387,14 @@
                         $light.css(lightState.touchEnd);
                     }, false)
                 })
+
+
             }
     )
 
 
 </script>
+
 
 </body>
 </html>

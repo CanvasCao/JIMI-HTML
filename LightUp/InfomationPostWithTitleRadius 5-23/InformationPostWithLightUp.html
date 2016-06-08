@@ -144,20 +144,27 @@
 <script>
     $(function () {
                 if (!window.location.search) {
-                    window.location = window.location + '?rid=466&uid=10450&jsonpcallback=1';
+                    window.location = window.location + '?rid=466&uid=10450&uImg=http://7xo2me.com1.z0.glb.clouddn.com/images/17RTW5G74N2J.jpg&uName=方辉真帅&jsonpcallback=1';
                 }
 
-                //searchJson
-                var searchJson = window.location.search.searchToJson();
 
+                var winH = $(window).height();
+                var winW = $(window).width();
+
+                //searchJson
+                window.searchJson = window.location.search.searchToJson();
+                console.log(searchJson)
                 //insert和get共享的paras
-                var getContentAjaxParas = {
+                window.getContentAjaxParas = {
                     perPage: 3,
                     curPage: 1,//当前页数1 永远先请求第一页
                     rid: searchJson.rid,
                     uid: searchJson.uid,
                     jsonpcallback: searchJson.jsonpcallback,
                 };
+
+                //保存了点亮的数字的对象数组
+                window.lightUpData = null;
 
                 //light的clientXY所在的dom元素的位置和类型
                 var ele = null;
@@ -180,7 +187,7 @@
                             $light.css({display: 'none'});
                         });
                     },
-                    ajaxGetData:getContentAjaxParas,
+                    ajaxGetData: getContentAjaxParas,
                 });
 
                 //点亮标签相关 全局变量
@@ -255,7 +262,7 @@
                         var lightUpSucceed = LightUp();
                         if (lightUpSucceed) {
                             getContentAjaxParas = GetGetContentAjaxParas();
-                            getContentAjaxParas.curPage=1;
+                            getContentAjaxParas.curPage = 1; //点亮成功一定是请求第一页
 
                             lum.clear();
                             lum.show();
@@ -316,7 +323,17 @@
                 function GetGetContentAjaxParas() {
                     if (eleType == 1) { //判断当前是类图片还是文字
                         var paragraph = $(ele).closest('.paragraph').index('.paragraph');
-                        var sentence = $(ele).closest('.sentence').index();
+                        var sentence;
+
+                        var $sentence = $(ele).closest('.sentence');
+                        var $parent = $(ele).closest('.sentence').parent();
+                        var $sens = $parent.find('.sentence');
+                        for (i = 0; i < $sens.length; i++) {
+                            if ($sentence[0] == $sens.eq(i)[0]) {
+                                sentence=i;
+                                break;
+                            }
+                        }
 
                         getContentAjaxParas.type = eleType;
                         getContentAjaxParas.paragraph = paragraph;
@@ -340,57 +357,13 @@
                 }
 
 
-                //数据库执行select的Ajax
-//                function getContentAjax(getContentAjaxParas) {
-//                    $.ajax({
-//                        type: "post",
-//                        url: jimiHost + '/getLightUp.php',
-////                                    url: 'content.json',
-//                        data: getContentAjaxParas,
-//                        dataType: "jsonp",
-//                        jsonp: "callback",
-//                        jsonpCallback: "jsonpcallback",
-//                        cache: true,
-//                        success: function (data) {
-//                            console.log(JSON.stringify(data));
-//                            lum.show();
-//                            lum.appendContent(data.data);
-//
-//                        },
-//                        error: function (err) {
-//                            console.log('ERROR!');
-//                            console.log(err);
-//                        }
-//                    });
-//                }
-
-
-                //数据库执行insert的Ajax
-                function insertContentAjax(content) {
-                    getContentAjaxParas.content = content;
-                    $.ajax({
-                        type: "post",
-                        url: jimiHost + 'postLightUp.php',
-//                                    url: 'content.json',
-                        data: getContentAjaxParas,
-                        dataType: "jsonp",
-                        jsonp: "callback",
-                        jsonpCallback: "jsonpcallback",
-                        cache: true,
-                        success: function (data) {
-                            console.log(JSON.stringify(data));
-                            //var data = data.data;
-
-                        },
-                        error: function (err) {
-                            console.log('ERROR!');
-                            console.log(err);
-                        }
-                    });
+                //数据库执行select的Ajax 在lightUpMask对象里
+                function selectContentAjax(getContentAjaxParas) {
                 }
 
-                //向顶层暴露方法
-                window.insertContentAjax = insertContentAjax;
+                //数据库执行insert的Ajax 在inputBox里
+                function insertContentAjax(content) {
+                }
 
 
                 //两种可能执行addCount方法 1初始化的时候 2从服务器拿到内容的时候
@@ -399,7 +372,6 @@
                     if (count == 0) { //0吐槽的时候就会不显示
                         return;
                     }
-
 
                     var $ele = null;
 //                    count前面的元素加addClass init类名
@@ -413,6 +385,24 @@
 
                     $ele.addClass('init').find('.count').html(count + '吐槽').fadeIn();//显示吐槽数量
                 }
+
+                function updateCount() {
+                    var $ele = null;
+                    var para = getContentAjaxParas;
+//                    count前面的元素加addClass init类名
+                    if (para.type == 1) {
+                        $ele = $('.paragraph').eq(para.paragraph).find('.sentence').eq(para.sentence);
+                    } else if (para.type == 2) {
+                        $ele = $('.paragraphImg').eq(para.paragraph);
+                    } else if (para.type == 3) {
+                        $ele = $('.paragraphWeb').eq(para.paragraph);
+                    }
+
+                    var count = parseInt($ele.find('.count').html());
+                    $ele.addClass('init').find('.count').html(count + 1 + '吐槽').fadeIn();//显示吐槽数量
+                }
+
+                window.updateCount = updateCount;
 
                 //这里的ajax只是为了绑定起始数据
                 $.ajax({
@@ -511,17 +501,17 @@
     var initHeight = 400;
     $('.title').css({height: initHeight});
     $('.titleImg').css({height: initHeight});
-    $('#con').scroll(function () {
-        var scrollTop = $(this).scrollTop();
-//        console.log(scrollTop);
-
-        if (scrollTop <= 100 && scrollTop >= 0) {
-            $titleImg.css({
-                height: ((100 - scrollTop) + 400)
-            })
-        }
-
-    })
+    //    $('#con').scroll(function () {
+    //        var scrollTop = $(this).scrollTop();
+    ////        console.log(scrollTop);
+    //
+    //        if (scrollTop <= 100 && scrollTop >= 0) {
+    //            $titleImg.css({
+    //                height: ((100 - scrollTop) + 400)
+    //            })
+    //        }
+    //
+    //    })
 
 </script>
 </body>

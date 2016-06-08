@@ -44,11 +44,12 @@
 <script src='js/jquery-1.8.3.min.js'></script>
 <script src='js/lightUpMask-1.0.2.js'></script>
 <script src='js/jimiInputBox-2.0.0.js'></script>
+<script src='js/jimiHost.js'></script>
 <script>
     $(function () {
 
         if (!window.location.search) {
-            window.location = window.location + '?rid=466&uid=10450&jsonpcallback=1';
+            window.location = window.location + '?rid=466&uid=10450&uimg=http://7xo2me.com1.z0.glb.clouddn.com/images/17RTW5G74N2J.jpg&uname=方辉真帅&jsonpcallback=1';
         }
 
         //searchJson
@@ -58,12 +59,13 @@
             var finalJson = {}
             for (i = 0; i < kvArr.length; i++) {
                 var kvSplit = kvArr[i].split('=');
-                finalJson[kvSplit[0].toLowerCase()] = kvSplit[1];
+                finalJson[kvSplit[0].toLowerCase()] = decodeURI(kvSplit[1]);
             }
             return finalJson;
         }
 
         window.searchJson = searchJson = window.location.search.searchToJson();
+        console.log(window.searchJson);
 
 
         window.ajaxGetData = {
@@ -83,11 +85,13 @@
             showCallback: function () {
             },
             ifUid: searchJson.uid ? true : false,
-            ajaxGetData:ajaxGetData,
+            ajaxGetData: ajaxGetData,
         });
 
 
         $('#btn').click(function () {
+            ajaxGetData.curPage = 1;
+            lum.clear();
             lum.show();
             lum.ajaxGetContent();
         })

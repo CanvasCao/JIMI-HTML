@@ -33,7 +33,7 @@
             $(this.C).find('.navBar').append("<img class='navImg' src='" +'img/c.png' + "' />")
             $(this.C).find('.navBar').append("<div class='navText'>" + '成分分布'+ "</div>")
             $(this.C).find('.navBar').append("<img class='navArrow' src='" + 'img/arrow.png' + "' height='12px'/>");
-            $(this.C).find('.navBar').append("<a href="+ that.data.jimiUrl+"'></a>")
+            $(this.C).find('.navBar').append("<a href="+ that.data.jimiUrl+"></a>")
         },
         initCSS: function () {
             var that = this;

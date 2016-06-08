@@ -70,7 +70,8 @@
     $(function () {
         if (!window.location.search) {
 //            window.location = window.location + '?pid=56829da0efb80c4e26c3e3a2&uid=10002';
-            window.location = window.location + '?pid=56829f6defb80c4e26c457f6&uid=10002';
+//            window.location = window.location + '?pid=56829f6defb80c4e26c457f6&uid=10002';
+            window.location = window.location + '?pid=56f57830efb80c57428c730f&uid=10002';
 
         }
 
@@ -80,7 +81,7 @@
             var finalJson = {}
             for (i = 0; i < kvArr.length; i++) {
                 var kvSplit = kvArr[i].split('=');
-                finalJson[kvSplit[0].toLowerCase()] = kvSplit[1]
+                finalJson[kvSplit[0].toLowerCase()] = kvSplit[1];
             }
             return finalJson;
         }

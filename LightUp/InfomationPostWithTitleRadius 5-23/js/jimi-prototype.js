@@ -33,7 +33,8 @@ String.prototype.searchToJson = function () {
     var finalJson = {}
     for (i = 0; i < kvArr.length; i++) {
         var kvSplit = kvArr[i].split('=');
-        finalJson[kvSplit[0].toLowerCase()] = kvSplit[1];
+        finalJson[kvSplit[0].toLowerCase()] = decodeURI(kvSplit[1]);
+
     }
     return finalJson;
 }

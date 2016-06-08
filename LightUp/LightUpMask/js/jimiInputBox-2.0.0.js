@@ -12,12 +12,13 @@
     function JimiInputBox(container, data) {
         this.C = this.container = (typeof container == 'string') ? $(container) : container;//主页自己写容器
         this.data = data;
+        this.lum = data.lum;
         this.config = {
             winW: $(window).width(),
             winH: $(window).height(),
         };
         this.JM = this.jqueryMap = {};
-        this.hasFocused=false;
+        this.hasFocused = false;
         this.init();
     }
 
@@ -107,8 +108,8 @@
 
             //input的focus和blur事件
             $(this.C).find('input').focus(function () {
-                if(that.hasFocused==false){
-                    that.hasFocused=true;
+                if (that.hasFocused == false) {
+                    that.hasFocused = true;
                     $(this).val('').css({color: 'black'});
                 }
 
@@ -119,18 +120,81 @@
             //发送按钮的事件
             $(this.C).find('.jimiInputBoxSubmit').click(function () {
                 var txt = $(that.C).find('input').val();
+                if (txt == '' || that.hasFocused == false) {
+                    return;
+                }
+                else {
+
+                    if (this.btnDisable == true) {
+                        return;
+                    }
+                    else {
+                        that.btnDisabled();
+                        setTimeout(function () {
+                            that.btnAbled();
+                        }, 2000)
+
+
+                        //ajax Insert
+                        var txt = $(that.C).find('input').val();
+
+                        ajaxGetData.content=txt;
+                        $.ajax({
+                            type: "post",
+                            url: jimiHost+'/postLightUp.php',
+//                                    url: 'content.json',
+                            data: ajaxGetData,
+                            dataType: "jsonp",
+                            jsonp: "callback",
+                            jsonpCallback: "jsonpcallback",
+                            cache: true,
+                            success: function (data) {
+                                console.log(JSON.stringify(data));
+                                //var data = data.data;
+                                that.lum.prependContent({
+                                    userImgUrl: searchJson.uimg,
+                                    userName: searchJson.uname,
+                                    content: txt,
+                                })
+
+                            },
+                            error: function (err) {
+                                console.log('ERROR!');
+                                console.log(err);
+                            }
+                        });
+
+
+                        //clearInput
+                        $(that.C).find('input').val("");
+
+                    }
+
+                }
 
                 //发送以后清空
-                $(that.C).find('input').val("");
+
             });
         },
 
-        fresh:function(){
-            var that=this;
-            $(that.C).find('input').css({color:'gray'}).val('随便说点什么');
-            that.hasFocused=false;
+        fresh: function () {
+            var that = this;
+            $(that.C).find('input').css({color: 'gray'}).val('随便说点什么');
+            that.hasFocused = false;
 
-        }
+        },
+        btnDisabled: function () {
+            var that = this;
+
+            $(that.C).find('.jimiInputBoxSubmit').css('background', 'gray');
+            that.btnDisable = true;
+        },
+        btnAbled: function () {
+            var that = this;
+
+            $(that.C).find('.jimiInputBoxSubmit').css('background', '#3982e1');
+            that.btnDisable = false;
+        },
 
     }
 

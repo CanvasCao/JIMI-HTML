@@ -32,6 +32,7 @@
             this.initCSS();
             this.bindEvent();
             this.bindWaterfallEvent();
+            this.getJimiDateString();
         },
         initConfig: function () {
 
@@ -49,7 +50,9 @@
             $(this.C).find('.lightUpMaskBottom').append("<div class='maskInputBox'></div>");
 
             if (that.data.ifUid) {
-                var jimiInputBox = new JimiInputBox($(that.C).find('.maskInputBox')[0], null);
+                var jimiInputBox = new JimiInputBox($(that.C).find('.maskInputBox')[0],
+                    {lum: that}
+                );
                 that.jimiInputBox = jimiInputBox;
             }
 
@@ -148,6 +151,24 @@
 
         },
 
+        prependContent: function (json) {
+            var that = this;
+
+
+            var userImgUrl = json.userImgUrl || 'img/logo.jpg';
+            $(that.C).find('.maskSectionScroll').prepend(
+                "<div class='maskSection'>" +
+                "<div class='maskSectionImg'> <img src='" + userImgUrl + "' width='" + 40 + "' /> </div>" +
+                "<div class='maskSectionContent'>" +
+                "<div class='maskSectionUserName'>" + json.userName + "</div>" +
+                "<div class='maskSectionCtime'>" + that.getJimiDateString() + "</div>" +
+                "<div class='maskSectionComment'>" + json.content + "</div>" +
+                "</div>");
+
+            $(that.C).find('.maskSectionCon').scrollTop(0);
+            that.initMaskSectionCSS();
+
+        },
         appendContent: function (data) {
             var that = this;
             //appendDom................................................................
@@ -166,11 +187,11 @@
                 }
 
                 that.initMaskSectionCSS();
-            }
-            else {
+                if (data.length < 3) {
+                    that.addFinishLoad();
 
+                }
             }
-
 
         },
 
@@ -228,7 +249,6 @@
 
             //real show
             setTimeout(function () {
-                that.freshInputBox();
                 $(that.C).fadeIn('normal', 'swing');
                 $(that.C).find('.lightUpMaskBottom')
                     .css({opacity: 0, bottom: -300})
@@ -236,7 +256,6 @@
 
             }, 800)
         },
-
         hide: function () {
             var that = this;
             this.ifShow = false;//showTag
@@ -246,10 +265,12 @@
                 bottom: -300
             }, 'normal', 'swing', that.data.hideCallback);
         },
-
         clear: function () {
             var that = this;
             $(this.C).find('.maskSectionScroll').html("");
+            $(that.C).find('.maskSectionCon').scrollTop(0);
+            that.freshInputBox();
+            that.ifNeedAjax = true;
 
         },
 
@@ -267,7 +288,7 @@
             var that = this;
             $.ajax({
                 type: "post",
-                url: 'http://n1.jimi.la/apps_T1/getLightUp.php',
+                url: jimiHost + '/getLightUp.php',
                 //url: 'content.json',
                 data: that.ajaxGetData,
                 dataType: "jsonp",
@@ -277,19 +298,14 @@
                     //console.log(JSON.stringify(data));
                     that.JuHuaOff();
 
+                    console.log(that.ajaxGetData);
                     if (data.data.length == 0) {
                         if (that.ajaxGetData.curPage == 1) {
-                            if (!$(that.C).find('#nodata').length) {
-                                $(that.C).find('.maskSectionScroll').append("<div id='nodata' style='text-align: center;height: 200px;line-height: 200px'>暂无数据</div>");
-                            }
-                            that.ifNeedAjax = false;
+                            that.addNoData();
                             return;
                         }
                         if (that.ajaxGetData.curPage > 1) {
-                            if (!$(that.C).find('#nodata').length) {
-                                $(that.C).find('.maskSectionScroll').append("<div id='nodata' style='text-align: center;height: 50px;line-height: 50px'>加载完成</div>");
-                            }
-                            that.ifNeedAjax = false;
+                            that.addFinishLoad();
                             return;
                         }
                     }
@@ -307,11 +323,36 @@
             });
         },
 
+        addNoData: function () {
+            var that = this;
+            if (!$(that.C).find('#nodata').length) {
+                $(that.C).find('.maskSectionScroll').append("<div id='nodata' style='text-align: center;height: 200px;line-height: 200px'>暂无数据</div>");
+            }
+            that.ifNeedAjax=false;
+        },
+        addFinishLoad: function () {
+            var that = this;
+            if (!$(that.C).find('#finishload').length) {
+                $(that.C).find('.maskSectionScroll').append("<div id='finishload' style='text-align: center;height: 50px;line-height: 50px'>加载完成</div>");
+            }
+            that.ifNeedAjax=false;
+        },
         freshInputBox: function () {
             if (this.jimiInputBox) {
                 this.jimiInputBox.fresh();
             }
-        }
+        },
+        getJimiDateString: function () {
+            //2016-05-25 11:07:27
+            var date = new Date();
+            var year = date.getFullYear();
+            var mon = ((date.getMonth()+1).toString().length == 1) ? ('0' + (date.getMonth()+1)) : (date.getMonth()+1);
+            var day = (date.getDate().toString().length == 1) ? ('0' + date.getDate()) : date.getDate();
+            var hour = (date.getHours().toString().length == 1) ? ('0' + date.getHours()) : date.getHours();
+            var min = (date.getMinutes().toString().length == 1) ? ('0' + date.getMinutes()) : date.getMinutes();
+            var sec = (date.getSeconds().toString().length == 1) ? ('0' + date.getSeconds()) : date.getSeconds();
+            return (year + '-' + mon + '-' + day + ' ' + hour + ':' + min + ':' + sec);
+        },
     }
 
     w.LightUpMask = LightUpMask;
