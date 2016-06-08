@@ -164,7 +164,8 @@
 
         #cullet {
             position: fixed;
-            background-color: rgba(255, 255, 255, 0.8);
+            border-top: 1px solid #ddd;
+            background-color: rgba(255, 255, 255,1);
             width: 200%;
             height: 50%;
             bottom: 0;
@@ -210,7 +211,7 @@
         String.prototype.searchToJson = function () {
             var search = window.location.search.replace('?', "");
             var kvArr = search.split('&');
-            var finalJson = {}
+            var finalJson = {};
             for (i = 0; i < kvArr.length; i++) {
                 var kvSplit = kvArr[i].split('=');
                 finalJson[kvSplit[0].toLowerCase()] = kvSplit[1]

@@ -72,7 +72,7 @@
         initConfig: function () {
             var that = this;
             that.config.commentImg = (that.userType != 0) ? '<img src="' + that.imgUrl + '" />' : '<img src="img/expression/' + that.expression + '.png" />';
-            that.config.vipBg=(that.userType != 0) ? '<img src="img/vip' + that.userType + '.png" />':'';
+            that.config.vipBg = (that.userType != 0) ? '<img src="img/vip' + that.userType + '.png" />' : '';
             if (that.userType == 0) {
                 that.config.normalColor = 'rgba(0,0,0,0.45)';
                 that.config.likedColor = 'rgba(56,129,224,0.9)';
@@ -87,7 +87,7 @@
 
             //我给每一个cell一个id值 cell+时间戳+随机数
             $(this.C).find('.commentCon').append('<div class="comment" id=cell' + that.id + '>' +
-                '<div class="commentVipBg">'+that.config.vipBg+'</div>' +
+                '<div class="commentVipBg">' + that.config.vipBg + '</div>' +
                 '<div class="commentImg">' + that.config.commentImg + '</div>' +
                 '<div class="commentTxt">' + that.txt + '</div>' +
                 '<div class="commentLike"><img src="img/like.png"/></div>' +
@@ -118,17 +118,20 @@
 
             this.JM.$cell.find('.commentVipBg').css({
                 'position': 'absolute',
-                top: -14,
-                left: -16,
-            })
-                this.JM.$cell.find('.commentImg').css({
-                'position': 'absolute',
-                'border-radius': '50%',
-                top: -3,
-                left: -12,
-                //'margin-top': '2px',
+                top: -9,
+                left: -10,
             }).find('img').css({
                 width: '30px',
+            });
+
+            this.JM.$cell.find('.commentImg').css({
+                'position': 'absolute',
+                'border-radius': '50%',
+                top: -2,
+                left: -8,
+                //'margin-top': '2px',
+            }).find('img').css({
+                width: '28px',
                 'border-radius': '50%'
             });
 
@@ -143,6 +146,7 @@
                 left: '50%',
                 transform: 'translateX(-50%)',
                 'border-radius': '50%',
+                'border':'1px solid white',
                 background: that.config.likedColor,
                 'opacity': 0,
                 width: 20,
@@ -270,8 +274,8 @@
         this.json = json;
         this.closeable = json.closeable;
         this.pnameable = json.pnameable;
-        this.topBlank=json.topBlank;
-        this.bottomBlank=json.bottomBlank;
+        this.topBlank = json.topBlank;
+        this.bottomBlank = json.bottomBlank;
 
         this.ccmH = $(this.C).height();//可能是半屏
         this.winW = $(window).width();
@@ -335,7 +339,7 @@
             $(this.C).append("<div class='commentCon'></div>" + pnameStr + closeStr);
 
         },
-        initCSS:function(){
+        initCSS: function () {
             $(this.C).find('.commentCon').css({
                 position: 'absolute',
                 height: '100%',
@@ -350,21 +354,22 @@
             $(this.C).find('.commentPname').css({
                 position: 'absolute',
                 height: 40,
-                width: $(window).width() * 0.8,
+                width: $(window).width(),
                 left: 0,
                 top: 0,
                 'font-size': '12px',
                 'line-height': '40px',
-                color: 'black',
-                'padding-left': 20
+                color: '#555',
+                'padding-left': 20,
+                'border-bottom':'1px solid #ddd'
             });
 
             $(this.C).find('.commentClose').css({
                 position: 'absolute',
                 top: 0,
-                left: $(window).width() - 40,
-                color: 'black',
-                'font-size': 40,
+                left: $(window).width() - 25,
+                color: '#555',
+                'font-size': '25px',
                 'line-height': '40px',
 
             });
@@ -395,7 +400,7 @@
 
             function GetLineNum() {
                 that.lineResArr = [];
-                for (i = 0+that.topBlank; i < that.lineNumber-that.bottomBlank; i++) { //第一行和最后一行不能有弹幕
+                for (i = 0 + that.topBlank; i < that.lineNumber - that.bottomBlank; i++) { //第一行和最后一行不能有弹幕
                     that.lineResArr.push(i);
                 }
 
@@ -545,8 +550,8 @@
                     that.serverCommentArr = data.data;
 
                     setTimeout(function () {
-                    that.start(); //加载完成以后开始播放
-                    }, 3000)
+                        that.start(); //加载完成以后开始播放
+                    }, 2000)
                 },
                 error: function (err) {
                     console.log('LOAD ERROR!')
