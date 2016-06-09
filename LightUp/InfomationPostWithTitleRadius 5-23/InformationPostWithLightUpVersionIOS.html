@@ -5,7 +5,6 @@
     <meta name="viewport"
           content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no"/>
     <title>资讯</title>
-
     <link rel="stylesheet" href="css/lightUp.css"/>
     <style>
 
@@ -70,6 +69,8 @@
                     jsonpcallback: searchJson.jsonpcallback,
                 };
 
+                //保存了点亮的数字的对象数组
+                window.lightUpData = null;
 
                 //light的clientXY所在的dom元素的位置和类型
                 var ele = null;
@@ -79,6 +80,7 @@
                 var $txtContainer = $('.txtContainer');
                 var $light = $('.light');
                 $light.css({top: 1 / 3 * winH - 120});
+
 
                 //mask对象
 //                var lum = new LightUpMask($('.lightUpMask')[0], {
@@ -209,7 +211,7 @@
                         AddClass($(ele).closest('.sentence'), 'active');
                         return true;
                     }
-                    else if ($(ele).hasClass('sentenceImg')) {
+                    else if ($(ele).closest('.paragraphImg').length) {
                         eleType = 2;
                         RemoveClass();
                         AddClass($(ele).parent('.paragraphImg'), 'active');
@@ -219,6 +221,31 @@
                         eleType = 3;
                         RemoveClass();
                         AddClass($(ele).closest('.paragraphWeb'), 'active');
+                        return true;
+                    }
+
+                    return false;
+                };
+
+                //.count点击是否成功
+                function ClickCount($ele) {
+                    ele = $ele[0];
+                    if ($ele.closest('.sentence').length) { //判断当前是类是文字
+                        eleType = 1;
+                        RemoveClass();
+                        AddClass($ele.closest('.sentence'), 'active');
+                        return true;
+                    }
+                    else if ($ele.closest('.paragraphImg').length) {
+                        eleType = 2;
+                        RemoveClass();
+                        AddClass($ele.parent('.paragraphImg'), 'active');
+                        return true;
+
+                    } else if ($ele.closest('.paragraphWeb').length) {
+                        eleType = 3;
+                        RemoveClass();
+                        AddClass($ele.closest('.paragraphWeb'), 'active');
                         return true;
                     }
 
@@ -236,7 +263,7 @@
                         var $sens = $parent.find('.sentence');
                         for (i = 0; i < $sens.length; i++) {
                             if ($sentence[0] == $sens.eq(i)[0]) {
-                                sentence=i;
+                                sentence = i;
                                 break;
                             }
                         }
@@ -248,7 +275,7 @@
                         return getContentAjaxParas;
                     }
                     else if (eleType == 2) {
-                        var paragraph = $(ele).parent().index('.paragraphImg');
+                        var paragraph = $(ele).closest('.paragraphImg').index('.paragraphImg');
                         getContentAjaxParas.type = eleType;
                         getContentAjaxParas.paragraph = paragraph;
 
@@ -304,7 +331,7 @@
                         $ele = $('.paragraphWeb').eq(para.paragraph);
                     }
 
-                    var count = parseInt($ele.find('.count').html());
+                    var count = parseInt($ele.find('.count').html()) || 0;
                     $ele.addClass('init').find('.count').html(count + 1 + '吐槽').fadeIn();//显示吐槽数量
                 }
 
@@ -350,6 +377,78 @@
                                 }
 
 
+                                //JS bridge............................................................................
+                                function setupWebViewJavascriptBridge(callback) {
+                                    if (window.WebViewJavascriptBridge) {
+                                        return callback(WebViewJavascriptBridge);
+                                    }
+                                    if (window.WVJBCallbacks) {
+                                        return window.WVJBCallbacks.push(callback);
+                                    }
+                                    window.WVJBCallbacks = [callback];
+                                    var WVJBIframe = document.createElement('iframe');
+                                    WVJBIframe.style.display = 'none';
+                                    WVJBIframe.src = 'wvjbscheme://__BRIDGE_LOADED__';
+                                    document.documentElement.appendChild(WVJBIframe);
+                                    setTimeout(function () {
+                                        document.documentElement.removeChild(WVJBIframe)
+                                    }, 0)
+                                }
+
+                                setupWebViewJavascriptBridge(function (bridge) {
+
+                                    bridge.registerHandler('testJavascriptHandler', function (data, responseCallback) {
+                                        if (data.CRDetailRecommendDY) {
+                                            var dy = data.CRDetailRecommendDY
+                                            $light.animate({top: (1 / 3 * winH - 120 + dy)}, 'fast', 'swing');
+                                        }
+                                        else if (data.removeClass) {
+                                            if (data.removeClass) {
+                                                RemoveClass();
+                                            }
+                                        }
+                                        else if (data) {
+                                            addCount(data.type, data.paragraph, data.sentence, data.count);
+                                        }
+                                        var responseData = {'CaoYuhao Says': 'Right back Bitch!!!'}
+                                        responseCallback(responseData)
+                                    })
+
+
+                                    window.addEventListener('touchend', function (e) {
+                                        //e.preventDefault();
+                                        if (ifDragging && ifMoved) {
+                                            clearTimeout(timer);
+                                            delete(timer);
+
+                                            var lightUpSucceed = LightUp();
+                                            if (lightUpSucceed) {
+
+                                                getContentAjaxParas = GetGetContentAjaxParas();
+                                                bridge.callHandler('testObjcCallback', getContentAjaxParas, function (response) {
+                                                })
+                                            }
+                                            ifDragging = false;
+                                            ifMoved = false;
+                                        }
+                                        $light.css(lightState.touchEnd);
+                                    }, false)
+                                })
+
+
+                                //点亮的count被点击的时候
+                                $('.count').click(function () {
+                                    var $that = $(this);
+                                    var succeed = ClickCount($that);
+                                    if (succeed) {
+                                        getContentAjaxParas = GetGetContentAjaxParas();
+
+                                        bridge.callHandler('testObjcCallback', getContentAjaxParas, function (response) {
+                                        })
+                                    }
+                                })
+
+
                                 console.log('下标溢出');
                                 return;
                             }
@@ -389,76 +488,36 @@
                         console.log(err);
                     }
                 });
-
-
-                //JS bridge............................................................................
-                function setupWebViewJavascriptBridge(callback) {
-                    if (window.WebViewJavascriptBridge) {
-                        return callback(WebViewJavascriptBridge);
-                    }
-                    if (window.WVJBCallbacks) {
-                        return window.WVJBCallbacks.push(callback);
-                    }
-                    window.WVJBCallbacks = [callback];
-                    var WVJBIframe = document.createElement('iframe');
-                    WVJBIframe.style.display = 'none';
-                    WVJBIframe.src = 'wvjbscheme://__BRIDGE_LOADED__';
-                    document.documentElement.appendChild(WVJBIframe);
-                    setTimeout(function () {
-                        document.documentElement.removeChild(WVJBIframe)
-                    }, 0)
-                }
-
-                setupWebViewJavascriptBridge(function (bridge) {
-
-                    bridge.registerHandler('testJavascriptHandler', function (data, responseCallback) {
-                        if (data.CRDetailRecommendDY) {
-                            var dy = data.CRDetailRecommendDY
-                            $light.animate({top: (1 / 3 * winH - 120 + dy)}, 'fast', 'swing');
-                        }
-                        else if (data.removeClass) {
-                            if (data.removeClass) {
-                                RemoveClass();
-                            }
-                        }
-                        else if (data) {
-                            addCount(data.type, data.paragraph, data.sentence, data.count);
-                        }
-                        var responseData = {'CaoYuhao Says': 'Right back Bitch!!!'}
-                        responseCallback(responseData)
-                    })
-
-
-                    window.addEventListener('touchend', function (e) {
-                        //e.preventDefault();
-                        if (ifDragging && ifMoved) {
-                            clearTimeout(timer);
-                            delete(timer);
-
-                            var lightUpSucceed = LightUp();
-                            if (lightUpSucceed) {
-
-                                getContentAjaxParas = GetGetContentAjaxParas();
-
-
-                                bridge.callHandler('testObjcCallback', getContentAjaxParas, function (response) {
-//                                   //
-                                })
-//                            console.log(getContentAjaxParas);
-
-//
-                            }
-                            ifDragging = false;
-                            ifMoved = false;
-                        }
-                        $light.css(lightState.touchEnd);
-                    }, false)
-                })
             }
     )
 
 
 </script>
 
+<script>
+    //titleImg init...............................................................
+    var winH = $(window).height();
+    var winW = $(window).width();
+    //    alert(winH); //568
+    $('#con').css({width: winW, height: winH})
+    $('#con').scrollTop(100);
+    $titleImg = $('.titleImg');
+
+    var initHeight = 400;
+    $('.title').css({height: initHeight});
+    $('.titleImg').css({height: initHeight});
+    //    $('#con').scroll(function () {
+    //        var scrollTop = $(this).scrollTop();
+    ////        console.log(scrollTop);
+    //
+    //        if (scrollTop <= 100 && scrollTop >= 0) {
+    //            $titleImg.css({
+    //                height: ((100 - scrollTop) + 400)
+    //            })
+    //        }
+    //
+    //    })
+
+</script>
 </body>
 </html>
