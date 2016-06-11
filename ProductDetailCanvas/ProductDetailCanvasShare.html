@@ -192,6 +192,19 @@
     // 56829a0fefb80c4e26c2f894 没数据的
 
 
+    //给按钮不同的链接
+    var ua = navigator.userAgent;
+    if (ua.charAt('iphone') != -1 && ua.charAt('Mac') != -1) {//说明不是IPHONE
+        $('.downloadBtn').click(function () {
+            window.location.href = 'http://a.app.qq.com/o/simple.jsp?pkgname=com.jimi.skinsecret#opened';
+        })
+    }
+    else {
+        $('.downloadBtn').click(function () {
+            window.location.href = 'https://itunes.apple.com/us/app/id1074206874';
+        })
+    }
+
     $.ajax({
         type: "get",
         url: jimiHost+'/formual_safe.php' + window.location.search,
@@ -202,18 +215,7 @@
         jsonpCallback: "jsonpcallback",
         success: function (data) {
             console.log(JSON.stringify(data));
-            //给按钮不同的链接
-            var ua = navigator.userAgent;
-            if (ua.charAt('iphone') != -1 && ua.charAt('Mac') != -1) {//说明不是IPHONE
-                $('.downloadBtn').click(function () {
-                    window.location.href = 'http://a.app.qq.com/o/simple.jsp?pkgname=com.jimi.skinsecret#opened';
-                })
-            }
-            else {
-                $('.downloadBtn').click(function () {
-                    window.location.href = 'https://itunes.apple.com/us/app/id1074206874';
-                })
-            }
+
 
             //加title的数据
             $('title').html(data.chineseName)
