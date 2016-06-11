@@ -432,21 +432,23 @@
                                             ifMoved = false;
                                         }
                                         $light.css(lightState.touchEnd);
-                                    }, false)
+                                    }, false);
+
+                                    //点亮的count被点击的时候
+                                    $('.count').click(function () {
+                                        var $that = $(this);
+                                        var succeed = ClickCount($that);
+                                        if (succeed) {
+                                            getContentAjaxParas = GetGetContentAjaxParas();
+
+                                            bridge.callHandler('testObjcCallback', getContentAjaxParas, function (response) {
+                                            })
+                                        }
+                                    })
                                 })
 
 
-                                //点亮的count被点击的时候
-                                $('.count').click(function () {
-                                    var $that = $(this);
-                                    var succeed = ClickCount($that);
-                                    if (succeed) {
-                                        getContentAjaxParas = GetGetContentAjaxParas();
 
-                                        bridge.callHandler('testObjcCallback', getContentAjaxParas, function (response) {
-                                        })
-                                    }
-                                })
 
 
                                 console.log('下标溢出');

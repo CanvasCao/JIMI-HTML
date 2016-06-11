@@ -6,29 +6,6 @@
           content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no"/>
     <title>资讯</title>
     <style>
-
-        .download {
-            position: absolute;
-            right: 0px;
-            top: 10px;
-            height: 35px;
-            /*border: 1px solid #000;*/
-
-        }
-
-        .downloadBtn {
-            float: right;
-            height: 35px;
-            /*border: 1px solid #000;*/
-            line-height: 35px;
-            border-radius: 35px;
-            background-color: #3881e0;
-            box-sizing: border-box;
-            padding: 0 20px;
-            color: white;
-            margin-right: 10px;
-        }
-
         #con {
             /*position: absolute 会取消border-bottom-right-radius*/
             position: fixed;
@@ -43,17 +20,10 @@
         }
 
         .title {
-            /*border-bottom-left-radius: ;*/
-            border-bottom-right-radius: 100% 20%;
-            border-bottom-left-radius: 100% 20%;
             box-sizing: border-box;
-            /*border-radius: 50%;*/
 
-            /*border: 10px solid #000;*/
             height: 400px;
             overflow: hidden;
-
-            /*border: 1px solid #000;*/
             margin-bottom: 50px;
             position: relative;
         }
@@ -63,8 +33,7 @@
             content: "";
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0);
-            pointer-events: none;
+            background-color: rgba(0, 0, 0, 0.2);
         }
 
         .titleImg {
@@ -73,8 +42,6 @@
             left: 50%;
             transform: translateX(-50%);
             -webkit-transform: translateX(-50%);
-            -moz-transform: translateX(-50%);
-            -ms-transform: translateX(-50%);
         }
 
         .titleText {
@@ -111,7 +78,6 @@
             height: 20px;
             background: url("img/eye.png") no-repeat;
             background-size: cover;
-
         }
 
         .titleTextStar {
@@ -140,7 +106,6 @@
 </head>
 <body>
 <div id='con'>
-
     <div id='scroll'>
         <div class='title'>
             <img src="img/logo.jpg" alt="" class='titleImg'/>
@@ -151,10 +116,6 @@
                     <div class='titleTextRead'></div>
                     <div class='titleTextStar'></div>
                 </div>
-            </div>
-
-            <div class="download">
-                <div class='downloadBtn'>下载肌秘APP</div>
             </div>
         </div>
         <div class='txtContainer'></div>
@@ -167,7 +128,7 @@
 
 <!--这里保存了扩展的原型方法-->
 <script src='js/jimi-prototype.js'></script>
-<script src='js/spa/productDetailCanvas-1.0.0.js'></script>
+<script src='js/spa/productDetailCanvas-1.0.2.js'></script>
 <script src='js/spa/echartsBasic&Graph.min.js'></script>
 <script src='js/spa/alternateBtn-1.0.0.js'></script>
 <script src='js/spa/spa-alertCon.js'></script>
@@ -176,35 +137,25 @@
 <script src='js/spa/spa-middleComponent-1.0.2.js'></script>
 <script src='js/spa/navBar-1.0.0.js'></script>
 <script src='js/labelAdapter/labelAdapter.js'></script>
-<script src='js/lightUpMask-1.0.1.js'></script>
+<script src='js/lightUpMask-1.0.2.js'></script>
 <script src='js/jimiInputBox-2.0.0.js'></script>
+<script src='js/jimiHost.js'></script>
+
 <script>
     $(function () {
                 if (!window.location.search) {
-                    window.location = window.location + '?rid=466&jsonpcallback=1';
+                    window.location = window.location + '?rid=466&uid=10450&uImg=http://7xo2me.com1.z0.glb.clouddn.com/images/17RTW5G74N2J.jpg&uName=方辉真帅&jsonpcallback=1';
                 }
 
 
-                //给按钮不同的链接
-                var ua = navigator.userAgent;
-                if (ua.charAt('iphone') != -1 && ua.charAt('Mac') != -1) {//说明不是IPHONE
-                    $('.downloadBtn').click(function () {
-                        window.location.href = 'http://a.app.qq.com/o/simple.jsp?pkgname=com.jimi.skinsecret#opened';
-                    })
-                }
-                else {
-                    $('.downloadBtn').click(function () {
-                        window.location.href = 'https://itunes.apple.com/us/app/id1074206874';
-                    })
-                }
-
+                var winH = $(window).height();
+                var winW = $(window).width();
 
                 //searchJson
-                var searchJson = (window.location.search.searchToJson());
-                var ifUid = searchJson.uid ? true : false;
-
+                window.searchJson = window.location.search.searchToJson();
+                console.log(searchJson)
                 //insert和get共享的paras
-                var getContentAjaxParas = {
+                window.getContentAjaxParas = {
                     perPage: 3,
                     curPage: 1,//当前页数1 永远先请求第一页
                     rid: searchJson.rid,
@@ -212,17 +163,20 @@
                     jsonpcallback: searchJson.jsonpcallback,
                 };
 
+                //保存了点亮的数字的对象数组
+                window.lightUpData = null;
+
                 //light的clientXY所在的dom元素的位置和类型
                 var ele = null;
                 var eleType = 0;
 
                 //jqObj
-                $txtContainer = $('.txtContainer');
+                var $txtContainer = $('.txtContainer');
                 var $light = $('.light');
 
                 //mask对象
                 var lum = new LightUpMask($('.lightUpMask')[0], {
-                    ifUid: ifUid,
+                    ifUid: searchJson.uid ? true : false,
                     hideCallback: function () {
                         RemoveClass();
                         $light.css({display: 'block'}).animate({opacity: 1}, 'fast', 'swing', function () {
@@ -232,7 +186,8 @@
                         $light.animate({opacity: 0}, 'fast', 'swing', function () {
                             $light.css({display: 'none'});
                         });
-                    }
+                    },
+                    ajaxGetData: getContentAjaxParas,
                 });
 
                 //点亮标签相关 全局变量
@@ -259,9 +214,6 @@
 
 
                 $('.light')[0].addEventListener('touchstart', function (e) {
-//            e.preventDefault();
-
-                    //light不能拖动
                     if (lum.ifShow) {
                         e.preventDefault();
                         return;
@@ -310,8 +262,11 @@
                         var lightUpSucceed = LightUp();
                         if (lightUpSucceed) {
                             getContentAjaxParas = GetGetContentAjaxParas();
-                            console.log(getContentAjaxParas)
-                            getContentAjax(getContentAjaxParas);
+                            getContentAjaxParas.curPage = 1; //点亮成功一定是请求第一页
+
+                            lum.clear();
+                            lum.show();
+                            lum.ajaxGetContent();
                         }
                         ifDragging = false;
                         ifMoved = false;
@@ -319,6 +274,17 @@
                     $light.css(lightState.touchEnd);
                 }, false)
 
+                //删除类名
+                function RemoveClass() {
+                    $txtContainer.find('.paragraphImg,.paragraphWeb,.sentence').removeClass('active'); //removeAll
+                }
+
+                function AddClass($ele, className, className2) {
+                    $ele.addClass(className);
+                    if (className2) {
+                        $ele.addClass(className2);
+                    }
+                }
 
                 //UI层点亮函数 返回布尔是否点亮成功
                 function LightUp() {
@@ -331,22 +297,47 @@
                     }
 
 
-                    if ($(ele).closest('.sentence').length) { //判断当前是类图片还是文字
+                    if ($(ele).closest('.sentence').length) { //判断当前是类是文字
                         eleType = 1;
                         RemoveClass();
-                        $(ele).closest('.sentence').addClass('active');//#f8e9c5
+                        AddClass($(ele).closest('.sentence'), 'active');
                         return true;
                     }
-                    else if ($(ele).hasClass('sentenceImg')) {
+                    else if ($(ele).closest('.paragraphImg').length) {
                         eleType = 2;
                         RemoveClass();
-                        $(ele).parent('.paragraphImg').addClass('active');//一个元素的伪类相当于 这个元素的子类
+                        AddClass($(ele).parent('.paragraphImg'), 'active');
                         return true;
 
                     } else if ($(ele).closest('.paragraphWeb').length) {
                         eleType = 3;
                         RemoveClass();
-                        $(ele).closest('.paragraphWeb').addClass('active');
+                        AddClass($(ele).closest('.paragraphWeb'), 'active');
+                        return true;
+                    }
+
+                    return false;
+                };
+
+                //.count点击是否成功
+                function ClickCount($ele) {
+                    ele=$ele[0];
+                    if ($ele.closest('.sentence').length) { //判断当前是类是文字
+                        eleType = 1;
+                        RemoveClass();
+                        AddClass($ele.closest('.sentence'), 'active');
+                        return true;
+                    }
+                    else if ($ele.closest('.paragraphImg').length) {
+                        eleType = 2;
+                        RemoveClass();
+                        AddClass($ele.parent('.paragraphImg'), 'active');
+                        return true;
+
+                    } else if ($ele.closest('.paragraphWeb').length) {
+                        eleType = 3;
+                        RemoveClass();
+                        AddClass($ele.closest('.paragraphWeb'), 'active');
                         return true;
                     }
 
@@ -357,7 +348,17 @@
                 function GetGetContentAjaxParas() {
                     if (eleType == 1) { //判断当前是类图片还是文字
                         var paragraph = $(ele).closest('.paragraph').index('.paragraph');
-                        var sentence = $(ele).closest('.sentence').index();
+                        var sentence;
+
+                        var $sentence = $(ele).closest('.sentence');
+                        var $parent = $(ele).closest('.sentence').parent();
+                        var $sens = $parent.find('.sentence');
+                        for (i = 0; i < $sens.length; i++) {
+                            if ($sentence[0] == $sens.eq(i)[0]) {
+                                sentence = i;
+                                break;
+                            }
+                        }
 
                         getContentAjaxParas.type = eleType;
                         getContentAjaxParas.paragraph = paragraph;
@@ -366,7 +367,7 @@
                         return getContentAjaxParas;
                     }
                     else if (eleType == 2) {
-                        var paragraph = $(ele).parent().index('.paragraphImg');
+                        var paragraph = $(ele).closest('.paragraphImg').index('.paragraphImg');
                         getContentAjaxParas.type = eleType;
                         getContentAjaxParas.paragraph = paragraph;
 
@@ -380,83 +381,56 @@
                     }
                 }
 
-                //删除类名
-                function RemoveClass() {
-                    $txtContainer.find('.paragraphImg,.paragraphWeb,.sentence').removeClass('active'); //removeAll
+
+                //数据库执行select的Ajax 在lightUpMask对象里
+                //function selectContentAjax(getContentAjaxParas) {}
+
+                //数据库执行insert的Ajax 在inputBox里
+                //function insertContentAjax(content) {}
+
+
+                //两种可能执行addCount方法 1初始化的时候 2从服务器拿到内容的时候
+                //显示数字 加init类名
+                function addCount(eleType, paragraph, sentence, count) {
+                    if (count == 0) { //0吐槽的时候就会不显示
+                        return;
+                    }
+
+                    var $ele = null;
+//                    count前面的元素加addClass init类名
+                    if (eleType == 1) {
+                        $ele = $('.paragraph').eq(paragraph).find('.sentence').eq(sentence);
+                    } else if (eleType == 2) {
+                        $ele = $('.paragraphImg').eq(paragraph);
+                    } else if (eleType == 3) {
+                        $ele = $('.paragraphWeb').eq(paragraph);
+                    }
+
+                    $ele.addClass('init').find('.count').html(count + '吐槽').fadeIn();//显示吐槽数量
                 }
 
-                //数据库执行select的Ajax
-                function getContentAjax(getContentAjaxParas) {
-                    $.ajax({
-                        type: "post",
-                        url: 'http://n1.jimi.la/apps_T1/getLightUp.php',
-//                                    url: 'content.json',
-                        data: getContentAjaxParas,
-                        dataType: "jsonp",
-                        jsonp: "callback",
-                        jsonpCallback: "jsonpcallback",
-                        cache: true,
-                        success: function (data) {
-                            console.log(JSON.stringify(data));
+                function updateCount() {
+                    var $ele = null;
+                    var para = getContentAjaxParas;
+//                    count前面的元素加addClass init类名
+                    if (para.type == 1) {
+                        $ele = $('.paragraph').eq(para.paragraph).find('.sentence').eq(para.sentence);
+                    } else if (para.type == 2) {
+                        $ele = $('.paragraphImg').eq(para.paragraph);
+                    } else if (para.type == 3) {
+                        $ele = $('.paragraphWeb').eq(para.paragraph);
+                    }
 
-                            showCount();
-                            lum.show(data.data);
-
-
-                            function showCount() {
-                                //if (data.totalRecords) { //0吐槽的时候就会不显示
-                                if (eleType == 1) {
-                                    $(ele).closest('.sentence').find('.count').html(data.totalRecords + '吐槽').fadeIn();//显示吐槽数量
-                                } else if (eleType == 2) {
-                                    $(ele).parent('.paragraphImg').find('.count').html(data.totalRecords + '吐槽').fadeIn();//显示吐槽数量
-                                } else if (eleType == 3) {
-                                    $(ele).closest('.paragraphWeb').find('.count').html(data.totalRecords + '吐槽').fadeIn();//显示吐槽数量
-                                }
-
-//                            }
-                            }
-
-                        },
-                        error: function (err) {
-                            console.log('ERROR!');
-                            console.log(err);
-                        }
-                    });
+                    var count = parseInt($ele.find('.count').html()) || 0;
+                    $ele.addClass('init').find('.count').html(count + 1 + '吐槽').fadeIn();//显示吐槽数量
                 }
 
+                window.updateCount = updateCount;
 
-                //数据库执行insert的Ajax
-                function insertContentAjax(content) {
-                    getContentAjaxParas.content = content;
-                    $.ajax({
-                        type: "post",
-                        url: 'http://n1.jimi.la/apps_T1/postLightUp.php',
-//                                    url: 'content.json',
-                        data: getContentAjaxParas,
-                        dataType: "jsonp",
-                        jsonp: "callback",
-                        jsonpCallback: "jsonpcallback",
-                        cache: true,
-                        success: function (data) {
-                            console.log(JSON.stringify(data));
-                            //var data = data.data;
-
-                        },
-                        error: function (err) {
-                            console.log('ERROR!');
-                            console.log(err);
-                        }
-                    });
-                }
-
-                //向顶层暴露方法
-                window.insertContentAjax = insertContentAjax;
-
-
-                //这里的ajax只是为了绑定数据
+                //这里的ajax只是为了绑定起始数据
                 $.ajax({
                     type: "get",
-                    url: 'http://n1.jimi.la/apps_T1/informationPost.php' + window.location.search,
+                    url: jimiHost + '/informationPost.php' + window.location.search,
 //            url: 'r.json',
                     dataType: "jsonp",
                     jsonp: "callback",
@@ -465,11 +439,10 @@
                         console.log(JSON.stringify(data));
                         $('body').animate({opacity: 1});
 
-
                         //title
                         $('.titleImg').attr('src', data.titleImgUrl);
                         $('.titleTextTop').html(data.title);
-                        $('.titleTextRead').html(data.read);
+                        $('.titleTextRead').html(data.read || 1);
                         $('.titleTextStar').html(data.star || 1);
 
                         //txtContainer容器 绑定数据
@@ -483,6 +456,32 @@
 
                         (function ajaxComplete(index) {
                             if (index == $jimiYunYing.length) {
+
+                                //这里代表数据绑定完可以显示有点亮的数据
+                                initCss(data.lightUpData);
+                                function initCss(lightUpData) {
+//                                    console.log(JSON.stringify(lightUpData));
+                                    [].forEach.call(lightUpData, function (e, i, arr) {
+                                        addCount(e.type, e.paragraph, e.sentence, e.count);
+                                    })
+                                }
+
+
+                                //点亮的count被点击的时候
+                                $('.count').click(function () {
+                                    var $that=$(this);
+                                    var succeed = ClickCount($that);
+                                    if (succeed) {
+                                        getContentAjaxParas = GetGetContentAjaxParas();
+                                        getContentAjaxParas.curPage = 1; //点亮成功一定是请求第一页
+
+                                        lum.clear();
+                                        lum.show();
+                                        lum.ajaxGetContent();
+                                    }
+                                })
+
+
                                 console.log('下标溢出');
                                 return;
                             }
@@ -491,14 +490,13 @@
                             var pid = jqObj.attr('data-pid');
                             $.ajax({
                                 type: "get",
-                                url: 'http://n1.jimi.la/apps_T1/formual_safe.php?pid=' + pid,
+                                url: jimiHost + '/formual_safe.php?pid=' + pid,
                                 dataType: "jsonp",
                                 jsonp: "callback",
                                 jsonpCallback: "jsonpcallback",
                                 success: function (data) {
 //                                  console.log(JSON.stringify(data))
                                     jqObj.html('');
-
 
                                     var header = new Header(jqObj[0], data);
                                     var navBar = new NavBar(jqObj[0], data);
@@ -535,32 +533,12 @@
     var winW = $(window).width();
     //    alert(winH); //568
     $('#con').css({width: winW, height: winH})
-    $('#con').scrollTop(0);
-    //
-    //    var initHeight = 400;
-    //    $('.title').css({height: initHeight});
-    //    $('.titleImg').css({height: initHeight});
-    //    $('#con').scroll(function () {
-    //        var scrollTop = $(this).scrollTop();
-    ////        console.log(scrollTop);
-    //        if (scrollTop >= 100 && scrollTop <= 200) {
-    //            //y=-20/100x+200
-    //            //100 20
-    //            //200  0
-    //            var a = (-20 / 100 * scrollTop + 40);
-    ////            console.log( $('.title').css('border-bottom-left-radius'))
-    //            $('.title').css({
-    //                'border-bottom-left-radius': '100% ' + a + '%',
-    //                'border-bottom-right-radius': '100% ' + a + '%',
-    //            })
-    //        }
-    //        else if (scrollTop <= 100 && scrollTop >= 0) {
-    //            $('.titleImg').css({
-    //                height: ((100 - scrollTop) + 400)
-    //            })
-    //        }
-    //
-    //    })
+    $('#con').scrollTop(100);
+    $titleImg = $('.titleImg');
+
+    var initHeight = 400;
+    $('.title').css({height: initHeight});
+    $('.titleImg').css({height: initHeight});
 
 </script>
 </body>

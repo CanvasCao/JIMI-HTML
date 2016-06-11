@@ -128,7 +128,7 @@ a {
 
 /*点亮的计数样式*/
 .count {
-    top: -12px;
+    top: -8px;
     left: 0px;
     font-size: 12px;
     position: absolute;
