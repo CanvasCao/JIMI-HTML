@@ -30,10 +30,10 @@
             var that = this;
             $(this.C).append("<div class='navBar'></div>");
 
-            $(this.C).find('.navBar').append("<img class='navImg' src='" +'img/c.png' + "' />")
-            $(this.C).find('.navBar').append("<div class='navText'>" + '成分分布'+ "</div>")
+            $(this.C).find('.navBar').append("<img class='navImg' src='" + 'img/c.png' + "' />")
+            $(this.C).find('.navBar').append("<div class='navText'>" + '成分分布' + "</div>")
             $(this.C).find('.navBar').append("<img class='navArrow' src='" + 'img/arrow.png' + "' height='12px'/>");
-            $(this.C).find('.navBar').append("<a href="+ that.data.jimiUrl+"></a>")
+            $(this.C).find('.navBar').append("<a href=" + that.data.jimiUrl + "></a>")
         },
         initCSS: function () {
             var that = this;
@@ -58,18 +58,17 @@
                 float: 'left',
             })
 
-
             $(this.C).find('.navArrow').css({
                 float: 'right',
                 'margin-top': '5px',
             })
 
             $(this.C).find('.navBar a').css({
-                position:'absolute',
-                width:'100%',
-                height:'100%',
-                top:0,
-                left:0,
+                position: 'absolute',
+                width: '100%',
+                height: '100%',
+                top: 0,
+                left: 0,
             })
 
         },

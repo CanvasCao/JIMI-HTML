@@ -38,7 +38,14 @@
 
 
             //给方辉的a标签
-            $(this.C).find('.header').append("<a href="+ that.data.jimiUrl+"></a>")
+            $(this.C).find('.header').append("<a href="+ that.data.jimiUrl+"></a>");
+            $(this.C).find('.header a').css({
+                position:'absolute',
+                width:'100%',
+                height:'100%',
+                top:0,
+                left:0,
+            });
         },
         initCSS: function () {
             var that = this;
