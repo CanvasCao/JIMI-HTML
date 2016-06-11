@@ -21,10 +21,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="InformationPostWithLightUp.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="InformationPostWithLightUp.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/InformationPostWithLightUp.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6927536">
+            <state vertical-scroll-proportion="-18.384615">
               <caret line="511" column="0" selection-start-line="511" selection-start-column="0" selection-end-line="511" selection-end-column="0" />
               <folding>
                 <element signature="e#9065#9199#0" expanded="false" />
@@ -41,7 +41,17 @@
         <entry file="file://$PROJECT_DIR$/js/spa/navBar-1.0.0.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="52" column="38" selection-start-line="52" selection-start-column="38" selection-end-line="52" selection-end-column="38" />
+              <caret line="35" column="83" selection-start-line="35" selection-start-column="44" selection-end-line="35" selection-end-column="83" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="spa-header.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/js/spa/spa-header.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -208,10 +218,10 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Administrator\Desktop\JIMI HTML\JIMI-HTML\LightUp\InfomationPostWithTitleRadius 5-23\js\spa" />
       <recent name="C:\Users\Administrator\Desktop\JIMI HTML\JIMI-HTML\LightUp\InfomationPostWithTitleRadius 5-23" />
       <recent name="C:\Users\Administrator\Desktop\JIMI HTML\JIMI-HTML\LightUp\InfomationPostWithTitleRadius 5-23\img" />
       <recent name="C:\Users\Administrator\Desktop\JIMI HTML\JIMI-HTML\LightUp\InfomationPostWithTitleRadius 5-23\js" />
-      <recent name="C:\Users\Administrator\Desktop\JIMI HTML\JIMI-HTML\LightUp\InfomationPostWithTitleRadius 5-23\js\spa" />
       <recent name="C:\Users\Administrator\Desktop\JIMI HTML\JIMI-HTML\LightUp\InfomationPostWithTitleRadius 5-23\css" />
     </key>
   </component>
@@ -312,13 +322,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/InformationPostWithLightUpVersionIOS(OLD).html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="389" column="0" selection-start-line="389" selection-start-column="0" selection-end-line="389" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/spa/navBar-1.0.0.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -800,17 +803,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/spa/navBar-1.0.0.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="52" column="38" selection-start-line="52" selection-start-column="38" selection-end-line="52" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/InformationPostWithLightUp.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6927536">
+        <state vertical-scroll-proportion="-18.384615">
           <caret line="511" column="0" selection-start-line="511" selection-start-column="0" selection-end-line="511" selection-end-column="0" />
           <folding>
             <element signature="e#9065#9199#0" expanded="false" />
@@ -819,6 +814,22 @@
             <element signature="e#10880#11783#0" expanded="false" />
             <element signature="e#11886#13518#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/spa/navBar-1.0.0.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="35" column="83" selection-start-line="35" selection-start-column="44" selection-end-line="35" selection-end-column="83" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/spa/spa-header.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>

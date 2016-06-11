@@ -19,6 +19,7 @@
 
         },
         createDom: function () {
+            var that=this;
             //拼加组件
             $(this.C).append("<div class='header'></div>");
 
@@ -35,6 +36,9 @@
             $(this.C).find('.imgCon').css('background', 'url(' + imgUrl + ') no-repeat 50% 50%').css('background-size', 'contain');
             $(this.C).find('.pname').html(englishName + '<br>' + chineseName);
 
+
+            //给方辉的a标签
+            $(this.C).find('.header').append("<a href="+ that.data.jimiUrl+"></a>")
         },
         initCSS: function () {
             var that = this;
