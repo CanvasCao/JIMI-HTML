@@ -32,7 +32,7 @@
             }
 
             str += '</ul></div>';
-            $(this.container).html(str)
+            $(this.C).html(str)
 
         },
         initCSS: function () {

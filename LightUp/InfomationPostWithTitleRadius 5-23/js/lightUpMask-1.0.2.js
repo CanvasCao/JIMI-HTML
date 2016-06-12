@@ -295,10 +295,10 @@
                 jsonp: "callback",
                 jsonpCallback: "jsonpcallback",
                 success: function (data) {
-                    //console.log(JSON.stringify(data));
+                    console.log(JSON.stringify(data));
                     that.JuHuaOff();
 
-                    console.log(that.ajaxGetData);
+                    //console.log(that.ajaxGetData);
                     if (data.data.length == 0) {
                         if (that.ajaxGetData.curPage == 1) {
                             that.addNoData();

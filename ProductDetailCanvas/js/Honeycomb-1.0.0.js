@@ -49,16 +49,18 @@
 
         },
         createDom: function () {
+            var that = this;
             $(this.C).html('<div class="honeyCon"></div>'); //这个honeyCon提供por
 
 
             if (this.data.feature.length == 0) { //没有标签就杀死父元素
-                $(this.C).find('.honeyCon').hide().parent().hide();
+                $(that.C).remove();
                 return;
             }
             else {
                 for (i = 0; i < this.data.feature.length; i++) {
-                    $(this.C).find('.honeyCon').append("<div class='honeyComb'>" + "<div class='honeyTxt'>" + this.data.feature[i] + "</div>" + "</div>");
+                    var feature = this.data.feature[i].length > 9 ? this.data.feature[i].substring(0, 9) : this.data.feature[i];
+                    $(this.C).find('.honeyCon').append("<div class='honeyComb'>" + "<div class='honeyTxt'>" + feature + "</div>" + "</div>");
                 }
 
             }
@@ -98,6 +100,7 @@
                 'font-size': '12px',
                 display: 'table-cell',
                 'vertical-align': 'middle',
+                padding: '5px'
             })
 
         },
@@ -116,11 +119,11 @@
             })
 
             for (i = 0; i < $(this.C).find('.honeyComb').length; i++) {
-               eval(
-                   'setTimeout(function(){'+
-                       '$(that.C).find(".honeyComb").eq('+i+').animate({opacity:1},"normal","swing");'+
-                   '},'+i+'*500)'
-               )
+                eval(
+                    'setTimeout(function(){' +
+                    '$(that.C).find(".honeyComb").eq(' + i + ').animate({opacity:1},"normal","swing");' +
+                    '},' + i + '*500)'
+                )
 
             }
 

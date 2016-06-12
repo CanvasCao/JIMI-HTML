@@ -38,20 +38,23 @@
         body {
             box-sizing: border-box;
         }
-        .productDetailCanvas{
+
+        .productDetailCanvas {
             box-sizing: border-box;
-            padding:0px 15px;
+            padding: 0px 15px;
         }
     </style>
 </head>
 <body>
-    <div class="productDetailCanvas"></div>
+<div class="productDetailCanvas"></div>
 
 
 <script src='js/jquery-1.8.2.min.js'></script>
+<script src='js/jimiHost.js'></script>
+<script src='js/base.js'></script>
 <script src='js/echartsBasic&Graph.min.js'></script>
 <script src='js/productDetailCanvas-1.0.2.js'></script>
-<script src='js/jimiHost.js'></script>
+
 <script>
 
     //得到请求地址的URL
@@ -65,14 +68,14 @@
 
     $.ajax({
         type: "get",
-        url: jimiHost+'/formual_safe.php' + window.location.search,
+        url: jimiHost + '/formual_safe.php' + window.location.search,
 //            url: 'package.json',
         dataType: "jsonp",
         jsonp: "callback",
         jsonpCallback: "jsonpcallback",
         success: function (data) {
-            console.log(JSON.stringify(data))
-            var pdc = new ProductDetailCanvas('.productDetailCanvas', data,true);
+            console.log(JSON.stringify(data));
+            var pdc = new ProductDetailCanvas('.productDetailCanvas', data, true);
         },
         error: function (err) {
             console.log('ERROR!');

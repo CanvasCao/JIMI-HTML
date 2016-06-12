@@ -140,6 +140,7 @@
 <script src='js/lightUpMask-1.0.2.js'></script>
 <script src='js/jimiInputBox-2.0.0.js'></script>
 <script src='js/jimiHost.js'></script>
+<script src='js/base.js'></script>
 
 <script>
     $(function () {
@@ -321,7 +322,7 @@
 
                 //.count点击是否成功
                 function ClickCount($ele) {
-                    ele=$ele[0];
+                    ele = $ele[0];
                     if ($ele.closest('.sentence').length) { //判断当前是类是文字
                         eleType = 1;
                         RemoveClass();
@@ -469,7 +470,7 @@
 
                                 //点亮的count被点击的时候
                                 $('.count').click(function () {
-                                    var $that=$(this);
+                                    var $that = $(this);
                                     var succeed = ClickCount($that);
                                     if (succeed) {
                                         getContentAjaxParas = GetGetContentAjaxParas();
@@ -496,7 +497,9 @@
                                 jsonpCallback: "jsonpcallback",
                                 success: function (data) {
 //                                  console.log(JSON.stringify(data))
-                                    jqObj.html('');
+                                    jqObj.html('<div class="header"></div>' +
+                                            '<div class="navBar"></div>' +
+                                            '<div class="productDetailCanvas"></div>');
 
                                     var header = new Header(jqObj[0], data);
                                     var navBar = new NavBar(jqObj[0], data);

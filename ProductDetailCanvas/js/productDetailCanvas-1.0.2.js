@@ -44,7 +44,7 @@
             };
         },
         createDom: function () {
-            var that=this;
+            var that = this;
             var str = "<div class='canvasBox'></div>" +
                 "<div class='nonCanvas'>" +
                 "<div style='height: 20px ;border-top: 1px solid #bdbdbd;'></div>" +
@@ -73,41 +73,12 @@
 
             //给方辉加的a标签.................................................................
             $(this.C).find('.formulaTxtSec').append('<a></a>');
-            $(this.C).find('.formulaTxtSec a').each(function(i,e){
-                var href=base64_encode('{"altBtnIndex":'+i +'}')
-                $(this).attr({'href':'jimi://'+href})
+            $(this.C).find('.formulaTxtSec a').each(function (i, e) {
+                var href = base64_encode('{ "type": 4, "objId": "' + that.data.objId + '","altBtnIndex":' + i + '}');
+                $(this).attr({'href': 'jimi://' + href})
             })
 
 
-            function base64_encode(str){
-                var c1, c2, c3;
-                var base64EncodeChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
-                var i = 0, len= str.length, string = '';
-
-                while (i < len){
-                    c1 = str.charCodeAt(i++) & 0xff;
-                    if (i == len){
-                        string += base64EncodeChars.charAt(c1 >> 2);
-                        string += base64EncodeChars.charAt((c1 & 0x3) << 4);
-                        string += "==";
-                        break;
-                    }
-                    c2 = str.charCodeAt(i++);
-                    if (i == len){
-                        string += base64EncodeChars.charAt(c1 >> 2);
-                        string += base64EncodeChars.charAt(((c1 & 0x3) << 4) | ((c2 & 0xF0) >> 4));
-                        string += base64EncodeChars.charAt((c2 & 0xF) << 2);
-                        string += "=";
-                        break;
-                    }
-                    c3 = str.charCodeAt(i++);
-                    string += base64EncodeChars.charAt(c1 >> 2);
-                    string += base64EncodeChars.charAt(((c1 & 0x3) << 4) | ((c2 & 0xF0) >> 4));
-                    string += base64EncodeChars.charAt(((c2 & 0xF) << 2) | ((c3 & 0xC0) >> 6));
-                    string += base64EncodeChars.charAt(c3 & 0x3F)
-                }
-                return string
-            }
         },
         initCSS: function () {
             var that = this;
@@ -117,7 +88,7 @@
 
             $(this.C).find('.nonCanvas').css({
                 display: 'none',
-				'padding-bottom':'40px',
+                'padding-bottom': '40px',
             })
 
 
@@ -159,8 +130,8 @@
                     'position': 'absolute',
                     width: '100%',
                     height: '100%',
-                    left:0,
-                    top:0,
+                    left: 0,
+                    top: 0,
 
                 })
 

@@ -79,7 +79,7 @@
 
         .navBar {
             box-sizing: border-box;
-            padding: 10px 15px;
+            padding: 10px 15px 5px;
             border-bottom: 1px solid #f4f4f4;
             border-top: 5px solid #f4f4f4;
 
@@ -88,6 +88,11 @@
         #params {
             box-sizing: border-box;
             padding: 10px 15px;
+        }
+
+        #priceCompare {
+            box-sizing: border-box;
+            padding: 20px 15px;
         }
 
         #productDetailCanvas {
@@ -113,20 +118,21 @@
 </div>
 
 <div class='navBar' id='navBar1'></div>
-
 <div id='honeyComb'></div>
 
 <div class='navBar' id='navBar2'></div>
-
 <div id='params'></div>
 
-<div class='navBar' id='navBar3'></div>
+<div class='navBar' id='navBarPrice'></div>
+<div id='priceCompare'></div>
 
+<div class='navBar' id='navBar3'></div>
 <div id="productDetailCanvas"></div>
 
 
 <script src='js/jquery-1.8.2.min.js'></script>
 <script src='js/underscore/underscore.js'></script>
+<script src='js/base.js'></script>
 <script src='js/download/download.js'></script>
 <script src='js/cullet/cullet-4.0.0.js'></script>
 <script src='js/navBar-2.0.0.js'></script>
@@ -134,6 +140,7 @@
 <script src='js/echartsBasic&Graph.min.js'></script>
 <script src='js/productDetailCanvas-1.0.2.js'></script>
 <script src='js/Honeycomb-1.0.0.js'></script>
+<script src='js/priceCompare-1.0.0.js'></script>
 <script src='js/jimiHost.js'></script>
 
 <script>
@@ -178,7 +185,7 @@
             $('.culletContainer img').css({
                 display: 'block',
                 margin: '0 auto',
-            }).attr('src', data.imgUrl || 'img/nodata.png').attr('height', culletContainerH);
+            }).attr('src', data.imgUrl[0] || 'img/nodata.png').attr('height', culletContainerH);
 
 
             //绑定文字
@@ -198,25 +205,32 @@
 
 
             //绑定导航栏
-            var navBar = new NavBar('#navBar1', {
-                navImg: "img/a.png",
+            var navBar1 = new NavBar('#navBar1', {
+                navImg: "img/navBar/a.png",
                 navTxt: '产品特征',
             });
-            var navBar = new NavBar('#navBar2', {
-                navImg: "img/b.png",
+            var navBar2 = new NavBar('#navBar2', {
+                navImg: "img/navBar/b.png",
                 navTxt: '产品参数',
             });
-            var navBar = new NavBar('#navBar3', {
-                navImg: "img/c.png",
+            var navBarPrice = new NavBar('#navBarPrice', {
+                navImg: "img/navBar/price.png",
+                navTxt: '市面价格',
+            });
+            var navBar3 = new NavBar('#navBar3', {
+                navImg: "img/navBar/c.png",
                 navTxt: '成分分布（' + data.component.length + '种）',
             });
 
 
+            //中间蜂巢的数据
+            var hc = new Honeycomb('#honeyComb', data);
+
             //参数数据
             var productParams = new ProductParams('#params', data);
 
-            //中间蜂巢的数据
-            var hc = new Honeycomb('#honeyComb', data);
+            var priceCompare = new PriceCompare('#priceCompare', data.PriceData.json);
+
 
             //中间canvas的数据
             var pdc = new ProductDetailCanvas('#productDetailCanvas', data, false);
@@ -228,7 +242,7 @@
                             window.location.href = 'http://n1.jimi.la/apps_T1/CompositionDistribution/CompositionDistribution.html' + window.location.search
                         }
                 )
-                $('#navBar3').append(' <img src="img/arrow.png" height="12px"  style="float: right;margin-top: 3px"/>')
+                $('#navBar3').append(' <img src="img/navBar/arrow.png" height="12px"  style="float: right;margin-top: 3px"/>')
             }
 
 
@@ -243,8 +257,7 @@
                         bottomBlank: 0
                     }
             );
-//        var jimiInputBox = new JimiInputBox('.jimiInputBox',
-//                {ccm: ccm});
+//        var jimiInputBox = new JimiInputBox('.jimiInputBox',{ccm: ccm});
 
             //加载弹幕
             var pid = searchJson.pid;
