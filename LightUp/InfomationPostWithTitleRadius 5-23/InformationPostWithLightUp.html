@@ -506,10 +506,15 @@
                                         navImg: "img/navBar/b.png",
                                         navTxt: '产品参数',
                                     });
-//                                    $(this.C).find('.formulaTxtSec a').each(function (i, e) {
-//                                        var href = base64_encode('{ "type": 4, "objId": "' + that.data.objId + '","altBtnIndex":' + i + '}');
-//                                        $(this).attr({'href': 'jimi://' + href})
-//                                    })
+                                    jqObj.find('.navBar').css({'position': 'relative'})
+                                            .append(' <img src="img/navBar/arrow.png" height="12px"  style="float: right;margin-top: 3px"/>')
+                                            .append('<a></a>');
+
+                                    var href = base64_encode('{ "type": 4, "objId": "' + pid + '","altBtnIndex":0}');
+                                    jqObj.find('a').css({
+                                        'position': 'absolute', width: '100%', height: '100%', left: 0, top: 0,
+                                    }).attr({href: 'jimi://'+href});
+//
 
                                     var pdc = new ProductDetailCanvas(jqObj.find('.productDetailCanvas')[0], data, false);
 

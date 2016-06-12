@@ -39,6 +39,12 @@
         initCSS: function () {
             var that = this;
 
+            $(this.C).css({
+                'border-bottom': '1px solid #f4f4f4',
+                'border-top': '5px solid #f4f4f4',
+                'padding-bottom':'5px',
+                'padding-top':'10px',
+            })
 
             $(this.C).find('.navCon').css({
                 display: 'inline-block',

@@ -466,11 +466,26 @@
                                 jsonpCallback: "jsonpcallback",
                                 success: function (data) {
 //                                  console.log(JSON.stringify(data))
-                                    jqObj.html('');
+                                    jqObj.html('<div class="header"></div>' +
+                                            '<div class="navBar"></div>' +
+                                            '<div class="productDetailCanvas"></div>');
 
-                                    var header = new Header(jqObj[0], data);
-                                    var navBar = new NavBar(jqObj[0], data);
-                                    var pdc = new ProductDetailCanvas(jqObj[0], data, false);
+                                    var header = new Header(jqObj.find('.header')[0], data);
+                                    var navBar = new NavBar(jqObj.find('.navBar')[0], {
+                                        navImg: "img/navBar/b.png",
+                                        navTxt: '产品参数',
+                                    });
+                                    jqObj.find('.navBar').css({'position': 'relative'})
+                                            .append(' <img src="img/navBar/arrow.png" height="12px"  style="float: right;margin-top: 3px"/>')
+                                            .append('<a></a>');
+
+                                    var href = base64_encode('{ "type": 4, "objId": "' + pid + '","altBtnIndex":0}');
+                                    jqObj.find('a').css({
+                                        'position': 'absolute', width: '100%', height: '100%', left: 0, top: 0,
+                                    }).attr({href: 'jimi://'+href});
+//
+
+                                    var pdc = new ProductDetailCanvas(jqObj.find('.productDetailCanvas')[0], data, false);
 
                                     jqObj.append('<span class="count"></span>');//count标签
 
