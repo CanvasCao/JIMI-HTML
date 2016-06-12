@@ -101,10 +101,22 @@
             padding: 0 15px;
             box-sizing: border-box;
         }
+
+        .download {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            box-sizing: border-box;
+            box-shadow: 2px 0px 6px rgba(0, 0, 0, 0.4);
+            display: inline-block;
+            background-color: white;
+            z-index: 9999;
+        }
     </style>
     <link rel="stylesheet" href="css/lightUp.css"/>
 </head>
 <body>
+<div class="download"></div>
 <div id='con'>
     <div id='scroll'>
         <div class='title'>
@@ -141,12 +153,17 @@
 <script src='js/jimiInputBox-2.0.0.js'></script>
 <script src='js/jimiHost.js'></script>
 <script src='js/base.js'></script>
+<script src='js/download/download.js'></script>
 
 <script>
     $(function () {
                 if (!window.location.search) {
-                    window.location = window.location + '?rid=466&uid=10450&uImg=http://7xo2me.com1.z0.glb.clouddn.com/images/17RTW5G74N2J.jpg&uName=方辉真帅&jsonpcallback=1';
+                    window.location = window.location + '?rid=466&jsonpcallback=1';
                 }
+
+
+                //download对象
+                var download = new Download('.download', null);
 
 
                 var winH = $(window).height();
@@ -549,7 +566,7 @@
     var winW = $(window).width();
     //    alert(winH); //568
     $('#con').css({width: winW, height: winH})
-    $('#con').scrollTop(100);
+    $('#con').scrollTop(0);
     $titleImg = $('.titleImg');
 
     var initHeight = 400;
