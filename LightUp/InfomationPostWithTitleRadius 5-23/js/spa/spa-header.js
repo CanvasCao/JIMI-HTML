@@ -19,11 +19,9 @@
 
         },
         createDom: function () {
-            var that=this;
-            //拼加组件
-            $(this.C).append("<div class='header'></div>");
+            var that = this;
 
-            $(this.C).find('.header').html(
+            $(this.C).html(
                 "<div class='imgCon'></div>" +
                 "<div class='pname'></div>"
             )
@@ -31,39 +29,34 @@
             //更新头部图片和文字
             var englishName = this.data.englishName;
             var chineseName = this.data.chineseName;
-            var imgUrl = this.data.imgUrl || 'img/a.png';
+            var imgUrl = this.data.imgUrl[0] || 'img/a.png';
+            console.log(imgUrl)
 //                $imgCon.find('img').attr('src', imgUrl);
             $(this.C).find('.imgCon').css('background', 'url(' + imgUrl + ') no-repeat 50% 50%').css('background-size', 'contain');
             $(this.C).find('.pname').html(englishName + '<br>' + chineseName);
 
 
-            //给方辉的a标签
-            $(this.C).find('.header').append("<a href="+ that.data.jimiUrl+"></a>");
-            $(this.C).find('.header a').css({
-                position:'absolute',
-                width:'100%',
-                height:'100%',
-                top:0,
-                left:0,
-            });
+            //给方辉的a标签................................................
+            $(this.C).append("<a></a>");
+            var href = base64_encode('{ "type": 3, "objId": "' + that.data.objId + '}');
+            $(this.C).find('a').attr({'href': 'jimi://' + href})
+
+
         },
         initCSS: function () {
             var that = this;
 
 
-            $(this.C).find('.header').css({
+            $(this.C).css({
                 height: '200px',
                 'box-sizing': 'border-box',
                 position: 'relative',
             })
 
 
-            $(this.C).find('.header .imgCon').css({
+            $(this.C).find('.imgCon').css({
                 top: '50%',
                 transform: 'translateY(-50%)',
-                //-webkit-transform: translateY(-50%);
-                //-ms-transform: translateY(-50%);
-                //-moz-transform: translateY(-50%);
                 width: '40%',
                 height: '90%',
                 position: 'absolute',
@@ -72,18 +65,23 @@
             })
 
 
-            $(this.C).find('.header .pname').css({
+            $(this.C).find('.pname').css({
                 top: '50%',
                 transform: 'translateY(-50%)',
-                //-webkit-transform: translateY(-50%);
-                //-ms-transform: translateY(-50%);
-                //-moz-transform: translateY(-50%);
                 width: '50%',
                 position: 'absolute',
                 right: '3%',
                 'word-break': 'normal',
                 color: '#2e2e2e',
             })
+
+            $(this.C).find('a').css({
+                position: 'absolute',
+                width: '100%',
+                height: '100%',
+                top: 0,
+                left: 0,
+            });
 
         },
         bindEvent: function () {

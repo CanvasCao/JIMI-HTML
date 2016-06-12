@@ -21,11 +21,9 @@
         },
         createDom: function () {
             //拼加组件
-            $('body').append("<div class='alertCon'></div>");
-            this.JM.$alertCon = $('.alertCon')
 
 
-            this.JM.$alertCon.html('<div class="alert">' +
+            $(this.C).html('<div class="alert">' +
                 '<div class="title1"></div>' +
                 '<div class="title2"></div>' +
                 '<div class="close">关闭</div>' +
@@ -37,7 +35,7 @@
             var that = this;
 
 
-            this.JM.$alertCon.css({
+            $(this.C).css({
                 position: 'fixed',
                 width: '100%',
                 height: '100%',
@@ -47,7 +45,7 @@
                 display: 'none',
             })
 
-            this.JM.$alertCon.find('.alert').css({
+            $(this.C).find('.alert').css({
 
                 width: '80%',
                 position: 'absolute',
@@ -65,18 +63,18 @@
             })
 
 
-            this.JM.$alertCon.find('.title1').css({
+            $(this.C).find('.title1').css({
                 color: '#8b8b8b',
 
             })
 
 
-            this.JM.$alertCon.find('.title2').css({
+            $(this.C).find('.title2').css({
                 'font-size': '14px',
                 margin: '8px 0',
             })
 
-            this.JM.$alertCon.find('.close').css({
+            $(this.C).find('.close').css({
                 height: '25px',
                 width: '100px',
                 'border-radius': '20px',
@@ -104,12 +102,12 @@
 
             $('.compositions').find('li').click(function () {
                 var data = $(this).attr('data')
-                that.JM.$alertCon.find('.title1').html(data);
-                that.JM.$alertCon.find('.title2').html(alertJson[data]);
-                that.JM.$alertCon.fadeIn('fast');
+                $(this.C).find('.title1').html(data);
+                $(this.C).find('.title2').html(alertJson[data]);
+                $(this.C).fadeIn('fast');
             })
-            that.JM.$alertCon.find('.close').click(function () {
-                that.JM.$alertCon.fadeOut('fast');
+            $(this.C).find('.close').click(function () {
+                $(this.C).fadeOut('fast');
             })
 
 

@@ -33,8 +33,8 @@
             var componentsWithIdArr = this.data.component;//二维数组 [0]是name [1]是id
 
             //拼加组件
-            $(this.C).append("<div class='middleComponent'></div>");
-            $(this.C).find('.middleComponent').html('<div class="typeCom"></div><div class="safeCom"></div>');
+
+            $(this.C).html('<div class="typeCom"></div><div class="safeCom"></div>');
 
             var str = '';
             if (componentsWithIdArr) {
@@ -68,7 +68,7 @@
         initCSS: function () {
             var that = this;
 
-            $(this.C).find('.middleComponent').css({
+            $(this.C).css({
                 padding: '10px 0px',
                 'background-color': that.config.backgroundColor,
                 'padding-bottom': '80px',

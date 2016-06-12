@@ -135,7 +135,7 @@
 <script src='js/spa/spa-compositionContainer.js'></script>
 <script src='js/spa/spa-header.js'></script>
 <script src='js/spa/spa-middleComponent-1.0.2.js'></script>
-<script src='js/spa/navBar-1.0.0.js'></script>
+<script src='js/spa/navBar-2.0.0.js'></script>
 <script src='js/labelAdapter/labelAdapter.js'></script>
 <script src='js/lightUpMask-1.0.2.js'></script>
 <script src='js/jimiInputBox-2.0.0.js'></script>
@@ -501,9 +501,17 @@
                                             '<div class="navBar"></div>' +
                                             '<div class="productDetailCanvas"></div>');
 
-                                    var header = new Header(jqObj[0], data);
-                                    var navBar = new NavBar(jqObj[0], data);
-                                    var pdc = new ProductDetailCanvas(jqObj[0], data, false);
+                                    var header = new Header(jqObj.find('.header')[0], data);
+                                    var navBar = new NavBar(jqObj.find('.navBar')[0], {
+                                        navImg: "img/navBar/b.png",
+                                        navTxt: '产品参数',
+                                    });
+//                                    $(this.C).find('.formulaTxtSec a').each(function (i, e) {
+//                                        var href = base64_encode('{ "type": 4, "objId": "' + that.data.objId + '","altBtnIndex":' + i + '}');
+//                                        $(this).attr({'href': 'jimi://' + href})
+//                                    })
+
+                                    var pdc = new ProductDetailCanvas(jqObj.find('.productDetailCanvas')[0], data, false);
 
                                     jqObj.append('<span class="count"></span>');//count标签
 

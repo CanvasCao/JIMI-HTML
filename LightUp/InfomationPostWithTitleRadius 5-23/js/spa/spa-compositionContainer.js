@@ -18,11 +18,8 @@
 
         },
         createDom: function () {
-            //拼加组件
-            $(this.C).append("<div class='compositionsContainer'></div>");
-
             <!--类型和安全的成分  一个二选一按钮-->
-            $(this.C).find('.compositionsContainer').html(
+            $(this.C).html(
                 "<div class='compositions'></div>" +
                 "<div class='alBtn'></div>"
             )
@@ -68,7 +65,7 @@
 
 
             /*左侧成分 加 二选一控件*/
-            $(this.C).find('.compositionsContainer').css({
+            $(this.C).css({
                 'box-sizing': 'border-box',
                 padding: '10px 0px',
                 'margin-bottom':10,

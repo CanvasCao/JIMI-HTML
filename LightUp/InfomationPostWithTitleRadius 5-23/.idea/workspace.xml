@@ -21,21 +21,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="InformationPostWithLightUpVersionIOS.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/InformationPostWithLightUpVersionIOS.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="48" column="0" selection-start-line="48" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="InformationPostWithLightUp.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/InformationPostWithLightUp.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5782609">
-              <caret line="502" column="0" selection-start-line="502" selection-start-column="0" selection-end-line="502" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.54057974">
+              <caret line="507" column="39" selection-start-line="507" selection-start-column="39" selection-end-line="507" selection-end-column="39" />
               <folding>
                 <element signature="e#9100#9234#0" expanded="false" />
                 <element signature="e#9299#9475#0" expanded="false" />
@@ -208,11 +198,14 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Administrator\Desktop\JIMI HTML\JIMI-HTML\LightUp\InfomationPostWithTitleRadius 5-23\js" />
       <recent name="C:\Users\Administrator\Desktop\JIMI HTML\JIMI-HTML\LightUp\InfomationPostWithTitleRadius 5-23\js\spa" />
+      <recent name="C:\Users\Administrator\Desktop\JIMI HTML\JIMI-HTML\LightUp\InfomationPostWithTitleRadius 5-23\js" />
       <recent name="C:\Users\Administrator\Desktop\JIMI HTML\JIMI-HTML\LightUp\InfomationPostWithTitleRadius 5-23" />
       <recent name="C:\Users\Administrator\Desktop\JIMI HTML\JIMI-HTML\LightUp\InfomationPostWithTitleRadius 5-23\img" />
       <recent name="C:\Users\Administrator\Desktop\JIMI HTML\JIMI-HTML\LightUp\InfomationPostWithTitleRadius 5-23\css" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Administrator\Desktop\JIMI HTML\JIMI-HTML\LightUp\InfomationPostWithTitleRadius 5-23\img\navBar" />
     </key>
   </component>
   <component name="RunManager">
@@ -269,25 +262,25 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1612" height="876" extended-state="1" />
-    <editor active="false" />
+    <frame x="-8" y="-8" width="1612" height="876" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3208763" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16559279" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="版本控制" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="调试" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32885906" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="运行" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="调试" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="运行" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -322,7 +315,7 @@
     <entry file="file://$PROJECT_DIR$/InformationPostWithLightUp.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="396" column="52" selection-start-line="396" selection-start-column="52" selection-end-line="396" selection-end-column="52" />
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#9100#9234#0" expanded="false" />
             <element signature="e#9299#9475#0" expanded="false" />
@@ -336,7 +329,12 @@
     <entry file="file://$PROJECT_DIR$/css/lightUp.css">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="26" column="24" selection-start-line="26" selection-start-column="24" selection-end-line="26" selection-end-column="24" />
+          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+          <folding>
+            <element signature="e#2519#2580#0" expanded="false" />
+            <element signature="e#2610#2999#0" expanded="false" />
+            <element signature="e#3028#3414#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -365,34 +363,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/jimi-prototype.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/InformationPostWithLightUp.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#9100#9234#0" expanded="false" />
-            <element signature="e#9299#9475#0" expanded="false" />
-            <element signature="e#9549#10839#0" expanded="false" />
-            <element signature="e#10915#11820#0" expanded="false" />
-            <element signature="e#11923#13555#0" expanded="false" />
+            <element signature="e#2519#2580#0" expanded="false" />
+            <element signature="e#2610#2999#0" expanded="false" />
+            <element signature="e#3028#3414#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/css/lightUp.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -428,6 +403,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="119" column="16" selection-start-line="119" selection-start-column="16" selection-end-line="119" selection-end-column="16" />
+          <folding>
+            <element signature="e#2519#2580#0" expanded="false" />
+            <element signature="e#2610#2999#0" expanded="false" />
+            <element signature="e#3028#3414#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -470,6 +450,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="119" column="16" selection-start-line="119" selection-start-column="16" selection-end-line="119" selection-end-column="16" />
+          <folding>
+            <element signature="e#2519#2580#0" expanded="false" />
+            <element signature="e#2610#2999#0" expanded="false" />
+            <element signature="e#3028#3414#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -512,6 +497,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="119" column="16" selection-start-line="119" selection-start-column="16" selection-end-line="119" selection-end-column="16" />
+          <folding>
+            <element signature="e#2519#2580#0" expanded="false" />
+            <element signature="e#2610#2999#0" expanded="false" />
+            <element signature="e#3028#3414#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -533,6 +523,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+          <folding>
+            <element signature="e#2519#2580#0" expanded="false" />
+            <element signature="e#2610#2999#0" expanded="false" />
+            <element signature="e#3028#3414#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -554,6 +549,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+          <folding>
+            <element signature="e#2519#2580#0" expanded="false" />
+            <element signature="e#2610#2999#0" expanded="false" />
+            <element signature="e#3028#3414#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -575,6 +575,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+          <folding>
+            <element signature="e#2519#2580#0" expanded="false" />
+            <element signature="e#2610#2999#0" expanded="false" />
+            <element signature="e#3028#3414#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -603,20 +608,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="24" column="67" selection-start-line="24" selection-start-column="67" selection-end-line="24" selection-end-column="67" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/spa/spa-middleComponent-1.0.2.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/spa/productDetailCanvas-1.0.2.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="119" column="24" selection-start-line="119" selection-start-column="24" selection-end-line="119" selection-end-column="24" />
         </state>
       </provider>
     </entry>
@@ -625,11 +616,6 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/img/a.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/img/logo.jpg">
@@ -695,22 +681,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="130" column="11" selection-start-line="130" selection-start-column="11" selection-end-line="130" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/spa/spa-header.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/spa/navBar-1.0.0.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="57" column="30" selection-start-line="57" selection-start-column="30" selection-end-line="57" selection-end-column="30" />
-          <folding />
+          <folding>
+            <element signature="e#2519#2580#0" expanded="false" />
+            <element signature="e#2610#2999#0" expanded="false" />
+            <element signature="e#3028#3414#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -745,10 +720,83 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/js/spa/alternateBtn-1.0.0.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/spa/navBar-1.0.0.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="57" column="30" selection-start-line="57" selection-start-column="30" selection-end-line="57" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/spa/navBar-2.0.0.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/spa/productDetailCanvas-1.0.2.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1465700788885" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1465700788885" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1465700788885" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1465700788885" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1465700788885" expanded="true" signature="-1:-1" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/spa/spa-alertCon.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/spa/spa-compositionContainer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1465702241924" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1465702241924" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1465702241924" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1465702241924" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1465702241924" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1465702241924" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1465702241924" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1465702241924" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1465702241924" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1465702241924" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1465702241924" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1465702241924" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1465702241924" expanded="true" signature="-1:-1" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/img/navBar/a.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/InformationPostWithLightUp.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5782609">
-          <caret line="502" column="0" selection-start-line="502" selection-start-column="0" selection-end-line="502" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.54057974">
+          <caret line="507" column="39" selection-start-line="507" selection-start-column="39" selection-end-line="507" selection-end-column="39" />
           <folding>
             <element signature="e#9100#9234#0" expanded="false" />
             <element signature="e#9299#9475#0" expanded="false" />
