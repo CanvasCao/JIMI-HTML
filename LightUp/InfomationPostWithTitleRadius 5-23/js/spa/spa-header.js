@@ -38,7 +38,7 @@
 
             //给方辉的a标签................................................
             $(this.C).append("<a></a>");
-            var href = base64_encode('{ "type": 3, "objId": "' + that.data.objId + '}');
+            var href = base64_encode('{ "type": 1, "objId": "' + that.data.objId + '"}');
             $(this.C).find('a').attr({'href': 'jimi://' + href})
 
 
