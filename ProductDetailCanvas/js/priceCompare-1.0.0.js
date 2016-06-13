@@ -58,10 +58,15 @@
         initCSS: function () {
             var that = this;
 
-            $(this.C).find('.priceCon').css({
 
+            $(this.C).css({
+                overflow:'scroll',
+            })
+
+            var cPaddingL=parseInt($(that.C).css('padding-left'));
+            $(this.C).find('.priceCon').css({
                 display: 'inline-block',
-                width: that.num * (that.config.imgW + that.config.secMarginRight),
+                width: that.num * (that.config.imgW + that.config.secMarginRight)+2*cPaddingL,
             })
 
             $(this.C).find('.priceSec').css({
@@ -81,6 +86,19 @@
         },
         bindEvent: function () {
             var that = this;
+
+
+            $(this.C).find('.priceSec').each(function (i, e) {
+                var json = that.data[i]; //json是数组的单个元素
+                console.log(json);
+                var siteid = json.siteid;
+                var id = json.id;
+
+                $(e).click(function () {
+                        window.location.href = (jimiHost + '/maimaiBuy/index.html?id=' + id + '&siteid=' + siteid );
+                    }
+                )
+            })
         }
     }
     w.PriceCompare = PriceCompare;

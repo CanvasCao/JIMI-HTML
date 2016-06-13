@@ -551,7 +551,7 @@
 
                     setTimeout(function () {
                         that.start(); //加载完成以后开始播放
-                    }, 2000)
+                    }, 0)
                 },
                 error: function (err) {
                     console.log('LOAD ERROR!')

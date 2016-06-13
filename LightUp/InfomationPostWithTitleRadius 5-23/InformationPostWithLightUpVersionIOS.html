@@ -41,7 +41,7 @@
 <script src='js/spa/spa-compositionContainer.js'></script>
 <script src='js/spa/spa-header.js'></script>
 <script src='js/spa/spa-middleComponent-1.0.2.js'></script>
-<script src='js/spa/navBar-1.0.0.js'></script>
+<script src='js/spa/navBar-2.0.0.js'></script>
 <script src='js/labelAdapter/labelAdapter.js'></script>
 <script src='js/lightUpMask-1.0.2.js'></script>
 <script src='js/jimiInputBox-2.0.0.js'></script>
@@ -480,6 +480,7 @@
                                             .append('<a></a>');
 
                                     var href = base64_encode('{ "type": 4, "objId": "' + pid + '","altBtnIndex":0}');
+
                                     jqObj.find('a').css({
                                         'position': 'absolute', width: '100%', height: '100%', left: 0, top: 0,
                                     }).attr({href: 'jimi://'+href});

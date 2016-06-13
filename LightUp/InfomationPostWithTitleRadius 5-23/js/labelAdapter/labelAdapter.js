@@ -40,7 +40,7 @@ function labelAdapter($con) {//传进一个jq对象 是个容器 会对容器内
 
     })
     //视频适配16比9
-    $con.find('iframe').css({width: (winW - bodyPaddingW * 2), height: (winW - bodyPaddingW * 2) * 9 / 16});
+    $con.find('iframe').css({width: (winW - bodyPaddingW * 2), height: (winW - bodyPaddingW * 2) * 9 / 16})
 
     //这一步增加点亮专用类名 删除不是p的标签 ..................................................................
     $con.children().each(function (i, e) {
