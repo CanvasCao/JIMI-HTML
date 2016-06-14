@@ -153,20 +153,20 @@
                 height: 20,
             }).find('img').css({
                 'margin-left': 2,
-            })
+            });
 
 
             //that.config.ifUser保存了当前的弹幕是否是用户发送的 现在没有了
             if (that.config.ifUser) {
-            }
+            };
             //that.json.ifCurrent 保存了当前弹幕是否是在当前inputbox发送的 现在也没有了
             if (!that.commentsPK) { //本地发送
                 this.JM.$cell.css({border: '5px solid #3881e0'});
-            }
+            };
             if (that.liked) {
                 this.JM.$cell.css('background', that.config.likedColor);
                 this.JM.$cell.find('.commentLike').css({'top': -15, 'opacity': 1});
-            }
+            };
 
         },
         bindEvent: function () {
@@ -184,12 +184,12 @@
                     $(this).css({backgroundColor: that.config.likedColor});
                     $(this).find('.commentLike').css({'top': 0}).stop().animate({'top': -15, 'opacity': 1}, 100);
 
-                }
+                };
 
                 //ajax
                 if (!that.commentsPK) {//没有服务器主键说明不用ajax
                     return;
-                }
+                };
 
                 //给服务器发ajax点赞
                 if (!that.ccm.ajaxedObject.hasOwnProperty(that.commentsPK)) {//没有
@@ -212,7 +212,7 @@
                             console.log(err);
                         }
                     })
-                }
+                };
 
                 //加速
                 that.speed += 1;
@@ -238,8 +238,8 @@
 
                 if ((cellLeft + cellWidth + 20) < $(window).width()) {
                     that.occupied = false;
-                }
-            }
+                };
+            };
 
             //如果移动出屏幕就停止
             if (this.cssCell('left') < -cellWidth) {
@@ -264,7 +264,7 @@
             }
             else {
                 this.jqueryMap.$cell.css(property, value);
-            }
+            };
         },
     };
 
@@ -380,7 +380,7 @@
             $(this.C).find('.commentClose').click(function () {
                 that.pause();
                 $(that.C).fadeOut();
-            })
+            });
 
         },
         push: function () { //push是makeReady的意思了
@@ -388,7 +388,7 @@
 
             if (that.commentCellArr.length >= that.serverCommentArr.length || that.commentCellArr.length > that.commentLimit) {
                 return;
-            }
+            };
 
             function GetRandom(begin, end) {
                 return Math.floor(Math.random() * (end - begin)) + begin;
@@ -402,24 +402,24 @@
                 that.lineResArr = [];
                 for (i = 0 + that.topBlank; i < that.lineNumber - that.bottomBlank; i++) { //第一行和最后一行不能有弹幕
                     that.lineResArr.push(i);
-                }
+                };
 
                 if (that.commentCellArr.length) {
                     for (i = 0; i < that.commentCellArr.length; i++) {
                         if (that.commentCellArr[i].occupied) {
                             that.lineResArr = _.without(that.lineResArr, that.commentCellArr[i].lineNum);
                         }
-                    }
-                }
+                    };
+                };
 
 
                 //lineResArr里面存了哪几行可以插弹幕
                 if (that.lineResArr.length) {
-                    return that.lineResArr[GetRandom(0, that.lineResArr.length)]
+                    return that.lineResArr[GetRandom(0, that.lineResArr.length)];
                 }
                 else {
                     return null;
-                }
+                };
             };
 
 
@@ -476,7 +476,7 @@
                         that.move();
                     }
                     that.moveTimer = requestAnimationFrame(innerMove);
-                }
+                };
 
                 innerMove();
 
@@ -490,7 +490,7 @@
                     if (diff >= 1000 / that.pushFPS) {
                         pushStartTime = new Date().getTime();
                         that.push()
-                    }
+                    };
                     that.pushTimer = requestAnimationFrame(innerPush);
                 }
 
@@ -517,7 +517,7 @@
             [].forEach.call(that.commentCellArr, function (e, i, arr) {
                 if (e)
                     e.speed = that.speedHash[that.speedKey];
-            })
+            });
 
         },
 
@@ -551,7 +551,7 @@
 
                     setTimeout(function () {
                         that.start(); //加载完成以后开始播放
-                    }, 2000)
+                    }, that.json.startDelay||0);
                 },
                 error: function (err) {
                     console.log('LOAD ERROR!')

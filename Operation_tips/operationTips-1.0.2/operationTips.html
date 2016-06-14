@@ -36,7 +36,14 @@
             user-select: text;
         }
 
+        #stage {
+            overflow: hidden;
+            position: relative;
+        }
 
+        img {
+            vertical-align: top;
+        }
     </style>
 </head>
 <body>
@@ -49,6 +56,9 @@
 <script src='operationTips-1.0.2.js'></script>
 <script>
     $(function () {
+        var winH = $(window).height();
+        var winW = $(window).width();
+        $('#stage').css({width: winW, height: winH});
 
         var data = {
             bgImgs: [
@@ -61,8 +71,8 @@
                 'click3.png'
             ],
             clickPosition: [
-                [{'left': '15%', 'top': '95%'}, {'left': '50%', 'top': '70%'}],
-                {'left': '94%', 'top': '96%'},
+                [{'left': '18%', 'top': '95%'}, {'left': '50%', 'top': '65%'}],
+                {'left': '85%', 'top': '96%'},
             ],
 //            word: ['可直接使用秘方,也可以手动搜索秘方:自定义搜索条件任意组合',
 //                '进行条件筛选',

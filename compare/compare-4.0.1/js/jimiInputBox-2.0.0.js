@@ -188,7 +188,7 @@
                             "uid": "10002",
                             "userType": "0",
                             "txt": txt,
-                            "expression": "1"
+                            "expression": expression,
                         };
                         that.ccm.add(json);
 

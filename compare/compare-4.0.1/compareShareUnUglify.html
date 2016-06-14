@@ -153,6 +153,7 @@
             /*top是第一行的高度*/
         }
 
+
         /*弹幕那一行的div的样式*/
         .openCullet {
             border: 1px solid #3982e1;
@@ -183,6 +184,7 @@
         <!--top是第一行的高度-->
         <div id='line2col1'>基本参数</div>
         <div id='line2col2'>√ 有&nbsp ×无&nbsp - 无数据</div>
+        <div id='line2col3'></div>
     </div>
 </div>
 
@@ -198,15 +200,13 @@
 <script src="js/underscore.js"></script>
 <script src='js/jimiHost.js'></script>
 <script src='js/cullet-4.0.0.min.js'></script>
-<script src='js/jimiInputBox-2.0.0.js'></script>
 <script src='js/fastclick.js'></script>
+<script src='js/download/download.js'></script>
 <script>
     $(function () {
 
         if (!window.location.search) {
-//            window.location = window.location + '?pids=56829da0efb80c4e26c3e3a2,56837c60efb80c6225ead657,56f4d0d0efb80c57428b630a&cate=3&uid=10002';
-            window.location = window.location + '?pids=56f57a7defb80c57428c74f6,56f56b2befb80c57428c654f,56829f6defb80c4e26c457f6&cate=6&uid=10002';
-//            window.location = window.location + '?pids=56f57a7defb80c57428c74f6,56f56b2befb80c57428c654f,56829f6defb80c4e26c457f6&cate=6';
+            window.location = window.location + '?pids=56f57a7defb80c57428c74f6,56f56b2befb80c57428c654f,56829f6defb80c4e26c457f6&cate=6';
         }
 
         String.prototype.searchToJson = function () {
@@ -215,13 +215,16 @@
             var finalJson = {};
             for (i = 0; i < kvArr.length; i++) {
                 var kvSplit = kvArr[i].split('=');
-                finalJson[kvSplit[0].toLowerCase()] = kvSplit[1];
+                finalJson[kvSplit[0].toLowerCase()] = kvSplit[1]
             }
             return finalJson;
         }
 
         window.searchJson = searchJson = window.location.search.searchToJson();
 
+
+        //downloadBtn
+        var download = new Download('#line2col3', null);
 
         //FastClick..........................................................................
         FastClick.attach(document.body);
@@ -382,7 +385,7 @@
 
                 //同步line2 高度和top值
                 var line2Height = $('#real tr').eq(1).css('height');
-                $('#line2').css({height: line2Height})
+                $('#line2').css({height: line2Height});
 
                 var line2Top = $('#real tr').eq(0).css('height');
                 $('#line2').css({top: line2Top})
@@ -390,10 +393,9 @@
                 $('#line2>div').css({'height': '100%', 'line-height': line2Height, 'display': 'inline-block'})
                 $('#line2col1').css({'width': (leftW), 'float': 'left'})
                 $('#line2col2').css({
-                    'width': (mainW * 2),
-                    'float': 'right',
+                    'width': (mainW),
+                    'float': 'left',
                     'box-sizing': 'border-box',
-                    'padding-right': 20,
                     'text-align': 'right'
                 })
 

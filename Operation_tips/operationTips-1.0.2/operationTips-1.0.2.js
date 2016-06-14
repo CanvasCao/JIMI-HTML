@@ -72,8 +72,8 @@
             $(this.C).find('.clickImg').css({
                 'position': 'absolute',
                 'transform': ' translateX(-50%) translateY(-50%)',
-                width: '80px',
-                height: '80px',
+                width: '50',
+                height: '50',
                 'z-index': 999,
             });
 
