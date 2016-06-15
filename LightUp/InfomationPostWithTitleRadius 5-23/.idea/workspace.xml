@@ -25,16 +25,16 @@
         <entry file="file://$PROJECT_DIR$/css/lightUp.css">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="58" column="20" selection-start-line="58" selection-start-column="20" selection-end-line="58" selection-end-column="20" />
+              <caret line="74" column="19" selection-start-line="74" selection-start-column="19" selection-end-line="74" selection-end-column="19" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="InformationPostWithLightUp.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="InformationPostWithLightUp.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/InformationPostWithLightUp.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.28985506">
+            <state vertical-scroll-proportion="-0.0">
               <caret line="140" column="0" selection-start-line="140" selection-start-column="0" selection-end-line="140" selection-end-column="48" />
               <folding>
                 <element signature="e#9097#9231#0" expanded="false" />
@@ -51,7 +51,7 @@
       <file leaf-file-name="InformationPostShareUnUglify.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/InformationPostShareUnUglify.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-12.692307">
+            <state vertical-scroll-proportion="-0.0">
               <caret line="151" column="47" selection-start-line="151" selection-start-column="47" selection-end-line="151" selection-end-column="47" />
               <folding>
                 <marker date="1465876537664" expanded="true" signature="19882:19910" placeholder="..." />
@@ -63,7 +63,7 @@
       <file leaf-file-name="InformationPostWithLightUpVersionIOS.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/InformationPostWithLightUpVersionIOS.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-12.307693">
+            <state vertical-scroll-proportion="0.0">
               <caret line="44" column="59" selection-start-line="44" selection-start-column="59" selection-end-line="44" selection-end-column="59" />
               <folding>
                 <marker date="1465876410466" expanded="true" signature="20733:20761" placeholder="..." />
@@ -75,7 +75,7 @@
       <file leaf-file-name="InformationPostShare.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/InformationPostShare.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-7.8076925">
+            <state vertical-scroll-proportion="0.0">
               <caret line="151" column="47" selection-start-line="151" selection-start-column="47" selection-end-line="151" selection-end-column="47" />
               <folding>
                 <marker date="1465876537580" expanded="true" signature="9428:9456" placeholder="..." />
@@ -84,11 +84,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="labelAdapter.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="labelAdapter.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/labelAdapter/labelAdapter.js">
           <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.75418997">
+              <caret line="84" column="47" selection-start-line="84" selection-start-column="47" selection-end-line="84" selection-end-column="47" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="jimi-prototype.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/jimi-prototype.js">
+          <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="33" column="14" selection-start-line="0" selection-start-column="0" selection-end-line="90" selection-end-column="0" />
+              <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -98,10 +108,8 @@
         <entry file="file://$PROJECT_DIR$/js/labelAdapter/labelAdapter.min.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="1" column="975" selection-start-line="1" selection-start-column="975" selection-end-line="1" selection-end-column="975" />
-              <folding>
-                <marker date="1465876410509" expanded="true" signature="24:1500" placeholder="{...}" />
-              </folding>
+              <caret line="1" column="27" selection-start-line="0" selection-start-column="0" selection-end-line="1" selection-end-column="975" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -142,17 +150,17 @@
         <option value="$PROJECT_DIR$/js/spa/navBar-1.0.0.js" />
         <option value="$PROJECT_DIR$/js/lightUpMask-1.0.2.js" />
         <option value="$PROJECT_DIR$/js/spa/navBar-2.0.0.js" />
-        <option value="$PROJECT_DIR$/js/labelAdapter/labelAdapter.js" />
         <option value="$PROJECT_DIR$/iframetest.html" />
         <option value="$PROJECT_DIR$/js/spa/spa-header.js" />
         <option value="$PROJECT_DIR$/../../../../strong.html" />
-        <option value="$PROJECT_DIR$/css/lightUp.css" />
         <option value="$PROJECT_DIR$/js/labelAdapter/label.js" />
-        <option value="$PROJECT_DIR$/js/labelAdapter/labelAdapter.min.js" />
         <option value="$PROJECT_DIR$/InformationPostWithLightUpVersionIOS.html" />
         <option value="$PROJECT_DIR$/InformationPostWithLightUp.html" />
         <option value="$PROJECT_DIR$/InformationPostShare.html" />
         <option value="$PROJECT_DIR$/InformationPostShareUnUglify.html" />
+        <option value="$PROJECT_DIR$/css/lightUp.css" />
+        <option value="$PROJECT_DIR$/js/labelAdapter/labelAdapter.min.js" />
+        <option value="$PROJECT_DIR$/js/labelAdapter/labelAdapter.js" />
       </list>
     </option>
   </component>
@@ -192,7 +200,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -328,10 +335,11 @@
         </subPane>
       </pane>
       <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../ProductDetailCanvas" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="WebServerToolWindowFactoryState" value="true" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
     <property name="FullScreen" value="false" />
@@ -408,7 +416,7 @@
     <editor active="false" />
     <layout>
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2525707" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25578406" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="版本控制" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32885906" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
@@ -733,13 +741,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/jimi-prototype.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/jimiInputBox-2.0.0.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -838,35 +839,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/css/lightUp.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="58" column="20" selection-start-line="58" selection-start-column="20" selection-end-line="58" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/labelAdapter/labelAdapter.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="33" column="14" selection-start-line="0" selection-start-column="0" selection-end-line="90" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/labelAdapter/labelAdapter.min.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="1" column="975" selection-start-line="1" selection-start-column="975" selection-end-line="1" selection-end-column="975" />
-          <folding>
-            <marker date="1465876410509" expanded="true" signature="24:1500" placeholder="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/InformationPostWithLightUpVersionIOS.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.307693">
+        <state vertical-scroll-proportion="0.0">
           <caret line="44" column="59" selection-start-line="44" selection-start-column="59" selection-end-line="44" selection-end-column="59" />
           <folding>
             <marker date="1465876410466" expanded="true" signature="20733:20761" placeholder="..." />
@@ -876,7 +851,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/InformationPostShare.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.8076925">
+        <state vertical-scroll-proportion="0.0">
           <caret line="151" column="47" selection-start-line="151" selection-start-column="47" selection-end-line="151" selection-end-column="47" />
           <folding>
             <marker date="1465876537580" expanded="true" signature="9428:9456" placeholder="..." />
@@ -884,19 +859,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/InformationPostShareUnUglify.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.692307">
-          <caret line="151" column="47" selection-start-line="151" selection-start-column="47" selection-end-line="151" selection-end-column="47" />
-          <folding>
-            <marker date="1465876537664" expanded="true" signature="19882:19910" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/InformationPostWithLightUp.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.28985506">
+        <state vertical-scroll-proportion="-0.0">
           <caret line="140" column="0" selection-start-line="140" selection-start-column="0" selection-end-line="140" selection-end-column="48" />
           <folding>
             <element signature="e#9097#9231#0" expanded="false" />
@@ -906,6 +871,48 @@
             <element signature="e#11920#13552#0" expanded="false" />
             <marker date="1465876410562" expanded="true" signature="19551:19579" placeholder="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/jimi-prototype.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/InformationPostShareUnUglify.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="151" column="47" selection-start-line="151" selection-start-column="47" selection-end-line="151" selection-end-column="47" />
+          <folding>
+            <marker date="1465876537664" expanded="true" signature="19882:19910" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/lightUp.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="74" column="19" selection-start-line="74" selection-start-column="19" selection-end-line="74" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/labelAdapter/labelAdapter.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="1" column="27" selection-start-line="0" selection-start-column="0" selection-end-line="1" selection-end-column="975" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/labelAdapter/labelAdapter.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.75418997">
+          <caret line="84" column="47" selection-start-line="84" selection-start-column="47" selection-end-line="84" selection-end-column="47" />
+          <folding />
         </state>
       </provider>
     </entry>

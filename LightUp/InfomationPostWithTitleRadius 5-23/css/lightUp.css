@@ -65,14 +65,14 @@ strong {
 
 .paragraphWeb {
     padding: 10px;
-    border: 1px dashed #000;
+    /*border: 1px dashed #000;*/
 }
 
 .paragraph, .paragraphImg, .paragraphWeb {
     position: relative;
     vertical-align: middle;
     background-color: white;
-    margin-bottom: 40px;
+    margin-bottom: 0px;
 }
 
 .sentence {
@@ -82,7 +82,7 @@ strong {
     padding: 2px 0;
     font-size: 18px;
     line-height: 28px;
-    letter-spacing: 2px;
+    letter-spacing: 0px;
     word-break: break-all;
     color: #5d5d5d;
     transition: all 0s ease-in-out;
