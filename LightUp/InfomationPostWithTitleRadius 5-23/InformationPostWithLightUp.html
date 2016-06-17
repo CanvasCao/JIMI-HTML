@@ -141,7 +141,6 @@
 <script src='js/jimiInputBox-2.0.0.js'></script>
 <script src='js/jimiHost.js'></script>
 <script src='js/base.js'></script>
-
 <script>
     $(function () {
                 if (!window.location.search) {
@@ -511,11 +510,10 @@
                                             .append('<a></a>');
 
 
-
                                     var href = base64_encode('{ "type": 4, "objId": "' + pid + '","altBtnIndex":0}');
                                     jqObj.find('.navBar a').css({
                                         'position': 'absolute', width: '100%', height: '100%', left: 0, top: 0,
-                                    }).attr({href: 'jimi://'+href});
+                                    }).attr({href: 'jimi://' + href});
 //
 
                                     var pdc = new ProductDetailCanvas(jqObj.find('.productDetailCanvas')[0], data, false);

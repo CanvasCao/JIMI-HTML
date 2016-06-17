@@ -153,7 +153,6 @@
             /*top是第一行的高度*/
         }
 
-
         /*弹幕那一行的div的样式*/
         .openCullet {
             border: 1px solid #3982e1;
@@ -248,7 +247,7 @@
         $('#fakeTdiv').html('<table id="fakeT" border="0" cellspacing="0" cellpadding="0"></table>');
 
         $('#con').append('<table id="fixLT" border="0" cellspacing="0" cellpadding="0"></table>');
-        $('#fixLT').html(' <tr><td>' + '<div class="hideSame">隐藏相同</div>' + '</td></tr>')
+        $('#fixLT').html(' <tr><td>' + '<div class="hideSame">显示相同</div>' + '</td></tr>')
 
 
         //jQueryMap...........................................................................
@@ -341,7 +340,7 @@
                 //fakeL 绑定第一列数据..........................................................................
 //                fakeL第一行是header 的第一个数据
                 JM.$fakeL.append('<tr></tr>');
-                JM.$fakeL.find('tr').eq(0).append('<td data="unclicked">' + '<div class="hideSame">隐藏相同</div>' + '</td>');
+                JM.$fakeL.find('tr').eq(0).append('<td data="unclicked">' + '<div class="hideSame">显示相同</div>' + '</td>');
 
 //                fakeL第二行是'line2'以后会盖掉
                 JM.$fakeL.append('<tr></tr>');
@@ -483,14 +482,20 @@
 
 
                 //隐藏相同...............................................................
+                //初始化先toggleSame一次
+                toggleSame();
                 JM.$hideSame = $('.hideSame');
                 JM.$hideSame.parent().click(function () {
                     JM.$hideSame.html() == '隐藏相同' ? JM.$hideSame.html('显示相同') : JM.$hideSame.html('隐藏相同');
+                    toggleSame();
+                })
+
+                function toggleSame() {
                     [].forEach.call(repeatLineArr, function (e, i, arr) {
                         JM.$realdiv.find('tr').eq(e).toggle();
                         JM.$fakeL.find('tr').eq(e).toggle();
                     })
-                })
+                }
 
 
                 //干他妈方辉的a标签.............................................................

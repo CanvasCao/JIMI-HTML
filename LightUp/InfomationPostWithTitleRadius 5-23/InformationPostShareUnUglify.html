@@ -148,8 +148,10 @@
 <script src='js/spa/spa-header.js'></script>
 <script src='js/spa/spa-middleComponent-1.0.2.js'></script>
 <script src='js/spa/navBar-2.0.0.js'></script>
-<script src='js/labelAdapter/labelAdapter.min.js'></script>
+<script src='js/labelAdapter/labelAdapter.js'></script>
 <script src='js/lightUpMask-1.0.2.js'></script>
+<script src='js/jimiInputBox-2.0.0.js'></script>
+
 <script src='js/jimiHost.js'></script>
 <script src='js/base.js'></script>
 <script src='js/download/download.js'></script>
@@ -157,9 +159,8 @@
 <script>
     $(function () {
                 if (!window.location.search) {
-                    window.location = window.location + '?rid=466&jsonpcallback=1';
+                    window.location = window.location + '?rid=466&uid=10450&uImg=http://7xo2me.com1.z0.glb.clouddn.com/images/17RTW5G74N2J.jpg&uName=方辉真帅&jsonpcallback=1';
                 }
-
 
                 //download对象
                 var download = new Download('.download', null);
@@ -170,7 +171,7 @@
 
                 //searchJson
                 window.searchJson = window.location.search.searchToJson();
-                console.log(searchJson)
+
                 //insert和get共享的paras
                 window.getContentAjaxParas = {
                     perPage: 3,
@@ -371,7 +372,7 @@
                         var $parent = $(ele).closest('.sentence').parent();
                         var $sens = $parent.find('.sentence');
                         for (i = 0; i < $sens.length; i++) {
-                            if ($sentence[0] == $sens.eq(i)[0]) {
+                            if ($sentence[0] == $sens.eq(i)[0]) { //判断句子在当前段落的索引
                                 sentence = i;
                                 break;
                             }

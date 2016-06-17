@@ -24,8 +24,8 @@
       <file leaf-file-name="compare.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/compare.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.0">
-              <caret line="217" column="65" selection-start-line="217" selection-start-column="65" selection-end-line="217" selection-end-column="65" />
+            <state vertical-scroll-proportion="-13.5">
+              <caret line="484" column="29" selection-start-line="484" selection-start-column="29" selection-end-line="484" selection-end-column="29" />
               <folding />
             </state>
           </provider>
@@ -44,9 +44,11 @@
       <file leaf-file-name="compareShareUnUglify.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/compareShareUnUglify.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="200" column="38" selection-start-line="200" selection-start-column="38" selection-end-line="200" selection-end-column="38" />
-              <folding />
+            <state vertical-scroll-proportion="0.67391306">
+              <caret line="198" column="40" selection-start-line="198" selection-start-column="40" selection-end-line="198" selection-end-column="40" />
+              <folding>
+                <element signature="e#4954#19877#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -54,8 +56,8 @@
       <file leaf-file-name="compareShare.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/compareShare.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="174" column="26" selection-start-line="174" selection-start-column="26" selection-end-line="174" selection-end-column="26" />
+            <state vertical-scroll-proportion="-21.923077">
+              <caret line="216" column="454" selection-start-line="216" selection-start-column="454" selection-end-line="216" selection-end-column="454" />
               <folding>
                 <element signature="n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
                 <element signature="n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
@@ -107,10 +109,10 @@
         <option value="$PROJECT_DIR$/abandonFns" />
         <option value="$PROJECT_DIR$/js/download/download.js" />
         <option value="$PROJECT_DIR$/js/jimiInputBox-2.0.0.js" />
-        <option value="$PROJECT_DIR$/compareShareUnUglify.html" />
-        <option value="$PROJECT_DIR$/compareShare.html" />
         <option value="$PROJECT_DIR$/js/cullet-4.0.0.min.js" />
+        <option value="$PROJECT_DIR$/compareShareUnUglify.html" />
         <option value="$PROJECT_DIR$/compare.html" />
+        <option value="$PROJECT_DIR$/compareShare.html" />
       </list>
     </option>
   </component>
@@ -240,7 +242,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Operation_tips" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
     <property name="DefaultHtmlFileTemplate" value="Html5" />
     <property name="FullScreen" value="false" />
@@ -310,7 +312,7 @@
     <editor active="true" />
     <layout>
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2673522" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.27056554" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="版本控制" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32885906" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -367,7 +369,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="200" column="38" selection-start-line="200" selection-start-column="38" selection-end-line="200" selection-end-column="38" />
-          <folding />
+          <folding>
+            <element signature="e#4954#19877#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -724,10 +728,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/compare.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-13.5">
+          <caret line="484" column="29" selection-start-line="484" selection-start-column="29" selection-end-line="484" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/compareShare.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="174" column="26" selection-start-line="174" selection-start-column="26" selection-end-line="174" selection-end-column="26" />
+        <state vertical-scroll-proportion="-21.923077">
+          <caret line="216" column="454" selection-start-line="216" selection-start-column="454" selection-end-line="216" selection-end-column="454" />
           <folding>
             <element signature="n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
@@ -736,19 +748,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/compare.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="217" column="65" selection-start-line="217" selection-start-column="65" selection-end-line="217" selection-end-column="65" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/compareShareUnUglify.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="200" column="38" selection-start-line="200" selection-start-column="38" selection-end-line="200" selection-end-column="38" />
-          <folding />
+        <state vertical-scroll-proportion="0.67391306">
+          <caret line="198" column="40" selection-start-line="198" selection-start-column="40" selection-end-line="198" selection-end-column="40" />
+          <folding>
+            <element signature="e#4954#19877#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
