@@ -98,8 +98,20 @@
         }
 
         .txtContainer {
-            padding: 0 15px;
+            padding: 0 15px 50px;
             box-sizing: border-box;
+        }
+
+        .source {
+            padding: 0px 15px;
+            box-sizing: border-box;
+        }
+
+        .sourceCon {
+            border-top: 1px solid #ccc;
+            padding: 20px 0px 20px;
+            box-sizing: border-box;
+
         }
 
         .download {
@@ -131,7 +143,14 @@
             </div>
         </div>
         <div class='txtContainer'></div>
+        <div class='source'>
+            <div class='sourceCon'>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
     </div>
+
     <div class='lightUpMask'></div>
 </div>
 <div class='light'></div>
@@ -159,7 +178,7 @@
 <script>
     $(function () {
                 if (!window.location.search) {
-                    window.location = window.location + '?rid=466&uid=10450&uImg=http://7xo2me.com1.z0.glb.clouddn.com/images/17RTW5G74N2J.jpg&uName=方辉真帅&jsonpcallback=1';
+                    window.location = window.location + '?rid=466&jsonpcallback=1';
                 }
 
                 //download对象
@@ -457,11 +476,17 @@
                         console.log(JSON.stringify(data));
                         $('body').animate({opacity: 1});
 
-                        //title
+                        //title.................................................................
                         $('.titleImg').attr('src', data.titleImgUrl);
                         $('.titleTextTop').html(data.title);
                         $('.titleTextRead').html(data.read || 1);
                         $('.titleTextStar').html(data.star || 1);
+
+
+                        //source IOS不加.................................................................
+                        $('.sourceCon div').eq(0).html('文章来自: ' + '<span style="color: #3982e1">'+data.articleSource+'</span>');
+                        $('.sourceCon div').eq(1).html(data.atricleDateString || new Date().toLocaleDateString());
+
 
                         //txtContainer容器 绑定数据
                         var text = data.content;
@@ -481,7 +506,7 @@
 //                                    console.log(JSON.stringify(lightUpData));
                                     [].forEach.call(lightUpData, function (e, i, arr) {
                                         addCount(e.type, e.paragraph, e.sentence, e.count);
-                                    })
+                                    });
                                 }
 
 

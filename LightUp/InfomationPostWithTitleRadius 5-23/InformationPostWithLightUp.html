@@ -98,8 +98,20 @@
         }
 
         .txtContainer {
-            padding: 0 15px;
+            padding: 0 15px 50px;
             box-sizing: border-box;
+        }
+
+        .source {
+            padding: 0px 15px;
+            box-sizing: border-box;
+        }
+
+        .sourceCon {
+            border-top: 1px solid #ccc;
+            padding: 20px 0px 20px;
+            box-sizing: border-box;
+
         }
     </style>
     <link rel="stylesheet" href="css/lightUp.css"/>
@@ -119,6 +131,12 @@
             </div>
         </div>
         <div class='txtContainer'></div>
+        <div class='source'>
+            <div class='sourceCon'>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
     </div>
     <div class='lightUpMask'></div>
 </div>
@@ -439,11 +457,17 @@
                         console.log(JSON.stringify(data));
                         $('body').animate({opacity: 1});
 
-                        //title
+                        //title......................................................................
                         $('.titleImg').attr('src', data.titleImgUrl);
                         $('.titleTextTop').html(data.title);
                         $('.titleTextRead').html(data.read || 1);
                         $('.titleTextStar').html(data.star || 1);
+
+
+                        //source IOS不加.................................................................
+                        $('.sourceCon div').eq(0).html('文章来自: ' + '<span style="color: #3982e1">'+data.articleSource+'</span>');
+                        $('.sourceCon div').eq(1).html(data.atricleDateString || new Date().toLocaleDateString());
+
 
                         //txtContainer容器 绑定数据
                         var text = data.content;
