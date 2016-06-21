@@ -122,7 +122,7 @@
             })
 
             //阻止评论出现时 mask的滚动
-            this.C.addEventListener('touchmove', function (e) {
+            this.C[0].addEventListener('touchmove', function (e) {
                 //e.preventDefault();
                 e.stopPropagation();
             }, false)
