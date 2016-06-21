@@ -41,7 +41,7 @@
     $(function () {
 
         if (!window.location.search) {
-            window.location = window.location + '?pids=56f57a7defb80c57428c74f6,56f56b2befb80c57428c654f,56829f6defb80c4e26c457f6&cate=6&ifshare=1';
+            window.location = window.location + '?pids=56f57a7defb80c57428c74f6,56f56b2befb80c57428c654f,56829f6defb80c4e26c457f6&cate=6';
         }
 
         window.searchJson = searchJson = window.location.search.searchToJson();
@@ -53,7 +53,7 @@
         //FastClick..........................................................................
         FastClick.attach(document.body);
 
-        var ifshare = (searchJson.ifshare) ? true : false;
+        var ifshare =true;
         appendTable(ifshare);
     })
 </script>
