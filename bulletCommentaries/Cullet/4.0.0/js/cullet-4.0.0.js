@@ -132,6 +132,7 @@
                 //'margin-top': '2px',
             }).find('img').css({
                 width: '28px',
+                height:'28px',
                 'border-radius': '50%'
             });
 

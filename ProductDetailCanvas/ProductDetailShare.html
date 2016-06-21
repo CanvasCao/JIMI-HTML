@@ -95,7 +95,6 @@
         #productDetailCanvas {
             box-sizing: border-box;
             padding: 0px 15px;
-
         }
 
     </style>
@@ -103,7 +102,7 @@
 <body>
 <div class="download"></div>
 <div class="culletContainer">
-    <img src="" alt=""/>
+    <img src=""/>
 
     <div id='cullet'></div>
 </div>
@@ -127,18 +126,20 @@
 <div id="productDetailCanvas"></div>
 
 
-<script src='js/jquery-1.8.2.min.js'></script>
-<script src='js/underscore/underscore.js'></script>
+<script src="http://apps.bdimg.com/libs/jquery/1.8.3/jquery.min.js"></script>
+<script src="http://apps.bdimg.com/libs/underscore.js/1.7.0/underscore-min.js"></script>
+<script src='js/tool/echartsBasic&Graph.min.js'></script>
+<script src='js/jimiHost.js'></script>
 <script src='js/base.js'></script>
 <script src='js/download/download.js'></script>
 <script src='js/cullet/cullet-4.0.0.min.js'></script>
-<script src='js/navBar-2.0.0.js'></script>
-<script src='js/productParams-1.0.0.js'></script>
-<script src='js/echartsBasic&Graph.min.js'></script>
-<script src='js/productDetailCanvas-1.0.2.min.js'></script>
-<script src='js/Honeycomb-1.0.0.js'></script>
-<script src='js/priceCompare-1.0.0.js'></script>
-<script src='js/jimiHost.js'></script>
+<script src='js/searchToJson/searchToJson.js'></script>
+
+<script src='js/spa/navBar-2.0.0.js'></script>
+<script src='js/spa/productParams-1.0.0.js'></script>
+<script src='js/spa/productDetailCanvas-1.0.2.min.js'></script>
+<script src='js/spa/Honeycomb-1.0.0.js'></script>
+<script src='js/spa/priceCompare-1.0.0.js'></script>
 
 
 <script>
@@ -146,21 +147,8 @@
 //        window.location = window.location + '?pid=56829f09efb80c4e26c43eea';
         window.location = window.location + '?pid=5682a03defb80c4e26c48c39';
     }
-    // 调理剂有问题 5682a03defb80c4e26c48c39
     // 56c6aea3efb80c9b2541ced4 有数据的
     // 56829a0fefb80c4e26c2f894 没数据的
-
-
-    String.prototype.searchToJson = function () {
-        var search = window.location.search.replace('?', "");
-        var kvArr = search.split('&');
-        var finalJson = {}
-        for (i = 0; i < kvArr.length; i++) {
-            var kvSplit = kvArr[i].split('=');
-            finalJson[kvSplit[0].toLowerCase()] = kvSplit[1];
-        }
-        return finalJson;
-    }
     window.searchJson = searchJson = window.location.search.searchToJson();
 
 
@@ -245,7 +233,6 @@
             }
 
 
-            //cullet接口
             //弹幕............................................................
             var ccm = new CommentCellManage('#cullet',
                     {
@@ -253,14 +240,13 @@
                         closeable: false,
                         pnameable: false,
                         topBlank: 0,
-                        bottomBlank: 0
+                        bottomBlank: 0,
+                        startDelay:2000,
                     }
             );
-//        var jimiInputBox = new JimiInputBox('.jimiInputBox',{ccm: ccm});
 
-            //加载弹幕
-            var pid = searchJson.pid;
-            ccm.load(pid);
+            //加载弹幕............................................................
+            ccm.load(searchJson.pid);
         },
         error: function (err) {
             console.log('ERROR!');

@@ -11,7 +11,7 @@
 (function (w, d, $, undefined) {
     function Honeycomb(container, data) {
         this.C = this.container = container;
-        this.data=data;
+        this.data = data;
         this.config = {
             dX: -20,
             dY: 40,
@@ -49,7 +49,7 @@
 
         },
         createDom: function () {
-            $(this.C).html('<div class="honeyCon"></div>') ; //这个honeyCon提供por
+            $(this.C).html('<div class="honeyCon"></div>'); //这个honeyCon提供por
 
 
             //console.log(this.C);
@@ -89,7 +89,6 @@
                 background: 'url("img/honeyComb.png") 0 0',
                 'text-align': 'center',
                 'word-break': 'break-all',
-                display: 'table',
                 color: '#3881e0',
                 display: 'table'
 
