@@ -10,8 +10,6 @@
     //insert和select共享的paras............................................................
     globalManager.ajaxParas = {};
 
-    //保存了点亮的数字的对象数组 是老孙返回给我的数据库groupBy以后的数据
-    globalManager.lightUpData = null;
 
     //light的clientXY所在的dom元素的位置和类型
     globalManager.element = null;

@@ -8,14 +8,12 @@
  */
 
 //1.0.2 瀑布流
-
-
 ;
 (function (w, d, $, undefined) {
     function LightUpMask(container, data) {
         this.C = this.container = (typeof container == 'string') ? $(container) : container;
         this.data = data;//data里有mask消失以后的hideCallback
-        this.ajaxGetData = data.ajaxGetData;
+
         this.config = {
             imgW: 60
         };
@@ -49,11 +47,8 @@
 
             $(this.C).find('.lightUpMaskBottom').append("<div class='maskInputBox'></div>");
 
-            if (that.data.ifUid) {
-                var jimiInputBox = new JimiInputBox($(that.C).find('.maskInputBox')[0],
-                    {lum: that}
-                );
-                that.jimiInputBox = jimiInputBox;
+            if (that.data.ifShare) {
+                var jimiInputBox = new JimiInputBox($(that.C).find('.maskInputBox')[0], null);
             }
 
         },
@@ -139,13 +134,10 @@
                 var top = $(this).scrollTop();
                 var conH = $(that.C).find('.maskSectionCon').outerHeight();
                 var scrollH = $(that.C).find('.maskSectionScroll').outerHeight();
-                //console.log(top);
-                //console.log($(that.C).find('.maskSectionCon').outerHeight());
-                //console.log($(that.C).find('.maskSectionScroll').outerHeight());
 
                 if (top >= (scrollH - conH)) { //动态高-容器高
                     that.JuHuaOn();
-                    that.ajaxGetContent();
+                    controller.getLightUp(GM.ajaxParas, null);
                 }
             })
 
@@ -153,7 +145,6 @@
 
         prependContent: function (json) {
             var that = this;
-
 
             var userImgUrl = json.userImgUrl || 'img/logo.jpg';
             $(that.C).find('.maskSectionScroll').prepend(
@@ -243,6 +234,7 @@
             })
 
         },
+
         show: function () {
             var that = this;
             this.ifShow = true;//showTag
@@ -284,58 +276,19 @@
             $(this.C).find('#juhua').remove();
         },
 
-        ajaxGetContent: function () {
-            var that = this;
-            $.ajax({
-                type: "post",
-                url: jimiHost + '/getLightUp.php',
-                //url: 'content.json',
-                data: that.ajaxGetData,
-                dataType: "jsonp",
-                jsonp: "callback",
-                jsonpCallback: "jsonpcallback",
-                success: function (data) {
-                    console.log(JSON.stringify(data));
-                    that.JuHuaOff();
-
-                    //console.log(that.ajaxGetData);
-                    if (data.data.length == 0) {
-                        if (that.ajaxGetData.curPage == 1) {
-                            that.addNoData();
-                            return;
-                        }
-                        if (that.ajaxGetData.curPage > 1) {
-                            that.addFinishLoad();
-                            return;
-                        }
-                    }
-                    else {
-                        that.appendContent(data.data);
-                        that.ajaxGetData.curPage++;
-                    }
-
-
-                },
-                error: function (err) {
-                    console.log('ERROR!');
-                    console.log(err);
-                }
-            });
-        },
-
         addNoData: function () {
             var that = this;
             if (!$(that.C).find('#nodata').length) {
                 $(that.C).find('.maskSectionScroll').append("<div id='nodata' style='text-align: center;height: 200px;line-height: 200px'>暂无数据</div>");
             }
-            that.ifNeedAjax=false;
+            that.ifNeedAjax = false;
         },
         addFinishLoad: function () {
             var that = this;
             if (!$(that.C).find('#finishload').length) {
                 $(that.C).find('.maskSectionScroll').append("<div id='finishload' style='text-align: center;height: 50px;line-height: 50px'>加载完成</div>");
             }
-            that.ifNeedAjax=false;
+            that.ifNeedAjax = false;
         },
         freshInputBox: function () {
             if (this.jimiInputBox) {
@@ -346,7 +299,7 @@
             //2016-05-25 11:07:27
             var date = new Date();
             var year = date.getFullYear();
-            var mon = ((date.getMonth()+1).toString().length == 1) ? ('0' + (date.getMonth()+1)) : (date.getMonth()+1);
+            var mon = ((date.getMonth() + 1).toString().length == 1) ? ('0' + (date.getMonth() + 1)) : (date.getMonth() + 1);
             var day = (date.getDate().toString().length == 1) ? ('0' + date.getDate()) : date.getDate();
             var hour = (date.getHours().toString().length == 1) ? ('0' + date.getHours()) : date.getHours();
             var min = (date.getMinutes().toString().length == 1) ? ('0' + date.getMinutes()) : date.getMinutes();

@@ -12,7 +12,6 @@
     function JimiInputBox(container, data) {
         this.C = this.container = (typeof container == 'string') ? $(container) : container;//主页自己写容器
         this.data = data;
-        this.lum = data.lum;
         this.config = {
             winW: $(window).width(),
             winH: $(window).height(),
@@ -44,7 +43,6 @@
         },
         initCSS: function () {
             var that = this;
-
 
             $(this.C).css({
                 position: 'relative',
@@ -137,44 +135,14 @@
 
                         //ajax Insert
                         var txt = $(that.C).find('input').val();
-
-                        getContentAjaxParas.content=txt;
-                        $.ajax({
-                            type: "post",
-                            url: jimiHost+'/postLightUp.php',
-//                                    url: 'content.json',
-                            data: getContentAjaxParas,
-                            dataType: "jsonp",
-                            jsonp: "callback",
-                            jsonpCallback: "jsonpcallback",
-                            cache: true,
-                            success: function (data) {
-                                console.log(JSON.stringify(data));
-                                //var data = data.data;
-                                that.lum.prependContent({
-                                    userImgUrl: searchJson.uimg,
-                                    userName: searchJson.uname,
-                                    content: txt,
-                                })
-
-                                window.updateCount();
-
-                            },
-                            error: function (err) {
-                                console.log('ERROR!');
-                                console.log(err);
-                            }
-                        });
-
+                        GM.ajaxParas.content=txt;
+                        controller.postLightUp(GM.ajaxParas,null);
 
                         //clearInput
                         $(that.C).find('input').val("");
 
                     }
-
                 }
-
-                //发送以后清空
 
             });
         },
