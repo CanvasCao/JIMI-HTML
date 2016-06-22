@@ -51,7 +51,6 @@ function labelAdapter($con) {//传进一个jq对象 是个容器 会对容器内
         if (imgW > imgFixedW) {
             $(e).attr({width: imgFixedW, height: imgFixedW / RATE});
             $(e).css({width: imgFixedW, height: imgFixedW / RATE});
-
         }
         //else
         if (imgW == 0) {
@@ -59,6 +58,10 @@ function labelAdapter($con) {//传进一个jq对象 是个容器 会对容器内
             $(e).css({width: imgFixedW});
 
         }
+
+        $(this).click(function(){
+            window.location.href='jimi://'+$(this).attr('src');
+        })
 
     })
     //视频适配16比9.........................................................................................
