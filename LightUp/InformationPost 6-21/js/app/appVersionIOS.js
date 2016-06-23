@@ -8,6 +8,9 @@ function app() {
     //jqObj............................................................................
     var $txtContainer = $('.txtContainer');
     var $light = $('.light');
+    //initLightPos.........................................................................
+    var winH=$(window).height();
+    $light.css({top: 1 / 3 * winH - 120});
 
     //点亮标签相关 全局变量...................................................................................
     var ifDragging = false;
@@ -248,8 +251,6 @@ function app() {
                     }
 
 
-                    //initLightPos.........................................................................
-                    $light.css({top: 1 / 3 * $(window).height() - 120});
                     //JS bridge............................................................................
                     function setupWebViewJavascriptBridge(callback) {
                         if (window.WebViewJavascriptBridge) {
@@ -273,7 +274,7 @@ function app() {
                         bridge.registerHandler('testJavascriptHandler', function (data, responseCallback) {
                             if (data.CRDetailRecommendDY) {
                                 var dy = data.CRDetailRecommendDY
-                                $light.stop().animate({top: (1 / 3 * $(window).height() - 120 + dy)}, 'fast', 'swing');
+                                $light.stop().animate({top: (1 / 3 * winH - 120 + dy)}, 'fast', 'swing');
                             }
                             else if (data.removeClass) {
                                 if (data.removeClass) {
@@ -293,6 +294,7 @@ function app() {
                                 ClearTimer();
 
                                 if (LightUp()) {
+                                    ResetAjaxParas();
                                     bridge.callHandler('testObjcCallback', GM.ajaxParas, function (response) {
                                     })
                                 }

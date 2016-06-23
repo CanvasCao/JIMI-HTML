@@ -319,7 +319,7 @@ function appendTable(ifshare) {
                 }
             );
 
-            if (searchJson.ifshare) {
+            if (!ifshare) {
                 var jimiInputBox = new JimiInputBox('.jimiInputBox',
                     {ccm: ccm});
             }

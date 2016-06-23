@@ -48,7 +48,7 @@
             [].forEach.call(that.data, function (e, i, arr) {
                 str += "<div class='priceSec'>" +
                     "<img src='" + e.logoIcon + "'/>" +
-                    "<div class='priceTxt'>" + '￥' + e.spprice + "</div>" +
+                    //"<div class='priceTxt'>" + '￥' + e.spprice + "</div>" +
                     "</div>"
             })
 

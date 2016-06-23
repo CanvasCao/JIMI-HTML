@@ -41,7 +41,7 @@
                     pnameable: false,
                     topBlank: 0,
                     bottomBlank: 0,
-                    startDelay:2000,
+                    startDelay:100,
                 }
         );
 
@@ -71,7 +71,6 @@
             //IOSToWeb.............................................................
             bridge.registerHandler('testJavascriptHandler', function (data, responseCallback) {
 
-                alert(JSON.stringify(data));
                 if (data.ccmStart) {
                     ccm.start();
                 }
