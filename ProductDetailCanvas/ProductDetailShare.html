@@ -165,7 +165,7 @@
         jsonp: "callback",
         jsonpCallback: "jsonpcallback",
         success: function (data) {
-//            console.log(JSON.stringify(data));
+            console.log(JSON.stringify(data));
 
             //绑定图片
             var culletContainerH = $('.culletContainer').height();
@@ -200,10 +200,7 @@
                 navImg: "img/navBar/b.png",
                 navTxt: '产品参数',
             });
-            var navBarPrice = new NavBar('#navBarPrice', {
-                navImg: "img/navBar/price.png",
-                navTxt: '市场信息',
-            });
+
             var navBar3 = new NavBar('#navBar3', {
                 navImg: "img/navBar/c.png",
                 navTxt: '成分分布（' + data.component.length + '种）',
@@ -216,8 +213,13 @@
             //参数数据
             var productParams = new ProductParams('#params', data);
 
-            var priceCompare = new PriceCompare('#priceCompare', data.PriceData.json);
-
+            if (data.PriceData.json) {
+                var priceCompare = new PriceCompare('#priceCompare', data.PriceData.json);
+                var navBarPrice = new NavBar('#navBarPrice', {
+                    navImg: "img/navBar/price.png",
+                    navTxt: '市场信息',
+                });
+            }
 
             //中间canvas的数据
             var pdc = new ProductDetailCanvas('#productDetailCanvas', data, false);
@@ -226,7 +228,7 @@
             //没成分 canvas点击不允许跳转
             if (data.component) {
                 $('#navBar3').click(function () {
-                            window.location.href = jimiHost+'/CompositionDistribution/CompositionDistribution.html' + window.location.search
+                            window.location.href = jimiHost + '/CompositionDistribution/CompositionDistribution.html' + window.location.search
                         }
                 )
                 $('#navBar3').append(' <img src="img/navBar/arrow.png" height="12px"  style="float: right;margin-top: 3px"/>')
@@ -241,7 +243,7 @@
                         pnameable: false,
                         topBlank: 0,
                         bottomBlank: 0,
-                        startDelay:2000,
+                        startDelay: 2000,
                     }
             );
 

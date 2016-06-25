@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src='jquery-1.7.js'></script>
+    <script>
+        $(document).ready(function () {
+//            if (!window.location.search) {
+//                window.location = window.location + '?a=1';
+//            }
+
+            $.ajax({
+                type: "post",
+                url: 'http://n1.jimi.la/apps_T1/Lip/picToL.php',
+//                url: 'package.json',
+                data: {
+                  pic:'http://www.temptalia.com/wp-content/uploads/2016/02/natashadenona_greenbrownpalette064-150x150.jpg'
+                },
+                dataType: "jsonp",
+                jsonp: "callback",//传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)
+                jsonpCallback: "jsonpcallback",
+                success: function (data) {
+                    console.log(JSON.stringify(data));
+                    var data=data.data;
+                    var domImg=document.getElementsByTagName('img')[0];
+                    domImg.src ='data:image/png;base64,'+ data;
+                },
+                error: function (err) {
+                    console.log('ERROR!')
+                    console.log(err);
+                }
+            });
+
+//            console.log(1)
+        });
+    </script>
+</head>
+<body>
+<img src="" alt=""/>
+</body>
+</html>
