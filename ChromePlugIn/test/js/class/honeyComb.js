@@ -36,6 +36,7 @@
 
             //定位让它从底部升起.......................
             this.JM.honeyComb.css({opacity: 0.1, top: that.config.moveDistance})
+            this.JM.honeyComb.css({left:150})
 
             this.JM.honeyComb.css({
                 position: 'absolute',
@@ -46,6 +47,7 @@
                 'text-align': 'center',
                 'word-break': 'break-all',
                 display: 'table',
+                transform: 'translateY(-50%)'
             });
 
             this.JM.honeyComb.find('.honeyTxt').css({
@@ -61,6 +63,9 @@
         },
         move: function () {
             var that = this;
+            //velocity........................................
+            this.JM.honeyComb.css({top:that.config.moveDistance, opacity: 0.1})
+              .velocity({opacity: 1, top: 0}, 4000, 'swing');
 
         },
     }

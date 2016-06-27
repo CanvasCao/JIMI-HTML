@@ -85,7 +85,7 @@
             border: 1px solid #dbf7ff;
             width: 120px;
             height: 120px;
-            margin: 20px auto;
+            margin: 30px auto;
             box-sizing: border-box;
         }
 
@@ -116,13 +116,14 @@
     </div>
     <div class='close'>×</div>
 </div>
+
 <script src='http://apps.bdimg.com/libs/jquery/1.8.3/jquery.min.js'></script>
-<script src='js/class/honeyComb.js'></script>
 <script src='js/velocity.min.js'></script>
 <script src='js/velocity.ui.js'></script>
 <script src='js/jimiHost.js'></script>
 <script src='js/class/honeyComb.js'></script>
 <script src='js/class/honeyCombManager.js'></script>
+
 
 <script>
     $(function () {
@@ -156,13 +157,6 @@
         var featureArr = ["防晒", "0-100元", "痘肌肤质选用", "含一定香精", "含一定防腐剂", "日常、低海拔、春秋冬", "SPF20+", "UVA", "UVB", "防晒", "0-100元", "痘肌肤质选用", "含一定香精", "含一定防腐剂", "日常、低海拔、春秋冬", "SPF20+", "UVA", "UVB"];
 
 
-        //velocity........................................
-//        $('.honeyComb').eq(0).css({top: '100%', opacity: 0})
-//                .velocity({top: '52%', opacity: 1}, '2000', 'swing')
-//                .velocity({top: '48%'}, '2000', 'swing')
-//                .velocity({top: '-20%'}, '2000', 'swing')
-
-
         //initPosition....................................
         var posArr = [
             {left: 80},
@@ -175,7 +169,34 @@
             {left: 260},
             {left: 290},
         ];
-        var hc = new HoneyComb('.honeyCombCon', {txt: '123123123'});
+        var hc = new HoneyComb('.honeyCombCon', {txt: featureArr[0]});
+        window.hc=hc;
+
+        window.requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
+        window.cancelAnimationFrame = window.cancelAnimationFrame || window.mozCancelRequestAnimationFrame || window.webkitCancelRequestAnimationFrame || window.msCancelRequestAnimationFrame;
+        var startTime = new Date().getTime();
+        var FPS = 0.25;
+        var timer = null;
+
+
+        function move() {
+            var curTime = new Date().getTime();
+            var diff = curTime - startTime;
+            if (diff >= 5000) {
+                startTime = new Date().getTime();
+
+                hc.move();
+
+//                if(count==100){
+//                    cancelAnimationFrame(timer);
+//                    delete(timer);
+//                    return;
+//                }
+            }
+            timer = requestAnimationFrame(move);
+        }
+        hc.move();
+        move();
 
 
     })
