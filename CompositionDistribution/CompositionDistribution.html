@@ -122,6 +122,13 @@
                 })
 
 
+                //成分类型和警告框的关联...................................................................
+                $spa.find('.compositions').find('li').click(function () {
+                    var data = $(this).attr('data');
+                    alertCon.show(data);
+                })
+
+
                 //模拟点击................................................................................
                 var altBtnIndex = searchJson.altbtnindex;
                 $spa.find('.alBtn').find('li').eq(altBtnIndex).click();

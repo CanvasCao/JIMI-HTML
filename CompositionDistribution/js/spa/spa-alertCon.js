@@ -52,9 +52,6 @@
                 top: '50%',
                 left: '50%',
                 transform: 'translateX(-50%) translateY(-50%)',
-                //-webkit-transform: translateX(-50%) translateY(-50%);
-                //-ms-transform: translateX(-50%) translateY(-50%);
-                //-moz-transform: translateX(-50%) translateY(-50%);
                 'text-align': 'center',
                 'background-color': 'white',
                 'font-size': '12px',
@@ -89,6 +86,14 @@
         bindEvent: function () {
             var that = this;
 
+            $(that.C).find('.close').click(function () {
+                $(that.C).fadeOut('fast');
+            })
+        },
+
+        show: function (textDes) {
+            var that = this;
+
             //events.....................................................
             var alertJson = {
                 '保湿型成分': '提供皮肤保湿、锁水功效的成分',
@@ -99,19 +104,10 @@
                 '正常成分': '正常情况下对皮肤没有安全风险的成分',
             }
 
-
-            $('.compositions').find('li').click(function () {
-                var data = $(this).attr('data')
-                $(this.C).find('.title1').html(data);
-                $(this.C).find('.title2').html(alertJson[data]);
-                $(this.C).fadeIn('fast');
-            })
-            $(this.C).find('.close').click(function () {
-                $(this.C).fadeOut('fast');
-            })
-
-
-        }
+            $(this.C).find('.title1').html(textDes);
+            $(this.C).find('.title2').html(alertJson[textDes]);
+            $(this.C).fadeIn('fast');
+        },
     }
     w.AlertCon = AlertCon;
 })(window, document, jQuery)

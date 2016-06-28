@@ -9,16 +9,26 @@
   "browser_action": {
     "default_icon": "img/logo.png"
   },
-  "content_scripts":[
+  "content_scripts": [
     {
-      "matches":["*://item.taobao.com/*"],
-      "js":[
-        "js/jquery-1.8.3.min.js",
-        "js/neverClick.js"
+      "matches": [
+        "*://item.jd.com/*"
       ],
-      "css":["css/jimiSDK.css"]
+      "js": [
+        "js/jquery-1.8.3.min.js",
+        "js/jimiMirror-1.0.0.js",
+        "js/app.js"
+      ],
+      "css": [
+        "css/jimiSDK.css"
+      ]
     }
   ],
-  "permissions": [ "tabs", "contextMenus","http://*/*", "https://*/*"]
- // "content_security_policy": "script-src 'self' https://webapi.amap.com/ https://js.webapi.amap.com/ https://restapi.amap.com/ 'unsafe-eval'; object-src 'self'"
+  "permissions": [
+    "tabs",
+    "contextMenus",
+    "http://*/*",
+    "https://*/*"
+  ]
+  // "content_security_policy": "script-src 'self' https://webapi.amap.com/ https://js.webapi.amap.com/ https://restapi.amap.com/ 'unsafe-eval'; object-src 'self'"
 }

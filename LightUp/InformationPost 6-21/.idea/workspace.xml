@@ -25,7 +25,7 @@
         <entry file="file://$PROJECT_DIR$/js/app/app.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="284" column="21" selection-start-line="284" selection-start-column="21" selection-end-line="284" selection-end-column="21" />
+              <caret line="23" column="9" selection-start-line="23" selection-start-column="9" selection-end-line="23" selection-end-column="9" />
               <folding>
                 <element signature="n#!!block;n#RemoveClass#0;n#!!block;n#app#0" expanded="false" />
                 <element signature="n#!!block;n#AddClass#0;n#!!block;n#app#0" expanded="false" />
@@ -34,6 +34,24 @@
                 <element signature="n#!!block;n#ResetAjaxParas#0;n#!!block;n#app#0" expanded="false" />
                 <element signature="n#!!block;n#addCount#0;n#!!block;n#app#0" expanded="false" />
                 <element signature="n#!!block;n#updateCount#0;n#!!block;n#app#0" expanded="false" />
+                <marker date="1466573228867" expanded="true" signature="8377:8391" placeholder="..." />
+                <marker date="1466573228867" expanded="true" signature="11198:11226" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="lightUpMask-1.0.2.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/js/lightUpMask-1.0.2.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.46089387">
+              <caret line="49" column="0" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+                <element signature="e#6187#7570#0" expanded="false" />
+                <marker date="1467096483637" expanded="true" signature="8813:8864" placeholder="..." />
+                <marker date="1467096483637" expanded="true" signature="9198:9249" placeholder="..." />
+                <marker date="1467096483637" expanded="true" signature="9539:9588" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -42,7 +60,7 @@
       <file leaf-file-name="InformationPost.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/InformationPost.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-4.076923">
+            <state vertical-scroll-proportion="-4.0384617">
               <caret line="57" column="47" selection-start-line="57" selection-start-column="47" selection-end-line="57" selection-end-column="47" />
               <folding />
             </state>
@@ -59,10 +77,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="InformationPostShare.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="InformationPostShare.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/InformationPostShare.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.17391305">
+            <state vertical-scroll-proportion="-5.5">
               <caret line="64" column="38" selection-start-line="64" selection-start-column="38" selection-end-line="64" selection-end-column="38" />
               <folding />
             </state>
@@ -108,7 +126,6 @@
         <option value="$PROJECT_DIR$/js/globalManager/globalManager.js" />
         <option value="$PROJECT_DIR$/js/controller/controller.js" />
         <option value="$PROJECT_DIR$/js/jimiInputBox-2.0.0.js" />
-        <option value="$PROJECT_DIR$/js/lightUpMask-1.0.2.js" />
         <option value="$PROJECT_DIR$/css/documentFlow.css" />
         <option value="$PROJECT_DIR$/js/app/app.js" />
         <option value="$PROJECT_DIR$/InformationPostWithLightUp.html" />
@@ -120,6 +137,7 @@
         <option value="$PROJECT_DIR$/js/labelAdapter/labelAdapter.js" />
         <option value="$PROJECT_DIR$/js/jimiHost.js" />
         <option value="$PROJECT_DIR$/InformationPostVersionIOS.html" />
+        <option value="$PROJECT_DIR$/js/lightUpMask-1.0.2.js" />
       </list>
     </option>
   </component>
@@ -159,7 +177,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -299,10 +316,11 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../ChromePlugIn" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="WebServerToolWindowFactoryState" value="true" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
     <property name="FullScreen" value="false" />
@@ -370,7 +388,7 @@
     <editor active="true" />
     <layout>
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22493573" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22750643" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="版本控制" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
@@ -412,6 +430,68 @@
             <element signature="n#!!block;n#ResetAjaxParas#0;n#!!block;n#app#0" expanded="false" />
             <element signature="n#!!block;n#addCount#0;n#!!block;n#app#0" expanded="false" />
             <element signature="n#!!block;n#updateCount#0;n#!!block;n#app#0" expanded="false" />
+            <marker date="1466573228867" expanded="true" signature="8377:8391" placeholder="..." />
+            <marker date="1466573228867" expanded="true" signature="11198:11226" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/InformationPost.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="57" column="47" selection-start-line="57" selection-start-column="47" selection-end-line="57" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/InformationPostVersionIOS.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/InformationPostShare.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/labelAdapter/labelAdapter.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="63" column="10" selection-start-line="61" selection-start-column="5" selection-end-line="63" selection-end-column="10" />
+          <folding>
+            <element signature="e#102#699#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/jimiHost.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="46" selection-start-line="0" selection-start-column="46" selection-end-line="0" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/app/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="284" column="21" selection-start-line="284" selection-start-column="21" selection-end-line="284" selection-end-column="21" />
+          <folding>
+            <element signature="n#!!block;n#RemoveClass#0;n#!!block;n#app#0" expanded="false" />
+            <element signature="n#!!block;n#AddClass#0;n#!!block;n#app#0" expanded="false" />
+            <element signature="n#!!block;n#IfAlreadyLightUp#0;n#!!block;n#app#0" expanded="false" />
+            <element signature="n#!!block;n#GetTypeFromElement#0;n#!!block;n#app#0" expanded="false" />
+            <element signature="n#!!block;n#ResetAjaxParas#0;n#!!block;n#app#0" expanded="false" />
+            <element signature="n#!!block;n#addCount#0;n#!!block;n#app#0" expanded="false" />
+            <element signature="n#!!block;n#updateCount#0;n#!!block;n#app#0" expanded="false" />
+            <marker date="1466573228867" expanded="true" signature="8377:8391" placeholder="..." />
+            <marker date="1466573228867" expanded="true" signature="11198:11226" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -470,6 +550,8 @@
             <element signature="n#!!block;n#ResetAjaxParas#0;n#!!block;n#app#0" expanded="false" />
             <element signature="n#!!block;n#addCount#0;n#!!block;n#app#0" expanded="false" />
             <element signature="n#!!block;n#updateCount#0;n#!!block;n#app#0" expanded="false" />
+            <marker date="1466573228867" expanded="true" signature="8377:8391" placeholder="..." />
+            <marker date="1466573228867" expanded="true" signature="11198:11226" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -528,6 +610,8 @@
             <element signature="n#!!block;n#ResetAjaxParas#0;n#!!block;n#app#0" expanded="false" />
             <element signature="n#!!block;n#addCount#0;n#!!block;n#app#0" expanded="false" />
             <element signature="n#!!block;n#updateCount#0;n#!!block;n#app#0" expanded="false" />
+            <marker date="1466573228867" expanded="true" signature="8377:8391" placeholder="..." />
+            <marker date="1466573228867" expanded="true" signature="11198:11226" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -586,6 +670,8 @@
             <element signature="n#!!block;n#ResetAjaxParas#0;n#!!block;n#app#0" expanded="false" />
             <element signature="n#!!block;n#addCount#0;n#!!block;n#app#0" expanded="false" />
             <element signature="n#!!block;n#updateCount#0;n#!!block;n#app#0" expanded="false" />
+            <marker date="1466573228867" expanded="true" signature="8377:8391" placeholder="..." />
+            <marker date="1466573228867" expanded="true" signature="11198:11226" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -638,7 +724,10 @@
           <caret line="126" column="36" selection-start-line="126" selection-start-column="36" selection-end-line="126" selection-end-column="36" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
-            <element signature="e#6186#7569#0" expanded="false" />
+            <element signature="e#6187#7570#0" expanded="false" />
+            <marker date="1467096483637" expanded="true" signature="8813:8864" placeholder="..." />
+            <marker date="1467096483637" expanded="true" signature="9198:9249" placeholder="..." />
+            <marker date="1467096483637" expanded="true" signature="9539:9588" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -655,17 +744,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="115" column="1" selection-start-line="115" selection-start-column="1" selection-end-line="115" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/lightUpMask-1.0.2.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="50" column="0" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="e#6186#7569#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -720,22 +798,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/app/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="284" column="21" selection-start-line="284" selection-start-column="21" selection-end-line="284" selection-end-column="21" />
-          <folding>
-            <element signature="n#!!block;n#RemoveClass#0;n#!!block;n#app#0" expanded="false" />
-            <element signature="n#!!block;n#AddClass#0;n#!!block;n#app#0" expanded="false" />
-            <element signature="n#!!block;n#IfAlreadyLightUp#0;n#!!block;n#app#0" expanded="false" />
-            <element signature="n#!!block;n#GetTypeFromElement#0;n#!!block;n#app#0" expanded="false" />
-            <element signature="n#!!block;n#ResetAjaxParas#0;n#!!block;n#app#0" expanded="false" />
-            <element signature="n#!!block;n#addCount#0;n#!!block;n#app#0" expanded="false" />
-            <element signature="n#!!block;n#updateCount#0;n#!!block;n#app#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/labelAdapter/labelAdapter.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -754,14 +816,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/InformationPost.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.076923">
-          <caret line="57" column="47" selection-start-line="57" selection-start-column="47" selection-end-line="57" selection-end-column="47" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/InformationPostVersionIOS.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.0">
@@ -772,9 +826,49 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/InformationPostShare.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.17391305">
+        <state vertical-scroll-proportion="-5.5">
           <caret line="64" column="38" selection-start-line="64" selection-start-column="38" selection-end-line="64" selection-end-column="38" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/InformationPost.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.0384617">
+          <caret line="57" column="47" selection-start-line="57" selection-start-column="47" selection-end-line="57" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/app/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="23" column="9" selection-start-line="23" selection-start-column="9" selection-end-line="23" selection-end-column="9" />
+          <folding>
+            <element signature="n#!!block;n#RemoveClass#0;n#!!block;n#app#0" expanded="false" />
+            <element signature="n#!!block;n#AddClass#0;n#!!block;n#app#0" expanded="false" />
+            <element signature="n#!!block;n#IfAlreadyLightUp#0;n#!!block;n#app#0" expanded="false" />
+            <element signature="n#!!block;n#GetTypeFromElement#0;n#!!block;n#app#0" expanded="false" />
+            <element signature="n#!!block;n#ResetAjaxParas#0;n#!!block;n#app#0" expanded="false" />
+            <element signature="n#!!block;n#addCount#0;n#!!block;n#app#0" expanded="false" />
+            <element signature="n#!!block;n#updateCount#0;n#!!block;n#app#0" expanded="false" />
+            <marker date="1466573228867" expanded="true" signature="8377:8391" placeholder="..." />
+            <marker date="1466573228867" expanded="true" signature="11198:11226" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/lightUpMask-1.0.2.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.46089387">
+          <caret line="49" column="0" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#6187#7570#0" expanded="false" />
+            <marker date="1467096483637" expanded="true" signature="8813:8864" placeholder="..." />
+            <marker date="1467096483637" expanded="true" signature="9198:9249" placeholder="..." />
+            <marker date="1467096483637" expanded="true" signature="9539:9588" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>

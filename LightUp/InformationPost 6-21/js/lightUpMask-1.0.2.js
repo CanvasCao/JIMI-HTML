@@ -47,7 +47,7 @@
 
             $(this.C).find('.lightUpMaskBottom').append("<div class='maskInputBox'></div>");
 
-            if (that.data.ifShare) {
+            if (!that.data.ifShare) {
                 var jimiInputBox = new JimiInputBox($(that.C).find('.maskInputBox')[0], null);
             }
 

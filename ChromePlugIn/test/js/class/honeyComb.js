@@ -65,7 +65,7 @@
             var that = this;
             //velocity........................................
             this.JM.honeyComb.css({top:that.config.moveDistance, opacity: 0.1})
-              .velocity({opacity: 1, top: 0}, 4000, 'swing');
+              .animate({opacity: 1, top: 0}, 4000, 'swing');
 
         },
     }

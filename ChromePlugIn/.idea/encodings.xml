@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/jimiSDK/css/jimiSDK.css" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/jimiSDK/js/jimiMirror-1.0.0.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/jimiSDK/js/jimiMirror-1.0.0.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/jimiSDK/js/neverClick.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/jimiSDK/manifest.json" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/js/class/honeyComb.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/js/class/honeyCombManager.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/test/js/jimiMirror-1.0.0.js" charset="UTF-8" />
   </component>
 </project>
