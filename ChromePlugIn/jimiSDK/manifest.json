@@ -15,13 +15,27 @@
         "*://item.jd.com/*"
       ],
       "js": [
-        "js/jquery-1.8.3.min.js",
-        "js/jimiMirror-1.0.0.js",
-        "js/app.js"
+        "js/tool/jquery-1.8.3.min.js",
+        "js/tool/velocity.min.js",
+        "js/tool/velocity.ui.js",
+        "js/jimiHost.js",
+        "js/class/jimiMirror-1.0.0.js",
+        "js/app/appMirror.js"
       ],
       "css": [
         "css/jimiSDK.css"
       ]
+    },
+    {
+      "matches": [
+        "*://*.jd.com/*"
+      ],
+      "js": [
+        "js/tool/jquery-1.8.3.min.js",
+        "js/jimiHost.js",
+        "js/app/appSearch.js"
+      ],
+      "css": []
     }
   ],
   "permissions": [

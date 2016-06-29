@@ -60,7 +60,9 @@ function labelAdapter($con) {//传进一个jq对象 是个容器 会对容器内
         }
 
         $(this).click(function(){
-            window.location.href='jimi://'+$(this).attr('src');
+            var src=$(this).attr('src');
+            var href=base64_encode('{"type":6,"imgSrc":"'+src+'"}');
+            window.location.href='jimi://'+href;
         })
 
     })

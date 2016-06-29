@@ -5,7 +5,6 @@
     function MiddleComponent(container, data) {
         this.C = this.container = container;
         this.data = data;
-        //console.log(JSON.stringify(data))
         this.config = {
             backgroundColor: 'white',
             colorList: {
@@ -30,29 +29,25 @@
 
         },
         createDom: function () {
-            var componentsWithIdArr = this.data.component;//二维数组 [0]是name [1]是id
+            //对象数组
+            var componentsWithIdArr = this.data.component;
 
             //拼加组件
-
             $(this.C).html('<div class="typeCom"></div><div class="safeCom"></div>');
 
             var str = '';
             if (componentsWithIdArr) {
-                for (i = 0; i < componentsWithIdArr.length; i++) {
-                    var oriName = componentsWithIdArr[i].name;
-                    var oriId = componentsWithIdArr[i].obj_id;
-
-                    //pname是字符串截过的
-                    var pname = (oriName.length > 22) ? oriName.substr(0, 22) + '...' : oriName;
-
-                    //加跳转事件
-                    var event = " href='" + oriId + "' ";
-                    //var event = "href='" + "jimi://eyJmaWQiOiI1NjcyNWUwMGVmYjgwYzM0NDUxNzRmNTUifQ==" + "'";
-
-                    //存贮原名
+                [].forEach.call(componentsWithIdArr, function (e, i, arr) {
+                    var oriName = e.name;
+                    var oriId = e['obj_id'];
+                    var pname = (oriName.length > 20) ? oriName.substr(0, 20) + '...' : oriName;
+                    var href = '{"type":5,"fid":"' + oriId + '"}';
+                    var eventData = " href=jimi://" + base64_encode(href) + "";
                     var oriData = " data-ori='" + oriName + "' ";
-                    str += '<a ' + event + oriData + ' >' + pname + '</a>';
-                }
+
+                    //str.........................................
+                    str += '<a ' + eventData + oriData + ' >' + pname + '</a>';
+                })
             }
 
             else {
@@ -88,40 +83,36 @@
 
             //给文字加颜色了
             if (that.data.type) {
-                $(this.C).find('.typeCom a').map(function () {
-                    var innerHtml = $(this).attr('data-ori'); //span是单个成分
-
-                    for (i = 0; i < that.data.type.length; i++) {//遍历过来的 type数组
-                        var name = that.data.type[i].name;
-                        var arr = that.data.type[i].arr;
-
-                        if ($.inArray(innerHtml, arr) != -1) { //!=-1说明在数组里
-                            $(this).css({
+                $(this.C).find('.typeCom a').each(function (i, e) {
+                    var $that = $(this);
+                    var oriName = $(this).attr('data-ori');
+                    [].forEach.call(that.data.type, function (e, i, arr) {
+                        var name = e.name;
+                        var arr = e.arr;
+                        if ($.inArray(oriName, arr) != -1) { //!=-1说明在数组里
+                            $that.css({
                                 'color': that.config.colorList[name],
                                 'border-color': that.config.colorList[name]
                             })
                         }
-                    }
-                })
+                    })
+                });
             }
-
             if (that.data.safe) {
-                $(this.C).find('.safeCom a').map(function () {
-                    var innerHtml = $(this).attr('data-ori'); //span是单个成分
-
-                    for (i = 0; i < that.data.safe.length; i++) {//遍历过来的 type数组
-                        var name = that.data.safe[i].name;
-                        var arr = that.data.safe[i].arr;
-
-                        if ($.inArray(innerHtml, arr) != -1) { //!=-1说明在数组里
-                            $(this).css({
+                $(this.C).find('.safeCom a').each(function (i, e) {
+                    var $that = $(this);
+                    var oriName = $(this).attr('data-ori');
+                    [].forEach.call(that.data.safe, function (e, i, arr) {
+                        var name = e.name;
+                        var arr = e.arr;
+                        if ($.inArray(oriName, arr) != -1) { //!=-1说明在数组里
+                            $that.css({
                                 'color': that.config.colorList[name],
                                 'border-color': that.config.colorList[name]
                             })
                         }
-                    }
-                })
-
+                    })
+                });
             }
 
         },
