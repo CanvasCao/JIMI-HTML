@@ -24,8 +24,18 @@
       <file leaf-file-name="CompositionDistribution.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/CompositionDistribution.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-43.846153">
-              <caret line="76" column="0" selection-start-line="76" selection-start-column="0" selection-end-line="76" selection-end-column="0" />
+            <state vertical-scroll-proportion="-36.346153">
+              <caret line="63" column="0" selection-start-line="63" selection-start-column="0" selection-end-line="63" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="spa-middleComponent-1.0.2.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/js/spa/spa-middleComponent-1.0.2.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.12011173">
+              <caret line="90" column="40" selection-start-line="90" selection-start-column="40" selection-end-line="90" selection-end-column="40" />
               <folding />
             </state>
           </provider>
@@ -46,30 +56,16 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="67" column="21" selection-start-line="67" selection-start-column="21" selection-end-line="67" selection-end-column="21" />
-              <folding>
-                <marker date="1465702241924" expanded="true" signature="849:873" placeholder="..." />
-                <marker date="1465702241924" expanded="true" signature="916:929" placeholder="..." />
-                <marker date="1465702241924" expanded="true" signature="1063:1087" placeholder="..." />
-                <marker date="1465702241924" expanded="true" signature="1133:1146" placeholder="..." />
-                <marker date="1465702241924" expanded="true" signature="1280:1304" placeholder="..." />
-                <marker date="1465702241924" expanded="true" signature="1350:1363" placeholder="..." />
-                <marker date="1465702241924" expanded="true" signature="1498:1522" placeholder="..." />
-                <marker date="1465702241924" expanded="true" signature="1568:1581" placeholder="..." />
-                <marker date="1465702241924" expanded="true" signature="1719:1750" placeholder="..." />
-                <marker date="1465702241924" expanded="true" signature="1871:1895" placeholder="..." />
-                <marker date="1465702241924" expanded="true" signature="1941:1954" placeholder="..." />
-                <marker date="1465702241924" expanded="true" signature="2087:2111" placeholder="..." />
-                <marker date="1465702241924" expanded="true" signature="2157:2170" placeholder="..." />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="jimiHost.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="jimiHost.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/jimiHost.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="43" selection-start-line="0" selection-start-column="43" selection-end-line="0" selection-end-column="43" />
+              <caret line="0" column="42" selection-start-line="0" selection-start-column="42" selection-end-line="0" selection-end-column="42" />
               <folding />
             </state>
           </provider>
@@ -103,8 +99,8 @@
         <option value="$PROJECT_DIR$/js/spa/spa-middleComponent-1.0.2.js" />
         <option value="$PROJECT_DIR$/js/spa/spa-header.js" />
         <option value="$PROJECT_DIR$/js/spa/spa-alertCon.js" />
-        <option value="$PROJECT_DIR$/CompositionDistribution.html" />
         <option value="$PROJECT_DIR$/js/jimiHost.js" />
+        <option value="$PROJECT_DIR$/CompositionDistribution.html" />
       </list>
     </option>
   </component>
@@ -144,6 +140,8 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -224,8 +222,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -302,7 +298,7 @@
     <editor active="true" />
     <layout>
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22557841" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2281491" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="版本控制" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32885906" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -351,21 +347,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="102" column="33" selection-start-line="102" selection-start-column="33" selection-end-line="102" selection-end-column="33" />
-          <folding>
-            <marker date="1465702241924" expanded="true" signature="849:873" placeholder="..." />
-            <marker date="1465702241924" expanded="true" signature="916:929" placeholder="..." />
-            <marker date="1465702241924" expanded="true" signature="1063:1087" placeholder="..." />
-            <marker date="1465702241924" expanded="true" signature="1133:1146" placeholder="..." />
-            <marker date="1465702241924" expanded="true" signature="1280:1304" placeholder="..." />
-            <marker date="1465702241924" expanded="true" signature="1350:1363" placeholder="..." />
-            <marker date="1465702241924" expanded="true" signature="1498:1522" placeholder="..." />
-            <marker date="1465702241924" expanded="true" signature="1568:1581" placeholder="..." />
-            <marker date="1465702241924" expanded="true" signature="1719:1750" placeholder="..." />
-            <marker date="1465702241924" expanded="true" signature="1871:1895" placeholder="..." />
-            <marker date="1465702241924" expanded="true" signature="1941:1954" placeholder="..." />
-            <marker date="1465702241924" expanded="true" signature="2087:2111" placeholder="..." />
-            <marker date="1465702241924" expanded="true" signature="2157:2170" placeholder="..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -610,14 +592,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/jquery-1.8.3.min.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -671,33 +645,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/spa/spa-middleComponent-1.0.2.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="90" column="62" selection-start-line="90" selection-start-column="62" selection-end-line="90" selection-end-column="62" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/spa/spa-compositionContainer.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="67" column="21" selection-start-line="67" selection-start-column="21" selection-end-line="67" selection-end-column="21" />
-          <folding>
-            <marker date="1465702241924" expanded="true" signature="849:873" placeholder="..." />
-            <marker date="1465702241924" expanded="true" signature="916:929" placeholder="..." />
-            <marker date="1465702241924" expanded="true" signature="1063:1087" placeholder="..." />
-            <marker date="1465702241924" expanded="true" signature="1133:1146" placeholder="..." />
-            <marker date="1465702241924" expanded="true" signature="1280:1304" placeholder="..." />
-            <marker date="1465702241924" expanded="true" signature="1350:1363" placeholder="..." />
-            <marker date="1465702241924" expanded="true" signature="1498:1522" placeholder="..." />
-            <marker date="1465702241924" expanded="true" signature="1568:1581" placeholder="..." />
-            <marker date="1465702241924" expanded="true" signature="1719:1750" placeholder="..." />
-            <marker date="1465702241924" expanded="true" signature="1871:1895" placeholder="..." />
-            <marker date="1465702241924" expanded="true" signature="1941:1954" placeholder="..." />
-            <marker date="1465702241924" expanded="true" signature="2087:2111" placeholder="..." />
-            <marker date="1465702241924" expanded="true" signature="2157:2170" placeholder="..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -709,18 +661,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/CompositionDistribution.html">
+    <entry file="file://$PROJECT_DIR$/js/jimiHost.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-43.846153">
-          <caret line="76" column="0" selection-start-line="76" selection-start-column="0" selection-end-line="76" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="42" selection-start-line="0" selection-start-column="42" selection-end-line="0" selection-end-column="42" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/jimiHost.js">
+    <entry file="file://$PROJECT_DIR$/CompositionDistribution.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="43" selection-start-line="0" selection-start-column="43" selection-end-line="0" selection-end-column="43" />
+        <state vertical-scroll-proportion="-36.346153">
+          <caret line="63" column="0" selection-start-line="63" selection-start-column="0" selection-end-line="63" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/spa/spa-middleComponent-1.0.2.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.12011173">
+          <caret line="90" column="40" selection-start-line="90" selection-start-column="40" selection-end-line="90" selection-end-column="40" />
           <folding />
         </state>
       </provider>
