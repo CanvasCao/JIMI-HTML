@@ -22,7 +22,7 @@
         'background': 'url("' + jimiHost + '/img/logo.png")',
         'background-size': 'cover',
     });
-    var jimiMirror = new JimiMirror('#jimiMirror', {top: $TD.top - 100});
+    var jimiMirror = new JimiMirror('#jimiMirror', {top: $TD.top - 30});
 
     //$triggerDom TADA的定时器
     var tadaTimer = null;
@@ -31,7 +31,7 @@
     //点亮标签相关 全局变量...................................................................................
     var ifDragging = false;
     var mouseDown = {x: 0, y: 0};
-    var SdkState = {
+    var lightState = {
         touchStart: {},
         touchMove: {
             transition: 'all 0s ease',
@@ -51,7 +51,7 @@
         mouseDown.x = e.clientX;
         mouseDown.y = e.clientY;
         ifDragging = true;
-        $jimiLight.css(SdkState.touchStart);
+        $jimiLight.css(lightState.touchStart);
         tadaTimer = setInterval(function () {
             $triggerDom.velocity('callout.tada', 3000, true);
         }, 3200)
@@ -63,8 +63,8 @@
             e.preventDefault();
 
             //重置左下角的标记.............................
-            SdkState.touchMove.transform = 'translate3d(' + (e.clientX - mouseDown.x) + 'px,' + (e.clientY - mouseDown.y) + 'px,0px)';
-            $jimiLight.css(SdkState.touchMove);
+            lightState.touchMove.transform = 'translate3d(' + (e.clientX - mouseDown.x) + 'px,' + (e.clientY - mouseDown.y) + 'px,0px)';
+            $jimiLight.css(lightState.touchMove);
 
             var pageX = e.pageX;
             var pageY = e.pageY;
@@ -82,7 +82,7 @@
         if (ifDragging) {
             ifDragging = false;
         }
-        $jimiLight.css(SdkState.touchEnd);
+        $jimiLight.css(lightState.touchEnd);
         clearInterval(tadaTimer);
         delete(tadaTimer);
         //$triggerDom.css({border: 'none'});
