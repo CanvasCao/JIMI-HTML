@@ -35,6 +35,7 @@
     };
 
     controller.getLightUp = function (data, callback) {
+        console.log(JSON.stringify(data));
         $.ajax({
             type: "post",
             url: jimiHost + '/getLightUp.php',

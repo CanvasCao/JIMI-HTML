@@ -160,9 +160,10 @@ function app(ifShare) {
         if (globalManager.elementType != 0) {
             RemoveClass();
             AddClass();
+            console.log(true);
             return true;
         }
-
+        console.log(false);
         return false;
     };
 
