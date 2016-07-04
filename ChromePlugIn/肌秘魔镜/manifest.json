@@ -1,8 +1,8 @@
 {
   "manifest_version": 2,
-  "name": "jimiSDK",
+  "name": "肌秘魔镜",
   "version": "1.0",
-  "description": "jimiSDKDescription",
+  "description": "肌秘魔镜",
   "icons": {
     "16": "img/logo.png"
   },

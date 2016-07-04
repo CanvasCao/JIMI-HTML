@@ -4,6 +4,6 @@
     $button = $search.find('button').eq(0);
 
     $button.click(function () {
-        alert($input.val());
+        //alert($input.val());
     })
 })()
