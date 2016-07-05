@@ -15,8 +15,11 @@
 
     function PriceCompare(container, data) {
         this.C = this.container = (typeof container == 'string') ? $(container) : container;
-        this.data = data; //data是个对象数组
-        this.num = data.length;
+        this.data = data; //data 是{id：532,json:[]},
+        this.id = data.id;
+        this.priceArr = data.json;
+
+        this.num = this.priceArr.length;
         this.config = {
             secMarginRight: 15,
             imgW: 60,
@@ -37,7 +40,7 @@
         createDom: function () {
             var that = this;
 
-            if (!this.data || this.data.length == 0) {
+            if (!this.priceArr || this.priceArr.length == 0) {
                 $(that.C).remove();
                 return;
             }
@@ -45,10 +48,10 @@
             $(this.C).html('<div class="priceCon"></div>');
 
             var str = '';
-            [].forEach.call(that.data, function (e, i, arr) {
+            [].forEach.call(that.priceArr, function (e, i, arr) {
                 str += "<div class='priceSec'>" +
                     "<img src='" + e.logoIcon + "'/>" +
-                    //"<div class='priceTxt'>" + '￥' + e.spprice + "</div>" +
+                        //"<div class='priceTxt'>" + '￥' + e.spprice + "</div>" +
                     "</div>"
             })
 
@@ -60,13 +63,13 @@
 
 
             $(this.C).css({
-                overflow:'scroll',
+                overflow: 'scroll',
             })
 
-            var cPaddingL=parseInt($(that.C).css('padding-left'));
+            var cPaddingL = parseInt($(that.C).css('padding-left'));
             $(this.C).find('.priceCon').css({
                 display: 'inline-block',
-                width: that.num * (that.config.imgW + that.config.secMarginRight)+2*cPaddingL,
+                width: that.num * (that.config.imgW + that.config.secMarginRight) + 2 * cPaddingL,
             })
 
             $(this.C).find('.priceSec').css({
@@ -87,12 +90,10 @@
         bindEvent: function () {
             var that = this;
 
-
             $(this.C).find('.priceSec').each(function (i, e) {
-                var json = that.data[i]; //json是数组的单个元素
-                console.log(json);
+                var json = that.priceArr[i]; //json是数组的单个元素
                 var siteid = json.siteid;
-                var id = json.id;
+                var id = that.id;
 
                 $(e).click(function () {
                         window.location.href = (jimiHost + '/maimaiBuy/index.html?id=' + id + '&siteid=' + siteid );

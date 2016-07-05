@@ -13,3 +13,4 @@
       
         androidJsBridge.webToAndroid("hghkkk");
     }
+	

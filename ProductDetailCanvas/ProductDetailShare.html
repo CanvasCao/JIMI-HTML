@@ -214,7 +214,7 @@
             var productParams = new ProductParams('#params', data);
 
             if (data.PriceData.json) {
-                var priceCompare = new PriceCompare('#priceCompare', data.PriceData.json);
+                var priceCompare = new PriceCompare('#priceCompare', data.PriceData);
                 var navBarPrice = new NavBar('#navBarPrice', {
                     navImg: "img/navBar/price.png",
                     navTxt: '相关市场信息',
