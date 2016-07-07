@@ -1,2 +1,2 @@
-使用优酷的iframe标签 
-用jq 调整比例
+浣跨敤浼橀叿鐨刬frame鏍囩 
+鐢╦q 璋冩暣姣斾緥
