@@ -3,28 +3,24 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title></title>
-    <script src='jquery-1.7.js'></script>
-    <script>
-        $(document).ready(function () {
-            if (!window.location.search) {
-                window.location = window.location + '?a=1';
-            }
 
+    <script src="http://apps.bdimg.com/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script>
+        $(function () {
             $.ajax({
                 type: "post",
-                url: 'http://n1.jimi.la/apps_T1/culletInsert.php' + window.location.search,
+                url: 'http://openapi.jimi.la/analysisPost',
 //                url: 'package.json',
                 data: {
                     pid: '56829da0efb80c4e26c3e3a2',
                     uid: '10002',
                     comment: '我是方辉辉辉辉辉辉辉辉辉辉辉辉',
                 },
-                dataType: "jsonp",
-                jsonp: "callback",//传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)
-                jsonpCallback: "jsonpcallback",
+//                dataType: "jsonp",
+//                jsonp: "callback",//传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)
+//                jsonpCallback: "jsonpcallback",
                 success: function (data) {
                     console.log(JSON.stringify(data));
-//                    $('body').html(data.content.replace(/"/g,'&quot').replace(/'/g,'&quot').replace(/</g,'&lt').replace(/>/g,'&gt'))
                 },
                 error: function (err) {
                     console.log('ERROR!')
@@ -32,7 +28,6 @@
                 }
             });
 
-//            console.log(1)
         });
     </script>
 </head>
