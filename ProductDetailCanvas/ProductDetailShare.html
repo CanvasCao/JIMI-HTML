@@ -132,8 +132,12 @@
 <script src='js/jimiHost.js'></script>
 <script src='js/base.js'></script>
 <script src='js/download/download.js'></script>
-<script src='js/cullet/cullet-4.0.0.min.js'></script>
 <script src='js/searchToJson/searchToJson.js'></script>
+<script src='js/globalManager/globalManager.js'></script>
+<script src='js/controller/controller.js'></script>
+<script src='js/Fns.js'></script>
+<script src='js/class/commentCellManager.js'></script>
+<script src='js/class/commentCellShare.js'></script>
 
 <script src='js/spa/navBar-2.0.0.js'></script>
 <script src='js/spa/productParams-1.0.0.js'></script>
@@ -235,8 +239,9 @@
             }
 
 
+            GM.ifShare = true;
             //弹幕............................................................
-            var ccm = new CommentCellManage('#cullet',
+            GM.ccm = new CommentCellManager('#cullet',
                     {
                         serverUrl: jimiHost + '/culletSelect.php',
                         closeable: false,
@@ -248,7 +253,7 @@
             );
 
             //加载弹幕............................................................
-            ccm.load(searchJson.pid);
+            GM.ccm.load(searchJson.pid);
         },
         error: function (err) {
             console.log('ERROR!');
