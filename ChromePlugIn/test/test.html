@@ -170,7 +170,7 @@
             {left: 290},
         ];
         var hc = new HoneyComb('.honeyCombCon', {txt: featureArr[0]});
-        window.hc=hc;
+        window.hc = hc;
 
         window.requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
         window.cancelAnimationFrame = window.cancelAnimationFrame || window.mozCancelRequestAnimationFrame || window.webkitCancelRequestAnimationFrame || window.msCancelRequestAnimationFrame;
@@ -195,6 +195,7 @@
             }
             timer = requestAnimationFrame(move);
         }
+
         hc.move();
         move();
 

@@ -1,0 +1,48 @@
+{
+  "manifest_version": 2,
+  "name": "肌秘魔镜",
+  "version": "1.0",
+  "description": "肌秘魔镜",
+  "icons": {
+    "16": "img/logo.png"
+  },
+  "browser_action": {
+    "default_icon": "img/logo.png"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://item.jd.com/*"
+      ],
+      "js": [
+        "js/tool/jquery-1.8.3.min.js",
+        "js/tool/velocity.min.js",
+        "js/tool/velocity.ui.js",
+        "js/jimiHost.js",
+        "js/class/jimiMirror-1.0.0.js",
+        "js/app/appMirror.js"
+      ],
+      "css": [
+        "css/jimiSDK.css"
+      ]
+    },
+    {
+      "matches": [
+        "*://*.jd.com/*"
+      ],
+      "js": [
+        "js/tool/jquery-1.8.3.min.js",
+        "js/jimiHost.js",
+        "js/app/appSearch.js"
+      ],
+      "css": []
+    }
+  ],
+  "permissions": [
+    "tabs",
+    "contextMenus",
+    "http://*/*",
+    "https://*/*"
+  ]
+  // "content_security_policy": "script-src 'self' https://webapi.amap.com/ https://js.webapi.amap.com/ https://restapi.amap.com/ 'unsafe-eval'; object-src 'self'"
+}

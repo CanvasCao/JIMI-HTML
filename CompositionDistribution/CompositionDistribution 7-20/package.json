@@ -1,0 +1,148 @@
+jsonpcallback({
+  "chineseName": "封面主角防晒霜SPF25",
+  "englishName": "",
+  "imgUrl": [],
+  "component": [
+    {
+      "obj_id": "jimi://IjU2NzI1ZTg5ZWZiODBjN2I0MTVkMTM4MSI=",
+      "name": "水"
+    },
+    {
+      "obj_id": "jimi://IjU2NzI1ZDdmZWZiODBjYWY0MWJjYTJhYiI=",
+      "name": "甲氧基肉桂酸乙基己酯"
+    },
+    {
+      "obj_id": "jimi://IjU2NzI1ZGU1ZWZiODBjZTEzZjlkNDQ0ZSI=",
+      "name": "甘油"
+    },
+    {
+      "obj_id": "jimi://IjU2NzI1ZDdmZWZiODBjYWY0MWJjOWQ0MyI=",
+      "name": "环聚二甲基硅氧烷"
+    },
+    {
+      "obj_id": "jimi://IjU2NzI1ZDdlZWZiODBjYWY0MWJjOTc2MyI=",
+      "name": "辛酸/癸酸甘油三酯"
+    },
+    {
+      "obj_id": "jimi://IjU2NzI1ZTFjZWZiODBjZDU3NWI1NWM2MCI=",
+      "name": "PEG-100 硬脂酸酯"
+    },
+    {
+      "obj_id": "jimi://IjU2NzI1ZGU1ZWZiODBjZTEzZjlkNDRiMSI=",
+      "name": "甘油硬脂酸酯"
+    },
+    {
+      "obj_id": "jimi://IjU2NzI1ZTA5ZWZiODBjOWQ0NGMyOTJkMyI=",
+      "name": "4-甲基苄亚基樟脑"
+    },
+    {
+      "obj_id": "jimi://IjU2NzI1ZDdlZWZiODBjYWY0MWJjOTYwZiI=",
+      "name": "丁基甲氧基二苯甲酰基甲烷"
+    },
+    {
+      "obj_id": "jimi://IjU2NzI1ZDdkZWZiODBjYWY0MWJjOTQ3OSI=",
+      "name": "二苯酮-3"
+    },
+    {
+      "obj_id": "jimi://IjU2NzI1ZTRjZWZiODBjZTEzZmRhOTAwNiI=",
+      "name": "二氧化钛"
+    },
+    {
+      "obj_id": "jimi://IjU2NzI1ZDdlZWZiODBjYWY0MWJjOTg3MiI=",
+      "name": "鲸蜡硬脂醇"
+    },
+    {
+      "obj_id": "jimi://IjU2NzI1ZTg5ZWZiODBjN2I0MTVkMTI3ZiI=",
+      "name": "泛醇"
+    },
+    {
+      "obj_id": "jimi://IjU2NzI1ZTQ0ZWZiODBjY2IzMGQ4ODEzOCI=",
+      "name": "氢氧化钠"
+    },
+    {
+      "obj_id": "jimi://IjU2NzI1ZDdlZWZiODBjYWY0MWJjOTRlNiI=",
+      "name": "红没药醇"
+    },
+    {
+      "obj_id": "jimi://IjU2NzI1ZTRjZWZiODBjZTEzZmRhOTAxOSI=",
+      "name": "生育酚乙酸酯"
+    },
+    {
+      "obj_id": "jimi://IjU2NzI1ZTExZWZiODBjN2I0MTdkZjBjZiI=",
+      "name": "香精"
+    },
+    {
+      "obj_id": "jimi://IjU2NzI1ZTA5ZWZiODBjOWQ0NGMyOTMzMiI=",
+      "name": "羟苯甲酯"
+    },
+    {
+      "obj_id": "jimi://IjU2NzI1ZTg5ZWZiODBjN2I0MTVkMTNhNSI=",
+      "name": "黄原胶"
+    },
+    {
+      "obj_id": "jimi://IjU2NzI1ZDdlZWZiODBjYWY0MWJjOTc5NCI=",
+      "name": "卡波姆"
+    },
+    {
+      "obj_id": "jimi://IjU2NzI1ZDdmZWZiODBjYWY0MWJjYTBiZiI=",
+      "name": "EDTA 二钠"
+    },
+    {
+      "obj_id": "jimi://IjU2NzI1ZTNiZWZiODBjZTIzZjcyOTg5NCI=",
+      "name": "羟苯丙酯"
+    },
+    {
+      "obj_id": "jimi://IjU2NzI1ZTQ0ZWZiODBjY2IzMGQ4ODEyZSI=",
+      "name": "透明质酸钠"
+    }
+  ],
+  "type": [
+    {
+      "name": "conditioner",
+      "arr": [
+        "环聚二甲基硅氧烷",
+        "辛酸/癸酸甘油三酯",
+        "红没药醇",
+        "生育酚乙酸酯",
+        "透明质酸钠"
+      ]
+    },
+    {
+      "name": "emollient",
+      "arr": [
+        "甘油",
+        "环聚二甲基硅氧烷",
+        "辛酸/癸酸甘油三酯",
+        "透明质酸钠"
+      ]
+    },
+    {
+      "name": "sunScreener",
+      "arr": [
+        "甲氧基肉桂酸乙基己酯",
+        "4-甲基苄亚基樟脑",
+        "丁基甲氧基二苯甲酰基甲烷",
+        "二苯酮-3",
+        "二氧化钛"
+      ]
+    }
+  ],
+  "safe": [
+    {
+      "name": "sensitization",
+      "arr": [
+        "甲氧基肉桂酸乙基己酯",
+        "PEG-100 硬脂酸酯",
+        "4-甲基苄亚基樟脑",
+        "丁基甲氧基二苯甲酰基甲烷",
+        "二苯酮-3",
+        "鲸蜡硬脂醇",
+        "氢氧化钠",
+        "香精",
+        "羟苯甲酯",
+        "羟苯丙酯"
+      ]
+    }
+  ]
+}
+)
