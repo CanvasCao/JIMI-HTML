@@ -8,5 +8,7 @@
 
     globalManager.JM = globalManager.jQueryMap = {};
 
+
+    GM.version = '';
     w.GM = w.globalManager = globalManager;
 })(window, document, $);

@@ -12,7 +12,7 @@
                 emollient: '#3982e1',//柔润
                 sunScreener: '#23ad39', //防晒
                 sensitization: '#e5004f', //致敏
-                safe: '#949494'
+                safe: '#555',
             }
         };
         this.init();
@@ -40,9 +40,9 @@
                 [].forEach.call(componentsWithIdArr, function (e, i, arr) {
                     var oriName = e.name;
                     var oriId = e['obj_id'];
-                    var pname = (oriName.length > 20) ? oriName.substr(0, 20) + '...' : oriName;
+                    var pname = (oriName.length > 18) ? oriName.substr(0, 18) + '...' : oriName;
                     var href = '{"type":5,"fid":"' + oriId + '"}';
-                    var eventData = " href=jimi://" + base64_encode(href) + "";
+                    var eventData = " href=jimi://" +Base64.encode(href) + "";
                     var oriData = " data-ori='" + oriName + "' ";
 
                     //str.........................................
@@ -57,14 +57,13 @@
             $(this.C).find('.typeCom,.safeCom').html(str);
 
             //第一个显示 第二个隐藏
-            $(this.C).find('.typeCom').show();
-            $(this.C).find('.safeCom').hide();
+            $(this.C).children('div').eq(0).show().siblings().hide();
+
         },
         initCSS: function () {
             var that = this;
 
             $(this.C).css({
-                padding: '10px 0px',
                 'background-color': that.config.backgroundColor,
                 'padding-bottom': '80px',
                 'text-align': 'center',

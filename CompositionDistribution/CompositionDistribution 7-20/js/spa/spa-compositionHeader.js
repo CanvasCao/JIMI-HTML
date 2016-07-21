@@ -43,9 +43,8 @@
 
 
             //给方辉的a标签................................................
-            $(this.C).find('.headerCon').append("<a></a>");
-            var href = base64_encode('{ "type": 3, "objId": "' + that.data.objId + '}');
-            $(this.C).find('a').attr({'href': 'jimi://' + href})
+            var json = {type: 1, objId: that.data.objId};//警告框 type=1
+            $(this.C).find('.headerCon').RoshanBB('jimi://' + Base64.encode(JSON.stringify(json)));
 
         },
         initCSS: function () {

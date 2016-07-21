@@ -1,13 +1,3 @@
-/*!
- * productDetailCanvas, a JavaScriptPlugIn v1.0.2
- * http://www.jimi.la/
- *
- * Copyright 2016, CaoYuhao
- * All rights reserved.
- * Date:2016-6-6 17:00:07
- */
-
-//正常成分和慎用成分点击也能跳转到产品详情
 ;
 (function (w, d, $, undefined) {
     function ProductDetailCanvas(container, data, ifBtn) {
@@ -66,17 +56,9 @@
                 "</div>" +
                 "</div>" +
                     //.....................................................................
-
                 "</div>"
 
             $(this.C).append(str);
-
-            //给方辉加的a标签.................................................................
-            $(this.C).find('.formulaTxtSec').append('<a></a>');
-            $(this.C).find('.formulaTxtSec a').each(function (i, e) {
-                var href = base64_encode('{ "type": 4, "objId": "' + that.data.objId + '","altBtnIndex":' + i + '}');
-                $(this).attr({'href': 'jimi://' + href})
-            })
 
 
         },
@@ -95,7 +77,6 @@
             $(this.C).find('.barCon').css({
                 height: '24px'
             })
-
 
             $(this.C).find('.barSafe').css({
                 backgroundColor: '#d2d2d2',
@@ -126,15 +107,6 @@
                 'position': 'relative',
 
             })
-                .find('a').css({//给方辉的a标签
-                    'position': 'absolute',
-                    width: '100%',
-                    height: '100%',
-                    left: 0,
-                    top: 0,
-
-                })
-
 
             $(this.C).find('.formulaPoint').css({
                 float: 'left',
@@ -158,7 +130,6 @@
             var canvasBox = $canvas[0];//第一个canvas
             var mychart = echarts.init(canvasBox);
             //mychart.showLoading();
-
 
             //mychart.hideLoading();
             if (data.component) { //说明有成分
@@ -227,17 +198,9 @@
                     comp.push(data.component[i].name);
                 }
                 ;
-
                 var sunS = data.type[2].arr;//防晒arr权限最高
                 var emol = data.type[1].arr.difference(sunS);//保湿arr次之
                 var cond = data.type[0].arr.difference(sunS).difference(emol);
-
-                //console.log(comp)
-                //console.log(sunS)
-                //console.log(emol)
-                //console.log(cond)
-
-
                 //防晒型arr独立存在
                 var sens = data.safe[0].arr;
 
@@ -313,10 +276,8 @@
                 $(that.C).find('.formulaTxt').eq(0).html('正常成分(' + normalLen + ')');
                 $(that.C).find('.formulaTxt').eq(1).html('慎用成分(' + sensLen + ')');
 
-
                 //canvas下面本来是隐藏的
                 $(that.C).find('.nonCanvas').show();
-
 
                 var canvasBeenClicked = false;
                 $(that.C).find('canvas').click(function () {
@@ -328,10 +289,9 @@
 
                 })
             }
-
-            else {//说明没有成分
-//                    mychart.hideLoading();
-
+            else {
+                //说明没有成分
+                //mychart.hideLoading();
                 //下面是否加补全成分的按钮Btn 代码很不好
                 var BtnTXT = '';
                 if (that.ifBtn) {
@@ -361,8 +321,21 @@
                     color: 'white',
                     'display': 'inline-block'
                 })
-
             }
+
+
+            //给方辉加的a标签.................................................................
+            var alertJson = [
+                ['正常成分', '正常情况下对皮肤没有安全风险的成分'],
+                ['慎用成分', '该成分有一定刺激性，敏感肌肤谨慎选择'],
+            ];
+
+            $(this.C).find('.formulaTxtSec').each(function (i, e) {
+                var json = {type: 4, objId: that.data.objId, altBtnIndex: i};//警告框 type=1
+                json.title = alertJson[i][0];
+                json.des = alertJson[i][1];
+                $(e).RoshanBB('jimi://' + Base64.encode(JSON.stringify(json)));
+            });
 
         }
     }

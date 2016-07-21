@@ -17,11 +17,20 @@
             this.bindEvent();
         },
         initConfig: function () {
+            //events.....................................................
+            var that = this;
 
+            this.config.alertJson = {
+                '保湿型成分': '提供皮肤保湿、锁水功效的成分',
+                '功效型成分': '在皮肤或头发上起生理功效,如美白、修复、抗氧化等成分',
+                '防晒型成分': '有效阻挡紫外线，为皮肤提供屏障，起防护作用的成分',
+                '剂型需求': '改善产品质地质感，维持产品稳定的成分,如溶剂成分、防腐剂成分等',
+                '慎用成分': '该成分有一定刺激性，敏感肌肤谨慎选择',
+                '正常成分': '正常情况下对皮肤没有安全风险的成分',
+            };
         },
         createDom: function () {
             //拼加组件
-
 
             $(this.C).html('<div class="alert">' +
                 '<div class="title1"></div>' +
@@ -94,19 +103,14 @@
         show: function (textDes) {
             var that = this;
 
-            //events.....................................................
-            var alertJson = {
-                '保湿型成分': '提供皮肤保湿、锁水功效的成分',
-                '功效型成分': '在皮肤或头发上起生理功效（如美白、修复、抗氧化等）的成分',
-                '防晒型成分': '有效阻挡紫外线，为皮肤提供屏障，起防护作用的成分',
-                '剂型需求': '改善产品质地质感，维持产品稳定的成分（如溶剂成分、防腐剂成分等）',
-                '慎用成分': '该成分有一定刺激性，敏感肌肤谨慎选择',
-                '正常成分': '正常情况下对皮肤没有安全风险的成分',
-            }
 
             $(this.C).find('.title1').html(textDes);
-            $(this.C).find('.title2').html(alertJson[textDes]);
+            $(this.C).find('.title2').html(that.config.alertJson[textDes]);
             $(this.C).fadeIn('fast');
+        },
+        getDes: function (textDes) {
+            var that = this;
+            return that.config.alertJson[textDes];
         },
     }
     w.AlertCon = AlertCon;

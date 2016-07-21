@@ -129,8 +129,9 @@
 <script src="http://apps.bdimg.com/libs/jquery/1.8.3/jquery.min.js"></script>
 <script src="http://apps.bdimg.com/libs/underscore.js/1.7.0/underscore-min.js"></script>
 <script src='js/tool/echartsBasic&Graph.min.js'></script>
+<script src='js/tool/base64.js'></script>
+<script src='js/tool/RoshanBB.js'></script>
 <script src='js/jimiHost.js'></script>
-<script src='js/base.js'></script>
 <script src='js/download/download.js'></script>
 <script src='js/searchToJson/searchToJson.js'></script>
 <script src='js/globalManager/globalManager.js'></script>
@@ -141,7 +142,7 @@
 
 <script src='js/spa/navBar-2.0.0.js'></script>
 <script src='js/spa/productParams-1.0.0.js'></script>
-<script src='js/spa/productDetailCanvas-1.0.2.min.js'></script>
+<script src='js/spa/productDetailCanvas-1.0.3.js'></script>
 <script src='js/spa/Honeycomb-1.0.0.js'></script>
 <script src='js/spa/priceCompare-1.0.0.js'></script>
 
@@ -230,13 +231,13 @@
 
 
             //没成分 canvas点击不允许跳转
-            if (data.component) {
-                $('#navBar3').click(function () {
-                            window.location.href = jimiHost + '/CompositionDistribution/CompositionDistribution.html' + window.location.search
-                        }
-                )
-                $('#navBar3').append(' <img src="img/navBar/arrow.png" height="12px"  style="float: right;margin-top: 3px"/>')
-            }
+//            if (data.component) {
+//                $('#navBar3').click(function () {
+//                            window.location.href = jimiHost + '/CompositionDistribution/CompositionDistribution.html' + window.location.search
+//                        }
+//                )
+//                $('#navBar3').append(' <img src="img/navBar/arrow.png" height="12px"  style="float: right;margin-top: 3px"/>')
+//            }
 
 
             GM.ifShare = true;

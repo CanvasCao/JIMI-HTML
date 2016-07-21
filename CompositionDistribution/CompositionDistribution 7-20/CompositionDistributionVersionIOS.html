@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no"/>
+    <title>成分分布</title>
+    <link rel="stylesheet" href="css/compositionDistribution.css"/>
+</head>
+<body>
+
+
+<!--中间是成分表-->
+<div class='spa'>
+    <div class="compositionHeader"></div>
+    <div class="alternateTab"></div>
+    <div class="compositionList"></div>
+    <div class="middleComponent"></div>
+</div>
+<div class='alertCon'></div>
+
+
+<script src="http://apps.bdimg.com/libs/jquery/1.8.3/jquery.min.js"></script>
+<script src='js/globalManager/globalManager.js'></script>
+<script src='js/searchToJson/searchToJson.js'></script>
+<script src='js/spa/spa-alternateTab.js'></script>
+<script src='js/spa/spa-compositionHeader.js'></script>
+<script src='js/spa/spa-middleComponent.js'></script>
+<script src='js/spa/spa-compositionList.js'></script>
+<script src='js/spa/spa-alertCon.js'></script>
+<script src='js/tool/fastclick.js'></script>
+<script src='js/tool/base64.js'></script>
+<script src='js/tool/RoshanBB.js'></script>
+<script src='js/jimiHost.js'></script>
+<script src='js/app/app.js'></script>
+<script>
+    $(function () {
+        GM.version = 'IOS';
+        app();
+    })
+</script>
+</body>
+</html>
