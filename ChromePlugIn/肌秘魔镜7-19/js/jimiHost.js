@@ -1,1 +1,0 @@
-var jimiHost='http://n1.jimi.la/apps_T1/WebJsonpTest';

@@ -1,5 +1,0 @@
-产品信息名
-document.querySelectorAll('.tb-main-title')[0].innerHTML;
-
-document.querySelector('#J_ImgBooth')
-

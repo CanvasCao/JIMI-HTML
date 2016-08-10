@@ -187,7 +187,7 @@
                     <div class="cnt_01_b">
                         <div class="showDetail">
 
-                            <div class="showContentbox" id='cao'  style="width: 420px;height:280px;">
+                            <div class="showContentbox" id='cao' style="width: 420px;height:280px;">
                                 <!--<div id="con_one_1">-->
                                 <!--1-->
                                 <!--</div>-->
@@ -348,7 +348,8 @@
 //                mychart.showLoading();
                 $.ajax({
                     type: "post",
-                    url: 'http://n1.jimi.la/jimi_1.0/getInfo.php',
+//                    url: 'http://n1.jimi.la/jimi_1.0/getInfo.php',
+                    url: 'package.json',
                     data: {
                         "grant_type": "product_info",
                         "appid": "123456",
@@ -357,9 +358,9 @@
                         "req_type": "2",
                         "ret_type": "1"
                     },
-                    dataType: "jsonp",
-                    jsonp: "callback",//传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)
-                    jsonpCallback: "jsonpcallback",
+//                    dataType: "jsonp",
+//                    jsonp: "callback",//传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)
+//                    jsonpCallback: "jsonpcallback",
                     success: function (data) {
                         var o = data.data;
                         console.log(data)

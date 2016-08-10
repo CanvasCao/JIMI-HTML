@@ -1,0 +1,155 @@
+{
+  "chineseName": "雪肌精化妆水",
+  "objId": "56829f09efb80c4e26c43eea",
+  "jimiUrl": "jimi://eyJ0eXBlIjozLCJvYmpJZCI6IjU2ODI5ZjA5ZWZiODBjNGUyNmM0M2VlYSJ9",
+  "englishName": "MEDICATED SEKKISEI",
+  "imgUrl": "http://7xo2me.com1.z0.glb.clouddn.com/proImg/image_20160114_5697904c17eea.jpg",
+  "volume": "200ml",
+  "price": "",
+  "alias": "",
+  "brand": "雪肌精",
+  "feature": [
+    "保湿",
+    "抗氧化",
+    "舒敏",
+    "200-500元",
+    "严重痘肌慎用",
+    "香精少",
+    "含一定防腐剂",
+    "二次清洁",
+    "不含酒精",
+    "不含色素",
+    "日本"
+  ],
+  "component": [
+    {
+      "obj_id": "jimi://eyJmaWQiOiI1NjcyNWU4OWVmYjgwYzdiNDE1ZDEzODEifQ==",
+      "name": "水"
+    },
+    {
+      "obj_id": "jimi://eyJmaWQiOiI1NjcyNWQ3ZGVmYjgwY2FmNDFiYzkwZTUifQ==",
+      "name": "乙醇"
+    },
+    {
+      "obj_id": "jimi://eyJmaWQiOiI1NjcyNWRlNWVmYjgwY2UxM2Y5ZDQ0NGUifQ==",
+      "name": "甘油"
+    },
+    {
+      "obj_id": "jimi://eyJmaWQiOiI1NjcyNWU0Y2VmYjgwY2UxM2ZkYTkwM2IifQ==",
+      "name": "东当归（ANGELICA ACUTILOBA）根提取物"
+    },
+    {
+      "obj_id": "jimi://eyJmaWQiOiI1NjcyNWQ3ZWVmYjgwY2FmNDFiYzliYjYifQ==",
+      "name": "川谷（COIX LACRYMA-JOBI MA-YUEN）籽提取物"
+    },
+    {
+      "obj_id": "jimi://eyJmaWQiOiI1NjcyNWQ3ZmVmYjgwY2FmNDFiY2EwNzUifQ==",
+      "name": "甘草酸二钾"
+    },
+    {
+      "obj_id": "jimi://eyJmaWQiOiI1NjcyNWRlNWVmYjgwY2UxM2Y5ZDQ1NjMifQ==",
+      "name": "北美金缕梅（HAMAMELIS VIRGINIANA）提取物"
+    },
+    {
+      "obj_id": "jimi://eyJmaWQiOiI1NjcyNWUwOWVmYjgwYzlkNDRjMjkyNDkifQ==",
+      "name": "茅瓜（MELOTHRIA HETEROPHYLLA）根提取物"
+    },
+    {
+      "obj_id": "jimi://eyJmaWQiOiI1NjcyNWU0Y2VmYjgwY2UxM2ZkYTkwMTkifQ==",
+      "name": "生育酚乙酸酯"
+    },
+    {
+      "obj_id": "jimi://eyJmaWQiOiI1NjcyNWU4OWVmYjgwYzdiNDE1ZDEyNTEifQ==",
+      "name": "小麦（TRITICUMVULGARE）胚芽油"
+    },
+    {
+      "obj_id": "jimi://eyJmaWQiOiI1NjcyNWQ3ZWVmYjgwY2FmNDFiYzlhNzgifQ==",
+      "name": "柠檬酸"
+    },
+    {
+      "obj_id": "jimi://eyJmaWQiOiI1NjcyNWQ3ZmVmYjgwY2FmNDFiYzllOTAifQ==",
+      "name": "二C12-15 链烷醇聚醚-8 磷酸酯"
+    },
+    {
+      "obj_id": "jimi://eyJmaWQiOiI1NjcyNWQ3ZmVmYjgwY2FmNDFiY2EyYWIifQ==",
+      "name": "甲氧基肉桂酸乙基己酯"
+    },
+    {
+      "obj_id": "jimi://eyJmaWQiOiI1NjcyNWU0NGVmYjgwY2NiMzBkODgwOTkifQ==",
+      "name": "柠檬酸钠"
+    },
+    {
+      "obj_id": "jimi://eyJmaWQiOiI1NjcyNWU0NGVmYjgwY2NiMzBkODgzMjAifQ==",
+      "name": "山梨坦倍半油酸酯"
+    },
+    {
+      "obj_id": "jimi://eyJmaWQiOiI1NjcyNWU0Y2VmYjgwY2UxM2ZkYTkwYjEifQ==",
+      "name": "甘油三（乙基己酸）酯"
+    },
+    {
+      "obj_id": "jimi://eyJmaWQiOiI1NjcyNWRlNWVmYjgwY2UxM2Y5ZDQyOWIifQ==",
+      "name": "羟苯乙酯"
+    },
+    {
+      "obj_id": "jimi://eyJmaWQiOiI1NjcyNWUxMWVmYjgwYzdiNDE3ZGYwY2YifQ==",
+      "name": "香精"
+    },
+    {
+      "obj_id": "jimi://eyJmaWQiOiI1NjcyNWUyZmVmYjgwY2UwM2YyOWVhYzMifQ==",
+      "name": "聚山梨醇酯-80"
+    },
+    {
+      "obj_id": "jimi://eyJmaWQiOiI1NjcyNWQ3ZWVmYjgwY2FmNDFiYzk1ZjMifQ==",
+      "name": "丁二醇"
+    },
+    {
+      "obj_id": "jimi://eyJmaWQiOiI1NjcyNWUwOWVmYjgwYzlkNDRjMjkzMzIifQ==",
+      "name": "羟苯甲酯"
+    },
+    {
+      "obj_id": "jimi://eyJmaWQiOiI1NjcyNWUzYmVmYjgwY2UyM2Y3Mjk4OTQifQ==",
+      "name": "羟苯丙酯"
+    }
+  ],
+  "type": [
+    {
+      "name": "conditioner",
+      "arr": [
+        "乙醇",
+        "东当归（ANGELICA ACUTILOBA）根提取物",
+        "川谷（COIX LACRYMA-JOBI MA-YUEN）籽提取物",
+        "甘草酸二钾",
+        "北美金缕梅（HAMAMELIS VIRGINIANA）提取物",
+        "茅瓜（MELOTHRIA HETEROPHYLLA）根提取物",
+        "生育酚乙酸酯",
+        "小麦（TRITICUM VULGARE）胚芽油",
+        "柠檬酸",
+        "甘油三（乙基己酸）酯"
+      ]
+    },
+    {
+      "name": "emollient",
+      "arr": [
+        "甘油"
+      ]
+    },
+    {
+      "name": "sunScreener",
+      "arr": [
+        "甲氧基肉桂酸乙基己酯"
+      ]
+    }
+  ],
+  "safe": [
+    {
+      "name": "sensitization",
+      "arr": [
+        "乙醇",
+        "甲氧基肉桂酸乙基己酯",
+        "香精",
+        "羟苯甲酯",
+        "羟苯丙酯"
+      ]
+    }
+  ]
+}
