@@ -92,8 +92,10 @@
 
 
             $(this.C).find('.number').css({
-                margin: '10px 0',
+                margin: '0px 0',
                 color: '#d2d2d2',
+                display:'inline-block',
+                clear:'both'
             })
 
             $(this.C).find('.formulaCon').css({
@@ -268,7 +270,7 @@
                     $(that.C).find('.barSense').hide()
                 }
                 var normalPct = (1 - sensPct);
-                $(that.C).find('.number').html('共' + compLen + '种成份');
+                $(that.C).find('.number').html('共' + compLen + '种成份 >');
                 $(that.C).find('.barSense').css({width: sensPct * 100 + '%'});
                 $(that.C).find('.barSafe').css({width: normalPct * 100 + '%'});
 
@@ -330,12 +332,24 @@
                 ['慎用成分', '慎用成分指可能刺激或引起过敏的成分。'],
             ];
 
+
+            //右侧跳转成分页................................................................
             $(this.C).find('.formulaTxtSec').each(function (i, e) {
                 var json = {type: 4, objId: that.data.objId, altBtnIndex: i};//警告框 type=1
                 json.title = alertJson[i][0];
                 json.des = alertJson[i][1];
                 $(e).RoshanBB('jimi://' + Base64.encode(JSON.stringify(json)));
             });
+
+            //底部左侧 也跳转成分页................................................................
+            $(this.C).find('.number').each(function (i, e) {
+                if (GM.ifShare) {
+                    $(e).RoshanBB(jimiHost + '/CompositionDistribution/CompositionDistributionVersionIOS.html' + window.location.search);
+                } else {
+                    $(e).RoshanBB('http://n1.jimi.la/apps_T1/html5/chanpinchengfen.html');
+                }
+
+            })
 
         }
     }

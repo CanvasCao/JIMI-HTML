@@ -28,7 +28,7 @@
 
                 setTimeout(function () {
                     GM.ccm.start(); //加载完成以后开始播放
-                }, GM.ccm.json.startDelay || 1);
+                }, GM.ccm.startDelay || 1);
             },
             error: function (err) {
                 console.log('ERROR!');

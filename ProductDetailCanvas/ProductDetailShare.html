@@ -131,9 +131,10 @@
 <script src='js/tool/echartsBasic&Graph.min.js'></script>
 <script src='js/tool/base64.js'></script>
 <script src='js/tool/RoshanBB.js'></script>
-<script src='js/jimiHost.js'></script>
+<script src='js/constant/jimiHost.js'></script>
 <script src='js/download/download.js'></script>
 <script src='js/searchToJson/searchToJson.js'></script>
+<script src='js/globalManager/globalManager.js'></script>
 <script src='js/globalManager/globalManager.js'></script>
 <script src='js/controller/controller.js'></script>
 <script src='js/Fns.js'></script>
@@ -160,6 +161,7 @@
     //download对象
     var download = new Download('.download', null);
 
+    GM.ifShare=true;
 
     //ajax绑定数据
     $.ajax({
@@ -176,8 +178,8 @@
             var culletContainerH = $('.culletContainer').height();
             $('.culletContainer img').css({
                 display: 'block',
-                margin: '0 auto',
-            }).attr('src', data.imgUrl[0] || 'img/nodata.png').attr('height', culletContainerH);
+                margin: culletContainerH * 0.1 + 'px auto',
+            }).attr('src', data.imgUrl[0] || 'img/nodata.png').attr('height', culletContainerH * 0.8);
 
 
             //绑定文字
@@ -218,29 +220,18 @@
             //参数数据
             var productParams = new ProductParams('#params', data);
 
-            if (data.PriceData.json) {
-                var priceCompare = new PriceCompare('#priceCompare', data.PriceData);
-                var navBarPrice = new NavBar('#navBarPrice', {
-                    navImg: "img/navBar/price.png",
-                    navTxt: '相关市场信息',
-                });
-            }
+//            if (data.PriceData.json) {
+//                var priceCompare = new PriceCompare('#priceCompare', data.PriceData);
+//                var navBarPrice = new NavBar('#navBarPrice', {
+//                    navImg: "img/navBar/price.png",
+//                    navTxt: '相关市场信息',
+//                });
+//            }
 
             //中间canvas的数据
             var pdc = new ProductDetailCanvas('#productDetailCanvas', data, false);
 
 
-            //没成分 canvas点击不允许跳转
-//            if (data.component) {
-//                $('#navBar3').click(function () {
-//                            window.location.href = jimiHost + '/CompositionDistribution/CompositionDistribution.html' + window.location.search
-//                        }
-//                )
-//                $('#navBar3').append(' <img src="img/navBar/arrow.png" height="12px"  style="float: right;margin-top: 3px"/>')
-//            }
-
-
-            GM.ifShare = true;
             //弹幕............................................................
             GM.ccm = new CommentCellManager('#cullet',
                     {
@@ -250,6 +241,7 @@
                         topBlank: 0,
                         bottomBlank: 0,
                         startDelay: 2000,
+                        pushALG:'top-down',
                     }
             );
 

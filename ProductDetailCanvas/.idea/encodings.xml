@@ -2,9 +2,9 @@
 <project version="4">
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/css/ProductDetailCanvas.css" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/js/constant/jimiHost.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/js/controller/controller.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/js/download/download.js" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/js/jimiHost.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/js/spa/navBar-2.0.0.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/js/spa/priceCompare-1.0.0.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/js/spa/productParams-1.0.0.js" charset="UTF-8" />
