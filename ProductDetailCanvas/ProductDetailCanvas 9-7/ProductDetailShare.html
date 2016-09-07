@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no"/>
+    <title>产品详情</title>
+    <link rel="stylesheet" href="css/main.css"/>
+    <style type="text/css">
+        body {
+            box-sizing: border-box;
+            margin-bottom: 150px;
+            margin-top: 50px;
+        }
+
+        .download {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            box-sizing: border-box;
+            box-shadow: 2px 0px 6px rgba(0, 0, 0, 0.4);
+            display: inline-block;
+            background-color: white;
+            z-index: 9999;
+        }
+
+        .culletContainer {
+            position: relative;
+            height: 170px;
+            border-bottom: 2px solid #ddd;
+            /*overflow: hidden;*/
+        }
+
+        .carousel {
+            height: 100%;
+        }
+
+        #cullet {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 2000;
+            display: none;
+        }
+
+        .textDes {
+            border-bottom: 2px solid #ddd;
+            box-sizing: border-box;
+            padding: 15px 15px
+        }
+
+        .navBar {
+            box-sizing: border-box;
+            padding: 10px 15px 5px;
+        }
+
+        #params {
+            box-sizing: border-box;
+            padding: 10px 15px;
+        }
+
+        #priceCompare {
+            box-sizing: border-box;
+            padding: 20px 15px;
+        }
+
+        #productDetailCanvas {
+            box-sizing: border-box;
+            padding: 0px 15px;
+        }
+
+    </style>
+</head>
+<body>
+<div class="download"></div>
+<div class="culletContainer">
+
+    <div class='carousel'></div>
+    <div id='cullet'></div>
+</div>
+
+<div class="textDes">
+    <div class='chiName'></div>
+    <div class='engName'></div>
+    <div class='volAndPrice'></div>
+</div>
+
+<div class='navBar' id='navBar1'></div>
+<div id='honeyComb'></div>
+
+<div class='navBar' id='navBar2'></div>
+<div id='params'></div>
+
+<div class='navBar' id='navBarPrice'></div>
+<div id='priceCompare'></div>
+
+<div class='navBar' id='navBar3'></div>
+<div id="productDetailCanvas"></div>
+
+
+<script src="http://apps.bdimg.com/libs/jquery/1.8.3/jquery.min.js"></script>
+<script src="http://apps.bdimg.com/libs/underscore.js/1.7.0/underscore-min.js"></script>
+<script src="js/tool/velocity.min.js"></script>
+<script src='js/tool/echartsBasic&Graph.min.js'></script>
+<script src='js/tool/base64.js'></script>
+<script src='js/tool/RoshanBB.js'></script>
+<script src='js/constant/jimiHost.js'></script>
+<script src='js/download/download.js'></script>
+<script src='js/searchToJson/searchToJson.js'></script>
+<script src='js/globalManager/globalManager.js'></script>
+<script src='js/globalManager/globalManager.js'></script>
+<script src='js/controller/controller.js'></script>
+<script src='js/Fns.js'></script>
+<script src='js/class/commentCellManager-6.0.0.js'></script>
+<script src='js/class/commentCell-6.0.0.js'></script>
+
+<script src='js/spa/navBar-2.0.0.js'></script>
+<script src='js/spa/productParams-1.0.0.js'></script>
+<script src='js/spa/productDetailCanvas-1.0.3.js'></script>
+<script src='js/spa/Honeycomb-1.0.0.js'></script>
+
+
+<script>
+    if (!window.location.search) {
+//        window.location = window.location + '?pid=56829f09efb80c4e26c43eea';
+        window.location = window.location + '?pid=5682a03defb80c4e26c48c39';
+    }
+    // 56c6aea3efb80c9b2541ced4 有数据的
+    // 56829a0fefb80c4e26c2f894 没数据的
+    window.searchJson = searchJson = window.location.search.searchToJson();
+
+
+    //download对象..............................................
+    var download = new Download('.download', null);
+
+    //是否分享..................................................
+    GM.ifShare = true;
+
+    //ajax绑定数据
+    $.ajax({
+        type: "get",
+        url: jimiHost + '/formual_safe.php' + window.location.search,
+//        url: 'package.json',
+        dataType: "jsonp",
+        jsonp: "callback",
+        jsonpCallback: "jsonpcallback",
+        success: function (data) {
+            console.log(JSON.stringify(data));
+
+
+            //绑定文字
+            $('.chiName').css({
+                'font-size': '16px',
+            }).html(data.chineseName);
+            $('.engName').css({
+                'font-size': '16px',
+            }).html(data.englishName);
+
+            var volume = data.volume ? data.volume + "  " : '';
+            var price = data.price ? '￥' + data.price : '';
+            $('.volAndPrice').css({
+                'margin-top': 10,
+                'color': '#999',
+            }).html(volume + price);
+
+
+            //绑定导航栏
+            var navBar1 = new NavBar('#navBar1', {
+                navImg: "img/navBar/a.png",
+                navTxt: '产品特征',
+            });
+            var navBar2 = new NavBar('#navBar2', {
+                navImg: "img/navBar/b.png",
+                navTxt: '产品参数',
+            });
+
+            var navBar3 = new NavBar('#navBar3', {
+                navImg: "img/navBar/c.png",
+                navTxt: '成分分布（' + data.component.length + '种）',
+            });
+
+
+            //中间蜂巢的数据
+            var hc = new Honeycomb('#honeyComb', data);
+
+            //参数数据
+            var productParams = new ProductParams('#params', data);
+
+
+            //中间canvas的数据
+            var pdc = new ProductDetailCanvas('#productDetailCanvas', data, false);
+
+
+            //弹幕............................................................
+            GM.ccm = new CommentCellManager('#cullet',
+                    {
+                        serverUrl: jimiHost + '/culletSelect.php',
+                        closeable: false,
+                        pnameable: false,
+                        topBlank: 0,
+                        bottomBlank: 0,
+                        startDelay: 1,
+                        pushALG: 'top-down',
+                    }
+            );
+
+            //加载弹幕...........................................................
+            setTimeout(function () {
+                GM.ccm.load(searchJson.pid);
+            }, 2000)
+
+
+
+
+
+
+            //绑定图片
+//            var culletContainerH = $('.culletContainer').height();
+//            $('.culletContainer img').css({
+//                display: 'block',
+//                margin: culletContainerH * 0.1 + 'px auto',
+//            }).attr('src', data.imgUrl[0] || 'img/nodata.png').attr('height', culletContainerH * 0.8);
+
+
+        },
+        error: function (err) {
+            console.log('ERROR!');
+            console.log(err);
+        }
+    })
+</script>
+</body>
+</html>
