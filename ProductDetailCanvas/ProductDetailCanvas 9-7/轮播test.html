@@ -20,28 +20,43 @@
             position: relative;
         }
 
+        .carouselImgList img{
+            height: 100px;
+            margin: 0 auto;
+        }
+
         .carouselBottom {
             position: absolute;
-            bottom: -10px;
-            /*border: 1px solid blue;*/
-            height: 20px;
+            bottom: -14px;
             width: 100%;
             text-align: center;
         }
 
-        .carouselBtnL,.carouselBtnR {
+        .carouselBtnL, .carouselBtnR {
+            display: inline-block;
             border: 1px solid #ddd;
             border-radius: 20px;
-            padding: 3px 6px;
+            padding: 4px 7px;
             background-color: white;
         }
 
+        .carouselBtnL {
+            margin: 0px 8px 0px 0px;
+        }
+
+        .carouselBtnR {
+            margin-left: 8px;
+        }
+
         .carouselCir {
-            height: 18px;
-            width: 18px;
+            margin: 0px 2px;
+            display: inline-block;
+            height: 14px;
+            width: 14px;
             border: 1px solid #ddd;
             border-radius: 50%;
             background-color: white;
+            vertical-align: middle;
         }
 
         #cullet {
@@ -59,21 +74,35 @@
 
 <div class="culletContainer">
     <div class='carousel'>
+        <div class='carouselImgList'>
+
+        </div>
         <div class='carouselBottom'>
             <span class='carouselBtnL'><<</span>
-            <span class=carouselCir>&nbsp</span>
-            <span class=carouselCir>&nbsp</span>
-            <span class=carouselCir>&nbsp</span>
-            <span class=carouselCir>&nbsp</span>
+            <span class=carouselCir></span>
+            <span class=carouselCir></span>
+            <span class=carouselCir></span>
+            <span class=carouselCir></span>
             <span class='carouselBtnR'>>></span>
         </div>
     </div>
     <div id='cullet'></div>
 </div>
 
+
 <script src="http://apps.bdimg.com/libs/jquery/1.8.3/jquery.min.js"></script>
 <script>
     $(function () {
+        var imgUrlArr = ["http://7xo2me.com1.z0.glb.clouddn.com/proImg/image_20160115_56990a64c5ee9.jpg", "http://7xo2me.com1.z0.glb.clouddn.com/proImg/image_20160115_56990a65424f5.jpg", "http://7xo2me.com1.z0.glb.clouddn.com/proImg/image_20160115_56990a66dc321.jpg", "http://7xo2me.com1.z0.glb.clouddn.com/proImg/image_20160326_56f577133bc90.jpg"];
+
+        var str = '';
+        [].forEach.call(imgUrlArr, function (e, i, arr) {
+            str = '<img src=' + e + ' />';
+        });
+        $('.carouselImgList').append(str);
+
+
+
 
     })
 </script>

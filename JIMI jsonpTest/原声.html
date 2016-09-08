@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<script type="text/javascript">
+
+    var result = {
+        "uid": "10002",
+        "result": {
+            "0": {"arr": [{"type": "5", "score": "2"}], "fid": []},
+            "1": {"arr": [{"type": "1", "score": "2"}], "fid": ["96933"], "cid": "190"},
+            "2": {
+                "arr": [{"type": "1", "score": "3"}, {"type": "1", "score": "3"}, {
+                    "type": "1",
+                    "score": "1"
+                }], "fid": ["5715"]
+            },
+            "3": {"arr": [], "fid": [], "cid": "61"},
+            "4": {"arr": [{"type": "2", "score": "1"}], "fid": []},
+            "5": {"arr": [], "fid": []},
+            "6": {"arr": [], "fid": []},
+            "7": {"arr": [], "fid": []},
+            "8": {"arr": [], "fid": []},
+            "9": {"arr": [], "fid": []},
+            "10": {"arr": [{"type": "7", "score": "1"}], "fid": []},
+            "11": {"arr": [{"type": "6", "score": "2"}], "fid": []}
+        },
+        "sex": 1,
+    };
+
+
+    function jsonpcallback(data) {
+        console.log(data);
+    }
+
+    var script = document.createElement("script");
+    script.src = "http://n1.jimi.la/apps_T1/caculateNewSkin.php?uid=10002&sex=0&result" + result;
+    document.body.appendChild(script);
+</script>
+
+
+</body>
+</html>

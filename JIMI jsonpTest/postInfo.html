@@ -5,30 +5,85 @@
     <title></title>
 
     <script src="http://apps.bdimg.com/libs/jquery/1.8.3/jquery.min.js"></script>
+    <!--<script>-->
+    <!--$(function () {-->
+    <!--$.ajax({-->
+    <!--type: "post",-->
+    <!--url: 'http://openapi.jimi.la/analysisPost',-->
+    <!--//                url: 'package.json',-->
+    <!--data: {-->
+    <!--pid: '56829da0efb80c4e26c3e3a2',-->
+    <!--uid: '10002',-->
+    <!--comment: '我是方辉辉辉辉辉辉辉辉辉辉辉辉',-->
+    <!--},-->
+    <!--//                dataType: "jsonp",-->
+    <!--//                jsonp: "callback",//传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)-->
+    <!--//                jsonpCallback: "jsonpcallback",-->
+    <!--success: function (data) {-->
+    <!--console.log(JSON.stringify(data));-->
+    <!--},-->
+    <!--error: function (err) {-->
+    <!--console.log('ERROR!')-->
+    <!--console.log(err);-->
+    <!--}-->
+    <!--});-->
+
+    <!--});-->
+    <!--</script>-->
+
     <script>
         $(function () {
+
+            var result = {
+                "0": {"arr": [{"type": "5", "score": "2"}], "fid": []},
+                "1": {"arr": [{"type": "1", "score": "2"}], "fid": ["96933"], "cid": "190"},
+                "2": {
+                    "arr": [{"type": "1", "score": "3"}, {"type": "1", "score": "3"}, {
+                        "type": "1",
+                        "score": "1"
+                    }], "fid": ["5715"]
+                },
+                "3": {"arr": [], "fid": [], "cid": "61"},
+                "4": {"arr": [{"type": "2", "score": "1"}], "fid": []},
+                "5": {"arr": [], "fid": []},
+                "6": {"arr": [], "fid": []},
+                "7": {"arr": [], "fid": []},
+                "8": {"arr": [], "fid": []},
+                "9": {"arr": [], "fid": []},
+                "10": {"arr": [{"type": "7", "score": "1"}], "fid": []},
+                "11": {"arr": [{"type": "6", "score": "2"}], "fid": []}
+            };
+
+
+            console.log(JSON.stringify(result));
+
             $.ajax({
                 type: "post",
-                url: 'http://openapi.jimi.la/analysisPost',
+                url: 'http://n1.jimi.la/apps_T1/caculateNewSkin.php',
 //                url: 'package.json',
                 data: {
-                    pid: '56829da0efb80c4e26c3e3a2',
-                    uid: '10002',
-                    comment: '我是方辉辉辉辉辉辉辉辉辉辉辉辉',
+                    uid: 10002,
+                    sex: 0,
+                    result: JSON.stringify(result),
                 },
-//                dataType: "jsonp",
-//                jsonp: "callback",//传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)
-//                jsonpCallback: "jsonpcallback",
+                dataType: "jsonp",
+                jsonp: "callback",//传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)
+                jsonpCallback: "jsonpcallback",
                 success: function (data) {
-                    console.log(JSON.stringify(data));
-                },
+
+                    console.log(typeof  data);
+                    console.log(data);
+                    //console.log(JSON.stringify(data));
+                }
+                ,
                 error: function (err) {
-                    console.log('ERROR!')
+                    console.log('ERROR!');
                     console.log(err);
                 }
-            });
-
-        });
+            })
+            ;
+        })
+        ;
     </script>
 </head>
 <body>
