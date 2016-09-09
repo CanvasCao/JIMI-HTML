@@ -18,11 +18,29 @@
             height: 100%;
             /*border: 1px solid #000;*/
             position: relative;
+
         }
 
-        .carouselImgList img{
-            height: 100px;
+        .carouselImgUl {
+            position: relative;
+            overflow: hidden;
+            height: 100%;
+        }
+
+        .carouselImgLi {
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            top: 0%;
+            left: 0%;
+            box-sizing: border-box;
+            padding: 15px 10px;
+        }
+
+        .carouselImgLi img {
+            height: 100%;
             margin: 0 auto;
+            display: block;
         }
 
         .carouselBottom {
@@ -74,17 +92,8 @@
 
 <div class="culletContainer">
     <div class='carousel'>
-        <div class='carouselImgList'>
-
-        </div>
-        <div class='carouselBottom'>
-            <span class='carouselBtnL'><<</span>
-            <span class=carouselCir></span>
-            <span class=carouselCir></span>
-            <span class=carouselCir></span>
-            <span class=carouselCir></span>
-            <span class='carouselBtnR'>>></span>
-        </div>
+        <div class='carouselImgUl'></div>
+        <div class='carouselBottom'></div>
     </div>
     <div id='cullet'></div>
 </div>
@@ -95,14 +104,30 @@
     $(function () {
         var imgUrlArr = ["http://7xo2me.com1.z0.glb.clouddn.com/proImg/image_20160115_56990a64c5ee9.jpg", "http://7xo2me.com1.z0.glb.clouddn.com/proImg/image_20160115_56990a65424f5.jpg", "http://7xo2me.com1.z0.glb.clouddn.com/proImg/image_20160115_56990a66dc321.jpg", "http://7xo2me.com1.z0.glb.clouddn.com/proImg/image_20160326_56f577133bc90.jpg"];
 
-        var str = '';
+        var strImg = '';
+        var strCir = '';
         [].forEach.call(imgUrlArr, function (e, i, arr) {
-            str = '<img src=' + e + ' />';
+            strImg += "<div class='carouselImgLi'><img src=" + e + " /></div>";
+            strCir += "<span class=carouselCir></span>";
         });
-        $('.carouselImgList').append(str);
+        $('.carouselImgUl').html(strImg);
+        strCir = "<span class='carouselBtnL'><<</span>" + strCir + "<span class='carouselBtnR'>>></span>"
+        $('.carouselBottom').html(strCir);
 
+        //params.........................................
+        var imgIndex = 0;
+        var length = imgUrlArr.length;
+        var $imgs = $('.carouselImgLi');
+        //init.............................................
+        $imgs.eq(0).css({left: '0%'}).siblings().css({left: '100%'});
 
+        //bindEvent.........................................
 
+        $('.carouselBtnR').click(function () {
+            $imgs.eq(imgIndex).animate({left: '-100%'});
+            $imgs.eq(imgIndex + 1).css({left: '100%'}).animate({left: '0%'});
+            imgIndex++;
+        })
 
     })
 </script>
