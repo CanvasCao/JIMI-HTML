@@ -37,7 +37,7 @@
         this.serverCommentArr = [];//服务器的数据 json {"commentsPK":"708","uid":null,"txt":"好东东","expression":"2"},
         this.commentIndex = 0;//索引值
         this.commentCellArr = [];//commentCell对象 的数组
-        this.commentLimit = 15;
+        this.commentLimit = 10;
 
         //最后一行的行数为了之后的弹幕能连起来 记录一下最后的.................
         this.lastLineNum = 0;

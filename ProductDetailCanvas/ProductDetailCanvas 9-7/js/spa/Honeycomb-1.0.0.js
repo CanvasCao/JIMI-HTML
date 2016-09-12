@@ -9,9 +9,10 @@
 
 ;
 (function (w, d, $, undefined) {
-    function Honeycomb(container, data) {
+    function Honeycomb(container, data, ifStagger) {
         this.C = this.container = (typeof container == 'string') ? $(container) : container;//主页自己写容器
         this.data = data;
+        this.ifStagger = ifStagger;
         this.config = {
             dX: -20,
             dY: 40,
@@ -118,14 +119,20 @@
                 }
             })
 
-            for (i = 0; i < $(this.C).find('.honeyComb').length; i++) {
-                eval(
-                    'setTimeout(function(){' +
-                    '$(that.C).find(".honeyComb").eq(' + i + ').animate({opacity:1},"normal","swing");' +
-                    '},' + i + '*500)'
-                )
 
+            if (this.ifStagger) {
+                for (i = 0; i < $(this.C).find('.honeyComb').length; i++) {
+                    eval(
+                        'setTimeout(function(){' +
+                        '$(that.C).find(".honeyComb").eq(' + i + ').animate({opacity:1},"normal","swing");' +
+                        '},' + i + '*500)'
+                    )
+
+                }
+            } else {
+                $(that.C).find(".honeyComb").css({opacity: 1});
             }
+
 
         }
     }
