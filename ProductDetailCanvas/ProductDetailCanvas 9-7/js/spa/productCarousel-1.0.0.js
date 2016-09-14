@@ -109,7 +109,7 @@
                 display: 'inline-block',
                 border: '1px solid #ddd',
                 'border-radius': '20px',
-                padding: '4px 7px',
+                padding: '3px 6px',
                 'background-color': 'white',
             })
 
@@ -123,10 +123,10 @@
             })
 
             $(that.C).find('.carouselCir').css({
-                margin: '0px 2px',
+                margin: '0px 3px',
                 display: 'inline-block',
-                height: '14px',
-                width: '14px',
+                height: '12px',
+                width: '12px',
                 border: '1px solid #ddd',
                 'border-radius': '50%',
                 'background-color': 'white',

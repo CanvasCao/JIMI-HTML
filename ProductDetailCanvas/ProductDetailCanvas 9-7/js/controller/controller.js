@@ -9,7 +9,7 @@
     controller.culletSelect = function (pid, callback) {
         $.ajax({
             type: "get",
-            url: jimiHost + '/culletSelect.php?pid=' + pid,
+            url: jimiHost + '/culletSelect.php?pid=' + pid + '&num=8',
             //url: 'package.json',
             dataType: "jsonp",
             jsonp: "callback",

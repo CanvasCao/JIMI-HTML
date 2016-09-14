@@ -79,6 +79,21 @@
             background-size: contain;
         }
 
+        .priceCon {
+            box-sizing: border-box;
+            padding: 15px 15px;
+            position: relative;
+        }
+
+        .priceBrand, .priceOri, .priceNew {
+            display: inline-block;
+            width: 33%;
+        }
+
+        .priceOri, .priceNew {
+            text-align: center;
+        }
+
         .dash {
             background: url("img/dash.png") repeat-x;
             height: 1px;
@@ -146,7 +161,15 @@
 </div>
 
 <div class='border'></div>
-<!--<div class='dash'></div>-->
+
+<div class='priceCon'>
+    <div style='margin-bottom: 5px'>市场最低价</div>
+    <div class='priceBottom'>
+        <span style="color: #3881E0;" class='priceBrand'>品牌</span><span class='priceOri'></span><span
+            class='priceNew'></span>
+    </div>
+</div>
+<div class='dash'></div>
 
 <div class='tabCon'>
     <div class='tabTitleCon'>
@@ -160,6 +183,7 @@
     </div>
 </div>
 <div id='avoid'>免责声明：数据仅供参考。对于产品的使用效果肌秘不做任何保证，如在使用过程中遇到任何问题请与厂商进行联系。</div>
+
 <div id='alertBox'>
     <img src="img/close.png" class='alertClose'/>
 
@@ -207,15 +231,15 @@
 <script src='js/class/commentCell-6.0.0.js'></script>
 
 <script src='js/spa/productParams-1.0.0.js'></script>
-<script src='js/spa/productDetailCanvas-1.0.3.js'></script>
+<script src='js/spa/productDetailCanvas-1.0.4.js'></script>
 <script src='js/spa/Honeycomb-1.0.0.js'></script>
 <script src="js/spa/productCarousel-1.0.0.js"></script>
 
 
 <script>
     if (!window.location.search) {
-//        window.location = window.location + '?pid=56829f09efb80c4e26c43eea';
-        window.location = window.location + '?pid=576d0932efb80c9b408770de';
+        window.location = window.location + '?pid=56829f09efb80c4e26c43eea';
+//        window.location = window.location + '?pid=576d0932efb80c9b408770de';
     }
     // 56c6aea3efb80c9b2541ced4 有数据的
     // 56829a0fefb80c4e26c2f894 没数据的
@@ -245,8 +269,7 @@
             var productCarousel = new ProductCarousel($('.carousel'), {imgUrlArr: data.imgUrl});
 
             //绑定文字..........................................................................
-            var chineseName = '';
-            var englishName = '';
+            var chineseName, englishName = '';
             if (data.chineseName) {
                 chineseName = "<div style='font-size: 15px'>" + data.chineseName + "</div>"
             }
@@ -272,6 +295,23 @@
             $('#alertBox').click(function () {
                 $(this).fadeOut();
             })
+
+
+            //市场价格....................................................
+            $('.priceBrand').html('品牌：' + data.brand);
+            $('.priceOri').html('原价：￥' + data.priceInfo.minprice);
+
+            var diff = data.priceInfo.diffprice;
+            if (data.priceInfo.diffprice > 0) {
+                var priceColor = '<span style="color: red">' + diff + '<span>';
+                $('.priceNew').html('涨价：￥' + priceColor);
+            } else if (data.priceInfo.diffprice < 0) {
+                var priceColor = '<span style="color: green">' + diff + '<span>';
+                $('.priceNew').html('降价：￥' + priceColor);
+            } else {
+                $('.priceNew').html('降价：￥--');
+            }
+
 
             //中间蜂巢的数据................................................................
             if (data.feature) {

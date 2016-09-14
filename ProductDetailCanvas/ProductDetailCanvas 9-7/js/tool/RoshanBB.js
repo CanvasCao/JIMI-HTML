@@ -11,6 +11,10 @@
     'use strict';
     $.fn.RoshanBB = function (data) {
         var jqObj = this.eq(0);
+        console.log(jqObj);
+        console.log(jqObj.css('height'));
+        console.log(jqObj.css('width'));
+        console.log(jqObj);
         var par = jqObj.parent();
         if (jqObj.css('position') == 'static') {
             jqObj.css({position: 'relative'});
@@ -23,8 +27,8 @@
         var $tagA = jqObj.find('#RoshanBB' + id)
         $tagA.css({
             'position': 'absolute',
-            'width': jqObj.width(),
-            'height': jqObj.height(),
+            'width': '100%',
+            'height': jqObj.outerHeight(true),
             'left': 0,
             'top': 0,
         }).attr({'href': data});

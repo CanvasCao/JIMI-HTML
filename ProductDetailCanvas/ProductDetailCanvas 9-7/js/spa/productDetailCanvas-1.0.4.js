@@ -35,17 +35,20 @@
         },
         createDom: function () {
             var that = this;
-            var str = "<div class='canvasBox'></div>" +
-                "<div class='nonCanvas'>" +
-                "<div style='height: 20px ;border-top: 1px solid #bdbdbd;'></div>" +
-                "<div class='barCon'>" +
-                "<div class='barSafe'></div>" +
-                "<div class='barSense'></div>" +
-                "</div>" +
-                "<div class='number'></div>" +
 
-                    //.....................................................................
-                "<div class='formulaCon'>" +
+            $(this.C).html("<div class='canvasBox'></div><div class='nonCanvasBox'></div>");
+            $(this.C).find('.nonCanvasBox').html("<div style='height: 20px ;border-top: 1px solid #bdbdbd;'></div>" +
+                "<div class='barCon'></div>" +
+                "<div class='formulaCon'></div>" +
+                "<div class='checkformula'>查看成分分布></div>"
+            );
+
+
+            $(this.C).find('.barCon').html("<div class='barSafe'></div>" +
+                "<div class='barSense'></div>");
+
+            $(this.C).find('.formulaCon').html(
+                "<div class='number'></div>" +
                 "<div class='formulaTxtSec'>" +
                 "<span class='formulaPoint' style='background-color:#d2d2d2'></span>" +
                 "<span class='formulaTxt' style='color:#d2d2d2'>正常成分</span>" +
@@ -53,13 +56,7 @@
                 "<div class='formulaTxtSec'>" +
                 "<span class='formulaPoint' style='background-color:#e5004f'></span>" +
                 "<span class='formulaTxt' style='color:#e5004f'>慎用成分</span>" +
-                "</div>" +
-                "</div>" +
-                    //.....................................................................
-                "</div>"
-
-            $(this.C).append(str);
-
+                "</div>");
 
         },
         initCSS: function () {
@@ -75,7 +72,7 @@
 
 
             $(this.C).find('.barCon').css({
-                height: '24px'
+                height: '12px'
             })
 
             $(this.C).find('.barSafe').css({
@@ -94,30 +91,37 @@
             $(this.C).find('.number').css({
                 margin: '0px 0',
                 color: '#d2d2d2',
-                display:'inline-block',
-                clear:'both'
+                display: 'inline-block',
+                width: '33.3%',
             })
 
             $(this.C).find('.formulaCon').css({
-                display: 'inline-block',
-                float: 'right',
+                padding: '20px 0px',
             })
 
             $(this.C).find('.formulaTxtSec').css({
                 display: 'inline-block',
-                'margin-left': '20px',
                 'position': 'relative',
+                width: '33.3%',
+                'text-align': 'right',
 
             })
 
             $(this.C).find('.formulaPoint').css({
-                float: 'left',
                 width: '10px',
                 height: '10px',
                 'border-radius': '3px',
-                'margin-right': '5px',
-                'margin-top': '4px'
-            })
+                'margin-top': '4px',
+                display: 'inline-block'
+            });
+
+
+            $(this.C).find('.checkformula').css({
+                'border-top': '1px solid #f4f4f4',
+                'text-align': 'center',
+                padding: '20px 0px',
+                color: '#444'
+            });
         },
         bindEvent: function () {
             var that = this;
@@ -270,7 +274,7 @@
                     $(that.C).find('.barSense').hide()
                 }
                 var normalPct = (1 - sensPct);
-                $(that.C).find('.number').html('共' + compLen + '种成份 >');
+                $(that.C).find('.number').html('共' + compLen + '种成份');
                 $(that.C).find('.barSense').css({width: sensPct * 100 + '%'});
                 $(that.C).find('.barSafe').css({width: normalPct * 100 + '%'});
 
@@ -342,14 +346,14 @@
             });
 
             //底部左侧 也跳转成分页................................................................
-            $(this.C).find('.number').each(function (i, e) {
-                if (GM.ifShare) {
-                    $(e).RoshanBB(jimiHost + '/CompositionDistribution/CompositionDistributionVersionIOS.html' + window.location.search);
-                } else {
-                    $(e).RoshanBB('http://n1.jimi.la/apps_T1/html5/chanpinchengfen.html');
-                }
+            if (GM.ifShare) {
+                $(this.C).find('.number').RoshanBB(jimiHost + '/CompositionDistribution/CompositionDistributionVersionIOS.html' + window.location.search);
+                $(this.C).find('.checkformula').RoshanBB(jimiHost + '/CompositionDistribution/CompositionDistributionVersionIOS.html' + window.location.search);
+            } else {
+                $(this.C).find('.number').RoshanBB('http://n1.jimi.la/apps_T1/html5/chanpinchengfen.html');
+                $(this.C).find('.checkformula').RoshanBB('http://n1.jimi.la/apps_T1/html5/chanpinchengfen.html');
+            }
 
-            })
 
         }
     }
