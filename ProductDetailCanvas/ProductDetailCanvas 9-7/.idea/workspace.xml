@@ -43,10 +43,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="productDetailCanvas-1.0.4.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="productDetailCanvas-1.0.4.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/spa/productDetailCanvas-1.0.4.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.71196455">
+            <state vertical-scroll-proportion="0.0">
               <caret line="353" column="45" selection-start-line="353" selection-start-column="45" selection-end-line="353" selection-end-column="45" />
               <folding>
                 <element signature="e#7314#9499#0" expanded="false" />
@@ -61,10 +61,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ProductDetailCanvas.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ProductDetailCanvas.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/ProductDetailCanvas.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-11.192307">
+            <state vertical-scroll-proportion="0.44700462">
               <caret line="29" column="45" selection-start-line="29" selection-start-column="45" selection-end-line="29" selection-end-column="45" />
               <folding />
             </state>
@@ -374,6 +374,30 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/js/tool/RoshanBB.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.62038404">
+          <caret line="35" column="11" selection-start-line="35" selection-start-column="11" selection-end-line="35" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/spa/productDetailCanvas-1.0.4.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="353" column="45" selection-start-line="353" selection-start-column="45" selection-end-line="353" selection-end-column="45" />
+          <folding>
+            <element signature="e#7314#9499#0" expanded="false" />
+            <element signature="e#10876#12154#0" expanded="false" />
+            <marker date="1473838365527" expanded="true" signature="1353:1397" placeholder="..." />
+            <marker date="1473838365527" expanded="true" signature="1901:1925" placeholder="..." />
+            <marker date="1473838365527" expanded="true" signature="1987:2000" placeholder="..." />
+            <marker date="1473838365527" expanded="true" signature="2143:2167" placeholder="..." />
+            <marker date="1473838365527" expanded="true" signature="2229:2242" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/ProductDetailShare.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-7.730769">
@@ -396,33 +420,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/ProductDetailCanvas.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.192307">
+        <state vertical-scroll-proportion="0.44700462">
           <caret line="29" column="45" selection-start-line="29" selection-start-column="45" selection-end-line="29" selection-end-column="45" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/tool/RoshanBB.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.62038404">
-          <caret line="35" column="11" selection-start-line="35" selection-start-column="11" selection-end-line="35" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/spa/productDetailCanvas-1.0.4.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.71196455">
-          <caret line="353" column="45" selection-start-line="353" selection-start-column="45" selection-end-line="353" selection-end-column="45" />
-          <folding>
-            <element signature="e#7314#9499#0" expanded="false" />
-            <element signature="e#10876#12154#0" expanded="false" />
-            <marker date="1473838365527" expanded="true" signature="1353:1397" placeholder="..." />
-            <marker date="1473838365527" expanded="true" signature="1901:1925" placeholder="..." />
-            <marker date="1473838365527" expanded="true" signature="1987:2000" placeholder="..." />
-            <marker date="1473838365527" expanded="true" signature="2143:2167" placeholder="..." />
-            <marker date="1473838365527" expanded="true" signature="2229:2242" placeholder="..." />
-          </folding>
         </state>
       </provider>
     </entry>
