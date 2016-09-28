@@ -6,22 +6,37 @@
           content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no"/>
     <title>成分分布</title>
     <link rel="stylesheet" href="css/compositionDistribution.css"/>
+    <link rel="stylesheet" href="css/loaderCss/loader.min.css"/>
 </head>
 <body>
-
-
-<!--中间是成分表-->
-<div class='spa'>
-    <div class="compositionHeader"></div>
-    <div class="alternateTab"></div>
-    <div class="compositionList"></div>
-    <div class="middleComponent"></div>
-
+<div id='loading'>
+    <div class="loader">
+        <div class="loader-inner ball-spin-fade-loader">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <div class='loader-innerText'>loading...</div>
+    </div>
 </div>
-<div class='alertCon'></div>
+
+<div id='loaded' style='display: none;'><!--中间是成分表-->
+    <div class='spa'>
+        <div class="compositionHeader"></div>
+        <div class="alternateTab"></div>
+        <div class="compositionList"></div>
+        <div class="middleComponent"></div>
+    </div>
+    <div class='alertCon'></div>
+</div>
 
 
-<script src="http://apps.bdimg.com/libs/jquery/1.8.3/jquery.min.js"></script>
+<script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src='js/globalManager/globalManager.js'></script>
 <script src='js/searchToJson/searchToJson.js'></script>
 <script src='js/spa/spa-alternateTab.js'></script>
@@ -32,10 +47,12 @@
 <script src='js/tool/fastclick.js'></script>
 <script src='js/tool/base64.js'></script>
 <script src='js/tool/RoshanBB.js'></script>
-<script src='js/jimiHost.js'></script>
+<script src='js/constant/jimiHost.js'></script>
 <script src='js/app/app.js'></script>
 <script>
     $(function () {
+        $('#loading').fadeOut();
+        $('#loaded').fadeIn();
         GM.version = 'Android';
         app();
     })
