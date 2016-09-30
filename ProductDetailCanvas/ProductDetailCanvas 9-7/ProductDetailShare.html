@@ -6,12 +6,12 @@
           content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no"/>
     <title>产品详情</title>
     <link rel="stylesheet" href="css/main.css"/>
+    <link rel="stylesheet" href="http://7xo2me.com1.z0.glb.clouddn.com/preloadCss/loader.min.css"/>
     <link rel="stylesheet" href="css/alertBox.css"/>
     <style type="text/css">
         body {
             box-sizing: border-box;
             margin-top: 50px;
-            opacity: 0;
         }
 
         .download {
@@ -149,68 +149,88 @@
     </style>
 </head>
 <body>
-<div class="download"></div>
-<div class="culletContainer">
-    <div class='carousel'></div>
-    <div id='cullet'></div>
-</div>
-
-<div class="description">
-    <div class='txtDes'></div>
-    <div class='captionDes'></div>
-</div>
-
-<div class='border'></div>
-
-<div class='priceCon'>
-    <div style='margin-bottom: 5px'>市场最低价</div>
-    <div class='priceBottom'>
-        <span style="color: #3881E0;" class='priceBrand'>品牌</span><span class='priceOri'></span><span
-            class='priceNew'></span>
-    </div>
-</div>
-<div class='dash'></div>
-
-<div class='tabCon'>
-    <div class='tabTitleCon'>
-        <span class='tabTitle'>特征<div class='tabUnderline'></div></span><span class='tabTitle'>参数<div
-            class='tabUnderline'></div></span><span class='tabTitle'>成分<div class='tabUnderline'></div></span>
-    </div>
-    <div class='tabContentCon'>
-        <div class='tabContent' id='honeyComb'></div>
-        <div class='tabContent' id='params'></div>
-        <div class='tabContent' id="productDetailCanvas"></div>
-    </div>
-</div>
-<div id='avoid'>免责声明：数据仅供参考。对于产品的使用效果肌秘不做任何保证，如在使用过程中遇到任何问题请与厂商进行联系。</div>
-
-<div id='alertBox'>
-    <img src="img/alert/close.png" class='alertClose'/>
-
-    <div class='alertSex'>
-        <div class="imgCon">
-            <img src="img/caption/man.png"/>
-            <img src="img/caption/woman.png"/>
+<div id='loading'>
+    <div class="loader">
+        <div class="loader-inner ball-spin-fade-loader">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
         </div>
-        <div class='alertTxt'>性别倾向</div>
+        <div class='loader-innerText'>loading...</div>
+    </div>
+</div>
+
+<div id='loaded' style='display: none;'>
+
+    <div class="download"></div>
+    <div class="culletContainer">
+        <div class='carousel'></div>
+        <div id='cullet'></div>
     </div>
 
-    <div class='alertMatch'>
-        <div class="imgCon">
-            <img src="img/caption/low.png"/>
-            <img src="img/caption/middle.png"/>
-            <img src="img/caption/high.png"/>
-        </div>
-        <div class='alertTxt'>匹配度是根据您肤质检测的结果，计算出<br>美妆护肤产品与您肤质的匹配程度</div>
+    <div class="description">
+        <div class='txtDes'></div>
+        <div class='captionDes'></div>
     </div>
-    <div class='alertLimit'>
-        <div class="imgCon">
-            <img src="img/caption/limit.png"/>
+
+    <div class='border'></div>
+
+    <div class='priceCon'>
+        <div style='margin-bottom: 5px'>市场最低价</div>
+        <div class='priceBottom'>
+            <span style="color: #3881E0;" class='priceBrand'>品牌</span><span class='priceOri'></span><span
+                class='priceNew'></span>
         </div>
-        <div class='alertTxt'>限量版妆品</div>
     </div>
-    <div class='alertKnow'>知道了</div>
+    <div class='dash'></div>
+
+    <div class='tabCon'>
+        <div class='tabTitleCon'>
+            <span class='tabTitle'>特征<div class='tabUnderline'></div></span><span class='tabTitle'>参数<div
+                class='tabUnderline'></div></span><span class='tabTitle'>成分<div class='tabUnderline'></div></span>
+        </div>
+        <div class='tabContentCon'>
+            <div class='tabContent' id='honeyComb'></div>
+            <div class='tabContent' id='params'></div>
+            <div class='tabContent' id="productDetailCanvas"></div>
+        </div>
+    </div>
+    <div id='avoid'>免责声明：数据仅供参考。对于产品的使用效果肌秘不做任何保证，如在使用过程中遇到任何问题请与厂商进行联系。</div>
+
+    <div id='alertBox'>
+        <img src="img/alert/close.png" class='alertClose'/>
+
+        <div class='alertSex'>
+            <div class="imgCon">
+                <img src="img/caption/man.png"/>
+                <img src="img/caption/woman.png"/>
+            </div>
+            <div class='alertTxt'>性别倾向</div>
+        </div>
+
+        <div class='alertMatch'>
+            <div class="imgCon">
+                <img src="img/caption/low.png"/>
+                <img src="img/caption/middle.png"/>
+                <img src="img/caption/high.png"/>
+            </div>
+            <div class='alertTxt'>匹配度是根据您肤质检测的结果，计算出<br>美妆护肤产品与您肤质的匹配程度</div>
+        </div>
+        <div class='alertLimit'>
+            <div class="imgCon">
+                <img src="img/caption/limit.png"/>
+            </div>
+            <div class='alertTxt'>限量版妆品</div>
+        </div>
+        <div class='alertKnow'>知道了</div>
+    </div>
 </div>
+
 
 <script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="http://apps.bdimg.com/libs/underscore.js/1.7.0/underscore-min.js"></script>
@@ -224,12 +244,10 @@
 <script src='js/download/download.js'></script>
 <script src='js/searchToJson/searchToJson.js'></script>
 <script src='js/globalManager/globalManager.js'></script>
-<script src='js/globalManager/globalManager.js'></script>
 <script src='js/controller/controller.js'></script>
 <script src='js/Fns.js'></script>
 <script src='js/class/commentCellManager-7.0.0.js'></script>
 <script src='js/class/commentCell-7.0.0.js'></script>
-
 <script src='js/spa/productParams-1.0.0.js'></script>
 <script src='js/spa/productDetailCanvas-1.0.4.js'></script>
 <script src='js/spa/Honeycomb-1.0.0.js'></script>
@@ -237,142 +255,142 @@
 
 
 <script>
-    if (!window.location.search) {
-        window.location = window.location + '?pid=56829f09efb80c4e26c43eea';
+    $(function () {
+        $('#loading').hide();
+        $('#loaded').show();
+
+        if (!window.location.search) {
+            window.location = window.location + '?pid=56829f09efb80c4e26c43eea';
 //        window.location = window.location + '?pid=576d0932efb80c9b408770de';
-    }
-    // 56c6aea3efb80c9b2541ced4 有数据的
-    // 56829a0fefb80c4e26c2f894 没数据的
-    window.searchJson = searchJson = window.location.search.searchToJson();
-
-    //FastClick.....................................................
-    FastClick.attach(document.body);
-
-    //download对象..............................................
-    var download = new Download('.download', null);
-
-    //是否分享..................................................
-    GM.version = 'web';
-    GM.ifShare = true;
-
-    //ajax绑定数据
-    $.ajax({
-        type: "get",
-        url: jimiHost + '/formual_safe.php' + window.location.search,
-//        url: 'package.json',
-        dataType: "jsonp",
-        jsonp: "callback",
-        jsonpCallback: "jsonpcallback",
-        success: function (data) {
-            console.log(JSON.stringify(data));
-            $('body').animate({opacity: 1});
-
-            var productCarousel = new ProductCarousel($('.carousel'), {imgUrlArr: data.imgUrl});
-
-            //绑定文字..........................................................................
-            var chineseName, englishName = '';
-            if (data.chineseName) {
-                chineseName = "<div style='font-size: 15px'>" + data.chineseName + "</div>"
-            }
-            if (data.englishName) {
-                englishName = "<div style='font-size: 13px;color: #999'>" + data.englishName + "</div>"
-            }
-            $('.txtDes').html(chineseName + englishName);
-
-            //绑定标签..........................................................................
-            if (data.caption && Object.prototype.toString.call(data.caption) == '[object Array]') {
-                var str = '';
-                [].forEach.call(data.caption, function (e, i, arr) {
-                    str += '<img src=' + e + ' / >';
-                });
-                $('.captionDes').html(str);
-            }
-            ;
-
-            //标签点击跳弹框............................................
-            $('.captionDes').click(function () {
-                $('#alertBox').fadeIn();
-            })
-            $('#alertBox').click(function () {
-                $(this).fadeOut();
-            })
-
-
-            //市场价格....................................................
-            $('.priceBrand').html('品牌：' + data.brand);
-            $('.priceOri').html('原价：￥' + data.priceInfo.minprice);
-
-            var diff = data.priceInfo.diffprice;
-            if (data.priceInfo.diffprice > 0) {
-                var priceColor = '<span style="color: red">' + diff + '<span>';
-                $('.priceNew').html('涨价：￥' + priceColor);
-            } else if (data.priceInfo.diffprice < 0) {
-                var priceColor = '<span style="color: green">' + diff + '<span>';
-                $('.priceNew').html('降价：￥' + priceColor);
-            } else {
-                $('.priceNew').html('降价：￥--');
-            }
-
-
-            //中间蜂巢的数据................................................................
-            if (data.feature) {
-                var hc = new Honeycomb('#honeyComb', data, false);//参数3是是否错开.............
-            }
-            else {
-                $('#honeyComb')
-                        .css({'text-align': 'center'})
-                        .html('<img src="img/noFeature.png" width="70%"/>')
-            }
-
-            //参数数据................................................................
-            var productParams = new ProductParams('#params', data);
-
-            //中间canvas的数据................................................................
-            var pdc = new ProductDetailCanvas('#productDetailCanvas', data, false);
-
-
-            //tab栏的逻辑................................................................
-            var $tabTitle = $('.tabTitle');
-//            $tabTitle.css({width: $(window).width() / 3});
-            var $tabUnderline = $('.tabUnderline');
-            var $tabContent = $('.tabContent');
-            changeTab(0);
-            $tabTitle.click(function () {
-                var that = this;
-                changeTab($(that).index())
-            })
-
-            function changeTab(index) {
-                $tabUnderline.hide();
-                $tabUnderline.eq(index).show();
-                $tabContent.eq(index).show().siblings().hide();
-            }
-
-
-            //弹幕............................................................
-            GM.ccm = new CommentCellManager('#cullet',
-                    {
-                        serverUrl: jimiHost + '/culletSelect.php',
-                        closeable: false,
-                        pnameable: false,
-                        topBlank: 0,
-                        bottomBlank: 1,
-                        startDelay: 1,
-                        pushALG: 'top-down',
-                    }
-            );
-
-            //加载弹幕...........................................................
-            setTimeout(function () {
-                GM.ccm.load(searchJson.pid);
-            }, 2000)
-
-
-        },
-        error: function (err) {
-            console.log('ERROR!');
-            console.log(err);
         }
+        window.searchJson = searchJson = window.location.search.searchToJson();
+        FastClick.attach(document.body);
+
+        //download对象..............................................
+        var download = new Download('.download', null);
+
+        //是否分享..................................................
+        GM.version = 'web';
+        GM.ifShare = true;
+
+        //ajax绑定数据
+        $.ajax({
+            type: "get",
+            url: jimiHost + '/formual_safe.php' + window.location.search,
+//        url: 'package.json',
+            dataType: "jsonp",
+            jsonp: "callback",
+            jsonpCallback: "jsonpcallback",
+            success: function (data) {
+                console.log(JSON.stringify(data));
+
+                var productCarousel = new ProductCarousel($('.carousel'), {imgUrlArr: data.imgUrl});
+
+                //绑定文字..........................................................................
+                var chineseName, englishName = '';
+                if (data.chineseName) {
+                    chineseName = "<div style='font-size: 15px'>" + data.chineseName + "</div>"
+                }
+                if (data.englishName) {
+                    englishName = "<div style='font-size: 13px;color: #999'>" + data.englishName + "</div>"
+                }
+                $('.txtDes').html(chineseName + englishName);
+
+                //绑定标签..........................................................................
+                if (data.caption && Object.prototype.toString.call(data.caption) == '[object Array]') {
+                    var str = '';
+                    [].forEach.call(data.caption, function (e, i, arr) {
+                        str += '<img src=' + e + ' / >';
+                    });
+                    $('.captionDes').html(str);
+                }
+                ;
+
+                //标签点击跳弹框............................................
+                $('.captionDes').click(function () {
+                    $('#alertBox').fadeIn();
+                })
+                $('#alertBox').click(function () {
+                    $(this).fadeOut();
+                })
+
+
+                //市场价格....................................................
+                $('.priceBrand').html('品牌：' + data.brand);
+                $('.priceOri').html('原价：￥' + data.priceInfo.minprice);
+
+                var diff = data.priceInfo.diffprice;
+                if (data.priceInfo.diffprice > 0) {
+                    var priceColor = '<span style="color: red">' + diff + '<span>';
+                    $('.priceNew').html('涨价：￥' + priceColor);
+                } else if (data.priceInfo.diffprice < 0) {
+                    var priceColor = '<span style="color: green">' + diff + '<span>';
+                    $('.priceNew').html('降价：￥' + priceColor);
+                } else {
+                    $('.priceNew').html('降价：￥--');
+                }
+
+
+                //中间蜂巢的数据................................................................
+                if (data.feature) {
+                    var hc = new Honeycomb('#honeyComb', data, false);//参数3是是否错开.............
+                }
+                else {
+                    $('#honeyComb')
+                            .css({'text-align': 'center'})
+                            .html('<img src="img/noFeature.png" width="70%"/>')
+                }
+
+                //参数数据................................................................
+                var productParams = new ProductParams('#params', data);
+
+                //中间canvas的数据................................................................
+                var pdc = new ProductDetailCanvas('#productDetailCanvas', data, false);
+
+
+                //tab栏的逻辑................................................................
+                var $tabTitle = $('.tabTitle');
+//            $tabTitle.css({width: $(window).width() / 3});
+                var $tabUnderline = $('.tabUnderline');
+                var $tabContent = $('.tabContent');
+                changeTab(0);
+                $tabTitle.click(function () {
+                    var that = this;
+                    changeTab($(that).index())
+                })
+
+                function changeTab(index) {
+                    $tabUnderline.hide();
+                    $tabUnderline.eq(index).show();
+                    $tabContent.eq(index).show().siblings().hide();
+                }
+
+
+                //弹幕............................................................
+                GM.ccm = new CommentCellManager('#cullet',
+                        {
+                            serverUrl: jimiHost + '/culletSelect.php',
+                            closeable: false,
+                            pnameable: false,
+                            topBlank: 0,
+                            bottomBlank: 1,
+                            startDelay: 1,
+                            pushALG: 'top-down',
+                        }
+                );
+
+                //加载弹幕...........................................................
+                setTimeout(function () {
+                    GM.ccm.load(searchJson.pid);
+                }, 2000)
+
+
+            },
+            error: function (err) {
+                console.log('ERROR!');
+                console.log(err);
+            }
+        })
     })
 </script>
 </body>

@@ -20,6 +20,9 @@ function app() {
         jsonp: "callback",
         jsonpCallback: "jsonpcallback",
         success: function (data) {
+            $('#loading').hide();
+            $('#loaded').show();
+
             console.log(JSON.stringify(data));
             var compositionHeader = new CompositionHeader('.compositionHeader', data);
             var alternateTab = new AlternateTab('.alternateTab', {txtArray: ['按类型', '按安全']});

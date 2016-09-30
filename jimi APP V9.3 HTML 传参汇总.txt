@@ -1,0 +1,75 @@
+1、compare.html 对比页面
+'http://n1.jimi.la/apps_V9.3/compare/compare.html'+'?pids=56f57a7defb80c57428c74f6,56f56b2befb80c57428c654f,56829f6defb80c4e26c457f6&cate=6&uid=10000&usertype=1&uimg=http://7xo2me.com1.z0.glb.clouddn.com/images/17RTW5G74N2J.jpg';
+参数：
+1）pids 产品id
+2）cate 
+3）uid 用户id
+4）usertype 是否vip 传0 1 2
+5）uimg 用户头像在七牛的url
+
+
+2、compareShare.html 对比分享页面
+'http://n1.jimi.la/apps_V9.3/compare/compareShare.html'+'?pids=56f57a7defb80c57428c74f6,56f56b2befb80c57428c654f,56829f6defb80c4e26c457f6&cate=6';
+
+
+3、compareFreeLogin.html 对比免登陆页面
+'http://n1.jimi.la/apps_V9.3/compare/compareFreeLogin.html'+'?pids=56f57a7defb80c57428c74f6,56f56b2befb80c57428c654f,56829f6defb80c4e26c457f6&cate=6';
+
+
+
+4、CompositionDistribution.html 成分分布页面
+安卓：
+'http://n1.jimi.la/apps_V9.3/CompositionDistribution/CompositionDistributionVersionAndroid.html'+'?pid=56f4f7efefb80c57428ba8d2&altBtnIndex=1';
+IOS：
+'http://n1.jimi.la/apps_V9.3/CompositionDistribution/CompositionDistributionVersionIOS.html'+'?pid=56f4f7efefb80c57428ba8d2&altBtnIndex=1';
+参数：
+1）pid 产品id
+2）altBtnIndex 0或1或不传
+
+5、成功分布免登陆 同上
+
+6、兑换中心 永远在T1上
+http://n1.jimi.la/apps_T1/exchangePage/index.html?uid=10430
+
+
+7、咨询分享
+'http://n1.jimi.la/apps_V9.3/InformationPost/InformationPostShare.html' +'?rid=466'
+
+
+8、ProductDetailCanvas.html 产品详情的canvas小球页面
+'http://n1.jimi.la/apps_V9.3/ProductDetailCanvas/ProductDetailCanvas.html'+'?pid=5682a105efb80c4e26c4bf5b';
+
+9、产品详情的canvas小球页面 免登陆 同上
+
+10、ProductDetailShare.html 产品详情的分享页面
+'http://n1.jimi.la/apps_V9.3/ProductDetailCanvas/ProductDetailShare.html'+'?pid=5682a105efb80c4e26c4bf5b';
+
+
+
+11、ProductDetailCullet.html 产品详情页的弹幕
+安卓：
+'http://n1.jimi.la/apps_V9.3/ProductDetailCullet/ProductDetailCulletVersionAndroid.html'+ '?pid=56829f6defb80c4e26c457f6&uid=10002';
+
+IOS:
+'http://n1.jimi.la/apps_V9.3/ProductDetailCullet/ProductDetailCulletVersionIOS.html'+ '?pid=56829f6defb80c4e26c457f6&uid=10002';
+
+12、免登陆先 同上 方辉说可以让他在发送弹幕的时候拦截
+
+
+13、肤质检测 
+http://n1.jimi.la/apps_V9.3/skinTest/skinTest.html?uid=10002
+
+14、未做过肤质检测
+http://n1.jimi.la/apps_V9.3/skinTest/skinTestStart.html?uid=10002
+
+15、肤质检测结果页
+http://n1.jimi.la/apps_V9.3/skinTest/skinTestResult.html?uid=10002
+
+16、肤质检测结果描述页
+http://n1.jimi.la/apps_V9.3/skinTest/skinTestDesc.html?uid=10002
+
+17、肤质检测分享
+http://n1.jimi.la/apps_V9.3/skinTest/skinTestShare.html?uid=10002
+
+
+有问题打我电话 13601636035

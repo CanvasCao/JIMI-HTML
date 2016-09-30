@@ -6,12 +6,8 @@
           content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no"/>
     <title>产品详情</title>
     <link rel="stylesheet" href="css/main.css"/>
+    <link rel="stylesheet" href="http://7xo2me.com1.z0.glb.clouddn.com/preloadCss/loader.min.css"/>
     <style type="text/css">
-
-        body {
-            box-sizing: border-box;
-        }
-
         .productDetailCanvas {
             box-sizing: border-box;
             padding: 0px 15px;
@@ -19,7 +15,25 @@
     </style>
 </head>
 <body>
-<div class="productDetailCanvas"></div>
+<div id='loading'>
+    <div class="loader">
+        <div class="loader-inner ball-spin-fade-loader">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <div class='loader-innerText'>loading...</div>
+    </div>
+</div>
+
+<div id='loaded' style='display: none;'>
+    <div class="productDetailCanvas"></div>
+</div>
 
 <script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src='js/constant/jimiHost.js'></script>
@@ -31,30 +45,34 @@
 
 <script>
 
-    //得到请求地址的URL
-    if (!window.location.search) {
+    $(function(){
+        $('#loading').hide();
+        $('#loaded').show();
+        //得到请求地址的URL
+        if (!window.location.search) {
 //        window.location = window.location + '?pid=56c6aea3efb80c9b2541ced4';
-        window.location = window.location + '?pid=5682a105efb80c4e26c4bf5b';
-    }
-
-
-    GM.ifShare = false;
-    $.ajax({
-        type: "get",
-        url: jimiHost + '/formual_safe.php' + window.location.search,
-//            url: 'package.json',
-        dataType: "jsonp",
-        jsonp: "callback",
-        jsonpCallback: "jsonpcallback",
-        success: function (data) {
-            console.log(JSON.stringify(data));
-            var pdc = new ProductDetailCanvas('.productDetailCanvas', data, true);
-        },
-        error: function (err) {
-            console.log('ERROR!');
-            console.log(err);
+            window.location = window.location + '?pid=5682a105efb80c4e26c4bf5b';
         }
+
+        GM.ifShare = false;
+        $.ajax({
+            type: "get",
+            url: jimiHost + '/formual_safe.php' + window.location.search,
+//            url: 'package.json',
+            dataType: "jsonp",
+            jsonp: "callback",
+            jsonpCallback: "jsonpcallback",
+            success: function (data) {
+                console.log(JSON.stringify(data));
+                var pdc = new ProductDetailCanvas('.productDetailCanvas', data, true);
+            },
+            error: function (err) {
+                console.log('ERROR!');
+                console.log(err);
+            }
+        })
     })
+
 </script>
 </body>
 </html>
