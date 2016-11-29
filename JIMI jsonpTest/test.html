@@ -3,27 +3,49 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title></title>
-    <script src='jquery-1.7.js'></script>
+    <script src="http://apps.bdimg.com/libs/jquery/1.8.3/jquery.min.js"></script>
+
     <script>
         $(document).ready(function () {
             $.ajax({
                 type: "get",
-                url: 'http://n1.jimi.la/apps_V2/cp/formual_safe.php?pid=56c6ae75efb80c9b2541cd67',
+                url: 'http://n1.jimi.la/apps_V9.3/formual_safe.php?pid=56c6ae75efb80c9b2541cd67',
 //                url: 'package.json',
                 data: {pids: '56c6ae75efb80c9b2541cd66,56c6ae4fefb80c9b2541cc39', 'cate': 70},
                 dataType: "jsonp",
                 jsonp: "callback",//传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)
                 jsonpCallback: "jsonpcallback",
+                cache: false,
+                async: false,
                 success: function (data) {
                     console.log(JSON.stringify(data));
+                    console.log(new Date().getTime())
                 },
                 error: function (err) {
-                    console.log('ERROR!')
-                    console.log(err);
+                    console.log('第一次 ERROR!')
+                    console.log(JSON.stringify(err));
                 }
             });
 
-//            console.log(1)
+            $.ajax({
+                type: "get",
+                url: 'http://n1.jimi.la/apps_V9.4/formual_safe.php?pid=56c6ae75efb80c9b2541cd67',
+//                url: 'package.json',
+                data: {pids: '56c6ae75efb80c9b2541cd66,56c6ae4fefb80c9b2541cc39', 'cate': 70},
+                dataType: "jsonp",
+                jsonp: "callback",//传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)
+                jsonpCallback: "jsonpcallback",
+                cache: false,
+                async: false,
+                success: function (data) {
+                    console.log(JSON.stringify(data));
+                    console.log(new Date().getTime())
+                },
+                error: function (err) {
+                    console.log('第二次 ERROR!')
+                    console.log(JSON.stringify(err));
+                }
+            });
         });
     </script>
 </head>
