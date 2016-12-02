@@ -180,14 +180,14 @@
 
     <div class='border'></div>
 
-    <div class='priceCon'>
+    <div class='priceCon' style="display: none">
         <div style='margin-bottom: 5px'>市场最低价</div>
         <div class='priceBottom'>
             <span style="color: #3881E0;" class='priceBrand'>品牌</span><span class='priceOri'></span><span
                 class='priceNew'></span>
         </div>
     </div>
-    <div class='dash'></div>
+    <!--<div class='dash'></div>-->
 
     <div class='tabCon'>
         <div class='tabTitleCon'>
@@ -317,18 +317,19 @@
 
                 //市场价格....................................................
                 $('.priceBrand').html('品牌：' + data.brand);
-                $('.priceOri').html('原价：￥' + data.priceInfo.minprice);
 
-                var diff = data.priceInfo.diffprice;
-                if (data.priceInfo.diffprice > 0) {
-                    var priceColor = '<span style="color: red">' + diff + '<span>';
-                    $('.priceNew').html('涨价：￥' + priceColor);
-                } else if (data.priceInfo.diffprice < 0) {
-                    var priceColor = '<span style="color: green">' + diff + '<span>';
-                    $('.priceNew').html('降价：￥' + priceColor);
-                } else {
-                    $('.priceNew').html('降价：￥--');
-                }
+//                $('.priceOri').html('原价：￥' + data.priceInfo.minprice);
+//
+//                var diff = data.priceInfo.diffprice;
+//                if (data.priceInfo.diffprice > 0) {
+//                    var priceColor = '<span style="color: red">' + diff + '<span>';
+//                    $('.priceNew').html('涨价：￥' + priceColor);
+//                } else if (data.priceInfo.diffprice < 0) {
+//                    var priceColor = '<span style="color: green">' + diff + '<span>';
+//                    $('.priceNew').html('降价：￥' + priceColor);
+//                } else {
+//                    $('.priceNew').html('降价：￥--');
+//                }
 
 
                 //中间蜂巢的数据................................................................

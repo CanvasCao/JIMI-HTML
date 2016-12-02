@@ -24,15 +24,25 @@
       <file leaf-file-name="ProductDetailShare.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/ProductDetailCanvas 9-7/ProductDetailShare.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5877342">
-              <caret line="274" column="56" selection-start-line="274" selection-start-column="56" selection-end-line="274" selection-end-column="57" />
+            <state vertical-scroll-proportion="-1.0893099">
+              <caret line="190" column="0" selection-start-line="190" selection-start-column="0" selection-end-line="190" selection-end-column="0" />
               <folding>
-                <element signature="n#div#6;n#body#0;n#html#0;n#!!top" expanded="false" />
-                <marker date="1474882656877" expanded="true" signature="8076:8091" placeholder="..." />
-                <marker date="1474882656877" expanded="true" signature="8218:8245" placeholder="..." />
-                <marker date="1474882656877" expanded="true" signature="9398:9408" placeholder="..." />
-                <marker date="1474882656877" expanded="true" signature="9591:9603" placeholder="..." />
+                <element signature="n#style#0;n#div#4;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <marker date="1480658547749" expanded="true" signature="8761:8776" placeholder="..." />
+                <marker date="1480658547749" expanded="true" signature="8915:8942" placeholder="..." />
+                <marker date="1480658547749" expanded="true" signature="10202:10212" placeholder="..." />
+                <marker date="1480658547749" expanded="true" signature="10413:10425" placeholder="..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="jimiHost.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ProductDetailCanvas 9-7/js/constant/jimiHost.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="0" column="44" selection-start-line="0" selection-start-column="44" selection-end-line="0" selection-end-column="44" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -87,7 +97,6 @@
         <option value="$PROJECT_DIR$/js/spa/productDetailCanvas-1.0.3.js" />
         <option value="$PROJECT_DIR$/ProductDetailCanvas 9-7/js/spa/productParams.js" />
         <option value="$PROJECT_DIR$/ProductDetailCanvas 9-7/js/spa/ProductCarousel-1.0.0.js" />
-        <option value="$PROJECT_DIR$/ProductDetailCanvas 9-7/js/constant/jimiHost.js" />
         <option value="$PROJECT_DIR$/ProductDetailCanvas 9-7/轮播PlugIn.html" />
         <option value="$PROJECT_DIR$/ProductDetailCanvas 9-7/css/alertBox.css" />
         <option value="$PROJECT_DIR$/ProductDetailCanvas 9-7/js/tool/response.js" />
@@ -96,8 +105,9 @@
         <option value="$PROJECT_DIR$/ProductDetailCanvas 9-7/js/spa/productCarousel-1.0.0.js" />
         <option value="&lt;7071f608-e75d-4a7c-a0e5-f1974c940b18&gt;/workerman/jimi/apps_T1/ProductDetailCanvas/js/spa/productCarousel-1.0.0.js" />
         <option value="&lt;7071f608-e75d-4a7c-a0e5-f1974c940b18&gt;/workerman/jimi/apps_V9.2/ProductDetailCanvas/ProductDetailShare.html" />
-        <option value="$PROJECT_DIR$/ProductDetailCanvas 9-7/ProductDetailShare.html" />
         <option value="$PROJECT_DIR$/ProductDetailCanvas 9-7/js/class/commentCellManager-6.0.0.js" />
+        <option value="$PROJECT_DIR$/ProductDetailCanvas 9-7/js/constant/jimiHost.js" />
+        <option value="$PROJECT_DIR$/ProductDetailCanvas 9-7/ProductDetailShare.html" />
       </list>
     </option>
   </component>
@@ -111,8 +121,8 @@
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
-    <option name="width" value="1616" />
-    <option name="height" value="876" />
+    <option name="width" value="1936" />
+    <option name="height" value="1056" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="添加" />
@@ -121,8 +131,14 @@
     <OptionsSetting value="true" id="更新" />
     <OptionsSetting value="true" id="状态" />
     <OptionsSetting value="true" id="编辑" />
-    <ConfirmationsSetting value="0" id="添加" />
-    <ConfirmationsSetting value="0" id="移除" />
+    <OptionsSetting value="true" id="Add" />
+    <OptionsSetting value="true" id="Remove" />
+    <OptionsSetting value="true" id="Checkout" />
+    <OptionsSetting value="true" id="Update" />
+    <OptionsSetting value="true" id="Status" />
+    <OptionsSetting value="true" id="Edit" />
+    <ConfirmationsSetting value="0" id="Add" />
+    <ConfirmationsSetting value="0" id="Remove" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -137,6 +153,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -253,14 +270,35 @@
               <option name="myItemId" value="ProductDetailCanvas" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ProductDetailCanvas 9-7" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="constant" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ProductDetailCanvas" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ProductDetailCanvas" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/ProductDetailCanvas 9-7" />
     <property name="WebServerToolWindowFactoryState" value="true" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
     <property name="FullScreen" value="false" />
@@ -341,30 +379,31 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.27956298" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15167095" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2793177" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15298508" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="版本控制" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.13825503" sideWeight="0.5051414" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.13837838" sideWeight="0.5051414" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="调试" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.13825503" sideWeight="0.49485862" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="运行" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="版本控制" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -390,11 +429,11 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="n#div#6;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <marker date="1474882656877" expanded="true" signature="8076:8091" placeholder="..." />
-            <marker date="1474882656877" expanded="true" signature="8218:8245" placeholder="..." />
-            <marker date="1474882656877" expanded="true" signature="9398:9408" placeholder="..." />
-            <marker date="1474882656877" expanded="true" signature="9591:9603" placeholder="..." />
+            <element signature="n#style#0;n#div#4;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <marker date="1480658547749" expanded="true" signature="8761:8776" placeholder="..." />
+            <marker date="1480658547749" expanded="true" signature="8915:8942" placeholder="..." />
+            <marker date="1480658547749" expanded="true" signature="10202:10212" placeholder="..." />
+            <marker date="1480658547749" expanded="true" signature="10413:10425" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -404,11 +443,25 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="n#div#6;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <marker date="1474882656877" expanded="true" signature="8076:8091" placeholder="..." />
-            <marker date="1474882656877" expanded="true" signature="8218:8245" placeholder="..." />
-            <marker date="1474882656877" expanded="true" signature="9398:9408" placeholder="..." />
-            <marker date="1474882656877" expanded="true" signature="9591:9603" placeholder="..." />
+            <element signature="n#style#0;n#div#4;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <marker date="1480658547749" expanded="true" signature="8761:8776" placeholder="..." />
+            <marker date="1480658547749" expanded="true" signature="8915:8942" placeholder="..." />
+            <marker date="1480658547749" expanded="true" signature="10202:10212" placeholder="..." />
+            <marker date="1480658547749" expanded="true" signature="10413:10425" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ProductDetailCanvas 9-7/ProductDetailShare.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="n#style#0;n#div#4;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <marker date="1480658547749" expanded="true" signature="8761:8776" placeholder="..." />
+            <marker date="1480658547749" expanded="true" signature="8915:8942" placeholder="..." />
+            <marker date="1480658547749" expanded="true" signature="10202:10212" placeholder="..." />
+            <marker date="1480658547749" expanded="true" signature="10413:10425" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -417,7 +470,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -433,11 +485,11 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="n#div#6;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <marker date="1474882656877" expanded="true" signature="8076:8091" placeholder="..." />
-            <marker date="1474882656877" expanded="true" signature="8218:8245" placeholder="..." />
-            <marker date="1474882656877" expanded="true" signature="9398:9408" placeholder="..." />
-            <marker date="1474882656877" expanded="true" signature="9591:9603" placeholder="..." />
+            <element signature="n#style#0;n#div#4;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <marker date="1480658547749" expanded="true" signature="8761:8776" placeholder="..." />
+            <marker date="1480658547749" expanded="true" signature="8915:8942" placeholder="..." />
+            <marker date="1480658547749" expanded="true" signature="10202:10212" placeholder="..." />
+            <marker date="1480658547749" expanded="true" signature="10413:10425" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -446,7 +498,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -455,20 +506,12 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="n#div#6;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <marker date="1474882656877" expanded="true" signature="8076:8091" placeholder="..." />
-            <marker date="1474882656877" expanded="true" signature="8218:8245" placeholder="..." />
-            <marker date="1474882656877" expanded="true" signature="9398:9408" placeholder="..." />
-            <marker date="1474882656877" expanded="true" signature="9591:9603" placeholder="..." />
+            <element signature="n#style#0;n#div#4;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <marker date="1480658547749" expanded="true" signature="8761:8776" placeholder="..." />
+            <marker date="1480658547749" expanded="true" signature="8915:8942" placeholder="..." />
+            <marker date="1480658547749" expanded="true" signature="10202:10212" placeholder="..." />
+            <marker date="1480658547749" expanded="true" signature="10413:10425" placeholder="..." />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ProductDetailCanvas 9-7/js/constant/jimiHost.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="46" selection-start-line="0" selection-start-column="46" selection-end-line="0" selection-end-column="46" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -570,7 +613,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-5.269231">
           <caret line="35" column="76" selection-start-line="35" selection-start-column="52" selection-end-line="35" selection-end-column="76" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -600,16 +642,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/ProductDetailCanvas 9-7/js/constant/jimiHost.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="44" selection-start-line="0" selection-start-column="44" selection-end-line="0" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/ProductDetailCanvas 9-7/ProductDetailShare.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5877342">
-          <caret line="274" column="56" selection-start-line="274" selection-start-column="56" selection-end-line="274" selection-end-column="57" />
+        <state vertical-scroll-proportion="-1.0893099">
+          <caret line="190" column="0" selection-start-line="190" selection-start-column="0" selection-end-line="190" selection-end-column="0" />
           <folding>
-            <element signature="n#div#6;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <marker date="1474882656877" expanded="true" signature="8076:8091" placeholder="..." />
-            <marker date="1474882656877" expanded="true" signature="8218:8245" placeholder="..." />
-            <marker date="1474882656877" expanded="true" signature="9398:9408" placeholder="..." />
-            <marker date="1474882656877" expanded="true" signature="9591:9603" placeholder="..." />
+            <element signature="n#style#0;n#div#4;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <marker date="1480658547749" expanded="true" signature="8761:8776" placeholder="..." />
+            <marker date="1480658547749" expanded="true" signature="8915:8942" placeholder="..." />
+            <marker date="1480658547749" expanded="true" signature="10202:10212" placeholder="..." />
+            <marker date="1480658547749" expanded="true" signature="10413:10425" placeholder="..." />
           </folding>
         </state>
       </provider>
