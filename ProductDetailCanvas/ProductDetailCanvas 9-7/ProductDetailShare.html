@@ -256,8 +256,6 @@
 
 <script>
     $(function () {
-        $('#loading').hide();
-        $('#loaded').show();
 
         if (!window.location.search) {
             window.location = window.location + '?pid=56829f09efb80c4e26c43eea';
@@ -283,6 +281,9 @@
             jsonpCallback: "jsonpcallback",
             success: function (data) {
                 console.log(JSON.stringify(data));
+
+                $('#loading').hide();
+                $('#loaded').show();
 
                 var productCarousel = new ProductCarousel($('.carousel'), {imgUrlArr: data.imgUrl});
 
